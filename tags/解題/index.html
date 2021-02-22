@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="pC2le32KaKDSGh9V637p5YC81zixbAMyKN3nPqkKscE" />
+  <script data-ad-client="ca-pub-3454014140664886" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+  <meta name="description" content="De-Wei Ye&#39;s personal site">
+  <meta name="generator" content="Hugo 0.74.3" />
+
+  <meta property="og:title" content="解題" />
+  <meta name="twitter:title" content="解題" />
+
+  <meta property="og:url" content="https://dwy6626.github.io/tags/%E8%A7%A3%E9%A1%8C/" />
+  
+    <meta name="twitter:card" content="summary">
+  
+
+  <meta name="twitter:site" content="dw&#39;s 小站">
+  <meta name="twitter:creator" content="De-Wei Ye">
+  
+    <meta name="twitter:description" content="DS / CS / CH / 斜槓與轉職的人生" />
+    
+  
+
+  
+  <link rel="preconnect" href="https://s.ytimg.com">
+  <link rel="preconnect" href="https://i.imgur.com">
+
+  <title>解題 &middot; dw&#39;s 小站</title>
+
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/pure-min.css" media="screen">
+
+  <!--[if lte IE 8]>
+  <link async rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-old-ie-min.css" media="screen">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-min.css" media="screen">
+  <!--<![endif]-->
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://dwy6626.github.io/css/side-menu-old-ie.css" media="screen">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://dwy6626.github.io/css/side-menu.css" media="screen">
+  <!--<![endif]-->
+
+  <link rel="stylesheet" href="https://dwy6626.github.io/css/blackburn.css" media="screen">
+  <link rel="stylesheet" href="https://dwy6626.github.io/css/dw-burn.css" media="screen">
+  <link rel="stylesheet" href="https://dwy6626.github.io/css/dw-menu.css" media="screen">
+
+  
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [['$$','$$']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+    CommonHTML: { linebreaks: { automatic: true } },
+    "HTML-CSS": { linebreaks: { automatic: true } },
+          SVG: { linebreaks: { automatic: true } }    
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+ 
+ 
+ <link rel="alternate" type="application/rss+xml" title="dw&#39;s 小站" href='https://dwy6626.github.io/tags/%E8%A7%A3%E9%A1%8C/index.xml' />
+ 
+
+  
+  <link async rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/vs2015.min.css" media="screen">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  
+  <script defer src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+  
+  <script defer src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/vbnet.min.js"></script>
+  
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+  <link rel="shortcut icon" href="https://dwy6626.github.io/img/favicon.ico" type="image/x-icon" />
+
+  
+    
+        <link rel="stylesheet" href="https://dwy6626.github.io/css/color.css" media="screen">
+    
+  
+  
+
+  <link async rel="stylesheet" href="//use.fontawesome.com/releases/v5.9.0/css/all.css" media="screen">
+
+</head>
+
+
+<body>
+<div id="layout">
+
+  
+<a href="#menu" id="menuLink" class="menu-link" aria-label="Go to menu of this website">
+  
+  <span></span>
+</a>
+<div id="menu">
+
+  
+
+  <a class="pure-menu-heading brand" href="https://dwy6626.github.io/">De-Wei Ye</a>
+
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+      
+        <li class="pure-menu-item">
+            <a class="pure-menu-link" href="https://dwy6626.github.io/about/"><i class='fas fa-user-circle fa-fw'></i><span>關於</span></a>
+        </li>
+      
+        <li class="pure-menu-item">
+            <a class="pure-menu-link" href="https://dwy6626.github.io/notes/"><i class="fas fa-book fa-fw"></i><span>筆記</span></a>
+        </li>
+      
+        <li class="pure-menu-item">
+            <a class="pure-menu-link" href="https://dwy6626.github.io/post/"><i class='fas fa-list-ul fa-fw'></i><span>文章列表</span></a>
+        </li>
+      
+        <li class="pure-menu-item">
+            <a class="pure-menu-link" href="https://dwy6626.github.io/topics/"><i class="fas fa-folder fa-fw"></i><span>主題分類</span></a>
+        </li>
+      
+        <li class="pure-menu-item">
+            <a class="pure-menu-link" href="https://dwy6626.github.io/tags/"><i class='fas fa-tags fa-fw'></i><span>標籤</span></a>
+        </li>
+      
+        <li class="pure-menu-item">
+            <a class="pure-menu-link" href="https://dwy6626.github.io/../en/"><i class="fas fa-globe-americas fa-fw"></i><span>English</span></a>
+        </li>
+      
+    </ul>
+  </div>
+
+  
+<div class="pure-menu social">
+    <ul class="pure-menu-list">
+
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://linkedin.com/in/dwy6626" rel="me external noopener" target="_blank"><i class="fab fa-linkedin fa-fw"></i><span>LinkedIn</span></a>
+      </li>
+      
+  
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://github.com/dwy6626" rel="me external noopener" target="_blank"><i class="fab fa-github fa-fw"></i><span>GitHub</span></a>
+      </li>
+      
+
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://leetcode.com/mirror0227" rel="me external noopener" target="_blank"><i class="fas fa-laptop-code fa-fw"></i><span>LeetCode</span></a>
+      </li>
+      
+
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href='https://dwy6626.github.io/tags/%E8%A7%A3%E9%A1%8C/index.xml'><i class="fa fa-rss fa-fw"></i><span>RSS</span></a>
+      </li>
+      
+
+    </ul>
+  </div>
+
+
+  <div class="copyright-small">
+  Built with <a href="https://gohugo.io/" rel="external noopener" target="_blank">Hugo</a>
+</div>
+<div class="copyright-small">
+  W/ <a href="https://github.com/dwy6626/dw-favored-blackburn" rel="external noopener" target="_blank">DW-Favored-Blackburn</a>
+</div>
+<div class="copyright-small">
+  Based on <a href="https://github.com/yoshiharuyamashita/blackburn" rel="external noopener" target="_blank">Blackburn</a>
+</div>
+<div class="copyright-small">
+  and <a href="https://purecss.io/" rel="external noopener" target="_blank">Pure CSS</a>
+</div>
+<div class="copyright-small">
+  Icons <a href="https://fontawesome.com" rel="external noopener" target="_blank">Font Awesome</a>
+</div>
+
+<div class="copyright-small">
+  <a href="https://dwy6626.github.io/copyright">
+    &copy; 2020. All rights reserved.
+  </a>
+</div>
+
+</div>
+
+
+  <div id="main">
+
+
+<div class="header">
+  <h1>解題</h1>
+</div>
+
+<div class="content">
+  
+    <article>
+  <header>
+    <h2><a href="https://dwy6626.github.io/post/20151028_162837/">物理解題經驗分享：四大步驟</a></h2>
+
+    <div class="post-meta">
+
+<div>
+  <li>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>
+      <span>
+        
+          Oct 28, 2015
+        
+      </span>
+  </time>
+  </li>
+</div>
+
+
+
+<div>
+  
+    
+    
+        
+        <a class="post-taxonomy-topic" href=https://dwy6626.github.io/topics/%E9%AB%98%E4%B8%AD%E6%95%99%E5%AD%B8> 
+          <li>
+            <i class="fas fa-folder fa-fw"></i>
+            <span>高中教學</span>
+          </li>
+        </a>
+      
+    
+  
+
+  
+    
+    
+      
+      <a class="post-taxonomy-tag" href=https://dwy6626.github.io/tags/%E9%AB%98%E4%B8%AD%E7%89%A9%E7%90%86>
+        <li>
+          <i class="fas fa-tag fa-fw"></i>
+          <span>高中物理</span>
+        </li>
+      </a>
+      
+      <a class="post-taxonomy-tag" href=https://dwy6626.github.io/tags/%E8%A7%A3%E9%A1%8C>
+        <li>
+          <i class="fas fa-tag fa-fw"></i>
+          <span>解題</span>
+        </li>
+      </a>
+      
+      <a class="post-taxonomy-tag" href=https://dwy6626.github.io/tags/%E5%AE%B6%E6%95%99>
+        <li>
+          <i class="fas fa-tag fa-fw"></i>
+          <span>家教</span>
+        </li>
+      </a>
+      
+      <a class="post-taxonomy-tag" href=https://dwy6626.github.io/tags/%E5%AD%B8%E7%BF%92%E5%BF%83%E5%BE%97>
+        <li>
+          <i class="fas fa-tag fa-fw"></i>
+          <span>學習心得</span>
+        </li>
+      </a>
+      
+    
+  
+</div>
+
+</div>
+
+
+  </header>
+
+  <p>
+    <h2 id="四大步驟">四大步驟</h2>
+<p>看到題目不知道要做什麼？一個不熟悉的題型應該從何下手？就算是身經百戰的考生，可能今年大考又有新的題型。除了基本題型熟練之外，更重要的是訓練自己不害怕新的題型，能夠運用所學穩健地破解題目。就我觀察，一般解題的高手都有一個自己習慣的解題步驟，可能是自然而然產生的，也可能是自己制定下來自己習慣的。因此在這邊將自己寫物理時候的習慣步驟整理出來分享給大家：</p>
+  </p>
+
+  
+    <footer>
+      <a href="https://dwy6626.github.io/post/20151028_162837/">繼續閱讀<i class="fa fa-angle-double-right fa-fw"></i></a>
+    </footer>
+  
+</article>
+      
+  
+    <article>
+  <header>
+    <h2><a href="https://dwy6626.github.io/post/20140828_164254/">在補習班的日子</a></h2>
+
+    <div class="post-meta">
+
+<div>
+  <li>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>
+      <span>
+        
+          Aug 28, 2014
+        
+      </span>
+  </time>
+  </li>
+</div>
+
+
+
+<div>
+  
+    
+    
+        
+        <a class="post-taxonomy-topic" href=https://dwy6626.github.io/topics/%E9%AB%98%E4%B8%AD%E6%95%99%E5%AD%B8> 
+          <li>
+            <i class="fas fa-folder fa-fw"></i>
+            <span>高中教學</span>
+          </li>
+        </a>
+      
+    
+  
+
+  
+    
+    
+      
+      <a class="post-taxonomy-tag" href=https://dwy6626.github.io/tags/%E5%AE%B6%E6%95%99>
+        <li>
+          <i class="fas fa-tag fa-fw"></i>
+          <span>家教</span>
+        </li>
+      </a>
+      
+      <a class="post-taxonomy-tag" href=https://dwy6626.github.io/tags/%E8%A7%A3%E9%A1%8C>
+        <li>
+          <i class="fas fa-tag fa-fw"></i>
+          <span>解題</span>
+        </li>
+      </a>
+      
+      <a class="post-taxonomy-tag" href=https://dwy6626.github.io/tags/%E8%A3%9C%E7%BF%92>
+        <li>
+          <i class="fas fa-tag fa-fw"></i>
+          <span>補習</span>
+        </li>
+      </a>
+      
+    
+  
+</div>
+
+</div>
+
+
+  </header>
+
+  <p>
+    <p>這是篇公開心得，所以避開了所有人名以及公司名，有必要者用綽號稱之。</p>
+<h2 id="緣起">緣起</h2>
+<p>2012年11月，第一次到13樓的辦公室考試，那邊的人說，考卷就在桌上，寫完考卷和資料之後就可以走了，之後靜待通知。</p>
+<p>所有事情的發生，都有它的背景以及緣起。大學時代決定邁向經濟獨立目標的我，四處尋找工作機會。因緣際會下有了第一個家教，但是總覺得還不夠，於是就問了原本已在補習班工作的高中學長D大，決定先到補習班累積經驗。</p>
+  </p>
+
+  
+    <footer>
+      <a href="https://dwy6626.github.io/post/20140828_164254/">繼續閱讀<i class="fa fa-angle-double-right fa-fw"></i></a>
+    </footer>
+  
+</article>
+      
+  
+    <article>
+  <header>
+    <h2><a href="https://dwy6626.github.io/post/%E4%BC%B0%E7%AE%97%E6%B3%95/">估算法</a></h2>
+
+    <div class="post-meta">
+
+<div>
+  <li>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>
+      <span>
+        
+          Aug 20, 2014
+        
+      </span>
+  </time>
+  </li>
+</div>
+
+
+
+<div>
+  
+    
+    
+        
+        <a class="post-taxonomy-topic" href=https://dwy6626.github.io/topics/%E9%AB%98%E4%B8%AD%E6%95%99%E5%AD%B8> 
+          <li>
+            <i class="fas fa-folder fa-fw"></i>
+            <span>高中教學</span>
+          </li>
+        </a>
+      
+    
+  
+
+  
+    
+    
+      
+      <a class="post-taxonomy-tag" href=https://dwy6626.github.io/tags/%E9%AB%98%E4%B8%AD%E7%89%A9%E7%90%86>
+        <li>
+          <i class="fas fa-tag fa-fw"></i>
+          <span>高中物理</span>
+        </li>
+      </a>
+      
+      <a class="post-taxonomy-tag" href=https://dwy6626.github.io/tags/%E8%A7%A3%E9%A1%8C>
+        <li>
+          <i class="fas fa-tag fa-fw"></i>
+          <span>解題</span>
+        </li>
+      </a>
+      
+    
+  
+</div>
+
+</div>
+
+
+  </header>
+
+  <p>
+    雖然大多數考題數字皆有設計過，但若選項間數字差異很大，懂得一些估算技巧，可以增加答題速度。以下面這題為例：(92學測補考) 南、北極的冰帽如果真的全部融化，粗略預估全球海平面最可能會上升多少高度？ （提示：全球海洋的平均深度約為 $4000\ \mathrm{m}$；南極大陸的冰層厚度約 $2.2\ \mathrm{km}$。面積約為 $13,000,000\ \mathrm{km}^2$；格林蘭的面積約 $1,700,000\ \mathrm{km}^2$，冰層厚度約 $1.5\ \mathrm{km}$；地球半徑約 $6400\ \mathrm{km}$） (A) 60~80 毫米 (B) 60~80 公分 (C) 60~80 公尺 (D) 600~800 公尺 (E) 6~8 公里
+  </p>
+
+  
+    <footer>
+      <a href="https://dwy6626.github.io/post/%E4%BC%B0%E7%AE%97%E6%B3%95/">繼續閱讀<i class="fa fa-angle-double-right fa-fw"></i></a>
+    </footer>
+  
+</article>
+      
+  
+    <article>
+  <header>
+    <h2><a href="https://dwy6626.github.io/post/20140725_112921/">【高中科目心得】兩年後，再看高中物理</a></h2>
+
+    <div class="post-meta">
+
+<div>
+  <li>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>
+      <span>
+        
+          Jul 25, 2014
+        
+      </span>
+  </time>
+  </li>
+</div>
+
+
+
+<div>
+  
+    
+    
+        
+        <a class="post-taxonomy-topic" href=https://dwy6626.github.io/topics/%E9%AB%98%E4%B8%AD%E6%95%99%E5%AD%B8> 
+          <li>
+            <i class="fas fa-folder fa-fw"></i>
+            <span>高中教學</span>
+          </li>
+        </a>
+      
+    
+  
+
+  
+    
+    
+      
+      <a class="post-taxonomy-tag" href=https://dwy6626.github.io/tags/%E9%AB%98%E4%B8%AD%E7%89%A9%E7%90%86>
+        <li>
+          <i class="fas fa-tag fa-fw"></i>
+          <span>高中物理</span>
+        </li>
+      </a>
+      
+      <a class="post-taxonomy-tag" href=https://dwy6626.github.io/tags/%E8%A7%A3%E9%A1%8C>
+        <li>
+          <i class="fas fa-tag fa-fw"></i>
+          <span>解題</span>
+        </li>
+      </a>
+      
+      <a class="post-taxonomy-tag" href=https://dwy6626.github.io/tags/%E5%AE%B6%E6%95%99>
+        <li>
+          <i class="fas fa-tag fa-fw"></i>
+          <span>家教</span>
+        </li>
+      </a>
+      
+    
+  
+</div>
+
+</div>
+
+
+  </header>
+
+  <p>
+    <h2 id="緣起">緣起</h2>
+<p>從一個學生，到進入物理家教界兩年，以及在補習班工作，對於高中物理的認知，看法未必與以前完全相同，現在從一份半個教育者的眼光來看高中物理，所能看到的應該會比以前更廣更全面。</p>
+  </p>
+
+  
+    <footer>
+      <a href="https://dwy6626.github.io/post/20140725_112921/">繼續閱讀<i class="fa fa-angle-double-right fa-fw"></i></a>
+    </footer>
+  
+</article>
+      
+  
+    <article>
+  <header>
+    <h2><a href="https://dwy6626.github.io/post/%E5%B0%8D%E6%96%BC%E5%85%AC%E5%BC%8F%E7%9A%84%E6%85%8B%E5%BA%A6/">對於公式的態度</a></h2>
+
+    <div class="post-meta">
+
+<div>
+  <li>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>
+      <span>
+        
+          Jul 17, 2014
+        
+      </span>
+  </time>
+  </li>
+</div>
+
+
+
+<div>
+  
+    
+    
+        
+        <a class="post-taxonomy-topic" href=https://dwy6626.github.io/topics/%E9%AB%98%E4%B8%AD%E6%95%99%E5%AD%B8> 
+          <li>
+            <i class="fas fa-folder fa-fw"></i>
+            <span>高中教學</span>
+          </li>
+        </a>
+      
+    
+  
+
+  
+    
+    
+      
+      <a class="post-taxonomy-tag" href=https://dwy6626.github.io/tags/%E9%AB%98%E4%B8%AD%E7%89%A9%E7%90%86>
+        <li>
+          <i class="fas fa-tag fa-fw"></i>
+          <span>高中物理</span>
+        </li>
+      </a>
+      
+      <a class="post-taxonomy-tag" href=https://dwy6626.github.io/tags/%E8%A7%A3%E9%A1%8C>
+        <li>
+          <i class="fas fa-tag fa-fw"></i>
+          <span>解題</span>
+        </li>
+      </a>
+      
+    
+  
+</div>
+
+</div>
+
+
+  </header>
+
+  <p>
+    相較於指考，學測物理有的公式實在不算多，而且課綱中都講明了，很多章節都已經避開推導以及計算。因此剩下的公式，大多算是基本中的基本，例如牛頓第二運動定律 $F = ma$，相信大家國中也都背過了。但有些公式就複雜多了，例如阿特午機(Atwood machine)的張力公式： $$ T = \frac{2m_1m_2}{m_1+m_2}g $$ 這樣複雜的公式，也許有人根本沒看過，也許有人在學校課堂或補習班講義裡面看過它，這種公式到底要不要背？ 用最少的公式，解最多的題目 我的看法是，必須把公式分成兩類，一類是「物理定義」，像是 $F = ma$，你不背起來，根本沒辦法從受力算出加
+  </p>
+
+  
+    <footer>
+      <a href="https://dwy6626.github.io/post/%E5%B0%8D%E6%96%BC%E5%85%AC%E5%BC%8F%E7%9A%84%E6%85%8B%E5%BA%A6/">繼續閱讀<i class="fa fa-angle-double-right fa-fw"></i></a>
+    </footer>
+  
+</article>
+      
+  
+
+  
+
+<div class="pagination desktop">
+  
+  
+  
+</div>
+</div>
+
+</div>
+</div>
+<script src="https://dwy6626.github.io/js/ui.js"></script>
+<script src="https://dwy6626.github.io/js/menus.js"></script>
+
+
+<script>
+  
+  if (window.location.hostname != "localhost") {
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-132034008-1', 'auto');
+    ga('send', 'pageview');
+  }
+</script>
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jupyter on dw&#39;s 小站</title>
+    <link>https://dwy6626.github.io/tags/jupyter/</link>
+    <description>Recent content in Jupyter on dw&#39;s 小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>&amp;copy; 2020. All rights reserved.</copyright>
+    <lastBuildDate>Mon, 04 Mar 2019 23:41:25 +0800</lastBuildDate>
+    
+	<atom:link href="https://dwy6626.github.io/tags/jupyter/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>在 Jupyter 使用虛擬 Python 環境</title>
+      <link>https://dwy6626.github.io/post/venv-jupyter/</link>
+      <pubDate>Mon, 04 Mar 2019 23:41:25 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/venv-jupyter/</guid>
+      <description>&lt;p&gt;因為交作業要有特定套件，但調參數還是用 Jupyter 方便，所以就研究了下怎麼用特定的 Python 來執行 Jupyter Notebook 或是 JupyterLab。方法有兩種，首先我們先從創建虛擬環境講起：&lt;/p&gt;
+&lt;h1 id=&#34;準備&#34;&gt;準備&lt;/h1&gt;
+&lt;h2 id=&#34;創建虛擬環境&#34;&gt;創建虛擬環境&lt;/h2&gt;
+&lt;p&gt;這邊以 conda 為例：&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

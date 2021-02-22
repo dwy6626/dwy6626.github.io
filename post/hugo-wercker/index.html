@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="pC2le32KaKDSGh9V637p5YC81zixbAMyKN3nPqkKscE" />
+  <script data-ad-client="ca-pub-3454014140664886" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+  <meta name="description" content="wercker.yaml 最小化設置的嘗試">
+  <meta name="generator" content="Hugo 0.74.3" />
+
+  <meta property="og:title" content="Wercker 自動化部署 hugo 網站" />
+  <meta name="twitter:title" content="Wercker 自動化部署 hugo 網站" />
+
+  <meta property="og:url" content="https://dwy6626.github.io/post/hugo-wercker/" />
+  
+    <meta property="og:image" content="https://i.imgur.com/CdBoQ3C.png">
+    <meta name="twitter:image" content="https://i.imgur.com/CdBoQ3C.png">
+    <meta name="twitter:card" content="summary_large_image">
+  
+
+  <meta name="twitter:site" content="dw&#39;s 小站">
+  <meta name="twitter:creator" content="De-Wei Ye">
+  
+    <meta name="twitter:description" content="架好這個網站後的第一篇文章提到，我是用 Wercker 做自動化部署。
+" />
+    
+  
+
+  
+  <link rel="preconnect" href="https://s.ytimg.com">
+  <link rel="preconnect" href="https://i.imgur.com">
+
+  <title>Wercker 自動化部署 hugo 網站 &middot; dw&#39;s 小站</title>
+
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/pure-min.css" media="screen">
+
+  <!--[if lte IE 8]>
+  <link async rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-old-ie-min.css" media="screen">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-min.css" media="screen">
+  <!--<![endif]-->
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://dwy6626.github.io/css/side-menu-old-ie.css" media="screen">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://dwy6626.github.io/css/side-menu.css" media="screen">
+  <!--<![endif]-->
+
+  <link rel="stylesheet" href="https://dwy6626.github.io/css/blackburn.css" media="screen">
+  <link rel="stylesheet" href="https://dwy6626.github.io/css/dw-burn.css" media="screen">
+  <link rel="stylesheet" href="https://dwy6626.github.io/css/dw-menu.css" media="screen">
+
+  
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [['$$','$$']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+    CommonHTML: { linebreaks: { automatic: true } },
+    "HTML-CSS": { linebreaks: { automatic: true } },
+          SVG: { linebreaks: { automatic: true } }    
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+ 
+ 
+
+  
+  <link async rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/vs2015.min.css" media="screen">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  
+  <script defer src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+  
+  <script defer src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/vbnet.min.js"></script>
+  
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+  <link rel="shortcut icon" href="https://dwy6626.github.io/img/favicon.ico" type="image/x-icon" />
+
+  
+    
+        <link rel="stylesheet" href="https://dwy6626.github.io/css/color.css" media="screen">
+    
+  
+  
+
+  <link async rel="stylesheet" href="//use.fontawesome.com/releases/v5.9.0/css/all.css" media="screen">
+
+</head>
+
+
+<body>
+<div id="layout">
+
+  
+<a href="#menu" id="menuLink" class="menu-link" aria-label="Go to menu of this website">
+  
+  <span></span>
+</a>
+<div id="menu">
+
+  
+
+  <a class="pure-menu-heading brand" href="https://dwy6626.github.io/">De-Wei Ye</a>
+
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+      
+        <li class="pure-menu-item">
+            <a class="pure-menu-link" href="https://dwy6626.github.io/about/"><i class='fas fa-user-circle fa-fw'></i><span>關於</span></a>
+        </li>
+      
+        <li class="pure-menu-item">
+            <a class="pure-menu-link" href="https://dwy6626.github.io/notes/"><i class="fas fa-book fa-fw"></i><span>筆記</span></a>
+        </li>
+      
+        <li class="pure-menu-item">
+            <a class="pure-menu-link" href="https://dwy6626.github.io/post/"><i class='fas fa-list-ul fa-fw'></i><span>文章列表</span></a>
+        </li>
+      
+        <li class="pure-menu-item">
+            <a class="pure-menu-link" href="https://dwy6626.github.io/topics/"><i class="fas fa-folder fa-fw"></i><span>主題分類</span></a>
+        </li>
+      
+        <li class="pure-menu-item">
+            <a class="pure-menu-link" href="https://dwy6626.github.io/tags/"><i class='fas fa-tags fa-fw'></i><span>標籤</span></a>
+        </li>
+      
+        <li class="pure-menu-item">
+            <a class="pure-menu-link" href="https://dwy6626.github.io/../en/"><i class="fas fa-globe-americas fa-fw"></i><span>English</span></a>
+        </li>
+      
+    </ul>
+  </div>
+
+  
+<div class="pure-menu social">
+    <ul class="pure-menu-list">
+
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://linkedin.com/in/dwy6626" rel="me external noopener" target="_blank"><i class="fab fa-linkedin fa-fw"></i><span>LinkedIn</span></a>
+      </li>
+      
+  
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://github.com/dwy6626" rel="me external noopener" target="_blank"><i class="fab fa-github fa-fw"></i><span>GitHub</span></a>
+      </li>
+      
+
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://leetcode.com/mirror0227" rel="me external noopener" target="_blank"><i class="fas fa-laptop-code fa-fw"></i><span>LeetCode</span></a>
+      </li>
+      
+
+      
+
+    </ul>
+  </div>
+
+
+  <div class="copyright-small">
+  Built with <a href="https://gohugo.io/" rel="external noopener" target="_blank">Hugo</a>
+</div>
+<div class="copyright-small">
+  W/ <a href="https://github.com/dwy6626/dw-favored-blackburn" rel="external noopener" target="_blank">DW-Favored-Blackburn</a>
+</div>
+<div class="copyright-small">
+  Based on <a href="https://github.com/yoshiharuyamashita/blackburn" rel="external noopener" target="_blank">Blackburn</a>
+</div>
+<div class="copyright-small">
+  and <a href="https://purecss.io/" rel="external noopener" target="_blank">Pure CSS</a>
+</div>
+<div class="copyright-small">
+  Icons <a href="https://fontawesome.com" rel="external noopener" target="_blank">Font Awesome</a>
+</div>
+
+<div class="copyright-small">
+  <a href="https://dwy6626.github.io/copyright">
+    &copy; 2020. All rights reserved.
+  </a>
+</div>
+
+</div>
+
+
+  <div id="main">
+
+
+<div class="header">
+  <h1>Wercker 自動化部署 hugo 網站</h1>
+  <h2>wercker.yaml 最小化設置的嘗試</h2>
+</div>
+<div class="content">
+
+  <div class="post-meta">
+
+<div>
+  <li>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>
+      <span>
+        
+          Sep 03, 2019
+        
+      </span>
+  </time>
+  </li>
+</div>
+
+
+
+<div>
+  
+    
+    
+        
+        <a class="post-taxonomy-topic" href=https://dwy6626.github.io/topics/%E6%8A%80%E8%A1%93%E8%A8%98%E9%8C%84> 
+          <li>
+            <i class="fas fa-folder fa-fw"></i>
+            <span>技術記錄</span>
+          </li>
+        </a>
+      
+    
+  
+
+  
+    
+    
+      
+      <a class="post-taxonomy-tag" href=https://dwy6626.github.io/tags/%E6%9E%B6%E7%AB%99>
+        <li>
+          <i class="fas fa-tag fa-fw"></i>
+          <span>架站</span>
+        </li>
+      </a>
+      
+      <a class="post-taxonomy-tag" href=https://dwy6626.github.io/tags/hugo>
+        <li>
+          <i class="fas fa-tag fa-fw"></i>
+          <span>Hugo</span>
+        </li>
+      </a>
+      
+      <a class="post-taxonomy-tag" href=https://dwy6626.github.io/tags/wercker>
+        <li>
+          <i class="fas fa-tag fa-fw"></i>
+          <span>Wercker</span>
+        </li>
+      </a>
+      
+      <a class="post-taxonomy-tag" href=https://dwy6626.github.io/tags/automation>
+        <li>
+          <i class="fas fa-tag fa-fw"></i>
+          <span>Automation</span>
+        </li>
+      </a>
+      
+    
+  
+</div>
+
+</div>
+
+
+  <p><a href="https://dwy6626.github.io/post/first-post">架好這個網站後的第一篇文章</a>提到，我是用 Wercker 做自動化部署。</p>
+<p><img src="https://i.imgur.com/CdBoQ3C.png" alt="wercker"></p>
+<p>其實相關的說明很多，<a href="https://gohugo.io/hosting-and-deployment/deployment-with-wercker/">Hugo 官方說明</a>也很詳細，看得懂英文的可以參考，看不懂的看<a href="http://handsomezhu.me/2017/10/hugo-blog-setup-tutorial/">這篇簡中的</a>也行~~，都看不懂&hellip;Google 翻譯是你的好朋友~~。</p>
+<p>不過這篇特別談的是 <code>wercker.yaml</code> 到底要寫什麼？</p>
+<p>上面的官方說明附上了這個 script:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">box</span>: debian
+<span style="color:#66d9ef">build</span>:
+  <span style="color:#66d9ef">steps</span>:
+    - <span style="color:#66d9ef">arjen/hugo-build</span>:
+        <span style="color:#66d9ef">version</span>: <span style="color:#e6db74">&#34;0.17&#34;</span>
+        <span style="color:#66d9ef">theme</span>: herring-cove
+        <span style="color:#66d9ef">flags</span>: --buildDrafts=<span style="color:#66d9ef">true</span>
+<span style="color:#66d9ef">deploy</span>:
+  <span style="color:#66d9ef">steps</span>:
+    - <span style="color:#66d9ef">install-packages</span>:
+        <span style="color:#66d9ef">packages</span>: git ssh-client
+    - <span style="color:#66d9ef">lukevivier/gh-pages@0.2.1</span>:
+        <span style="color:#66d9ef">token</span>: $GIT_TOKEN
+        <span style="color:#66d9ef">domain</span>: hugo-wercker.ig.nore.me
+        <span style="color:#66d9ef">basedir</span>: public
+</code></pre></div><p>好像複製貼上改一改就可以了，不過遇到了一些問題。畢竟上面那段說明寫的時候，hugo 才 0.17 版，現在這篇文章是用 0.57 版在 build 的，<del>雖然還是一堆 bug 讓我有點想跳槽&hellip;</del>。</p>
+<h2 id="git-submodule-設置">Git Submodule 設置</h2>
+<p>首先，我的 theme 是 <a href="https://themes.gohugo.io/blackburn/">blackburn</a>，不過其實我有用 submodule 放在我 local 端的 theme 資料夾裡（而且被我改了不少&hellip;）：</p>
+<script src="https://gist.github.com/dwy6626/09d96962a880be37c61cf5c7c48f247c.js"></script>
+<p><del>（結果用了 Markdown 還是想插入 gist XDDDDD）</del></p>
+<p>所以 <code>theme</code> 那行可以拔掉。</p>
+<p>另外，因為使用了 git submodule，根據 <a href="//devcenter.wercker.com/integrations/git/submodules/">Wercker 官方的說明</a>，必須要手動把 submodule 給 <code>clone</code> 下來（其實也是原本 <code>git clone</code> 的特性，並不會自動幫導入 submodule），要在 <code>wercker.yml</code> 把這一步寫入：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">    - <span style="color:#66d9ef">script</span>:
+        <span style="color:#66d9ef">name</span>: install git
+        <span style="color:#66d9ef">code</span>: <span style="color:#e6db74">|
+</span><span style="color:#e6db74">            apt-get update</span>
+            apt-get install git -y
+    - <span style="color:#66d9ef">add-ssh-key</span>:
+        <span style="color:#66d9ef">keyname</span>: KEY_NAME
+        <span style="color:#66d9ef">host</span>: github.com
+    - <span style="color:#66d9ef">add-to-known_hosts</span>:
+        <span style="color:#66d9ef">hostname</span>: github.com
+        <span style="color:#66d9ef">fingerprint</span>: <span style="color:#ae81ff">16</span>:<span style="color:#ae81ff">27</span>:ac:a5:<span style="color:#ae81ff">76</span>:<span style="color:#ae81ff">28</span>:2d:<span style="color:#ae81ff">36</span>:<span style="color:#ae81ff">63</span>:1b:<span style="color:#ae81ff">56</span>:4d:eb:df:a6:<span style="color:#ae81ff">48</span>
+    - <span style="color:#66d9ef">script</span>:
+        <span style="color:#66d9ef">name</span>: initialize git submodules
+        <span style="color:#66d9ef">code</span>: <span style="color:#e6db74">|
+</span><span style="color:#e6db74">            git submodule update --init --recursive</span>
+</code></pre></div><p>不過在 <a href="https://www.kkstream.com/">KKStream</a> 搞過一些簡單的 CI 之後（你看在 KKStream 什麼都可以學，還不過來當 intern 嗎 XD），回來看到自己的 <code>wercker.yml</code> 就覺得好像不需要這麼多步驟，真的需要再加一次 ssh key 嗎？還要加一次 known_hosts 嗎？不然一開始 build 的時候，怎麼把檔案從我的 private repo 拉下來的？所以就嘗試刪掉&hellip;就成功了 XD</p>
+<p>順便把 <code>install git</code> 那步，用 Wercker 自帶的 <code>install-packages</code> 取代。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">    - <span style="color:#66d9ef">install-packages</span>:
+        <span style="color:#66d9ef">packages</span>: git
+</code></pre></div><p>於是就變成這樣了：</p>
+<script src="https://gist.github.com/dwy6626/d072c4809db1e04e02e4eab9365e567e.js"></script>
+<p>至於為什麼 <code>$GIT_TOKEN</code> 變成 <code>$GITHUB_TOKEN</code>？那就是個環境變數名字，存在 Environment 那格裡面的，所有 pipeline 共用的變數。因為 <a href="https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line">TOKEN 是在 GitHub 生成的</a>，我覺得這樣叫比較合理而已。</p>
+
+  <div class="copyright">
+    本文原創部分採用<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款</a>授權。
+  </div>
+
+  
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="https://dwy6626.github.io/post/markdown-intro-history/"><i class="fa fa-chevron-left"></i></a>
+    
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="prev">
+      <a href="https://dwy6626.github.io/post/markdown-intro-history/">為什麼我的 Markdown 會跑版？</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="next">
+      <a href="https://dwy6626.github.io/post/notion-intro/">Notion 推薦文 - 強大的 Markdown 筆記整理服務</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+    <a href="https://dwy6626.github.io/post/notion-intro/"><i class="fa fa-chevron-right"></i></a>
+    
+  </div>
+</div>
+
+
+
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+    
+    
+    if (window.location.hostname == "localhost")
+        return;
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = 'dwy6626';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+</div>
+
+</div>
+</div>
+<script src="https://dwy6626.github.io/js/ui.js"></script>
+<script src="https://dwy6626.github.io/js/menus.js"></script>
+
+
+<script>
+  
+  if (window.location.hostname != "localhost") {
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-132034008-1', 'auto');
+    ga('send', 'pageview');
+  }
+</script>
+
+
+
+
+
+<script src="https://dwy6626.github.io/js/math-code.js"></script>
+  <script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  
+
+
+</body>
+</html>
+

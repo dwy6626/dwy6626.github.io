@@ -1,0 +1,22 @@
+a:visited, .pagination a  {
+    color: #226B61;
+}
+
+a {
+    color: #2F9588;
+}
+
+.date_style { 
+    font-family: "Inconsolata", DejaVu Sans Mono, Andale Mono, Courier New, Courier, Helvetica, Arial, sans-serif;
+}
+
+.header {
+    font-family: "Helvetica", Arial, sans-serif
+}
+
+#menu .brand {
+    font-family: "Helvetica", Arial, sans-serif;
+    font-size: 1.4em;
+    letter-spacing: 0em;
+    margin: 0.5em 0;  
+}

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>notion on dw&#39;s 小站</title>
+    <link>https://dwy6626.github.io/tags/notion/</link>
+    <description>Recent content in notion on dw&#39;s 小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>&amp;copy; 2020. All rights reserved.</copyright>
+    <lastBuildDate>Sun, 09 Aug 2020 00:41:23 +0800</lastBuildDate>
+    
+	<atom:link href="https://dwy6626.github.io/tags/notion/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>為什麼有些人離開 Notion 了</title>
+      <link>https://dwy6626.github.io/post/notion-privacy-concerns/</link>
+      <pubDate>Sun, 09 Aug 2020 00:41:23 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/notion-privacy-concerns/</guid>
+      <description>&lt;ol&gt;
+&lt;li&gt;偷看用戶資料&lt;/li&gt;
+&lt;li&gt;中國防火長城的快速解封&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;來說說為什麼這些會被認為是有疑慮的：&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Notion 小技巧</title>
+      <link>https://dwy6626.github.io/post/notion-tricks/</link>
+      <pubDate>Thu, 30 Jan 2020 19:11:23 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/notion-tricks/</guid>
+      <description>&lt;p&gt;這裡搜集了一些我會用到的 Notion 的小技巧。&lt;/p&gt;
+&lt;h2 id=&#34;換行&#34;&gt;換行&lt;/h2&gt;
+&lt;p&gt;跟 FB 對話框一樣，如果你想要換行，但不想產生新的 Block，&lt;br&gt;
+就按 &lt;code&gt;shift&lt;/code&gt; + &lt;code&gt;enter&lt;/code&gt;，就會在同一個 Block 內換行，可以發現這行和上行距離比較小。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>從備忘錄搬移到 Notion</title>
+      <link>https://dwy6626.github.io/post/apple-note-to-notion/</link>
+      <pubDate>Thu, 30 Jan 2020 17:41:24 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/apple-note-to-notion/</guid>
+      <description>&lt;h2 id=&#34;匯出成-md-檔&#34;&gt;匯出成 .md 檔&lt;/h2&gt;
+&lt;p&gt;首先我們需要一個小幫手：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://falcon.star-lord.me/exporter/&#34;&gt;Notes Exporter&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;這個 app 可以一鍵幫你匯出備忘錄裡面所有的筆記，UI 美美的，操作起來也方便，按下去之後等就好~~，真的很有中國人的風格 XD~~&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Notion 推薦文 - 強大的 Markdown 筆記整理服務</title>
+      <link>https://dwy6626.github.io/post/notion-intro/</link>
+      <pubDate>Thu, 30 Jan 2020 00:41:23 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/notion-intro/</guid>
+      <description>&lt;h2 id=&#34;notion-適合誰&#34;&gt;Notion 適合誰？&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;跟我一樣的無紙化魔人&lt;/li&gt;
+&lt;li&gt;喜歡用鍵盤操作一切的人&lt;/li&gt;
+&lt;li&gt;喜歡把筆記弄成看起來很潮的人&lt;/li&gt;
+&lt;li&gt;Markdown 信仰者&lt;/li&gt;
+&lt;li&gt;資料散佈在世界各地需要整合的人&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

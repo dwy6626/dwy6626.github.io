@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>科技生活 on dw&#39;s 小站</title>
+    <link>https://dwy6626.github.io/topics/%E7%A7%91%E6%8A%80%E7%94%9F%E6%B4%BB/</link>
+    <description>Recent content in 科技生活 on dw&#39;s 小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>&amp;copy; 2020. All rights reserved.</copyright>
+    <lastBuildDate>Sun, 09 Aug 2020 00:41:23 +0800</lastBuildDate>
+    
+	<atom:link href="https://dwy6626.github.io/topics/%E7%A7%91%E6%8A%80%E7%94%9F%E6%B4%BB/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>為什麼有些人離開 Notion 了</title>
+      <link>https://dwy6626.github.io/post/notion-privacy-concerns/</link>
+      <pubDate>Sun, 09 Aug 2020 00:41:23 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/notion-privacy-concerns/</guid>
+      <description>&lt;ol&gt;
+&lt;li&gt;偷看用戶資料&lt;/li&gt;
+&lt;li&gt;中國防火長城的快速解封&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;來說說為什麼這些會被認為是有疑慮的：&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>HackMD 彩蛋：讓你的文字充滿力量</title>
+      <link>https://dwy6626.github.io/post/hackmd-konami-code/</link>
+      <pubDate>Mon, 03 Aug 2020 00:41:00 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/hackmd-konami-code/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://dwy6626.github.io/img/HackMD-Power.gif&#34; alt=&#34;hackmd komami code&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>表單大戰 10 週年</title>
+      <link>https://dwy6626.github.io/post/form-war/</link>
+      <pubDate>Fri, 14 Feb 2020 14:00:00 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/form-war/</guid>
+      <description>&lt;p&gt;十年前的 3/4，「&lt;strong&gt;表單大戰&lt;/strong&gt;」誕生了。&lt;/p&gt;
+&lt;p&gt;於師大附中電算社，展出至少四屆成發（2010~2013）、以及三屆資訊營 Visual Basic 課程的展示作品（2010~2012）的表單大戰，今年終於十歲啦！！&lt;/p&gt;
+&lt;p&gt;因此，我在此宣佈，表單大戰 10 週年計畫，正式展開！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Notion 小技巧</title>
+      <link>https://dwy6626.github.io/post/notion-tricks/</link>
+      <pubDate>Thu, 30 Jan 2020 19:11:23 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/notion-tricks/</guid>
+      <description>&lt;p&gt;這裡搜集了一些我會用到的 Notion 的小技巧。&lt;/p&gt;
+&lt;h2 id=&#34;換行&#34;&gt;換行&lt;/h2&gt;
+&lt;p&gt;跟 FB 對話框一樣，如果你想要換行，但不想產生新的 Block，&lt;br&gt;
+就按 &lt;code&gt;shift&lt;/code&gt; + &lt;code&gt;enter&lt;/code&gt;，就會在同一個 Block 內換行，可以發現這行和上行距離比較小。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>從備忘錄搬移到 Notion</title>
+      <link>https://dwy6626.github.io/post/apple-note-to-notion/</link>
+      <pubDate>Thu, 30 Jan 2020 17:41:24 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/apple-note-to-notion/</guid>
+      <description>&lt;h2 id=&#34;匯出成-md-檔&#34;&gt;匯出成 .md 檔&lt;/h2&gt;
+&lt;p&gt;首先我們需要一個小幫手：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://falcon.star-lord.me/exporter/&#34;&gt;Notes Exporter&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;這個 app 可以一鍵幫你匯出備忘錄裡面所有的筆記，UI 美美的，操作起來也方便，按下去之後等就好~~，真的很有中國人的風格 XD~~&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Notion 推薦文 - 強大的 Markdown 筆記整理服務</title>
+      <link>https://dwy6626.github.io/post/notion-intro/</link>
+      <pubDate>Thu, 30 Jan 2020 00:41:23 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/notion-intro/</guid>
+      <description>&lt;h2 id=&#34;notion-適合誰&#34;&gt;Notion 適合誰？&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;跟我一樣的無紙化魔人&lt;/li&gt;
+&lt;li&gt;喜歡用鍵盤操作一切的人&lt;/li&gt;
+&lt;li&gt;喜歡把筆記弄成看起來很潮的人&lt;/li&gt;
+&lt;li&gt;Markdown 信仰者&lt;/li&gt;
+&lt;li&gt;資料散佈在世界各地需要整合的人&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>為什麼我的 Markdown 會跑版？</title>
+      <link>https://dwy6626.github.io/post/markdown-intro-history/</link>
+      <pubDate>Sun, 01 Sep 2019 00:41:23 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/markdown-intro-history/</guid>
+      <description>這個問題困擾了我好一陣子，直到有朋友和我說，Markdown 有很多種標準，頓時茅塞頓開。既然程式語言有分版本，HTML 也有不同版本，那麼副檔名都是 .md 的 Markdown 也有很多種版本，似乎也是合理的事情。 那下一個問題就是： Markdown 有沒有一個統一的標準？ 答案是沒有的。 而且也不會有，因為大家需要的 Markdown 可能不太一樣。 最簡單的例子就是換行，就標準的 Markdown 語法，當你在 .md 檔內換行，並不會真的換行。如果你要做到換行，必須在行尾加入兩個空白，或是手動插入 &amp;lt;br&amp;gt;。不過像是台灣知名的線上筆記服務 HackMD，就很貼心的配合了台灣</description>
+    </item>
+    
+    <item>
+      <title>使用 Bcc 保護收件人的隱私</title>
+      <link>https://dwy6626.github.io/post/bcc/</link>
+      <pubDate>Wed, 16 Jan 2019 21:00:20 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/bcc/</guid>
+      <description>&lt;!-- 寄信的學問：To? CC? BCC? --&gt;
+&lt;p&gt;最近發生太多被洩露 email 的案件，決定來寫一篇文。&lt;/p&gt;
+&lt;p&gt;寄信也是有很多學問的，這篇只是其中一環。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>為什麼會有這個網站</title>
+      <link>https://dwy6626.github.io/post/first-post/</link>
+      <pubDate>Thu, 10 Jan 2019 14:34:33 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/first-post/</guid>
+      <description>&lt;p&gt;不管是下面哪一個待辦事項，都不是突發奇想，而是一直想嘗試的事情：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;架一個個人網站&lt;/li&gt;
+&lt;li&gt;寫 blog&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on dw&#39;s 小站</title>
+    <link>https://dwy6626.github.io/post/</link>
+    <description>Recent content in Posts on dw&#39;s 小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>&amp;copy; 2020. All rights reserved.</copyright>
+    <lastBuildDate>Mon, 22 Feb 2021 18:41:25 +0800</lastBuildDate>
+    
+	<atom:link href="https://dwy6626.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Python 實作 Disjoint Set 與 Union Find</title>
+      <link>https://dwy6626.github.io/post/python-union-find/</link>
+      <pubDate>Mon, 22 Feb 2021 18:41:25 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/python-union-find/</guid>
+      <description>使用情境 在 Leetcode 寫到一題： 1319. Number of Operations to Make Network Connected 現在有 n 台電腦以及一些 cables 將電腦點對點連接，問需要移動至少幾條 cable 才能讓在所有電腦連成單一網路。 以 graph 的角度來看，電腦就是 nodes，cables 就是 edges。 要將整張 graph 連接起來，至少需要 n-1 個 edges。若一個 graph 裡面有超過 n-1 個 edges，剩下的就是多出來的 edges，可以供我們拿來移動的 edges。 所以第一件事就是要檢查 edges 數量 &amp;gt;= n-1。 當檢查完畢之後，我們有至少 n-1 條 edges，一定可以用這些 edges 將所有 nodes 連接起來。 因為題目只問需要移動幾條 edges，我們可以假設我們</description>
+    </item>
+    
+    <item>
+      <title>MY FIRST STORY 《あいことば》 中文歌詞翻譯</title>
+      <link>https://dwy6626.github.io/post/aikotoba/</link>
+      <pubDate>Wed, 30 Dec 2020 00:24:00 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/aikotoba/</guid>
+      <description>&lt;p&gt;2020 要結束了，今年該死的發生了很多事，很多一輩子大概也意想不到的事情&lt;br&gt;
+寫碩士論文寫到沒時間認真寫文章，隨手發一下渣翻&lt;br&gt;
+畢業之後再修吧。&lt;/p&gt;
+&lt;p&gt;是說 Hiro / 森內寬樹要個人出道了，新釋出的兩首 cover 都蠻好聽的，之後應該會買他的翻唱專輯支持一下。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Clean Code 心得</title>
+      <link>https://dwy6626.github.io/post/clean-code/</link>
+      <pubDate>Tue, 08 Sep 2020 00:41:25 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/clean-code/</guid>
+      <description>因為公司有這本書的中文版，在各種等待時間，慢慢把這本看完了，同時也一邊寫些自己認為的重點。 其實我覺得 Clean Code 適合的閱讀對象，是從來沒有接觸過任何 Coding Style 的人。 如果你跟我一樣，有和別人合作過，平常有遵守一些準則（例如 PEP8），或是使用包含 Styling 的 linter (eslint / rubocop &amp;hellip;)，這本書還是能找到能學習的地方，例如命名原則、封裝的部分、模組的拆分、測試撰寫等等，這些開發準則以及自動化的 formatter 沒辦法告訴你的部分。 也難怪第一次聽到別人推薦大家看這本書的時候，把它歸類在「選讀」，卻又說裡面的內容很重要。因為很多觀念在現在已經</description>
+    </item>
+    
+    <item>
+      <title>用 zsh &#43; zim &#43; powerlevel10k 讓你的 Terminal 潮又快</title>
+      <link>https://dwy6626.github.io/post/zsh-zim-powerlevel10k/</link>
+      <pubDate>Mon, 07 Sep 2020 11:41:25 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/zsh-zim-powerlevel10k/</guid>
+      <description>&lt;p&gt;在開始之前，還是要先知道為什麼需要這些工具，就先上圖吧：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/YWNPQiG.png&#34; alt=&#34;zsh + zim + powerlevel10k demo&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在 Terminal 內顯示你想要的資訊：git / 時間 / 自訂路徑 / conda / rvm / nvm / 執行結果顯示等等，應有盡有。&lt;/li&gt;
+&lt;li&gt;更方便的自動補完，可以直接用 tab 或方向鍵選擇想要補完的結果。&lt;/li&gt;
+&lt;li&gt;可以輸入部分指令，就顯示之前打過的指令，也可以用方向鍵上下搜尋&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>THE ORAL CIGARETTES 《Shine Holder》 中文歌詞</title>
+      <link>https://dwy6626.github.io/post/shine-holder/</link>
+      <pubDate>Sun, 16 Aug 2020 15:05:40 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/shine-holder/</guid>
+      <description>&lt;p&gt;不是每個人都是聖人，每個人都有低潮與錯誤的時候。&lt;br&gt;
+願每個人都能善待彼此。&lt;/p&gt;
+&lt;p&gt;Shine Holder.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>為什麼有些人離開 Notion 了</title>
+      <link>https://dwy6626.github.io/post/notion-privacy-concerns/</link>
+      <pubDate>Sun, 09 Aug 2020 00:41:23 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/notion-privacy-concerns/</guid>
+      <description>&lt;ol&gt;
+&lt;li&gt;偷看用戶資料&lt;/li&gt;
+&lt;li&gt;中國防火長城的快速解封&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;來說說為什麼這些會被認為是有疑慮的：&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>HackMD 彩蛋：讓你的文字充滿力量</title>
+      <link>https://dwy6626.github.io/post/hackmd-konami-code/</link>
+      <pubDate>Mon, 03 Aug 2020 00:41:00 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/hackmd-konami-code/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://dwy6626.github.io/img/HackMD-Power.gif&#34; alt=&#34;hackmd komami code&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Mrs. GREEN APPLE 《StaRt》 中文歌詞</title>
+      <link>https://dwy6626.github.io/post/start/</link>
+      <pubDate>Wed, 22 Apr 2020 17:05:40 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/start/</guid>
+      <description>&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/OTUtF7ZxRN8&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;p&gt;打 BanG Dream 遇到的很喜歡的一首歌，能夠真正給悲傷的人力量的一首。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MY FIRST STORY 《LET IT DIE》 中文歌詞 &#43; 心得</title>
+      <link>https://dwy6626.github.io/post/this-is-my-final-words/</link>
+      <pubDate>Fri, 27 Mar 2020 00:26:00 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/this-is-my-final-words/</guid>
+      <description>&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/m6tQm4rOge0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;p&gt;網路上原本的中文歌詞翻譯不見了，趁還有印象的時候趕快把這首很喜歡的歌的歌詞再翻譯一遍，順便記錄一下自己一直以來的觀察。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Matplotlib 中文字體亂碼問題</title>
+      <link>https://dwy6626.github.io/post/matplotlib-font/</link>
+      <pubDate>Tue, 03 Mar 2020 23:41:25 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/matplotlib-font/</guid>
+      <description>&lt;p&gt;花了一段時間解決這個問題，發篇文章記錄一下。&lt;/p&gt;
+&lt;h2 id=&#34;嘗試&#34;&gt;嘗試&lt;/h2&gt;
+&lt;p&gt;一開始想到的是字型設定，所以就看一下系統有哪些中文字型：&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>表單大戰 10 週年</title>
+      <link>https://dwy6626.github.io/post/form-war/</link>
+      <pubDate>Fri, 14 Feb 2020 14:00:00 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/form-war/</guid>
+      <description>&lt;p&gt;十年前的 3/4，「&lt;strong&gt;表單大戰&lt;/strong&gt;」誕生了。&lt;/p&gt;
+&lt;p&gt;於師大附中電算社，展出至少四屆成發（2010~2013）、以及三屆資訊營 Visual Basic 課程的展示作品（2010~2012）的表單大戰，今年終於十歲啦！！&lt;/p&gt;
+&lt;p&gt;因此，我在此宣佈，表單大戰 10 週年計畫，正式展開！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Notion 小技巧</title>
+      <link>https://dwy6626.github.io/post/notion-tricks/</link>
+      <pubDate>Thu, 30 Jan 2020 19:11:23 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/notion-tricks/</guid>
+      <description>&lt;p&gt;這裡搜集了一些我會用到的 Notion 的小技巧。&lt;/p&gt;
+&lt;h2 id=&#34;換行&#34;&gt;換行&lt;/h2&gt;
+&lt;p&gt;跟 FB 對話框一樣，如果你想要換行，但不想產生新的 Block，&lt;br&gt;
+就按 &lt;code&gt;shift&lt;/code&gt; + &lt;code&gt;enter&lt;/code&gt;，就會在同一個 Block 內換行，可以發現這行和上行距離比較小。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>從備忘錄搬移到 Notion</title>
+      <link>https://dwy6626.github.io/post/apple-note-to-notion/</link>
+      <pubDate>Thu, 30 Jan 2020 17:41:24 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/apple-note-to-notion/</guid>
+      <description>&lt;h2 id=&#34;匯出成-md-檔&#34;&gt;匯出成 .md 檔&lt;/h2&gt;
+&lt;p&gt;首先我們需要一個小幫手：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://falcon.star-lord.me/exporter/&#34;&gt;Notes Exporter&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;這個 app 可以一鍵幫你匯出備忘錄裡面所有的筆記，UI 美美的，操作起來也方便，按下去之後等就好~~，真的很有中國人的風格 XD~~&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Notion 推薦文 - 強大的 Markdown 筆記整理服務</title>
+      <link>https://dwy6626.github.io/post/notion-intro/</link>
+      <pubDate>Thu, 30 Jan 2020 00:41:23 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/notion-intro/</guid>
+      <description>&lt;h2 id=&#34;notion-適合誰&#34;&gt;Notion 適合誰？&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;跟我一樣的無紙化魔人&lt;/li&gt;
+&lt;li&gt;喜歡用鍵盤操作一切的人&lt;/li&gt;
+&lt;li&gt;喜歡把筆記弄成看起來很潮的人&lt;/li&gt;
+&lt;li&gt;Markdown 信仰者&lt;/li&gt;
+&lt;li&gt;資料散佈在世界各地需要整合的人&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>Wercker 自動化部署 hugo 網站</title>
+      <link>https://dwy6626.github.io/post/hugo-wercker/</link>
+      <pubDate>Tue, 03 Sep 2019 00:01:56 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/hugo-wercker/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://dwy6626.github.io/post/first-post&#34;&gt;架好這個網站後的第一篇文章&lt;/a&gt;提到，我是用 Wercker 做自動化部署。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/CdBoQ3C.png&#34; alt=&#34;wercker&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>為什麼我的 Markdown 會跑版？</title>
+      <link>https://dwy6626.github.io/post/markdown-intro-history/</link>
+      <pubDate>Sun, 01 Sep 2019 00:41:23 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/markdown-intro-history/</guid>
+      <description>這個問題困擾了我好一陣子，直到有朋友和我說，Markdown 有很多種標準，頓時茅塞頓開。既然程式語言有分版本，HTML 也有不同版本，那麼副檔名都是 .md 的 Markdown 也有很多種版本，似乎也是合理的事情。 那下一個問題就是： Markdown 有沒有一個統一的標準？ 答案是沒有的。 而且也不會有，因為大家需要的 Markdown 可能不太一樣。 最簡單的例子就是換行，就標準的 Markdown 語法，當你在 .md 檔內換行，並不會真的換行。如果你要做到換行，必須在行尾加入兩個空白，或是手動插入 &amp;lt;br&amp;gt;。不過像是台灣知名的線上筆記服務 HackMD，就很貼心的配合了台灣</description>
+    </item>
+    
+    <item>
+      <title>茜雫凛《むかしむかし》中文歌詞</title>
+      <link>https://dwy6626.github.io/post/mukasi-mukasi/</link>
+      <pubDate>Tue, 27 Aug 2019 23:41:23 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/mukasi-mukasi/</guid>
+      <description>&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/LStSGSQvlco&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;むかしむかし、あるところに&lt;br&gt;
+忘れちゃいけない物語がありました。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>茜雫凛《自縛霊》中文歌詞</title>
+      <link>https://dwy6626.github.io/post/jibakurei/</link>
+      <pubDate>Wed, 07 Aug 2019 19:09:06 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/jibakurei/</guid>
+      <description>&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/rjDddkFoIFc&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;p&gt;作詞 / 作曲：&lt;a href=&#34;https://www.youtube.com/channel/UCF3GFSms-WSRmJKvOgLC7mw&#34;&gt;茜雫凛（せんな りん）&lt;/a&gt;&lt;br&gt;
+編曲：&lt;a href=&#34;https://twitter.com/LASTorder_kt&#34;&gt;LASTorder&lt;/a&gt;&lt;br&gt;
+MV 演出：&lt;a href=&#34;https://www.instagram.com/hi_erica_&#34;&gt;愛花 -ERICA-&lt;/a&gt;&lt;br&gt;
+導演：TSUGUMI MATSUNAGA（A4A）&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>茜雫凛《AIのうた》中文歌詞</title>
+      <link>https://dwy6626.github.io/post/ai-no-uta/</link>
+      <pubDate>Mon, 05 Aug 2019 17:49:26 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/ai-no-uta/</guid>
+      <description>&lt;p&gt;這是一個用裝了人工智慧的機器人照顧老婆婆，陪伴老婆婆到離開的故事。&lt;/p&gt;
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/I8tXNMps-ZQ&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+（凛さん唯獨在這首歌禁止外部播放，需要點進去 YouTube 聽）</description>
+    </item>
+    
+    <item>
+      <title>茜雫凜 (Senna Rin) 介紹</title>
+      <link>https://dwy6626.github.io/post/senna-rin-intro/</link>
+      <pubDate>Sun, 04 Aug 2019 17:21:28 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/senna-rin-intro/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://pbs.twimg.com/media/D_1PNKMUwAAnuid?format=jpg&#34; alt=&#34;senna rin&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;ruby&gt;茜雫&lt;rt&gt;せんな&lt;/rt&gt;凜&lt;rt&gt;りん&lt;/rt&gt;&lt;/ruby&gt;是日本一個 cover 日文歌的 JK（女子高中生），九州的&lt;a href=&#34;https://twitter.com/senna_rin/status/1023887599499276288&#34;&gt;福岡人&lt;/a&gt;，目前高中二年級，&lt;a href=&#34;https://twitter.com/senna_rin/status/1040211770495782913&#34;&gt;生日是 9 月 23 日&lt;/a&gt; &lt;del&gt;（和我一樣是天秤）&lt;/del&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>讓 VSCode 的 Terminal 執行 Conda 的 Python</title>
+      <link>https://dwy6626.github.io/post/vscode-python-terminal/</link>
+      <pubDate>Mon, 29 Jul 2019 15:47:44 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/vscode-python-terminal/</guid>
+      <description>&lt;p&gt;其實這個問題一直都有在困擾我，不過因為通常都是用 iTerm 另外開 Terminal 測試，或是直接用 VSCode 的 Python Plug-in 執行，所以就比較還好。因為想寫 Side Project，今天決定先認真來解決這個問題。&lt;/p&gt;
+&lt;p&gt;於是就找到了這個 issue:&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>在 Jupyter 使用虛擬 Python 環境</title>
+      <link>https://dwy6626.github.io/post/venv-jupyter/</link>
+      <pubDate>Mon, 04 Mar 2019 23:41:25 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/venv-jupyter/</guid>
+      <description>&lt;p&gt;因為交作業要有特定套件，但調參數還是用 Jupyter 方便，所以就研究了下怎麼用特定的 Python 來執行 Jupyter Notebook 或是 JupyterLab。方法有兩種，首先我們先從創建虛擬環境講起：&lt;/p&gt;
+&lt;h1 id=&#34;準備&#34;&gt;準備&lt;/h1&gt;
+&lt;h2 id=&#34;創建虛擬環境&#34;&gt;創建虛擬環境&lt;/h2&gt;
+&lt;p&gt;這邊以 conda 為例：&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用 Bcc 保護收件人的隱私</title>
+      <link>https://dwy6626.github.io/post/bcc/</link>
+      <pubDate>Wed, 16 Jan 2019 21:00:20 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/bcc/</guid>
+      <description>&lt;!-- 寄信的學問：To? CC? BCC? --&gt;
+&lt;p&gt;最近發生太多被洩露 email 的案件，決定來寫一篇文。&lt;/p&gt;
+&lt;p&gt;寄信也是有很多學問的，這篇只是其中一環。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>為什麼會有這個網站</title>
+      <link>https://dwy6626.github.io/post/first-post/</link>
+      <pubDate>Thu, 10 Jan 2019 14:34:33 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/first-post/</guid>
+      <description>&lt;p&gt;不管是下面哪一個待辦事項，都不是突發奇想，而是一直想嘗試的事情：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;架一個個人網站&lt;/li&gt;
+&lt;li&gt;寫 blog&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>剛結束當兵前最後一場家教</title>
+      <link>https://dwy6626.github.io/post/%E5%89%9B%E7%B5%90%E6%9D%9F%E7%95%B6%E5%85%B5%E5%89%8D%E6%9C%80%E5%BE%8C%E4%B8%80%E5%A0%B4%E5%AE%B6%E6%95%99/</link>
+      <pubDate>Tue, 27 Sep 2016 00:36:06 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/%E5%89%9B%E7%B5%90%E6%9D%9F%E7%95%B6%E5%85%B5%E5%89%8D%E6%9C%80%E5%BE%8C%E4%B8%80%E5%A0%B4%E5%AE%B6%E6%95%99/</guid>
+      <description>剛結束當兵前最後一場家教，所以想打點心得，不知道以後還有沒有機會做這份行業，總之一切的開始都是緣份。 剛上大學總是有很多野心，當時有個願望，就是希望能夠早日經濟獨立，所以第一件事情就是跟家裡要來存摺，自己的錢自己管，然後建立零用錢制，所以有了基本收入。再來就是如何賺錢了。 除了因為台大學生很多都是用家教當打工，就我自己而言，其實高中平時成績也不是特別好，教高中物理這種事情原本應該是想都想不到的，除了高三上成績不知道為什麼破格的高，不過到高三下又跌回班上十幾名。後來因為不幸要指考，只好把物理乖乖補起來</description>
+    </item>
+    
+    <item>
+      <title>談日本搖滾樂團 ONE OK ROCK 的興起</title>
+      <link>https://dwy6626.github.io/post/one-ok-rock/</link>
+      <pubDate>Wed, 20 Apr 2016 00:18:03 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/one-ok-rock/</guid>
+      <description>&lt;p&gt;這篇是我在通識課「日本文化史」的期中報告。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;一前言&#34;&gt;一、前言&lt;/h2&gt;
+&lt;p&gt;首先於第二部分我會先簡單介紹關於 ONE OK ROCK (以下簡稱ワンオク)的一些基本資訊，接著於第三部分將我認為他們的特色分項討論，最後第四部分會簡述ワンオク對我的影響以及選ワンオク當作主題的理由，並於第五部分做總結。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>[現場] 我們囚禁在格林威治的規則裡</title>
+      <link>https://dwy6626.github.io/post/sodagreen/</link>
+      <pubDate>Tue, 15 Dec 2015 01:26:27 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/sodagreen/</guid>
+      <description>第一次的自己買票的小巨蛋，獻給蘇打綠。 第一次的蘇打綠，獻給《故事未了》。 強盜就躲在城堡 第一次認識打綠是高一時，音樂課大家要選一首歌來唱。一個日本名字的同學，跟我借手機播放音樂。 他問我：「你有沒有聽過蘇打綠？」 鄉下出身的我，除了從小跟著姊姊聽林俊傑周杰倫，因為畢業歌認識五月天之後，再也沒有聽過其他流行音樂。 他說：「你怎麼可以沒聽過！很好聽欸，我多傳幾首給你！你回去慢慢聽！」 正好我的日本同學很會唱歌，把這首當年的新歌裡所描述的不滿、反抗、指控等詮釋的很完美。在他的強力推廣下，從此之後我就因緣際會地迷</description>
+    </item>
+    
+    <item>
+      <title>物理解題經驗分享：四大步驟</title>
+      <link>https://dwy6626.github.io/post/20151028_162837/</link>
+      <pubDate>Wed, 28 Oct 2015 16:28:37 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/20151028_162837/</guid>
+      <description>&lt;h2 id=&#34;四大步驟&#34;&gt;四大步驟&lt;/h2&gt;
+&lt;p&gt;看到題目不知道要做什麼？一個不熟悉的題型應該從何下手？就算是身經百戰的考生，可能今年大考又有新的題型。除了基本題型熟練之外，更重要的是訓練自己不害怕新的題型，能夠運用所學穩健地破解題目。就我觀察，一般解題的高手都有一個自己習慣的解題步驟，可能是自然而然產生的，也可能是自己制定下來自己習慣的。因此在這邊將自己寫物理時候的習慣步驟整理出來分享給大家：&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>五月天 - 女也 個人小心得</title>
+      <link>https://dwy6626.github.io/post/20150721-herstory-with-mayday/</link>
+      <pubDate>Tue, 21 Jul 2015 16:28:37 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/20150721-herstory-with-mayday/</guid>
+      <description>&lt;p&gt;忍到專輯出來之後一次用KKBOX聽完&lt;br&gt;
+之後邊聽第二遍編寫感想&lt;br&gt;
+算是個人小心得啦&amp;hellip;也不是什麼專業的音樂人&lt;br&gt;
+另外我對人聲比較沒什麼感覺所以會比較著重於編曲&lt;br&gt;
+然後我是理組的沒啥文筆就請見諒喔&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>公斤、公斤重與牛頓的差別</title>
+      <link>https://dwy6626.github.io/post/kg-kgw-n/</link>
+      <pubDate>Mon, 17 Nov 2014 00:50:40 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/kg-kgw-n/</guid>
+      <description>原文是我發的，轉來這個 blog 作為紀錄。 很多人都有類似方面的問題，就一次寫清楚 日常生活 在日常生活裡，重量和質量是差不多的（都在地表） 公斤這個單位因此可以在兩者之間混用 「小明的體重（重量）是 60 公斤 (kg)」 這句話是沒有問題的 物理 物理裡面，重量跟質量是不同的東西 因此必須先幫它們下個比較精確的定義（至少於高中範圍可以通用） 質量 $ (m) $ 物體本身具有的本性，單位為公斤 $ (kg) $ 和當地重力加速度無關 重量 $ (W) $ 物體所受的萬有引力，單位為公斤重 $ (kgw) $、牛頓 $ (N) $ 和當地重力加速度有關 重量 = 重力 = 物體所受之引力 所以可以說重量是</description>
+    </item>
+    
+    <item>
+      <title>在補習班的日子</title>
+      <link>https://dwy6626.github.io/post/20140828_164254/</link>
+      <pubDate>Thu, 28 Aug 2014 16:42:54 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/20140828_164254/</guid>
+      <description>&lt;p&gt;這是篇公開心得，所以避開了所有人名以及公司名，有必要者用綽號稱之。&lt;/p&gt;
+&lt;h2 id=&#34;緣起&#34;&gt;緣起&lt;/h2&gt;
+&lt;p&gt;2012年11月，第一次到13樓的辦公室考試，那邊的人說，考卷就在桌上，寫完考卷和資料之後就可以走了，之後靜待通知。&lt;/p&gt;
+&lt;p&gt;所有事情的發生，都有它的背景以及緣起。大學時代決定邁向經濟獨立目標的我，四處尋找工作機會。因緣際會下有了第一個家教，但是總覺得還不夠，於是就問了原本已在補習班工作的高中學長D大，決定先到補習班累積經驗。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>估算法</title>
+      <link>https://dwy6626.github.io/post/%E4%BC%B0%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Wed, 20 Aug 2014 17:28:39 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/%E4%BC%B0%E7%AE%97%E6%B3%95/</guid>
+      <description>雖然大多數考題數字皆有設計過，但若選項間數字差異很大，懂得一些估算技巧，可以增加答題速度。以下面這題為例：(92學測補考) 南、北極的冰帽如果真的全部融化，粗略預估全球海平面最可能會上升多少高度？ （提示：全球海洋的平均深度約為 $4000\ \mathrm{m}$；南極大陸的冰層厚度約 $2.2\ \mathrm{km}$。面積約為 $13,000,000\ \mathrm{km}^2$；格林蘭的面積約 $1,700,000\ \mathrm{km}^2$，冰層厚度約 $1.5\ \mathrm{km}$；地球半徑約 $6400\ \mathrm{km}$） (A) 60~80 毫米 (B) 60~80 公分 (C) 60~80 公尺 (D) 600~800 公尺 (E) 6~8 公里</description>
+    </item>
+    
+    <item>
+      <title>補習那些小事</title>
+      <link>https://dwy6626.github.io/post/20140804_111118/</link>
+      <pubDate>Mon, 04 Aug 2014 11:11:18 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/20140804_111118/</guid>
+      <description>&lt;p&gt;一句話，補習&lt;strong&gt;千萬別盲補&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;高中教育中，若是一間師資正常的高中，理想上來看，學校教學基本上是足夠的。不過剛剛說的是「理想上」，若是真的不幸，在眾多老師裡面碰到了說話比較玄妙的老師，或是不幸地學校裡面沒有足夠的老師導致最後臨時找來一個沒什麼該科目教學經驗的，這時候再考慮以下補救之道：&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>學測自然科參考書推薦</title>
+      <link>https://dwy6626.github.io/post/20140730_041700/</link>
+      <pubDate>Wed, 30 Jul 2014 04:17:00 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/20140730_041700/</guid>
+      <description>&lt;p&gt;這陣子剛好幫家教學生挑書&lt;br&gt;
+又剛好碰到高中板友有問&lt;br&gt;
+所以趁機獨立出來一篇文章&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>【好站分享】邱博文物理線上資源</title>
+      <link>https://dwy6626.github.io/post/20140729_060106/</link>
+      <pubDate>Tue, 29 Jul 2014 06:01:06 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/20140729_060106/</guid>
+      <description>&lt;p&gt;如果學物理碰到一個觀念，一直無法想像怎麼辦？&lt;br&gt;
+要怎麼從死板板的圖片變成順暢的動畫在腦中播放？&lt;br&gt;
+在這個數位化的時代&lt;br&gt;
+其實網路上已經有很多資源可以幫助我們學習&lt;br&gt;
+這邊要分享的就是其中之一&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>【分享】費曼物理學講義</title>
+      <link>https://dwy6626.github.io/post/20140728_074313/</link>
+      <pubDate>Mon, 28 Jul 2014 07:43:13 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/20140728_074313/</guid>
+      <description>&lt;p&gt;偉大的物理學家，也幾乎是近世普物課程之始祖：費曼(Feynman)，在他的教學生涯中，有一本影響後世甚大的書：「費曼物理學講義(The Feynman Lectures on Physics)」。這本書保留了費曼當初上課時的原汁原味，也繼承了費曼一向優秀的口才與講解能力，號稱是最好理解也最深入物理內涵的一套講義。甚至有些教授以及物理學界人物也稱，看過了費曼物理學講義之後，才懂得某個領域真正的內涵。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>我流挑參考書的方法</title>
+      <link>https://dwy6626.github.io/post/20140726_055506/</link>
+      <pubDate>Sat, 26 Jul 2014 05:55:06 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/20140726_055506/</guid>
+      <description>&lt;p&gt;時間過得很快，課綱改了兩次，原本的文章參考書推薦部分似乎也不合時宜了，因此就順便把這篇文修改一下，希望有緣看到的人皆能受惠。&lt;/p&gt;
+&lt;p&gt;市面上參考書林林總總，競爭非常激烈，而且由於賺頭不小，越來越多老師和出版社加入戰場。一般來說，學校老師都會推薦或是強制我們購買某一本參考書，而網路上也有不少推薦文（如：&lt;a href=&#34;http://stu60912.pixnet.net/blog/post/46054601&#34;&gt;Treak參考書推薦&lt;/a&gt;）。不過我是個眼見為憑的人，寧願自己去書店花個一兩小時，自己挑選自己中意的參考書。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>【高中科目心得】兩年後，再看高中物理</title>
+      <link>https://dwy6626.github.io/post/20140725_112921/</link>
+      <pubDate>Fri, 25 Jul 2014 11:29:21 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/20140725_112921/</guid>
+      <description>&lt;h2 id=&#34;緣起&#34;&gt;緣起&lt;/h2&gt;
+&lt;p&gt;從一個學生，到進入物理家教界兩年，以及在補習班工作，對於高中物理的認知，看法未必與以前完全相同，現在從一份半個教育者的眼光來看高中物理，所能看到的應該會比以前更廣更全面。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>【文章推薦】申請入學：面試與備審</title>
+      <link>https://dwy6626.github.io/post/20140725_064404/</link>
+      <pubDate>Fri, 25 Jul 2014 06:44:04 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/20140725_064404/</guid>
+      <description>&lt;p&gt;一篇台大教授關於面試學生的心得文與建議&lt;/p&gt;
+&lt;p&gt;我想，從教授的角度直接分析&lt;/p&gt;
+&lt;p&gt;應當比補習班旁敲側推來的有用多&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>對於公式的態度</title>
+      <link>https://dwy6626.github.io/post/%E5%B0%8D%E6%96%BC%E5%85%AC%E5%BC%8F%E7%9A%84%E6%85%8B%E5%BA%A6/</link>
+      <pubDate>Thu, 17 Jul 2014 17:28:48 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/%E5%B0%8D%E6%96%BC%E5%85%AC%E5%BC%8F%E7%9A%84%E6%85%8B%E5%BA%A6/</guid>
+      <description>相較於指考，學測物理有的公式實在不算多，而且課綱中都講明了，很多章節都已經避開推導以及計算。因此剩下的公式，大多算是基本中的基本，例如牛頓第二運動定律 $F = ma$，相信大家國中也都背過了。但有些公式就複雜多了，例如阿特午機(Atwood machine)的張力公式： $$ T = \frac{2m_1m_2}{m_1+m_2}g $$ 這樣複雜的公式，也許有人根本沒看過，也許有人在學校課堂或補習班講義裡面看過它，這種公式到底要不要背？ 用最少的公式，解最多的題目 我的看法是，必須把公式分成兩類，一類是「物理定義」，像是 $F = ma$，你不背起來，根本沒辦法從受力算出加</description>
+    </item>
+    
+    <item>
+      <title>我怎麼唸英文</title>
+      <link>https://dwy6626.github.io/post/%E6%80%8E%E9%BA%BC%E5%94%B8%E8%8B%B1%E6%96%87/</link>
+      <pubDate>Sat, 14 Jul 2012 22:02:18 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/%E6%80%8E%E9%BA%BC%E5%94%B8%E8%8B%B1%E6%96%87/</guid>
+      <description>背景 先說說我高一時的狀況吧，就是一個標準的混混學生，英文雜誌當擺飾，只有在考前才會拿出來惡補，國中也只有1000單的能力。上了高中在第一、二次段考的成績不是很滿意所以就去補習了。 補英文的歷程 其實我只被同學拉去試聽過劉毅英文而已就去補了，當時選的原因只是因為基測ＰＲ夠高可以減免很多學費，不過後來又繼續待在裡面一直到高三上。我試聽的是後來紅極一時的陳子璇老師的課，當然之後報名也是由她上課。 先說說我在劉毅英文的心得吧，首先他們的上課特色就是大量歸納同義字、同義片語，如果是版本班的話基本上應付學校段考是</description>
+    </item>
+    
+    <item>
+      <title>[高中科目心得] 最弱科到最強科，我的物理</title>
+      <link>https://dwy6626.github.io/post/20120711_061900/</link>
+      <pubDate>Wed, 11 Jul 2012 06:19:00 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/20120711_061900/</guid>
+      <description>&lt;h2 id=&#34;寫在最前面&#34;&gt;寫在最前面&lt;/h2&gt;
+&lt;p&gt;我覺得，物理是一科非常吃「讀書方法」的科目，好的讀書方法帶你上天堂，不好的讀書方法帶你到懷寧街某獨棟補習班。一個單元中哪些公式一定要背，哪些觀念要如何釐清，哪些解法是要知道的，在考前一定要掌握這些脈絡，考試時才能從容地正確作答。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>[高中科目心得] 自修一年生物的小心得</title>
+      <link>https://dwy6626.github.io/post/20120710_061600/</link>
+      <pubDate>Tue, 10 Jul 2012 06:16:00 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/20120710_061600/</guid>
+      <description>&lt;h2 id=&#34;緣起&#34;&gt;緣起&lt;/h2&gt;
+&lt;p&gt;先說說緣起好了。從高一開始我就一直待在二類班沒有轉班，當時的心態是我不想當醫生，所以也就直接把三類排除在外了（那時我不知道三類還有那麼多選擇&amp;hellip;&amp;hellip;也是一大疏失吧），當時很天真的想說把探索志願這件事情留到以後再說，先在二類待著，直到我的腳踝中了一箭&amp;hellip;&amp;hellip;沒錯一直到升高三的暑假我才發現自己有興趣的是生物化學領域，所以就毅然決然的抱起自修，開始一趟漫長（但不怎麼艱辛）的生物自讀旅程&amp;hellip;&amp;hellip;。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>進台大重要嗎</title>
+      <link>https://dwy6626.github.io/post/20120219-to-ntu/</link>
+      <pubDate>Sun, 19 Feb 2012 18:38:00 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/20120219-to-ntu/</guid>
+      <description>台大，既然能擁有著台灣第一學府的名號，也必定有它的本事。台大有著自由開放的學風、豐富的學習資源、許多厲害的教授、強大的同伴兼競爭對手&amp;hellip;&amp;hellip;.等等。但凡是有正面的誇獎，就會有負面批評：在企業界中最受歡迎的學生是成大畢業的，而不是台大，為什麼呢？有人說，台大學生太過高傲，仗勢著自己的高學歷，就要企業給他們更好的待遇，相較於成大學生而言，成大校友形成了一個堅強的體系，校內教授也積極努力的給學生學習資源，因此成大出來的學生雖然比較被動，卻也比較易於「駕馭」，有著一種願意從基層打</description>
+    </item>
+    
+  </channel>
+</rss>

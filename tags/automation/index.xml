@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Automation on dw&#39;s 小站</title>
+    <link>https://dwy6626.github.io/tags/automation/</link>
+    <description>Recent content in Automation on dw&#39;s 小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>&amp;copy; 2020. All rights reserved.</copyright>
+    <lastBuildDate>Tue, 03 Sep 2019 00:01:56 +0800</lastBuildDate>
+    
+	<atom:link href="https://dwy6626.github.io/tags/automation/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Wercker 自動化部署 hugo 網站</title>
+      <link>https://dwy6626.github.io/post/hugo-wercker/</link>
+      <pubDate>Tue, 03 Sep 2019 00:01:56 +0800</pubDate>
+      
+      <guid>https://dwy6626.github.io/post/hugo-wercker/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://dwy6626.github.io/post/first-post&#34;&gt;架好這個網站後的第一篇文章&lt;/a&gt;提到，我是用 Wercker 做自動化部署。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/CdBoQ3C.png&#34; alt=&#34;wercker&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
