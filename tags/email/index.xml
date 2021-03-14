@@ -1,26 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>email on dw&#39;s 小站</title>
-    <link>https://dwy6626.github.io/tags/email/</link>
-    <description>Recent content in email on dw&#39;s 小站</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <copyright>&amp;copy; 2020. All rights reserved.</copyright>
-    <lastBuildDate>Wed, 16 Jan 2019 21:00:20 +0800</lastBuildDate>
-    
-	<atom:link href="https://dwy6626.github.io/tags/email/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>使用 Bcc 保護收件人的隱私</title>
-      <link>https://dwy6626.github.io/post/bcc/</link>
-      <pubDate>Wed, 16 Jan 2019 21:00:20 +0800</pubDate>
-      
-      <guid>https://dwy6626.github.io/post/bcc/</guid>
-      <description>&lt;!-- 寄信的學問：To? CC? BCC? --&gt;
-&lt;p&gt;最近發生太多被洩露 email 的案件，決定來寫一篇文。&lt;/p&gt;
-&lt;p&gt;寄信也是有很多學問的，這篇只是其中一環。&lt;/p&gt;</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>email on dw's 小站</title><link>https://dwy6626.github.io/tags/email/</link><description>Recent content in email on dw's 小站</description><generator>Hugo -- gohugo.io</generator><copyright>&amp;copy; 2020. All rights reserved.</copyright><lastBuildDate>Wed, 16 Jan 2019 21:00:20 +0800</lastBuildDate><atom:link href="https://dwy6626.github.io/tags/email/index.xml" rel="self" type="application/rss+xml"/><item><title>使用 Bcc 保護收件人的隱私</title><link>https://dwy6626.github.io/post/bcc/</link><pubDate>Wed, 16 Jan 2019 21:00:20 +0800</pubDate><guid>https://dwy6626.github.io/post/bcc/</guid><description>&lt;!-- 寄信的學問：To? CC? BCC? -->
+&lt;p>最近發生太多被洩露 email 的案件，決定來寫一篇文。&lt;/p>
+&lt;p>寄信也是有很多學問的，這篇只是其中一環。&lt;/p></description></item></channel></rss>

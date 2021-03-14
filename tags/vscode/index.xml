@@ -1,25 +1,2 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>VSCode on dw&#39;s 小站</title>
-    <link>https://dwy6626.github.io/tags/vscode/</link>
-    <description>Recent content in VSCode on dw&#39;s 小站</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <copyright>&amp;copy; 2020. All rights reserved.</copyright>
-    <lastBuildDate>Mon, 29 Jul 2019 15:47:44 +0800</lastBuildDate>
-    
-	<atom:link href="https://dwy6626.github.io/tags/vscode/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>讓 VSCode 的 Terminal 執行 Conda 的 Python</title>
-      <link>https://dwy6626.github.io/post/vscode-python-terminal/</link>
-      <pubDate>Mon, 29 Jul 2019 15:47:44 +0800</pubDate>
-      
-      <guid>https://dwy6626.github.io/post/vscode-python-terminal/</guid>
-      <description>&lt;p&gt;其實這個問題一直都有在困擾我，不過因為通常都是用 iTerm 另外開 Terminal 測試，或是直接用 VSCode 的 Python Plug-in 執行，所以就比較還好。因為想寫 Side Project，今天決定先認真來解決這個問題。&lt;/p&gt;
-&lt;p&gt;於是就找到了這個 issue:&lt;/p&gt;</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>VSCode on dw's 小站</title><link>https://dwy6626.github.io/tags/vscode/</link><description>Recent content in VSCode on dw's 小站</description><generator>Hugo -- gohugo.io</generator><copyright>&amp;copy; 2020. All rights reserved.</copyright><lastBuildDate>Mon, 29 Jul 2019 15:47:44 +0800</lastBuildDate><atom:link href="https://dwy6626.github.io/tags/vscode/index.xml" rel="self" type="application/rss+xml"/><item><title>讓 VSCode 的 Terminal 執行 Conda 的 Python</title><link>https://dwy6626.github.io/post/vscode-python-terminal/</link><pubDate>Mon, 29 Jul 2019 15:47:44 +0800</pubDate><guid>https://dwy6626.github.io/post/vscode-python-terminal/</guid><description>&lt;p>其實這個問題一直都有在困擾我，不過因為通常都是用 iTerm 另外開 Terminal 測試，或是直接用 VSCode 的 Python Plug-in 執行，所以就比較還好。因為想寫 Side Project，今天決定先認真來解決這個問題。&lt;/p>
+&lt;p>於是就找到了這個 issue:&lt;/p></description></item></channel></rss>

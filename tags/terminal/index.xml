@@ -1,30 +1,7 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Terminal on dw&#39;s 小站</title>
-    <link>https://dwy6626.github.io/tags/terminal/</link>
-    <description>Recent content in Terminal on dw&#39;s 小站</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <copyright>&amp;copy; 2020. All rights reserved.</copyright>
-    <lastBuildDate>Mon, 07 Sep 2020 11:41:25 +0800</lastBuildDate>
-    
-	<atom:link href="https://dwy6626.github.io/tags/terminal/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>用 zsh &#43; zim &#43; powerlevel10k 讓你的 Terminal 潮又快</title>
-      <link>https://dwy6626.github.io/post/zsh-zim-powerlevel10k/</link>
-      <pubDate>Mon, 07 Sep 2020 11:41:25 +0800</pubDate>
-      
-      <guid>https://dwy6626.github.io/post/zsh-zim-powerlevel10k/</guid>
-      <description>&lt;p&gt;在開始之前，還是要先知道為什麼需要這些工具，就先上圖吧：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/YWNPQiG.png&#34; alt=&#34;zsh + zim + powerlevel10k demo&#34;&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;在 Terminal 內顯示你想要的資訊：git / 時間 / 自訂路徑 / conda / rvm / nvm / 執行結果顯示等等，應有盡有。&lt;/li&gt;
-&lt;li&gt;更方便的自動補完，可以直接用 tab 或方向鍵選擇想要補完的結果。&lt;/li&gt;
-&lt;li&gt;可以輸入部分指令，就顯示之前打過的指令，也可以用方向鍵上下搜尋&lt;/li&gt;
-&lt;/ul&gt;</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Terminal on dw's 小站</title><link>https://dwy6626.github.io/tags/terminal/</link><description>Recent content in Terminal on dw's 小站</description><generator>Hugo -- gohugo.io</generator><copyright>&amp;copy; 2020. All rights reserved.</copyright><lastBuildDate>Mon, 07 Sep 2020 11:41:25 +0800</lastBuildDate><atom:link href="https://dwy6626.github.io/tags/terminal/index.xml" rel="self" type="application/rss+xml"/><item><title>用 zsh + zim + powerlevel10k 讓你的 Terminal 潮又快</title><link>https://dwy6626.github.io/post/zsh-zim-powerlevel10k/</link><pubDate>Mon, 07 Sep 2020 11:41:25 +0800</pubDate><guid>https://dwy6626.github.io/post/zsh-zim-powerlevel10k/</guid><description>&lt;p>在開始之前，還是要先知道為什麼需要這些工具，就先上圖吧：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/YWNPQiG.png" alt="zsh + zim + powerlevel10k demo">&lt;/p>
+&lt;ul>
+&lt;li>在 Terminal 內顯示你想要的資訊：git / 時間 / 自訂路徑 / conda / rvm / nvm / 執行結果顯示等等，應有盡有。&lt;/li>
+&lt;li>更方便的自動補完，可以直接用 tab 或方向鍵選擇想要補完的結果。&lt;/li>
+&lt;li>可以輸入部分指令，就顯示之前打過的指令，也可以用方向鍵上下搜尋&lt;/li>
+&lt;/ul></description></item></channel></rss>
