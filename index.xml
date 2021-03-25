@@ -1,12 +1,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwy6626.github.io/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sun, 14 Mar 2021 22:01:56 +0800</lastBuildDate><atom:link href="https://dwy6626.github.io/" rel="self" type="application/rss+xml"/><item><title>GitHub Action 自動化部署 Hugo 網站</title><link>https://dwy6626.github.io/post/hugo-github-action/</link><pubDate>Sun, 14 Mar 2021 22:01:56 +0800</pubDate><guid>https://dwy6626.github.io/post/hugo-github-action/</guid><description>
-&lt;p>在今天之前，這個 blog 是&lt;a href="https://dwy6626.github.io/post/hugo-wercker">用 Wercker 做自動化部署&lt;/a>，當時對於 CI 工具沒有太多比較，就直接使用了。&lt;/p>
-&lt;p>在 2018 年底，&lt;a href="https://github.blog/2018-10-16-future-of-software/">GitHub 公開了他們的自有 CI 工具 GitHub Action&lt;/a>，並於 2019 年底正式推出。這個工具經過了兩年多的發展，如今也有一定成熟度，社群有很多相關的工具發展起來，當然也不乏 Hugo 的自動化部署。如果 repo 使用 GitHub，那整合 GitHub 自家 CI 當然是最方便的。&lt;/p>
+&lt;p>在今天之前，這個 blog 是&lt;a href="https://dwy6626.github.io/post/hugo-wercker">用 Wercker 做自動化部署&lt;/a>，當時對於 CI/CD 工具沒有太多比較，就直接使用了。&lt;/p>
+&lt;p>在 2018 年底，&lt;a href="https://github.blog/2018-10-16-future-of-software/">GitHub 公開了他們的自有 CI/CD 工具 GitHub Action&lt;/a>，並於 2019 年底正式推出。這個工具經過了兩年多的發展，如今也有一定成熟度，社群有很多相關的工具發展起來，當然也不乏 Hugo 的自動化部署。如果 repo 使用 GitHub，那整合 GitHub 自家 CI/CD 當然是最方便的。&lt;/p>
 &lt;p>因此去年在公司實習時，主管就叫我研究一下 GitHub Action 套用在當時開發的 Rails 專案，我只參考了官方文件並套用了一些社群貢獻的 GitHub Action，就成功完成任務，包含在開 PR 時自動跑 coding style review (rubocop) 以及 push 時跑單元測試 (RSpec)。&lt;del>人生又往 YAML 工程師前進了一步。&lt;/del>&lt;/p>
 &lt;h2 id="正文">正文&lt;/h2>
-&lt;p>這邊就不多介紹 GitHub Action 了，接下來就記錄我如何從 Wercker 搬遷到 GitHub Action（說是搬遷，實際上就是參考原本的 CI 建立一個新的 CI）。&lt;/p>
+&lt;p>這邊就不多介紹 GitHub Action 了，接下來就記錄我如何從 Wercker 搬遷到 GitHub Action（說是搬遷，實際上就是參考原本的 CI/CD 建立一個新的 CI/CD）。&lt;/p>
 &lt;p>首先我們先來看之前 wercker 設定檔：&lt;/p>
 &lt;script src="https://gist.github.com/dwy6626/d072c4809db1e04e02e4eab9365e567e.js">&lt;/script>
-&lt;p>把 CI 自動化的事情整理一下：&lt;/p>
+&lt;p>把 CI/CD 自動化的事情整理一下：&lt;/p>
 &lt;p>每次 Push 時：&lt;/p>
 &lt;ul>
 &lt;li>更新 submodule 把 theme 拉下來（這邊是我修改自 Blackburn 主題的 &lt;a href="https://github.com/dwy6626/dw-favored-blackburn">dw-favored-blackburn&lt;/a>）&lt;/li>
@@ -1347,7 +1347,7 @@ form.x_sign &lt;span style="color:#f92672">=&lt;/span> 1
 &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">initialize git submodules&lt;/span>
 &lt;span style="color:#f92672">code&lt;/span>: |&lt;span style="color:#e6db74">
 &lt;/span>&lt;span style="color:#e6db74"> &lt;/span> &lt;span style="color:#ae81ff">git submodule update --init --recursive&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>不過在 &lt;a href="https://www.kkstream.com/">KKStream&lt;/a> 搞過一些簡單的 CI 之後（你看在 KKStream 什麼都可以學，還不過來當 intern 嗎 XD），回來看到自己的 &lt;code>wercker.yml&lt;/code> 就覺得好像不需要這麼多步驟，真的需要再加一次 ssh key 嗎？還要加一次 known_hosts 嗎？不然一開始 build 的時候，怎麼把檔案從我的 private repo 拉下來的？所以就嘗試刪掉&amp;hellip;就成功了 XD&lt;/p>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>不過在 &lt;a href="https://www.kkstream.com/">KKStream&lt;/a> 搞過一些簡單的 CI/CD 之後（你看在 KKStream 什麼都可以學，還不過來當 intern 嗎 XD），回來看到自己的 &lt;code>wercker.yml&lt;/code> 就覺得好像不需要這麼多步驟，真的需要再加一次 ssh key 嗎？還要加一次 known_hosts 嗎？不然一開始 build 的時候，怎麼把檔案從我的 private repo 拉下來的？所以就嘗試刪掉&amp;hellip;就成功了 XD&lt;/p>
 &lt;p>順便把 &lt;code>install git&lt;/code> 那步，用 Wercker 自帶的 &lt;code>install-packages&lt;/code> 取代。&lt;/p>
 &lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml"> - &lt;span style="color:#f92672">install-packages&lt;/span>:
 &lt;span style="color:#f92672">packages&lt;/span>: &lt;span style="color:#ae81ff">git&lt;/span>
