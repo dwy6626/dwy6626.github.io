@@ -1,5 +1,5 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwy6626.github.io/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sun, 14 Mar 2021 22:01:56 +0800</lastBuildDate><atom:link href="https://dwy6626.github.io/" rel="self" type="application/rss+xml"/><item><title>GitHub Action 自動化部署 Hugo 網站</title><link>https://dwy6626.github.io/post/hugo-github-action/</link><pubDate>Sun, 14 Mar 2021 22:01:56 +0800</pubDate><guid>https://dwy6626.github.io/post/hugo-github-action/</guid><description>
-&lt;p>在今天之前，這個 blog 是&lt;a href="https://dwy6626.github.io/post/hugo-wercker">用 Wercker 做自動化部署&lt;/a>，當時對於 CI/CD 工具沒有太多比較，就直接使用了。&lt;/p>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sun, 14 Mar 2021 22:01:56 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>GitHub Action 自動化部署 Hugo 網站</title><link>https://dwye.dev/post/hugo-github-action/</link><pubDate>Sun, 14 Mar 2021 22:01:56 +0800</pubDate><guid>https://dwye.dev/post/hugo-github-action/</guid><description>
+&lt;p>在今天之前，這個 blog 是&lt;a href="https://dwye.dev/post/hugo-wercker">用 Wercker 做自動化部署&lt;/a>，當時對於 CI/CD 工具沒有太多比較，就直接使用了。&lt;/p>
 &lt;p>在 2018 年底，&lt;a href="https://github.blog/2018-10-16-future-of-software/">GitHub 公開了他們的自有 CI/CD 工具 GitHub Action&lt;/a>，並於 2019 年底正式推出。這個工具經過了兩年多的發展，如今也有一定成熟度，社群有很多相關的工具發展起來，當然也不乏 Hugo 的自動化部署。如果 repo 使用 GitHub，那整合 GitHub 自家 CI/CD 當然是最方便的。&lt;/p>
 &lt;p>因此去年在公司實習時，主管就叫我研究一下 GitHub Action 套用在當時開發的 Rails 專案，我只參考了官方文件並套用了一些社群貢獻的 GitHub Action，就成功完成任務，包含在開 PR 時自動跑 coding style review (rubocop) 以及 push 時跑單元測試 (RSpec)。&lt;del>人生又往 YAML 工程師前進了一步。&lt;/del>&lt;/p>
 &lt;h2 id="正文">正文&lt;/h2>
@@ -31,7 +31,7 @@
 &lt;p>Hugo 原始碼的 repo 要放 private key，放在 action secrets 供 action 存取（注意要把整個檔案內容，包含頭尾兩行 &lt;code>-----BEGIN OPENSSH PRIVATE KEY-----&lt;/code> 等一起貼上去）：&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/bx9WQK9.png" alt="put private key in hugo repo&amp;rsquo;s action secret">&lt;/p>
 &lt;p>要架設 GitHub Page 的外部 repo 則是要設定 deploy key，把 public key 整個檔案貼過去：&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/HP3EQBB.png" alt="put public key to outer repo&amp;rsquo;s deploy key">&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>Python 實作 Disjoint Set 與 Union Find</title><link>https://dwy6626.github.io/post/python-union-find/</link><pubDate>Mon, 22 Feb 2021 18:41:25 +0800</pubDate><guid>https://dwy6626.github.io/post/python-union-find/</guid><description>
+&lt;p>&lt;img src="https://i.imgur.com/HP3EQBB.png" alt="put public key to outer repo&amp;rsquo;s deploy key">&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>Python 實作 Disjoint Set 與 Union Find</title><link>https://dwye.dev/post/python-union-find/</link><pubDate>Mon, 22 Feb 2021 18:41:25 +0800</pubDate><guid>https://dwye.dev/post/python-union-find/</guid><description>
 &lt;h2 id="使用情境">使用情境&lt;/h2>
 &lt;p>在 Leetcode 寫到一題：&lt;/p>
 &lt;ul>
@@ -124,7 +124,7 @@ self&lt;span style="color:#f92672">.&lt;/span>count &lt;span style="color:#f9267
 &lt;span style="color:#66d9ef">def&lt;/span> __init__(self, n):
 self&lt;span style="color:#f92672">.&lt;/span>parent &lt;span style="color:#f92672">=&lt;/span> self
 self&lt;span style="color:#f92672">.&lt;/span>rank &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>以 leetcode 實測，前後執行時間分別為 1748 ms 及 560 ms，相差了三倍。&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>MY FIRST STORY 《あいことば》 中文歌詞翻譯</title><link>https://dwy6626.github.io/post/aikotoba/</link><pubDate>Wed, 30 Dec 2020 00:24:00 +0800</pubDate><guid>https://dwy6626.github.io/post/aikotoba/</guid><description>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>以 leetcode 實測，前後執行時間分別為 1748 ms 及 560 ms，相差了三倍。&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>MY FIRST STORY 《あいことば》 中文歌詞翻譯</title><link>https://dwye.dev/post/aikotoba/</link><pubDate>Wed, 30 Dec 2020 00:24:00 +0800</pubDate><guid>https://dwye.dev/post/aikotoba/</guid><description>
 &lt;p>2020 要結束了，今年該死的發生了很多事，很多一輩子大概也意想不到的事情&lt;br>
 寫碩士論文寫到沒時間認真寫文章，隨手發一下渣翻&lt;br>
 畢業之後再修吧。&lt;/p>
@@ -216,7 +216,7 @@ self&lt;span style="color:#f92672">.&lt;/span>rank &lt;span style="color:#f92672
 &lt;p>愛してる&lt;br>
 還是愛著你&lt;/p>
 &lt;p>愛してる&lt;br>
-我愛你&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>Clean Code 心得</title><link>https://dwy6626.github.io/post/clean-code/</link><pubDate>Tue, 08 Sep 2020 00:41:25 +0800</pubDate><guid>https://dwy6626.github.io/post/clean-code/</guid><description>
+我愛你&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>Clean Code 心得</title><link>https://dwye.dev/post/clean-code/</link><pubDate>Tue, 08 Sep 2020 00:41:25 +0800</pubDate><guid>https://dwye.dev/post/clean-code/</guid><description>
 &lt;p>因為公司有這本書的中文版，在各種等待時間，慢慢把這本看完了，同時也一邊寫些自己認為的重點。&lt;/p>
 &lt;p>其實我覺得 Clean Code 適合的閱讀對象，是從來沒有接觸過任何 Coding Style 的人。&lt;/p>
 &lt;p>如果你跟我一樣，有和別人合作過，平常有遵守一些準則（例如 PEP8），或是使用包含 Styling 的 linter (eslint / rubocop &amp;hellip;)，這本書還是能找到能學習的地方，例如命名原則、封裝的部分、模組的拆分、測試撰寫等等，這些開發準則以及自動化的 formatter 沒辦法告訴你的部分。&lt;/p>
@@ -472,7 +472,7 @@ output_dir &lt;span style="color:#f92672">=&lt;/span> scratch_dir&lt;span style=
 &lt;li>Magic Number: 出現在 Code 裡面的意義不明的數字（給個名字吧）&lt;/li>
 &lt;li>Configuration 要放在高的抽象層&lt;/li>
 &lt;li>Scope 大，變數名稱拉長&lt;/li>
-&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>用 zsh + zim + powerlevel10k 讓你的 Terminal 潮又快</title><link>https://dwy6626.github.io/post/zsh-zim-powerlevel10k/</link><pubDate>Mon, 07 Sep 2020 11:41:25 +0800</pubDate><guid>https://dwy6626.github.io/post/zsh-zim-powerlevel10k/</guid><description>
+&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>用 zsh + zim + powerlevel10k 讓你的 Terminal 潮又快</title><link>https://dwye.dev/post/zsh-zim-powerlevel10k/</link><pubDate>Mon, 07 Sep 2020 11:41:25 +0800</pubDate><guid>https://dwye.dev/post/zsh-zim-powerlevel10k/</guid><description>
 &lt;p>在開始之前，還是要先知道為什麼需要這些工具，就先上圖吧：&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/YWNPQiG.png" alt="zsh + zim + powerlevel10k demo">&lt;/p>
 &lt;ul>
@@ -548,7 +548,7 @@ POWERLEVEL9K_ANACONDA_LEFT_DELIMITER=
 POWERLEVEL9K_ANACONDA_RIGHT_DELIMITER=
 POWERLEVEL9K_SHORTEN_DELIMITER=&amp;quot;.&amp;quot;
 &lt;/code>&lt;/pre>&lt;p>(是說今天才看到 powerlevel9k 已經停止維護了 XD)&lt;/p>
-&lt;p>當然如果你是新使用者，建議還是直接修改他們的專用設定檔 &lt;code>~/.p10k.zsh&lt;/code>&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>THE ORAL CIGARETTES 《Shine Holder》 中文歌詞</title><link>https://dwy6626.github.io/post/shine-holder/</link><pubDate>Sun, 16 Aug 2020 15:05:40 +0800</pubDate><guid>https://dwy6626.github.io/post/shine-holder/</guid><description>
+&lt;p>當然如果你是新使用者，建議還是直接修改他們的專用設定檔 &lt;code>~/.p10k.zsh&lt;/code>&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>THE ORAL CIGARETTES 《Shine Holder》 中文歌詞</title><link>https://dwye.dev/post/shine-holder/</link><pubDate>Sun, 16 Aug 2020 15:05:40 +0800</pubDate><guid>https://dwye.dev/post/shine-holder/</guid><description>
 &lt;p>不是每個人都是聖人，每個人都有低潮與錯誤的時候。&lt;br>
 願每個人都能善待彼此。&lt;/p>
 &lt;p>Shine Holder.&lt;/p>
@@ -661,7 +661,7 @@ Shine Holder&lt;/p>
 &lt;p>是一首激勵人的歌曲呢。&lt;/p>
 &lt;p>不過 MV 最後一幕，Takuya 倒在血泊裡啊&amp;hellip;&lt;/p>
 &lt;p>很喜歡這首歌，聽了很多次還是如此迷人。但實在是很難翻譯，修了好幾次之後還是現在這個樣子（汗），理學院的中文能力就到次為止了呢 XD&lt;/p>
-&lt;p>希望大家能善待這個爛翻譯（w&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>為什麼有些人離開 Notion 了</title><link>https://dwy6626.github.io/post/notion-privacy-concerns/</link><pubDate>Sun, 09 Aug 2020 00:41:23 +0800</pubDate><guid>https://dwy6626.github.io/post/notion-privacy-concerns/</guid><description>
+&lt;p>希望大家能善待這個爛翻譯（w&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>為什麼有些人離開 Notion 了</title><link>https://dwye.dev/post/notion-privacy-concerns/</link><pubDate>Sun, 09 Aug 2020 00:41:23 +0800</pubDate><guid>https://dwye.dev/post/notion-privacy-concerns/</guid><description>
 &lt;ol>
 &lt;li>偷看用戶資料&lt;/li>
 &lt;li>中國防火長城的快速解封&lt;/li>
@@ -720,8 +720,8 @@ Shine Holder&lt;/p>
 &lt;ul>
 &lt;li>&lt;a href="https://www.facebook.com/racklin1002/posts/3345364142149274">Rack Lin 的 FB 文章&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://www.plurk.com/p/nud4kj">Plurk 偷偷說討論串&lt;/a>&lt;/li>
-&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>HackMD 彩蛋：讓你的文字充滿力量</title><link>https://dwy6626.github.io/post/hackmd-konami-code/</link><pubDate>Mon, 03 Aug 2020 00:41:00 +0800</pubDate><guid>https://dwy6626.github.io/post/hackmd-konami-code/</guid><description>
-&lt;p>&lt;img src="https://dwy6626.github.io/img/HackMD-Power.gif" alt="hackmd komami code">&lt;/p>
+&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>HackMD 彩蛋：讓你的文字充滿力量</title><link>https://dwye.dev/post/hackmd-konami-code/</link><pubDate>Mon, 03 Aug 2020 00:41:00 +0800</pubDate><guid>https://dwye.dev/post/hackmd-konami-code/</guid><description>
+&lt;p>&lt;img src="https://dwye.dev/img/HackMD-Power.gif" alt="hackmd komami code">&lt;/p>
 &lt;p>在 HackMD 畫面中輸入知名的 &lt;a href="https://zh.wikipedia.org/wiki/%E7%A7%91%E4%B9%90%E7%BE%8E%E7%A7%98%E6%8A%80">Konami Code（科樂美秘技）&lt;/a>：&lt;strong>上上下下左右左右BA&lt;/strong>，就會啟動 POWER MODE，讓你打字的時候充滿力量！！&lt;/p>
 &lt;h3 id="關於-power-mode">關於 Power Mode&lt;/h3>
 &lt;p>&lt;del>在輸入文字的時候感受到力量注入編輯器&lt;/del>&lt;/p>
@@ -738,7 +738,7 @@ Shine Holder&lt;/p>
 &lt;p>我試過再輸入一次&lt;strong>上上下下左右左右BA&lt;/strong>，結果沒有發生任何事。&lt;/p>
 &lt;p>還好官方雖然愛玩梗但是也有提供解答：&lt;br>
 「&lt;a href="https://hackmd.io/c/tutorials-tw/%2F%40docs%2Fdisable-activate-power-mode-tw">如何關閉 Activate Power Mode&lt;/a>」這篇寫到，其實可以在下方設定直接把勾勾取消掉就好了。&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/XksMXrC.png" alt="Disable Power Mode HackMD">&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>Mrs. GREEN APPLE 《StaRt》 中文歌詞</title><link>https://dwy6626.github.io/post/start/</link><pubDate>Wed, 22 Apr 2020 17:05:40 +0800</pubDate><guid>https://dwy6626.github.io/post/start/</guid><description>
+&lt;p>&lt;img src="https://i.imgur.com/XksMXrC.png" alt="Disable Power Mode HackMD">&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>Mrs. GREEN APPLE 《StaRt》 中文歌詞</title><link>https://dwye.dev/post/start/</link><pubDate>Wed, 22 Apr 2020 17:05:40 +0800</pubDate><guid>https://dwye.dev/post/start/</guid><description>
 &lt;div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
 &lt;iframe src="https://www.youtube.com/embed/OTUtF7ZxRN8" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video">&lt;/iframe>
 &lt;/div>
@@ -857,7 +857,7 @@ PA PA PA　綻放的笑容&lt;/p>
 &lt;ul>
 &lt;li>世界不是缺乏美好的東西，是缺少發現&lt;/li>
 &lt;li>去尋找更多的美好的事情，就不用讓自己困在過去了&lt;/li>
-&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>MY FIRST STORY 《LET IT DIE》 中文歌詞 + 心得</title><link>https://dwy6626.github.io/post/this-is-my-final-words/</link><pubDate>Fri, 27 Mar 2020 00:26:00 +0800</pubDate><guid>https://dwy6626.github.io/post/this-is-my-final-words/</guid><description>
+&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>MY FIRST STORY 《LET IT DIE》 中文歌詞 + 心得</title><link>https://dwye.dev/post/this-is-my-final-words/</link><pubDate>Fri, 27 Mar 2020 00:26:00 +0800</pubDate><guid>https://dwye.dev/post/this-is-my-final-words/</guid><description>
 &lt;div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
 &lt;iframe src="https://www.youtube.com/embed/m6tQm4rOge0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video">&lt;/iframe>
 &lt;/div>
@@ -959,7 +959,7 @@ To be continued…?&lt;/p>
 &lt;hr>
 &lt;h3 id="trivia">Trivia&lt;/h3>
 &lt;p>一樣提一些個人認為歌詞比較有趣的點&lt;/p>
-&lt;p>&lt;img src="https://dwy6626.github.io/img/Labyrinth.png" alt="">&lt;/p>
+&lt;p>&lt;img src="https://dwye.dev/img/Labyrinth.png" alt="">&lt;/p>
 &lt;ol>
 &lt;li>第一句的「labyrinth」雖然翻譯成迷宮，但其實點進&lt;a href="https://en.wikipedia.org/wiki/Labyrinth">維基百科&lt;/a>就會發現這邊的迷宮並不是我們一般玩遊戲遇到的那種迷宮（通常英文是 &lt;a href="https://en.wikipedia.org/wiki/Maze">maze&lt;/a>），而是一個從&lt;strong>外部到中心只有一條唯一路徑的複雜圖䲢&lt;/strong>（如上圖）。這邊歌詞想講的意思應該是女生的心跟圖騰的路徑一樣，不斷的曲折改變。&lt;/li>
 &lt;li>也是第一句的「alone」總是想不出適合的意思，因此沒有特地寫在翻譯裡面。但個人猜測應該是強調每次「分開」又見面時女生都會改變。&lt;/li>
@@ -974,7 +974,7 @@ To be continued…?&lt;/p>
 &lt;p>主角對一個曾經相愛過的女生，抱持著矛盾的心情，想要做點什麼挽回失去的對方，卻不知道能做什麼。&lt;/p>
 &lt;p>雖然是遊戲的同名主題曲，但是歌詞只有稍微點一下遊戲內容，大致上還是在說別的事情 XD&lt;/p>
 &lt;p>「I love you as a friend」這句最後想回到女生身邊說的話，一般來說給人把對方打入 Friend Zone（朋友區）的意思，代表兩人之間的愛是屬於「朋友」的愛。個人猜測可以理解成「如果已經完全 game over 的話，至少還是希望能夠回到朋友關係（因為無法回到女生身邊傳達最後的話，可以推斷主角和女生已經斷絕了所有關係）」，主角也希望自己能夠以朋友關係愛著對方。&lt;/p>
-&lt;p>然而「To be continued…?」&lt;del>（來個 JOJO 的 BGM）&lt;/del>，也許主角最終的心願仍然是回到彼此相愛的時候，「I love you as a friend」是矛盾的他的另外一個自己，為了防止自己繼續受傷而假裝想要獨自一人，而分離出的自己。也許主角也不知道自己最初真正想要說的「最後的話語」要是什麼。&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>Matplotlib 中文字體亂碼問題</title><link>https://dwy6626.github.io/post/matplotlib-font/</link><pubDate>Tue, 03 Mar 2020 23:41:25 +0800</pubDate><guid>https://dwy6626.github.io/post/matplotlib-font/</guid><description>
+&lt;p>然而「To be continued…?」&lt;del>（來個 JOJO 的 BGM）&lt;/del>，也許主角最終的心願仍然是回到彼此相愛的時候，「I love you as a friend」是矛盾的他的另外一個自己，為了防止自己繼續受傷而假裝想要獨自一人，而分離出的自己。也許主角也不知道自己最初真正想要說的「最後的話語」要是什麼。&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>Matplotlib 中文字體亂碼問題</title><link>https://dwye.dev/post/matplotlib-font/</link><pubDate>Tue, 03 Mar 2020 23:41:25 +0800</pubDate><guid>https://dwye.dev/post/matplotlib-font/</guid><description>
 &lt;p>花了一段時間解決這個問題，發篇文章記錄一下。&lt;/p>
 &lt;h2 id="嘗試">嘗試&lt;/h2>
 &lt;p>一開始想到的是字型設定，所以就看一下系統有哪些中文字型：&lt;/p>
@@ -1003,7 +1003,7 @@ plt&lt;span style="color:#f92672">.&lt;/span>rcParams[&lt;span style="color:#e6d
 plt&lt;span style="color:#f92672">.&lt;/span>text(&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#ae81ff">5&lt;/span>, &lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#ae81ff">5&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;中文&amp;#39;&lt;/span>, fontsize&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#ae81ff">50&lt;/span>)
 plt&lt;span style="color:#f92672">.&lt;/span>show()
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>下面這是我後來用 macOS 補截圖的，字型和上面不一樣，是正常的&lt;strong>新細明體&lt;/strong> &lt;code>PMingLiU&lt;/code>&lt;br>
-&lt;img src="https://i.imgur.com/XhFWbE9.png" alt="matplotlib chinese demo">&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>表單大戰 10 週年</title><link>https://dwy6626.github.io/post/form-war/</link><pubDate>Fri, 14 Feb 2020 14:00:00 +0800</pubDate><guid>https://dwy6626.github.io/post/form-war/</guid><description>
+&lt;img src="https://i.imgur.com/XhFWbE9.png" alt="matplotlib chinese demo">&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>表單大戰 10 週年</title><link>https://dwye.dev/post/form-war/</link><pubDate>Fri, 14 Feb 2020 14:00:00 +0800</pubDate><guid>https://dwye.dev/post/form-war/</guid><description>
 &lt;p>十年前的 3/4，「&lt;strong>表單大戰&lt;/strong>」誕生了。&lt;/p>
 &lt;p>於師大附中電算社，展出至少四屆成發（2010~2013）、以及三屆資訊營 Visual Basic 課程的展示作品（2010~2012）的表單大戰，今年終於十歲啦！！&lt;/p>
 &lt;p>因此，我在此宣佈，表單大戰 10 週年計畫，正式展開！&lt;/p>
@@ -1029,7 +1029,7 @@ plt&lt;span style="color:#f92672">.&lt;/span>show()
 &lt;p>「&lt;strong>表單大戰&lt;/strong>」可以說是我人生第一個自主 Side Project（？）。當時是師大附中電算社高一的我，在社團主要學的是 VB（畢竟當時是第一次接觸程式語言的小孩，對於能夠馬上做出 GUI 程式的比較感興趣。）也因此自己照著社團指導老師李啟龍老師寫的「Visual Basic 2008 程式設計 16 堂特訓」開始跟著範例慢慢跑。&lt;/p>
 &lt;p>而當時書中有一個範例程式，是使用滑鼠點選表單，表單就會跑到別的位置。經過一陣腦補之後就成了現在的樣子了。&lt;/p>
 &lt;p>還記得發布時最陽春的第一版，一點開程式就是一個 Windows Form （表單）在畫面上奔跑，玩家要用滑鼠去點表單上面的數字，每點一次數字就會 -1，當數字歸零時就結束了。而當數字變小，表單也不會就乖乖讓你點，會放出各種招式妨礙玩家。因為要用滑鼠一直追擊表單，如果沒點好就會不小心點到桌面上各種捷徑（高中生的惡趣味十足）。&lt;/p>
-&lt;p>&lt;img src="https://dwy6626.github.io/img/formwar.gif" alt="form war game play">&lt;/p>
+&lt;p>&lt;img src="https://dwye.dev/img/formwar.gif" alt="form war game play">&lt;/p>
 &lt;p>後來新的版本才出現了背景計時、主選單、難度選擇等 Features，版本號也往前推進，因為熟練（？）的玩家數量增加，因此出了個超級難的「&lt;strong>不可能的任務&lt;/strong>」難度，連作者都花了 9 分鐘才全破，自虐意味十足。&lt;/p>
 &lt;p>但是這樣自己創造新遊戲然後給自己玩，應該也算是我一直以來的興趣，從最初的 LF2 改版研究了好幾年，出了一版「YDW-LF2」，主打劇情模式，但是平衡炸裂，畢竟是小學生作品（也因為是太久之前，檔案備份我也不存在了，消失的童年，真可惜）。之後是紅色警戒 2 的改版，在素材網搜集素材、利用規則 INI 編寫屬性及 AI 等，然後再做來自己挑戰&amp;hellip;。也許就是這樣的成長歷程，才會有「&lt;strong>表單大戰&lt;/strong>」的誕生吧？&lt;/p>
 &lt;h3 id="icon">Icon&lt;/h3>
@@ -1103,7 +1103,7 @@ form.x_sign &lt;span style="color:#f92672">=&lt;/span> 1
 &lt;p>其實有更好的寫法，利用繼承的方式共同繼承自一個基礎的表單類別，然後把 &lt;code>FormMove&lt;/code> 寫成 Method，不過因為工程浩大，&lt;del>錢不夠多（誤）&lt;/del>，因此就沒有這樣改了。&lt;/p>
 &lt;h3 id="小結">小結&lt;/h3>
 &lt;p>結論就是這是一個作者自嗨的 Side Project 以及自嗨的十週年計畫，希望大家能夠真的因為這個小遊戲得到一點娛樂，也希望沒有螢幕鍵盤滑鼠因為這個程式受到傷害（？）。&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/WDxYswo.png" alt="FormWar Playing">&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>Notion 小技巧</title><link>https://dwy6626.github.io/post/notion-tricks/</link><pubDate>Thu, 30 Jan 2020 19:11:23 +0800</pubDate><guid>https://dwy6626.github.io/post/notion-tricks/</guid><description>
+&lt;p>&lt;img src="https://i.imgur.com/WDxYswo.png" alt="FormWar Playing">&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>Notion 小技巧</title><link>https://dwye.dev/post/notion-tricks/</link><pubDate>Thu, 30 Jan 2020 19:11:23 +0800</pubDate><guid>https://dwye.dev/post/notion-tricks/</guid><description>
 &lt;p>這裡搜集了一些我會用到的 Notion 的小技巧。&lt;/p>
 &lt;h2 id="換行">換行&lt;/h2>
 &lt;p>跟 FB 對話框一樣，如果你想要換行，但不想產生新的 Block，&lt;br>
@@ -1124,7 +1124,7 @@ form.x_sign &lt;span style="color:#f92672">=&lt;/span> 1
 &lt;li>&lt;code>cmd&lt;/code> + &lt;code>a&lt;/code> 可以全選整個 Block 內容，如果按第二次，會全選整個頁面&lt;/li>
 &lt;li>和其他文字編輯器一樣，可以用 &lt;code>option&lt;/code> 或 &lt;code>cmd&lt;/code> + &lt;code>→&lt;/code> 或 &lt;code>←&lt;/code> 快速移動游標&lt;/li>
 &lt;li>&lt;code>ese&lt;/code> 可以快速選取整個 Block，如果要刪除就在選取 Block 的時候按 &lt;code>del&lt;/code> 或 &lt;code>backspace&lt;/code> 就好了，就不需要用到滑鼠&lt;/li>
-&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>從備忘錄搬移到 Notion</title><link>https://dwy6626.github.io/post/apple-note-to-notion/</link><pubDate>Thu, 30 Jan 2020 17:41:24 +0800</pubDate><guid>https://dwy6626.github.io/post/apple-note-to-notion/</guid><description>
+&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>從備忘錄搬移到 Notion</title><link>https://dwye.dev/post/apple-note-to-notion/</link><pubDate>Thu, 30 Jan 2020 17:41:24 +0800</pubDate><guid>https://dwye.dev/post/apple-note-to-notion/</guid><description>
 &lt;h2 id="匯出成-md-檔">匯出成 .md 檔&lt;/h2>
 &lt;p>首先我們需要一個小幫手：&lt;/p>
 &lt;ul>
@@ -1143,7 +1143,7 @@ form.x_sign &lt;span style="color:#f92672">=&lt;/span> 1
 &lt;p>順利的話，你會拿到一堆 &lt;code>.md&lt;/code> 檔。&lt;/p>
 &lt;h2 id="匯入-notionso">匯入 Notion.so&lt;/h2>
 &lt;p>直接利用內建 import 功能即可：&lt;/p>
-&lt;p>&lt;img src="https://dwy6626.github.io/img/notion-import.png" alt="notion import">&lt;/p>
+&lt;p>&lt;img src="https://dwye.dev/img/notion-import.png" alt="notion import">&lt;/p>
 &lt;h2 id="還需要做的事">還需要做的事&lt;/h2>
 &lt;p>在 Note Exporter 的 App changelog 裡面有說：&lt;/p>
 &lt;blockquote>
@@ -1152,7 +1152,7 @@ form.x_sign &lt;span style="color:#f92672">=&lt;/span> 1
 &lt;p>沒錯！這就是你需要手動修復的東西&lt;/p>
 &lt;p>QQ&lt;/p>
 &lt;p>加油吧&lt;/p>
-&lt;p>我也是這樣過來的。&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>Notion 推薦文 - 強大的 Markdown 筆記整理服務</title><link>https://dwy6626.github.io/post/notion-intro/</link><pubDate>Thu, 30 Jan 2020 00:41:23 +0800</pubDate><guid>https://dwy6626.github.io/post/notion-intro/</guid><description>
+&lt;p>我也是這樣過來的。&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>Notion 推薦文 - 強大的 Markdown 筆記整理服務</title><link>https://dwye.dev/post/notion-intro/</link><pubDate>Thu, 30 Jan 2020 00:41:23 +0800</pubDate><guid>https://dwye.dev/post/notion-intro/</guid><description>
 &lt;h2 id="notion-適合誰">Notion 適合誰？&lt;/h2>
 &lt;ul>
 &lt;li>跟我一樣的無紙化魔人&lt;/li>
@@ -1191,13 +1191,13 @@ form.x_sign &lt;span style="color:#f92672">=&lt;/span> 1
 &lt;li>Spotify 歌單（KKBOX 不支援，真對不起大家）&lt;/li>
 &lt;/ul>
 &lt;h3 id="大量方便編輯的熱鍵">大量方便編輯的熱鍵&lt;/h3>
-&lt;p>詳見 &lt;a href="https://dwy6626.github.io/post/notion-tricks">Notion 小技巧&lt;/a>&lt;/p>
+&lt;p>詳見 &lt;a href="https://dwye.dev/post/notion-tricks">Notion 小技巧&lt;/a>&lt;/p>
 &lt;h3 id="支援-code-block">支援 Code Block&lt;/h3>
 &lt;p>任何有在寫 Code 的人都需要的功能，我捨棄 Apple 內建備忘錄的原因。這是 Markdown 原本就有的功能，而 Notion（或是其他 Markdown-based 編輯器）加入了 Syntax highlighting。&lt;/p>
-&lt;p>&lt;img src="https://dwy6626.github.io/img/Notion/code-block.png" alt="notion code block">&lt;/p>
+&lt;p>&lt;img src="https://dwye.dev/img/Notion/code-block.png" alt="notion code block">&lt;/p>
 &lt;h3 id="就和寫網頁一樣">就和寫網頁一樣：&lt;/h3>
 &lt;p>可以善用上面的功能，做出一個跟網頁一樣的 Home Page:&lt;/p>
-&lt;p>&lt;img src="https://dwy6626.github.io/img/Notion/Untitled.png" alt="notion personal home page">&lt;/p>
+&lt;p>&lt;img src="https://dwye.dev/img/Notion/Untitled.png" alt="notion personal home page">&lt;/p>
 &lt;p>我的個人頁面（施工中）&lt;/p>
 &lt;p>（可能有些人覺得旁邊空空的，他有個選項，可以調整是否限制最大寬度。）&lt;/p>
 &lt;p>而頁面裡面又可以插入頁面，一層一層的，就像是把自己的資料庫做成網頁一樣，而不是一般筆記軟體的「分類 &amp;gt; 頁面」兩層式的架構。自訂的自由度相當高。&lt;/p>
@@ -1207,7 +1207,7 @@ form.x_sign &lt;span style="color:#f92672">=&lt;/span> 1
 &lt;p>&lt;del>不是前端工程師也能做出漂亮的網頁ㄛ&lt;/del>&lt;/p>
 &lt;h3 id="大量的模板">大量的模板&lt;/h3>
 &lt;p>我懶得自己手刻頁面怎麼辦？沒關係，Notion 有大量的模板可以使用：&lt;/p>
-&lt;p>&lt;img src="https://dwy6626.github.io/img/Notion/Untitled%201.png" alt="notion template">&lt;/p>
+&lt;p>&lt;img src="https://dwye.dev/img/Notion/Untitled%201.png" alt="notion template">&lt;/p>
 &lt;h3 id="包山包海">包山包海&lt;/h3>
 &lt;p>沒錯，只要有上面這些模板，加上強大的客製化，可以取代掉很多軟體，像是：&lt;/p>
 &lt;ul>
@@ -1219,14 +1219,14 @@ form.x_sign &lt;span style="color:#f92672">=&lt;/span> 1
 &lt;/ul>
 &lt;h3 id="版本紀錄">版本紀錄&lt;/h3>
 &lt;p>要是改錯了怎麼辦？跟 Google Drive 一樣，可以一鍵復原！而且可以預覽各個版本的內容，就像 Mac 的 Time Machine 一樣。個人版支援 30 天歷史紀錄，如果是貴得要命的企業版(20 USD per month)，可以無上限還原。&lt;/p>
-&lt;p>&lt;img src="https://dwy6626.github.io/img/Notion/Untitled%202.png" alt="version control">&lt;/p>
+&lt;p>&lt;img src="https://dwye.dev/img/Notion/Untitled%202.png" alt="version control">&lt;/p>
 &lt;p>支援版本紀錄與還原。&lt;/p>
 &lt;p>當然也像維基百科那樣可以查看最近的編輯：&lt;/p>
-&lt;p>&lt;img src="https://dwy6626.github.io/img/Notion/Untitled%203.png" alt="version control and edited">&lt;/p>
+&lt;p>&lt;img src="https://dwye.dev/img/Notion/Untitled%203.png" alt="version control and edited">&lt;/p>
 &lt;p>最近編輯歷史。&lt;/p>
 &lt;h2 id="workspace-概念">Workspace 概念&lt;/h2>
 &lt;p>跟 Slack 類似，Notion 支援一個帳號可以進出各個不同的工作區（或著是說這就是 Notion 出現的初衷！）。你可以跟朋友開工作區進行協作，&lt;del>但我沒有朋友，所以沒有去嘗試。&lt;/del>&lt;/p>
-&lt;p>&lt;img src="https://dwy6626.github.io/img/Notion/Untitled%204.png" alt="notion workspace">&lt;/p>
+&lt;p>&lt;img src="https://dwye.dev/img/Notion/Untitled%204.png" alt="notion workspace">&lt;/p>
 &lt;p>左上角的選單。&lt;/p>
 &lt;h2 id="跨平台">跨平台&lt;/h2>
 &lt;ul>
@@ -1241,7 +1241,7 @@ form.x_sign &lt;span style="color:#f92672">=&lt;/span> 1
 &lt;li>&lt;del>Linux 哭哭&lt;/del>，但可以用網頁版啦&lt;/li>
 &lt;/ul>
 &lt;h2 id="快速搬遷">快速搬遷&lt;/h2>
-&lt;p>&lt;img src="https://dwy6626.github.io/img/Notion/Untitled%205.png" alt="notion workspace">&lt;/p>
+&lt;p>&lt;img src="https://dwye.dev/img/Notion/Untitled%205.png" alt="notion workspace">&lt;/p>
 &lt;p>所有的 import 選項。&lt;/p>
 &lt;ul>
 &lt;li>支援直接從競爭對手 evernote 把所有東西搬過來，搬了還有 5 USD 使用額度的獎勵，是多針對XDDD（像我就把五年前的陳舊筆記匯入之後刪掉，只為了 5 USD）&lt;/li>
@@ -1251,7 +1251,7 @@ form.x_sign &lt;span style="color:#f92672">=&lt;/span> 1
 &lt;h3 id="從備忘錄搬入">從備忘錄搬入&lt;/h3>
 &lt;p>真的是很痛苦，因為 Apple 不支援批次運出，所以我自己找出了一個解決方案（雖然也不太完美）。有興趣的可以參考：&lt;/p>
 &lt;ul>
-&lt;li>&lt;a href="https://dwy6626.github.io/post/apple-note-to-notion">從備忘錄搬移到 Notion&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://dwye.dev/post/apple-note-to-notion">從備忘錄搬移到 Notion&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;h2 id="推薦制度">推薦制度&lt;/h2>
 &lt;p>你可以從這個 Link 註冊帳號，你跟我都可以直接拿到 10 USD 的使用額度獎勵！&lt;/p>
@@ -1270,14 +1270,14 @@ form.x_sign &lt;span style="color:#f92672">=&lt;/span> 1
 &lt;p>三種匯出都能正常顯示內容，當然 .md 因為支援的比較少，特殊的 Block 會全部變成 Link。&lt;/p>
 &lt;p>其中 PDF 版打包匯出是專業版功能，其他都可以直接打包匯出。&lt;/p>
 &lt;p>上面說很像寫網頁，這邊就直接讓你匯出變成網頁了。真的 6。&lt;/p>
-&lt;p>&lt;img src="https://dwy6626.github.io/img/Notion/Untitled%206.png" alt="notion workspace">&lt;/p>
+&lt;p>&lt;img src="https://dwye.dev/img/Notion/Untitled%206.png" alt="notion workspace">&lt;/p>
 &lt;p>匯出之後的資料夾結構。&lt;/p>
 &lt;h2 id="缺點">缺點&lt;/h2>
 &lt;ul>
 &lt;li>Webview 的 app 實在是有點吃效能，尤其是手機版，開得很慢。&lt;/li>
 &lt;li>UI 沒有中文，但可以打中文啦。&lt;/li>
 &lt;li>Markdown 匯出之後 Code Block 並非 fenced code block，所以 syntax highlighting 會消失。&lt;/li>
-&lt;li>(更新) &lt;a href="https://dwy6626.github.io/post/notion-privacy-concerns">中國防火牆問題與隱私權爭議&lt;/a>&lt;/li>
+&lt;li>(更新) &lt;a href="https://dwye.dev/post/notion-privacy-concerns">中國防火牆問題與隱私權爭議&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;h2 id="想知道更多嗎">想知道更多嗎？&lt;/h2>
 &lt;h3 id="首先是官方完整的-guide">首先是官方完整的 Guide:&lt;/h3>
@@ -1304,8 +1304,8 @@ form.x_sign &lt;span style="color:#f92672">=&lt;/span> 1
 &lt;h3 id="資料庫欄位自訂語法">資料庫欄位自訂語法：&lt;/h3>
 &lt;ul>
 &lt;li>&lt;a href="https://medium.com/@toiee_kame/notion-the-day-of-the-week-9429667975b1">Notion で「曜日」を表示する方法&lt;/a>&lt;/li>
-&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>Wercker 自動化部署 Hugo 網站</title><link>https://dwy6626.github.io/post/hugo-wercker/</link><pubDate>Tue, 03 Sep 2019 00:01:56 +0800</pubDate><guid>https://dwy6626.github.io/post/hugo-wercker/</guid><description>
-&lt;p>&lt;a href="https://dwy6626.github.io/post/first-post">架好這個網站後的第一篇文章&lt;/a>提到，我是用 Wercker 做自動化部署。&lt;/p>
+&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>Wercker 自動化部署 Hugo 網站</title><link>https://dwye.dev/post/hugo-wercker/</link><pubDate>Tue, 03 Sep 2019 00:01:56 +0800</pubDate><guid>https://dwye.dev/post/hugo-wercker/</guid><description>
+&lt;p>&lt;a href="https://dwye.dev/post/first-post">架好這個網站後的第一篇文章&lt;/a>提到，我是用 Wercker 做自動化部署。&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/CdBoQ3C.png" alt="wercker">&lt;/p>
 &lt;p>其實相關的說明很多，&lt;a href="https://gohugo.io/hosting-and-deployment/deployment-with-wercker/">Hugo 官方說明&lt;/a>也很詳細，看得懂英文的可以參考，看不懂的看&lt;a href="http://handsomezhu.me/2017/10/hugo-blog-setup-tutorial/">這篇簡中的&lt;/a>也行~~，都看不懂&amp;hellip;Google 翻譯是你的好朋友~~。&lt;/p>
 &lt;p>不過這篇特別談的是 &lt;code>wercker.yaml&lt;/code> 到底要寫什麼？&lt;/p>
@@ -1353,7 +1353,7 @@ form.x_sign &lt;span style="color:#f92672">=&lt;/span> 1
 &lt;span style="color:#f92672">packages&lt;/span>: &lt;span style="color:#ae81ff">git&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>於是就變成這樣了：&lt;/p>
 &lt;script src="https://gist.github.com/dwy6626/d072c4809db1e04e02e4eab9365e567e.js">&lt;/script>
-&lt;p>至於為什麼 &lt;code>$GIT_TOKEN&lt;/code> 變成 &lt;code>$GITHUB_TOKEN&lt;/code>？那就是個環境變數名字，存在 Environment 那格裡面的，所有 pipeline 共用的變數。因為 &lt;a href="https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line">TOKEN 是在 GitHub 生成的&lt;/a>，我覺得這樣叫比較合理而已。&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>為什麼我的 Markdown 會跑版？</title><link>https://dwy6626.github.io/post/markdown-intro-history/</link><pubDate>Sun, 01 Sep 2019 00:41:23 +0800</pubDate><guid>https://dwy6626.github.io/post/markdown-intro-history/</guid><description>
+&lt;p>至於為什麼 &lt;code>$GIT_TOKEN&lt;/code> 變成 &lt;code>$GITHUB_TOKEN&lt;/code>？那就是個環境變數名字，存在 Environment 那格裡面的，所有 pipeline 共用的變數。因為 &lt;a href="https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line">TOKEN 是在 GitHub 生成的&lt;/a>，我覺得這樣叫比較合理而已。&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>為什麼我的 Markdown 會跑版？</title><link>https://dwye.dev/post/markdown-intro-history/</link><pubDate>Sun, 01 Sep 2019 00:41:23 +0800</pubDate><guid>https://dwye.dev/post/markdown-intro-history/</guid><description>
 &lt;p>這個問題困擾了我好一陣子，直到有朋友和我說，Markdown 有很多種標準，頓時茅塞頓開。既然程式語言有分版本，HTML 也有不同版本，那麼副檔名都是 &lt;code>.md&lt;/code> 的 Markdown 也有很多種版本，似乎也是合理的事情。&lt;/p>
 &lt;p>那下一個問題就是：&lt;/p>
 &lt;blockquote>
@@ -1435,7 +1435,7 @@ console.log('Hello, markdown!')
 &lt;li>&lt;a href="https://github.github.com/gfm/#disallowed-raw-html-extension-">6.11，過濾掉一些 HTML tag&lt;/a>，將裡面的 &lt;code>&amp;lt;&lt;/code> 取代成 &lt;code>&amp;amp;lt;&lt;/code>，似乎是 GitHub 認為這些標籤在編譯的時候在某些組合會有特殊情況發生。&lt;/li>
 &lt;/ul>
 &lt;h2 id="關於-hackmd">關於 HackMD&lt;/h2>
-&lt;p>&lt;img src="https://dwy6626.github.io/img/Untitled-46f3245a-2064-4a23-8ffa-225aba38fdd7.png" alt="HackMD">&lt;/p>
+&lt;p>&lt;img src="https://dwye.dev/img/Untitled-46f3245a-2064-4a23-8ffa-225aba38fdd7.png" alt="HackMD">&lt;/p>
 &lt;p>在台灣寫一篇 Markdown 的文章，不能不提一下 &lt;a href="https://hackmd.io/">HackMD&lt;/a>。&lt;/p>
 &lt;p>HackMD 是基於 Markdown 之上（其實他們並沒有說清楚是基於哪種 Markdown 之上，不過你想的到的功能他們都有，甚至還能插入 YouTube 影片），加上一堆 Fancy 語法的台灣出產的線上筆記服務，只要打開瀏覽器就能使用，而且還能即時預覽！&lt;/p>
 &lt;p>有開源版本 &lt;a href="https://demo.codimd.org/">CodiMD&lt;/a>，也提供企業版的 SaaS （Software-as-a-Service），還能把版本歷史整合進 GitHub，讓大家愛上 Markdown 的好地方。&lt;/p>
@@ -1456,7 +1456,7 @@ console.log('Hello, markdown!')
 &lt;li>&lt;a href="https://www.veekxt.com/article/7">VeekXT&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://www.markdownguide.org/extended-syntax">Extended Syntax&lt;/a>&lt;/li>
 &lt;li>&lt;a href="http://aaronbeveridge.com/markdown/history.html">Markdown Movement&lt;/a>&lt;/li>
-&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>茜雫凛《むかしむかし》中文歌詞</title><link>https://dwy6626.github.io/post/mukasi-mukasi/</link><pubDate>Tue, 27 Aug 2019 23:41:23 +0800</pubDate><guid>https://dwy6626.github.io/post/mukasi-mukasi/</guid><description>
+&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>茜雫凛《むかしむかし》中文歌詞</title><link>https://dwye.dev/post/mukasi-mukasi/</link><pubDate>Tue, 27 Aug 2019 23:41:23 +0800</pubDate><guid>https://dwye.dev/post/mukasi-mukasi/</guid><description>
 &lt;div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
 &lt;iframe src="https://www.youtube.com/embed/LStSGSQvlco" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video">&lt;/iframe>
 &lt;/div>
@@ -1540,7 +1540,7 @@ console.log('Hello, markdown!')
 &lt;hr>
 &lt;p>這首是凛さん的第一首原創曲，第一次讓大家知道原來凛さん不只會翻唱還能創作，而且是自包作詞作曲！還能找到強大的團隊做出不錯的品質！&lt;/p>
 &lt;p>雖然曲風實在是很安全的 J-Pop 就是 XD&lt;/p>
-&lt;p>覺得有幾句沒有理解的很好，如果有人有更好的翻法歡迎糾正我~&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>茜雫凛《自縛霊》中文歌詞</title><link>https://dwy6626.github.io/post/jibakurei/</link><pubDate>Wed, 07 Aug 2019 19:09:06 +0800</pubDate><guid>https://dwy6626.github.io/post/jibakurei/</guid><description>
+&lt;p>覺得有幾句沒有理解的很好，如果有人有更好的翻法歡迎糾正我~&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>茜雫凛《自縛霊》中文歌詞</title><link>https://dwye.dev/post/jibakurei/</link><pubDate>Wed, 07 Aug 2019 19:09:06 +0800</pubDate><guid>https://dwye.dev/post/jibakurei/</guid><description>
 &lt;div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
 &lt;iframe src="https://www.youtube.com/embed/rjDddkFoIFc" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video">&lt;/iframe>
 &lt;/div>
@@ -1617,7 +1617,7 @@ MV 演出：&lt;a href="https://www.instagram.com/hi_erica_">愛花 -ERICA-&lt;/
 這首歌在凛さん的原創曲中也算是蠻特別的，凛さん沒有在自己的推特發文宣傳（其他大小新作品發表她都會在 IG 和推特同時分享），Youtube 評論也罕見的關起來，不知道這本身代表著什麼意義呢？&lt;/p>
 &lt;p>同時這大概也是凛さん在&lt;a href="https://www.youtube.com/channel/UCjBt6WpPI_jXslSTqFRPnZw">こもれびちゃんねる&lt;/a>的最後一個作品，在那天她同時公開了新頻道 &lt;a href="https://www.youtube.com/channel/UCF3GFSms-WSRmJKvOgLC7mw">Senna Rin&lt;/a> 並發表了天氣之子的插入曲之一—— RADWIMPS 的「グランドエスケープ」的 cover。&lt;/p>
 &lt;p>&lt;br>
-也許這個頻道本身就將成為一個留在過去的自縛靈吧？&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>茜雫凛《AIのうた》中文歌詞</title><link>https://dwy6626.github.io/post/ai-no-uta/</link><pubDate>Mon, 05 Aug 2019 17:49:26 +0800</pubDate><guid>https://dwy6626.github.io/post/ai-no-uta/</guid><description>
+也許這個頻道本身就將成為一個留在過去的自縛靈吧？&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>茜雫凛《AIのうた》中文歌詞</title><link>https://dwye.dev/post/ai-no-uta/</link><pubDate>Mon, 05 Aug 2019 17:49:26 +0800</pubDate><guid>https://dwye.dev/post/ai-no-uta/</guid><description>
 &lt;p>這是一個用裝了人工智慧的機器人照顧老婆婆，陪伴老婆婆到離開的故事。&lt;/p>
 &lt;div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
 &lt;iframe src="https://www.youtube.com/embed/I8tXNMps-ZQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video">&lt;/iframe>
@@ -1697,7 +1697,7 @@ MV 演出：&lt;a href="https://www.instagram.com/hi_erica_">愛花 -ERICA-&lt;/
 &lt;/ol>
 &lt;h2 id="其他">其他&lt;/h2>
 &lt;p>第一次發翻譯，雖然以前也有在別的地方翻譯過一些歌，但可能是太久沒接觸中文寫作了，覺得常常找不到好詞（畢竟是個工程師XD）&lt;br>
-有任何錯誤或建議歡迎留言喔。&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>茜雫凜 (Senna Rin) 介紹</title><link>https://dwy6626.github.io/post/senna-rin-intro/</link><pubDate>Sun, 04 Aug 2019 17:21:28 +0800</pubDate><guid>https://dwy6626.github.io/post/senna-rin-intro/</guid><description>
+有任何錯誤或建議歡迎留言喔。&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>茜雫凜 (Senna Rin) 介紹</title><link>https://dwye.dev/post/senna-rin-intro/</link><pubDate>Sun, 04 Aug 2019 17:21:28 +0800</pubDate><guid>https://dwye.dev/post/senna-rin-intro/</guid><description>
 &lt;p>&lt;img src="https://pbs.twimg.com/media/D_1PNKMUwAAnuid?format=jpg" alt="senna rin">&lt;/p>
 &lt;p>&lt;ruby>茜雫&lt;rt>せんな&lt;/rt>凜&lt;rt>りん&lt;/rt>&lt;/ruby>是日本一個 cover 日文歌的 JK（女子高中生），九州的&lt;a href="https://twitter.com/senna_rin/status/1023887599499276288">福岡人&lt;/a>，目前高中二年級，&lt;a href="https://twitter.com/senna_rin/status/1040211770495782913">生日是 9 月 23 日&lt;/a> &lt;del>（和我一樣是天秤）&lt;/del>&lt;/p>
 &lt;p>透過 Youtube 發表作品，發表的 cover 主要以流行歌為主，有簡單的吉他彈唱 cover，也有重新編曲過的，錄音和 MV 品質都蠻好的，唱的當然也很好！&lt;/p>
@@ -1719,7 +1719,7 @@ MV 演出：&lt;a href="https://www.instagram.com/hi_erica_">愛花 -ERICA-&lt;/
 &lt;div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
 &lt;iframe src="https://www.youtube.com/embed/Ci8welIUNrQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video">&lt;/iframe>
 &lt;/div>
-&lt;p>「ちゃんねる」就是頻道，所以大概可以理解成「林間隙光的頻道」，也正好凛さん頻道裡面的歌，大多都是輕柔系的，當然也有些帶著淡淡的哀傷，像是&lt;a href="https://dwy6626.github.io/post/ai-no-uta">AIのうた&lt;/a>。&lt;/p>
+&lt;p>「ちゃんねる」就是頻道，所以大概可以理解成「林間隙光的頻道」，也正好凛さん頻道裡面的歌，大多都是輕柔系的，當然也有些帶著淡淡的哀傷，像是&lt;a href="https://dwye.dev/post/ai-no-uta">AIのうた&lt;/a>。&lt;/p>
 &lt;p>凛さん的聲音其實蠻療癒的，悲傷的歌也不會太過沈重那種，很溫柔的聲音，很適合一首一首聽下去。&lt;/p>
 &lt;h2 id="翻唱內容">翻唱內容&lt;/h2>
 &lt;p>從 2017 年上傳第一部 &lt;a href="https://www.youtube.com/watch?v=y7UZnI8xWKo">Himawari&lt;/a> 開始，我寫這篇的時候已經有 41 首 cover，而且陸續增加中。&lt;/p>
@@ -1744,7 +1744,7 @@ MV 演出：&lt;a href="https://www.instagram.com/hi_erica_">愛花 -ERICA-&lt;/
 &lt;blockquote class="twitter-tweet">&lt;p lang="ja" dir="ltr">福岡！&lt;/p>&amp;mdash; 茜雫凛 (@senna_rin) &lt;a href="https://twitter.com/senna_rin/status/1023889541319471104?ref_src=twsrc%5Etfw">July 30, 2018&lt;/a>&lt;/blockquote> &lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script>
 &lt;!-- ![](https://i.imgur.com/QtMWhOo.png)
 ![](https://i.imgur.com/zeWuWgo.png) -->
-&lt;blockquote class="twitter-tweet">&lt;p lang="und" dir="ltr">23💕&lt;/p>&amp;mdash; 茜雫凛 (@senna_rin) &lt;a href="https://twitter.com/senna_rin/status/1040213127357296640?ref_src=twsrc%5Etfw">September 13, 2018&lt;/a>&lt;/blockquote> &lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>讓 VSCode 的 Terminal 執行 Conda 的 Python</title><link>https://dwy6626.github.io/post/vscode-python-terminal/</link><pubDate>Mon, 29 Jul 2019 15:47:44 +0800</pubDate><guid>https://dwy6626.github.io/post/vscode-python-terminal/</guid><description>
+&lt;blockquote class="twitter-tweet">&lt;p lang="und" dir="ltr">23💕&lt;/p>&amp;mdash; 茜雫凛 (@senna_rin) &lt;a href="https://twitter.com/senna_rin/status/1040213127357296640?ref_src=twsrc%5Etfw">September 13, 2018&lt;/a>&lt;/blockquote> &lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>讓 VSCode 的 Terminal 執行 Conda 的 Python</title><link>https://dwye.dev/post/vscode-python-terminal/</link><pubDate>Mon, 29 Jul 2019 15:47:44 +0800</pubDate><guid>https://dwye.dev/post/vscode-python-terminal/</guid><description>
 &lt;p>其實這個問題一直都有在困擾我，不過因為通常都是用 iTerm 另外開 Terminal 測試，或是直接用 VSCode 的 Python Plug-in 執行，所以就比較還好。因為想寫 Side Project，今天決定先認真來解決這個問題。&lt;/p>
 &lt;p>於是就找到了這個 issue:&lt;/p>
 &lt;p>&lt;a href="https://github.com/Microsoft/vscode-python/issues/4434">https://github.com/Microsoft/vscode-python/issues/4434&lt;/a>&lt;/p>
@@ -1767,7 +1767,7 @@ MV 演出：&lt;a href="https://www.instagram.com/hi_erica_">愛花 -ERICA-&lt;/
 &lt;/code>&lt;/pre>&lt;p>至於正式的改善方案&amp;hellip;還是個 Open issue:&lt;/p>
 &lt;ul>
 &lt;li>&lt;a href="https://github.com/microsoft/vscode/issues/47816">Feature Request: Reload environment variables on new integrated terminal instance&lt;/a>&lt;/li>
-&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>在 Jupyter 使用虛擬 Python 環境</title><link>https://dwy6626.github.io/post/venv-jupyter/</link><pubDate>Mon, 04 Mar 2019 23:41:25 +0800</pubDate><guid>https://dwy6626.github.io/post/venv-jupyter/</guid><description>
+&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>在 Jupyter 使用虛擬 Python 環境</title><link>https://dwye.dev/post/venv-jupyter/</link><pubDate>Mon, 04 Mar 2019 23:41:25 +0800</pubDate><guid>https://dwye.dev/post/venv-jupyter/</guid><description>
 &lt;p>因為交作業要有特定套件，但調參數還是用 Jupyter 方便，所以就研究了下怎麼用特定的 Python 來執行 Jupyter Notebook 或是 JupyterLab。方法有兩種，首先我們先從創建虛擬環境講起：&lt;/p>
 &lt;h1 id="準備">準備&lt;/h1>
 &lt;h2 id="創建虛擬環境">創建虛擬環境&lt;/h2>
@@ -1809,7 +1809,7 @@ export PATH&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db
 &lt;p>這時候你的 Jupyter 應該就會被置換成虛擬環境的版本，可以用 which 確認一下：&lt;/p>
 &lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&amp;gt; which jupyter
 /usr/local/miniconda3/envs/new_env/bin/jupyter
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>接下來就跟平常一樣，走進你喜歡的根目錄之後開啟 Jupyter，就大功告成了&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>使用 Bcc 保護收件人的隱私</title><link>https://dwy6626.github.io/post/bcc/</link><pubDate>Wed, 16 Jan 2019 21:00:20 +0800</pubDate><guid>https://dwy6626.github.io/post/bcc/</guid><description>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>接下來就跟平常一樣，走進你喜歡的根目錄之後開啟 Jupyter，就大功告成了&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>使用 Bcc 保護收件人的隱私</title><link>https://dwye.dev/post/bcc/</link><pubDate>Wed, 16 Jan 2019 21:00:20 +0800</pubDate><guid>https://dwye.dev/post/bcc/</guid><description>
 &lt;!-- 寄信的學問：To? CC? BCC? -->
 &lt;p>最近發生太多被洩露 email 的案件，決定來寫一篇文。&lt;/p>
 &lt;p>寄信也是有很多學問的，這篇只是其中一環。&lt;/p>
@@ -1856,7 +1856,7 @@ export PATH&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db
 &lt;li>&lt;a href="https://www.bnext.com.tw/ext_rss/view/id/651536">解讀 Google 執行董事長 Eric Schmidt 的 9 條 Email 規則&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://www.ptt.cc/man/NTUHistory89/D7B4/DA50/D7AF/M.981269465.A.html">養成 Email 寄信好習慣，確保隱私資料不外流&lt;/a>&lt;/li>
 &lt;li>&lt;a href="http://cc.nchu.edu.tw/content/docs/%E5%AF%86%E4%BB%B6%E5%89%AF%E6%9C%AC%E7%B0%A1%E4%BB%8B%E8%88%87%E4%BD%BF%E7%94%A8">中興大學 密件副本簡介與使用&lt;/a>&lt;/li>
-&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>為什麼會有這個網站</title><link>https://dwy6626.github.io/post/first-post/</link><pubDate>Thu, 10 Jan 2019 14:34:33 +0800</pubDate><guid>https://dwy6626.github.io/post/first-post/</guid><description>
+&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>為什麼會有這個網站</title><link>https://dwye.dev/post/first-post/</link><pubDate>Thu, 10 Jan 2019 14:34:33 +0800</pubDate><guid>https://dwye.dev/post/first-post/</guid><description>
 &lt;p>不管是下面哪一個待辦事項，都不是突發奇想，而是一直想嘗試的事情：&lt;/p>
 &lt;ul>
 &lt;li>架一個個人網站&lt;/li>
@@ -1924,7 +1924,7 @@ export PATH&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db
 &lt;li>中英文語言切換&lt;/li>
 &lt;li>去充實人生這樣才能充實這裡（無誤&lt;/li>
 &lt;li>&amp;hellip;&lt;/li>
-&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>剛結束當兵前最後一場家教</title><link>https://dwy6626.github.io/post/%E5%89%9B%E7%B5%90%E6%9D%9F%E7%95%B6%E5%85%B5%E5%89%8D%E6%9C%80%E5%BE%8C%E4%B8%80%E5%A0%B4%E5%AE%B6%E6%95%99/</link><pubDate>Tue, 27 Sep 2016 00:36:06 +0800</pubDate><guid>https://dwy6626.github.io/post/%E5%89%9B%E7%B5%90%E6%9D%9F%E7%95%B6%E5%85%B5%E5%89%8D%E6%9C%80%E5%BE%8C%E4%B8%80%E5%A0%B4%E5%AE%B6%E6%95%99/</guid><description>
+&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>剛結束當兵前最後一場家教</title><link>https://dwye.dev/post/%E5%89%9B%E7%B5%90%E6%9D%9F%E7%95%B6%E5%85%B5%E5%89%8D%E6%9C%80%E5%BE%8C%E4%B8%80%E5%A0%B4%E5%AE%B6%E6%95%99/</link><pubDate>Tue, 27 Sep 2016 00:36:06 +0800</pubDate><guid>https://dwye.dev/post/%E5%89%9B%E7%B5%90%E6%9D%9F%E7%95%B6%E5%85%B5%E5%89%8D%E6%9C%80%E5%BE%8C%E4%B8%80%E5%A0%B4%E5%AE%B6%E6%95%99/</guid><description>
 &lt;p>剛結束當兵前最後一場家教，所以想打點心得，不知道以後還有沒有機會做這份行業，總之一切的開始都是緣份。&lt;/p>
 &lt;p>剛上大學總是有很多野心，當時有個願望，就是希望能夠早日經濟獨立，所以第一件事情就是跟家裡要來存摺，自己的錢自己管，然後建立零用錢制，所以有了基本收入。再來就是如何賺錢了。&lt;/p>
 &lt;p>除了因為台大學生很多都是用家教當打工，就我自己而言，其實高中平時成績也不是特別好，教高中物理這種事情原本應該是想都想不到的，除了高三上成績不知道為什麼破格的高，不過到高三下又跌回班上十幾名。後來因為不幸要指考，只好把物理乖乖補起來，才發現其實高中物理對我來說還蠻簡單的，當時有自己準備一份公式筆記，以後搞不好有機會拿來幫別人解決物理問題。&lt;/p>
@@ -1934,7 +1934,7 @@ export PATH&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db
 &lt;p>第一件事情就是，如果教的是女生學生，通常跟別人講的時候，對方就會露出一臉你在虧妹子的表情，也有人會嘴叫我把握機會。不過說真的，還真的不會想要ww，不只會覺得怪，多重身份疊上去處理起來真的蠻麻煩的，是那種光是用腦袋想就覺得麻煩，就現實面來講就不會想要，反正機會別的地方也有，不差這一點點。那如果說教女生會不會比教男生爽，可是我覺得平常跟男生朋友嘴炮也很爽，所以如果跟男生的學生很有話聊又很主動學習，其實教起來也蠻開心的，如果女生是不太會自己唸書又不太講話的，教起來也不會說多輕鬆，而且你還要比他積極比他有希望有笑容，心裡面其實蠻累的。&lt;/p>
 &lt;p>然後還有關於收錢的部分。雖然一開始只是想賺錢，但後來又覺得好像有賺到錢就好，不用賺那麼多沒關係，畢竟也是自己喜歡的工作，就是不要空虛的度過就好。而且慢慢會意識到自己的責任感，是比賺到多少錢還重要，如果只有拿錢但是學生沒有什麼進步甚至還退步，其實也會良心不安。&lt;/p>
 &lt;p>有些時候也會覺得，成績不是一切，其實排名差不多的大學不會差在那幾所之間，重要的是把未來可能用到的主要觀念學好，分數夠了就好不用求很高，可是常常都是家長和學生比我還在意這些，而且由一個台大的人來講這些實在沒什麼說服力XD。&lt;/p>
-&lt;p>我覺得每次的相遇都是一次緣份，人生要不要往上爬也是自己的選擇，但是在世間遊走體驗就足夠是一種人生的意義了，大概就是這樣吧。謝謝所以曾經在這方面照顧過我或被我照顧的人。&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>談日本搖滾樂團 ONE OK ROCK 的興起</title><link>https://dwy6626.github.io/post/one-ok-rock/</link><pubDate>Wed, 20 Apr 2016 00:18:03 +0800</pubDate><guid>https://dwy6626.github.io/post/one-ok-rock/</guid><description>
+&lt;p>我覺得每次的相遇都是一次緣份，人生要不要往上爬也是自己的選擇，但是在世間遊走體驗就足夠是一種人生的意義了，大概就是這樣吧。謝謝所以曾經在這方面照顧過我或被我照顧的人。&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>談日本搖滾樂團 ONE OK ROCK 的興起</title><link>https://dwye.dev/post/one-ok-rock/</link><pubDate>Wed, 20 Apr 2016 00:18:03 +0800</pubDate><guid>https://dwye.dev/post/one-ok-rock/</guid><description>
 &lt;p>這篇是我在通識課「日本文化史」的期中報告。&lt;/p>
 &lt;hr>
 &lt;h2 id="一前言">一、前言&lt;/h2>
@@ -1966,7 +1966,7 @@ export PATH&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db
 &lt;li>&lt;a href="//www.jame-world.com/uk/articles-4982-interview-with-one-ok-rock-in-tokyo.html">Interview with ONE OK ROCK in Tokyo&lt;/a>&lt;/li>
 &lt;li>&lt;a href="//www.kkbox.com/tw/tc/column/interviews-46-763-1.html">ONE OK ROCK的決意:「目標世界第一!!」&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://www.ptt.cc/bbs/ONE_OK_ROCK/M.1354658668.A.C7A.html">ROCKIN’ON JAPAN 2012 年 6 月號 TAKA 篇, PTT ONE_OK_ROCK 版&lt;/a>&lt;/li>
-&lt;/ol></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>[現場] 我們囚禁在格林威治的規則裡</title><link>https://dwy6626.github.io/post/sodagreen/</link><pubDate>Tue, 15 Dec 2015 01:26:27 +0800</pubDate><guid>https://dwy6626.github.io/post/sodagreen/</guid><description>
+&lt;/ol></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>[現場] 我們囚禁在格林威治的規則裡</title><link>https://dwye.dev/post/sodagreen/</link><pubDate>Tue, 15 Dec 2015 01:26:27 +0800</pubDate><guid>https://dwye.dev/post/sodagreen/</guid><description>
 &lt;p>第一次的自己買票的小巨蛋，獻給蘇打綠。&lt;/p>
 &lt;p>第一次的蘇打綠，獻給《故事未了》。&lt;/p>
 &lt;h2 id="強盜就躲在城堡">強盜就躲在城堡&lt;/h2>
@@ -2014,7 +2014,7 @@ export PATH&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db
 &lt;h2 id="這座城市一般享受著奢侈卻莫名失落">這座城市一般，享受著奢侈卻莫名失落&lt;/h2>
 &lt;p>等這首歌等很久了！！「比較龐大的管樂組合僅出現在《城市》當中」《蘇打誌》早就提到了這首，果然真的出現了，正宗的交響樂版！而且是以一種絕妙的意境連接，以及無比滂礡的氣勢堆疊！一層一層的管弦樂把情緒往上帶，好像人類的城市發展一般，人口日益擁擠，數位的浪花讓人喘不過氣。讓人整個聽得過癮，每次聽都忘記哪邊才是副歌，其實整首歌是一個流暢的大組合啊！聽完這首還餘音不絕於耳，出去上廁所還一邊哼XD，覺得如果在這邊結束了也值得了（欸）。拜託發DVD吧我還想再聽一遍！！！！&lt;/p>
 &lt;h2 id="其實還有下半場就留給下半篇吧">其實還有下半場，就留給下半篇吧！&lt;/h2>
-&lt;p>附帶一提，報時的設計每次都不一樣是很棒的巧思哈哈，好像是指揮吧用不太標準的中文說「十五分鐘」格外逗趣～&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>物理解題經驗分享：四大步驟</title><link>https://dwy6626.github.io/post/20151028_162837/</link><pubDate>Wed, 28 Oct 2015 16:28:37 +0800</pubDate><guid>https://dwy6626.github.io/post/20151028_162837/</guid><description>
+&lt;p>附帶一提，報時的設計每次都不一樣是很棒的巧思哈哈，好像是指揮吧用不太標準的中文說「十五分鐘」格外逗趣～&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>物理解題經驗分享：四大步驟</title><link>https://dwye.dev/post/20151028_162837/</link><pubDate>Wed, 28 Oct 2015 16:28:37 +0800</pubDate><guid>https://dwye.dev/post/20151028_162837/</guid><description>
 &lt;h2 id="四大步驟">四大步驟&lt;/h2>
 &lt;p>看到題目不知道要做什麼？一個不熟悉的題型應該從何下手？就算是身經百戰的考生，可能今年大考又有新的題型。除了基本題型熟練之外，更重要的是訓練自己不害怕新的題型，能夠運用所學穩健地破解題目。就我觀察，一般解題的高手都有一個自己習慣的解題步驟，可能是自然而然產生的，也可能是自己制定下來自己習慣的。因此在這邊將自己寫物理時候的習慣步驟整理出來分享給大家：&lt;/p>
 &lt;h3 id="第一步破題">第一步：破題&lt;/h3>
@@ -2066,7 +2066,7 @@ export PATH&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db
 &lt;p>三、重新把題目看一次，自己對題目的理解是不是正確的？有沒有求錯東西？&lt;/p>
 &lt;p>四、重新把計算過程寫一次，計算結果是不是一樣？&lt;/p>
 &lt;p>根據時間足夠與否，先一再二最後是三。&lt;/p>
-&lt;p>希望這篇文能夠幫上一些忙，不管是考生還是其他人，祝大家都能夠成功克服高中物理這個難關。&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>五月天 - 女也 個人小心得</title><link>https://dwy6626.github.io/post/20150721-herstory-with-mayday/</link><pubDate>Tue, 21 Jul 2015 16:28:37 +0800</pubDate><guid>https://dwy6626.github.io/post/20150721-herstory-with-mayday/</guid><description>
+&lt;p>希望這篇文能夠幫上一些忙，不管是考生還是其他人，祝大家都能夠成功克服高中物理這個難關。&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>五月天 - 女也 個人小心得</title><link>https://dwye.dev/post/20150721-herstory-with-mayday/</link><pubDate>Tue, 21 Jul 2015 16:28:37 +0800</pubDate><guid>https://dwye.dev/post/20150721-herstory-with-mayday/</guid><description>
 &lt;p>忍到專輯出來之後一次用KKBOX聽完&lt;br>
 之後邊聽第二遍編寫感想&lt;br>
 算是個人小心得啦&amp;hellip;也不是什麼專業的音樂人&lt;br>
@@ -2167,7 +2167,7 @@ Bridge不像原曲有壓下去的感覺，反而特別突出&lt;/p>
 聽習慣的人(就我啦)來聽這張反而會一直覺得很怪&lt;br>
 如果說有愛再來聽&amp;hellip;.好像也不會因為我會繼續聽五月天的版本XDDD&lt;br>
 沒辦法誰叫有愛是對五月天有愛而不是對改編版有愛呢哈哈&lt;br>
-不過應該可以把五月天的歌推廣給新的族群吧（不喜歡樂團的XD）&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>公斤、公斤重與牛頓的差別</title><link>https://dwy6626.github.io/post/kg-kgw-n/</link><pubDate>Mon, 17 Nov 2014 00:50:40 +0800</pubDate><guid>https://dwy6626.github.io/post/kg-kgw-n/</guid><description>
+不過應該可以把五月天的歌推廣給新的族群吧（不喜歡樂團的XD）&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>公斤、公斤重與牛頓的差別</title><link>https://dwye.dev/post/kg-kgw-n/</link><pubDate>Mon, 17 Nov 2014 00:50:40 +0800</pubDate><guid>https://dwye.dev/post/kg-kgw-n/</guid><description>
 &lt;p>&lt;a href="//www.ptt.cc/bbs/SENIORHIGH/M.1416156646.A.713.html">原文&lt;/a>是我發的，轉來這個 blog 作為紀錄。&lt;/p>
 &lt;hr>
 &lt;p>很多人都有類似方面的問題，就一次寫清楚&lt;/p>
@@ -2244,7 +2244,7 @@ $$ F = m \times a $$&lt;br>
 &lt;/ul>
 &lt;hr>
 &lt;p>以上，希望能解決大家的困擾&lt;br>
-有問題歡迎提出&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>在補習班的日子</title><link>https://dwy6626.github.io/post/20140828_164254/</link><pubDate>Thu, 28 Aug 2014 16:42:54 +0800</pubDate><guid>https://dwy6626.github.io/post/20140828_164254/</guid><description>
+有問題歡迎提出&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>在補習班的日子</title><link>https://dwye.dev/post/20140828_164254/</link><pubDate>Thu, 28 Aug 2014 16:42:54 +0800</pubDate><guid>https://dwye.dev/post/20140828_164254/</guid><description>
 &lt;p>這是篇公開心得，所以避開了所有人名以及公司名，有必要者用綽號稱之。&lt;/p>
 &lt;h2 id="緣起">緣起&lt;/h2>
 &lt;p>2012年11月，第一次到13樓的辦公室考試，那邊的人說，考卷就在桌上，寫完考卷和資料之後就可以走了，之後靜待通知。&lt;/p>
@@ -2279,7 +2279,7 @@ $$ F = m \times a $$&lt;br>
 &lt;p>宴會過後，人終將散去。進來補習班打工，總有離開的一天。趁著暑假，常問我的學生都考上了大學之後，利用這個時機離開，是對一切都傷害最小的。當經驗累積到一定程度，當實力培養到一個境界，我在這邊能學的我敢說至少學到了八成，剩下的我到外面也能學更多。就像我高中補數學一樣，只是補個滋味，知道了老師教法和讀書方法，我就不繼續報名了。選擇是在一個晚上之間決定的，至少這樣自行完美的離去，總比哪天不小心犯錯被辭退，或是哪天和誰發生爭執而自行引退還要好。&lt;/p>
 &lt;p>這兩年，謝謝一切：謝謝帶領過我的兩位主管；謝謝數位同是解物理的同事們一起分擔許多的學生以及麻煩；謝謝老師帶領整個補習班的物理團隊；謝謝和我一起上過班的其他同事，能夠和我聊天交流，認識你們真好；謝謝所有問我的學生，能夠捧我的場，祝你們有美好的大學生活，還沒考試的能考出不錯的成績；最後的最後，謝謝D大，讓我有機會接觸這裡。這裡很好，是我自己選擇了離開，也祝福所有還在工作的人，繼續加油，讓學生能夠考上自己理想的志願。&lt;/p>
 &lt;p>現在是2014年8月。&lt;/p>
-&lt;p>有時候講到情緒激動處，雖沒有臨表涕泣，但仍會不知所云，請多包涵XD&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>估算法</title><link>https://dwy6626.github.io/post/%E4%BC%B0%E7%AE%97%E6%B3%95/</link><pubDate>Wed, 20 Aug 2014 17:28:39 +0800</pubDate><guid>https://dwy6626.github.io/post/%E4%BC%B0%E7%AE%97%E6%B3%95/</guid><description>
+&lt;p>有時候講到情緒激動處，雖沒有臨表涕泣，但仍會不知所云，請多包涵XD&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>估算法</title><link>https://dwye.dev/post/%E4%BC%B0%E7%AE%97%E6%B3%95/</link><pubDate>Wed, 20 Aug 2014 17:28:39 +0800</pubDate><guid>https://dwye.dev/post/%E4%BC%B0%E7%AE%97%E6%B3%95/</guid><description>
 &lt;p>雖然大多數考題數字皆有設計過，但若選項間數字差異很大，懂得一些估算技巧，可以增加答題速度。以下面這題為例：(92學測補考)&lt;/p>
 &lt;blockquote>
 &lt;p>南、北極的冰帽如果真的全部融化，粗略預估全球海平面最可能會上升多少高度？&lt;br>
@@ -2342,7 +2342,7 @@ $$&lt;br>
 \frac{1000}{144} \times 10^{-2}\ \mathrm{km}&lt;br>
 $$&lt;/p>
 &lt;p>前面那項大約為 7（其實選項也告訴我們，是在 6 到 8 之間），所以答案會落在 $7 \times 10^{-2}\ \mathrm{km}$ 附近，也就是 $70\ \mathrm{m}$ 左右，因此答案是(C)。&lt;/p>
-&lt;p>過成看起來有些冗長，但其實精熟起來速度是很快的，甚至在別人下筆列橫式計算時，你已經秒殺這題了。&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>補習那些小事</title><link>https://dwy6626.github.io/post/20140804_111118/</link><pubDate>Mon, 04 Aug 2014 11:11:18 +0800</pubDate><guid>https://dwy6626.github.io/post/20140804_111118/</guid><description>
+&lt;p>過成看起來有些冗長，但其實精熟起來速度是很快的，甚至在別人下筆列橫式計算時，你已經秒殺這題了。&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>補習那些小事</title><link>https://dwye.dev/post/20140804_111118/</link><pubDate>Mon, 04 Aug 2014 11:11:18 +0800</pubDate><guid>https://dwye.dev/post/20140804_111118/</guid><description>
 &lt;p>一句話，補習&lt;strong>千萬別盲補&lt;/strong>&lt;/p>
 &lt;p>高中教育中，若是一間師資正常的高中，理想上來看，學校教學基本上是足夠的。不過剛剛說的是「理想上」，若是真的不幸，在眾多老師裡面碰到了說話比較玄妙的老師，或是不幸地學校裡面沒有足夠的老師導致最後臨時找來一個沒什麼該科目教學經驗的，這時候再考慮以下補救之道：&lt;/p>
 &lt;h2 id="自修">自修&lt;/h2>
@@ -2373,7 +2373,7 @@ $$&lt;/p>
 &lt;h2 id="just-do-it">Just do it&lt;/h2>
 &lt;p>對於是否補習感到迷惘？讀書計畫不知道要怎麼排？我覺得，與其浪費時間在那邊想破頭不知道該怎麼走，不如就衝一發吧。先試看看不補習可不可以，不行再換；先試看看用這樣的方式能不能念起來，不行再改。從暑假開始到學測，半年的準備期，說長不長，說短還真的不短，還是有一些容錯率的。不知道怎麼做的時候，記住這句話：&lt;strong>先做了再說，Just do it！&lt;/strong>&lt;/p>
 &lt;h2 id="後記">後記&lt;/h2>
-&lt;p>這篇是關於補習的，其實也都是個人看法啦。寫到最後有點像是念書教戰守則，不過我每次提筆要寫一篇關於念書的文章時，都寫不出來，所以只好就每個主題來寫了。對於全科班我不熟悉，所以不多加評論，但是還是建議不要補太多習。希望能或多或少幫助到一點人。&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>學測自然科參考書推薦</title><link>https://dwy6626.github.io/post/20140730_041700/</link><pubDate>Wed, 30 Jul 2014 04:17:00 +0800</pubDate><guid>https://dwy6626.github.io/post/20140730_041700/</guid><description>
+&lt;p>這篇是關於補習的，其實也都是個人看法啦。寫到最後有點像是念書教戰守則，不過我每次提筆要寫一篇關於念書的文章時，都寫不出來，所以只好就每個主題來寫了。對於全科班我不熟悉，所以不多加評論，但是還是建議不要補太多習。希望能或多或少幫助到一點人。&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>學測自然科參考書推薦</title><link>https://dwye.dev/post/20140730_041700/</link><pubDate>Wed, 30 Jul 2014 04:17:00 +0800</pubDate><guid>https://dwye.dev/post/20140730_041700/</guid><description>
 &lt;p>這陣子剛好幫家教學生挑書&lt;br>
 又剛好碰到高中板友有問&lt;br>
 所以趁機獨立出來一篇文章&lt;/p>
@@ -2402,7 +2402,7 @@ $$&lt;/p>
 &lt;li>&lt;a href="http://www.m.sanmin.com.tw/Product/index/99b155b8l109Z39Q105N66S107z125JIJgPSg191OzY">華逵－滿級分學測地球科學嘿皮書&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;p>(別問為什麼物理只有一本XD)&lt;br>
-更多關於參考書，請見&lt;a href="../20140726_055506">此篇&lt;/a>&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>【好站分享】邱博文物理線上資源</title><link>https://dwy6626.github.io/post/20140729_060106/</link><pubDate>Tue, 29 Jul 2014 06:01:06 +0800</pubDate><guid>https://dwy6626.github.io/post/20140729_060106/</guid><description>
+更多關於參考書，請見&lt;a href="../20140726_055506">此篇&lt;/a>&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>【好站分享】邱博文物理線上資源</title><link>https://dwye.dev/post/20140729_060106/</link><pubDate>Tue, 29 Jul 2014 06:01:06 +0800</pubDate><guid>https://dwye.dev/post/20140729_060106/</guid><description>
 &lt;p>如果學物理碰到一個觀念，一直無法想像怎麼辦？&lt;br>
 要怎麼從死板板的圖片變成順暢的動畫在腦中播放？&lt;br>
 在這個數位化的時代&lt;br>
@@ -2420,7 +2420,7 @@ $$&lt;/p>
 &lt;p>另外，這是費曼因公司的網站&lt;br>
 下載專區也有一些資源可以使用&lt;br>
 主要有用的集中在「3.學習資源」裡&lt;/p>
-&lt;p>&lt;a href="http://www.e-physics.net/download.html">http://www.e-physics.net/download.html&lt;/a>&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>【分享】費曼物理學講義</title><link>https://dwy6626.github.io/post/20140728_074313/</link><pubDate>Mon, 28 Jul 2014 07:43:13 +0800</pubDate><guid>https://dwy6626.github.io/post/20140728_074313/</guid><description>
+&lt;p>&lt;a href="http://www.e-physics.net/download.html">http://www.e-physics.net/download.html&lt;/a>&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>【分享】費曼物理學講義</title><link>https://dwye.dev/post/20140728_074313/</link><pubDate>Mon, 28 Jul 2014 07:43:13 +0800</pubDate><guid>https://dwye.dev/post/20140728_074313/</guid><description>
 &lt;p>偉大的物理學家，也幾乎是近世普物課程之始祖：費曼(Feynman)，在他的教學生涯中，有一本影響後世甚大的書：「費曼物理學講義(The Feynman Lectures on Physics)」。這本書保留了費曼當初上課時的原汁原味，也繼承了費曼一向優秀的口才與講解能力，號稱是最好理解也最深入物理內涵的一套講義。甚至有些教授以及物理學界人物也稱，看過了費曼物理學講義之後，才懂得某個領域真正的內涵。&lt;/p>
 &lt;p>不論是英文版，或是簡體中文版，網路上都能找到免費的講義全文。不過繁體中文版較奇特，現在由天下文化出版，包裝成科普書似的，而且還賣得挺貴的。這實在不是一個好現象，一來這書根本不科普，已經可以當作正式教科書了。況且，原版都已經免費上架，實在沒什麼道理讓翻譯版本繼續賺錢。可惜我尚在求學階段，自己也算繁忙，無法負起重新翻譯並將之免費上網的重任，只希望近年能有人肯為這件事出一份力，這麼好的東西實在不應該藏私。不然，這就會成為我以後的夢想：翻譯一套簡單易懂的費曼物理學講義，並且放在這個blog。&lt;/p>
 &lt;p>扯遠了，先貼網址吧。&lt;/p>
@@ -2436,7 +2436,7 @@ $$&lt;/p>
 &lt;/li>
 &lt;/ul>
 &lt;h3 id="聲明">聲明&lt;/h3>
-&lt;p>根據我對翻譯權的了解，作者為非本國人的情況，在台灣不具有翻譯權，因此散佈簡體中文版的翻譯應該是沒有違反法律。若有版權相關問題，請聯絡我，我會立刻刪除，謝謝。&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>我流挑參考書的方法</title><link>https://dwy6626.github.io/post/20140726_055506/</link><pubDate>Sat, 26 Jul 2014 05:55:06 +0800</pubDate><guid>https://dwy6626.github.io/post/20140726_055506/</guid><description>
+&lt;p>根據我對翻譯權的了解，作者為非本國人的情況，在台灣不具有翻譯權，因此散佈簡體中文版的翻譯應該是沒有違反法律。若有版權相關問題，請聯絡我，我會立刻刪除，謝謝。&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>我流挑參考書的方法</title><link>https://dwye.dev/post/20140726_055506/</link><pubDate>Sat, 26 Jul 2014 05:55:06 +0800</pubDate><guid>https://dwye.dev/post/20140726_055506/</guid><description>
 &lt;p>時間過得很快，課綱改了兩次，原本的文章參考書推薦部分似乎也不合時宜了，因此就順便把這篇文修改一下，希望有緣看到的人皆能受惠。&lt;/p>
 &lt;p>市面上參考書林林總總，競爭非常激烈，而且由於賺頭不小，越來越多老師和出版社加入戰場。一般來說，學校老師都會推薦或是強制我們購買某一本參考書，而網路上也有不少推薦文（如：&lt;a href="http://stu60912.pixnet.net/blog/post/46054601">Treak參考書推薦&lt;/a>）。不過我是個眼見為憑的人，寧願自己去書店花個一兩小時，自己挑選自己中意的參考書。&lt;/p>
 &lt;p>對我來說，課本的功能只是查詢用，而複習時最重要的筆記等都會集中在第一階段地毯式複習的參考書（詳見下文）。換句話講，我是採用以參考書為中心進行複習的風格，所以參考書的挑選此時變得格外重要。&lt;/p>
@@ -2482,7 +2482,7 @@ $$&lt;/p>
 &lt;ul>
 &lt;li>&lt;a href="http://www.m.sanmin.com.tw/Product/Index/003773534">龍騰－稱霸高中物理指考總複習講義&lt;/a>&lt;/li>
 &lt;/ul>
-&lt;p>一本詳盡的高中物理全範圍複習書，除了觀念提示之外，每章後面也會幫你做好重點中的重點，選題也不錯。&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>【高中科目心得】兩年後，再看高中物理</title><link>https://dwy6626.github.io/post/20140725_112921/</link><pubDate>Fri, 25 Jul 2014 11:29:21 +0800</pubDate><guid>https://dwy6626.github.io/post/20140725_112921/</guid><description>
+&lt;p>一本詳盡的高中物理全範圍複習書，除了觀念提示之外，每章後面也會幫你做好重點中的重點，選題也不錯。&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>【高中科目心得】兩年後，再看高中物理</title><link>https://dwye.dev/post/20140725_112921/</link><pubDate>Fri, 25 Jul 2014 11:29:21 +0800</pubDate><guid>https://dwye.dev/post/20140725_112921/</guid><description>
 &lt;h2 id="緣起">緣起&lt;/h2>
 &lt;p>從一個學生，到進入物理家教界兩年，以及在補習班工作，對於高中物理的認知，看法未必與以前完全相同，現在從一份半個教育者的眼光來看高中物理，所能看到的應該會比以前更廣更全面。&lt;/p>
 &lt;h2 id="走上物理家教">走上物理家教&lt;/h2>
@@ -2509,7 +2509,7 @@ $$&lt;/p>
 &lt;p>每當大學放榜，總是有許多新鮮人迫不及待想要先看看大學的世界長什麼樣子。就我看來，大學理科最重要的科目，非「微積分」莫屬了。大學普物，以知名課本Halliday所著之Fundamentals of Physics為例，除了會把高中的基礎幾乎全部講一遍之外，也把數學工具，就是所謂微積分，活用於其中，用同樣的觀念就可以解出更多高中所不能解決的問題。當然也有一些新的領域進來，例如流體、熱學、原子核等等。電磁學更是把不得不提的超知名物理明星馬克士威所整理出的四大方程都介紹一遍，這是沒有微積分基礎的高中生所無法觸及的。在普物之後，以物理系而言，會就各個領域規劃更進階一點的課程，例如「力學」、「電磁學」、「熱物理」、「量子物理」等等，了解物理學各界的發展，讓學生置身歷史之中，了解學問的來龍去脈。當然，若是要濟身於物理界的尖端，我甚至可以說，照著課表修課是絕對不夠的，就算到了研究所，學到了「量子場論」、「進階電磁學」之類的課程，也都是近代早有不少先驅在裡面探索的領域，這時候若是直接訪問教授的研究，甚至進到實驗室進行專題研究，反而比較能接觸到學問的尖端。不過，這必須建立在廣大的先備知識下。物理的領域博大精深，高中物理，恐怕連皮毛都稱不上，因此也不必抱怨高中教太多東西，因為從大學的角度看來，高中，根本沒教什麼東西。&lt;/p>
 &lt;h2 id="還有更多">還有更多&lt;/h2>
 &lt;p>上一篇「&lt;a href="../20120711_061900">最弱科到最強科，我的物理 by YDW&lt;/a>」其實也分享了不少東西，關於讀書的方式，也提及不少，裡頭所寫過的，就避免再寫一次。這篇文章說實在，也沒多給出太多東西，大概就是統整這兩年來的所見所聞吧。見到的學生越多，領悟的也越多。只希望我碰到的人，不一定要喜歡物理，只是不要以物理為苦惱，因為，讓物理變的討人厭的絕對不是物理本身，而是教育制度和考試。也許未來，還會有第三篇或更多篇，但我接下來想做的，是把分雜在各個地方的經驗以及知識，寫成一小篇一小篇的專題，不求很多人看過，但求看過的人皆能有所收穫，如此而已。&lt;/p>
-&lt;p>by YDW 2014.07.25&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>【文章推薦】申請入學：面試與備審</title><link>https://dwy6626.github.io/post/20140725_064404/</link><pubDate>Fri, 25 Jul 2014 06:44:04 +0800</pubDate><guid>https://dwy6626.github.io/post/20140725_064404/</guid><description>
+&lt;p>by YDW 2014.07.25&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>【文章推薦】申請入學：面試與備審</title><link>https://dwye.dev/post/20140725_064404/</link><pubDate>Fri, 25 Jul 2014 06:44:04 +0800</pubDate><guid>https://dwye.dev/post/20140725_064404/</guid><description>
 &lt;p>一篇台大教授關於面試學生的心得文與建議&lt;/p>
 &lt;p>我想，從教授的角度直接分析&lt;/p>
 &lt;p>應當比補習班旁敲側推來的有用多&lt;/p>
@@ -2520,7 +2520,7 @@ $$&lt;/p>
 &lt;p>我家裡收藏了一本，每次回家（我現在外宿）都會重新拿出來翻翻&lt;/p>
 &lt;p>相信對於不知道方向的迷惘新鮮人&lt;/p>
 &lt;p>多少可以引導出一些方向&lt;/p>
-&lt;p>&lt;a href="http://www.books.com.tw/products/0010542007">連結&lt;/a>&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>對於公式的態度</title><link>https://dwy6626.github.io/post/%E5%B0%8D%E6%96%BC%E5%85%AC%E5%BC%8F%E7%9A%84%E6%85%8B%E5%BA%A6/</link><pubDate>Thu, 17 Jul 2014 17:28:48 +0800</pubDate><guid>https://dwy6626.github.io/post/%E5%B0%8D%E6%96%BC%E5%85%AC%E5%BC%8F%E7%9A%84%E6%85%8B%E5%BA%A6/</guid><description>
+&lt;p>&lt;a href="http://www.books.com.tw/products/0010542007">連結&lt;/a>&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>對於公式的態度</title><link>https://dwye.dev/post/%E5%B0%8D%E6%96%BC%E5%85%AC%E5%BC%8F%E7%9A%84%E6%85%8B%E5%BA%A6/</link><pubDate>Thu, 17 Jul 2014 17:28:48 +0800</pubDate><guid>https://dwye.dev/post/%E5%B0%8D%E6%96%BC%E5%85%AC%E5%BC%8F%E7%9A%84%E6%85%8B%E5%BA%A6/</guid><description>
 &lt;p>相較於指考，學測物理有的公式實在不算多，而且課綱中都講明了，很多章節都已經避開推導以及計算。因此剩下的公式，大多算是基本中的基本，例如牛頓第二運動定律 $F = ma$，相信大家國中也都背過了。但有些公式就複雜多了，例如阿特午機(Atwood machine)的張力公式：&lt;br>
 $$&lt;br>
 T = \frac{2m_1m_2}{m_1+m_2}g&lt;br>
@@ -2530,7 +2530,7 @@ $$&lt;/p>
 &lt;p>我的看法是，必須把公式分成兩類，一類是「&lt;strong>物理定義&lt;/strong>」，像是 $F = ma$，你不背起來，根本沒辦法從受力算出加速度。另一類是「&lt;strong>導出公式&lt;/strong>」，像我剛剛舉的這個例子就是，這種公式不背也沒差，背了是增加解題速度，但缺點常常是使用範圍太窄，例如這個公式只能用在阿特午機，段考還好，但大考幾乎沒有投資報酬率可言。這類型的公式要不要背，完全看個人，但我的建議是能不背，就不背，&lt;strong>用最少的公式，解最多的題目&lt;/strong>。&lt;/p>
 &lt;h2 id="公式的意義">公式的意義&lt;/h2>
 &lt;p>當我們背下每條公式時，應該要知道&lt;strong>每條公式背後的物理意義&lt;/strong>，如果是導出公式，更要知道公式是怎麼推導出來的。碰到題目時，先分析題目要什麼，我們有什麼條件，這些條件和答案有什麼公式可以帶出，例如說等加速度運動，給初速度、末速度、位移，要求加速度，熟練的人就會立刻想到$v^2=v_0^2+2a\Delta x$，當然畫 $v$-$t$ 圖也是一種解法。腦袋裡面先有流程再動筆是最好的，若是想不到，也可利用起始條件，走一步算一步。&lt;/p>
-&lt;p>當然，如果只是考學測，幾乎沒有複雜的計算及推導，剩下少少的公式幾乎國中都背過，似乎也就沒那麼多煩惱了，只要把公式背後的物理意義搞懂即可。&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>我怎麼唸英文</title><link>https://dwy6626.github.io/post/%E6%80%8E%E9%BA%BC%E5%94%B8%E8%8B%B1%E6%96%87/</link><pubDate>Sat, 14 Jul 2012 22:02:18 +0800</pubDate><guid>https://dwy6626.github.io/post/%E6%80%8E%E9%BA%BC%E5%94%B8%E8%8B%B1%E6%96%87/</guid><description>
+&lt;p>當然，如果只是考學測，幾乎沒有複雜的計算及推導，剩下少少的公式幾乎國中都背過，似乎也就沒那麼多煩惱了，只要把公式背後的物理意義搞懂即可。&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>我怎麼唸英文</title><link>https://dwye.dev/post/%E6%80%8E%E9%BA%BC%E5%94%B8%E8%8B%B1%E6%96%87/</link><pubDate>Sat, 14 Jul 2012 22:02:18 +0800</pubDate><guid>https://dwye.dev/post/%E6%80%8E%E9%BA%BC%E5%94%B8%E8%8B%B1%E6%96%87/</guid><description>
 &lt;h2 id="背景">背景&lt;/h2>
 &lt;p>　　先說說我高一時的狀況吧，就是一個標準的混混學生，英文雜誌當擺飾，只有在考前才會拿出來惡補，國中也只有1000單的能力。上了高中在第一、二次段考的成績不是很滿意所以就去補習了。&lt;/p>
 &lt;h2 id="補英文的歷程">補英文的歷程&lt;/h2>
@@ -2554,7 +2554,7 @@ $$&lt;/p>
 &lt;p>加強閱讀的方法有很多種，包含英文雜誌、看英文新聞、直接多做閱讀題等等，我是選擇直接多寫模考題解決，模考題的來源主要是學校，另外我也有自己購買歷屆試題把它寫完並檢討完，對我而言這樣就已經足夠了。&lt;/p>
 &lt;h3 id="寫作">寫作&lt;/h3>
 &lt;p>沒有什麼訣竅，就單純多寫，每個禮拜寫兩篇拿給老師改（不過前提是老師願意配合，也很謝謝我們學校的英文老師，多半都很熱心，鼓勵我們寫作文給他們改），並且取得老師的意見，每次不斷的改善。&lt;/p>
-&lt;p>也可以在寫作時練習最近讀到的文法與單字，可以加深印象之外，也能增加自己的寫作詞庫。&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>[高中科目心得] 最弱科到最強科，我的物理</title><link>https://dwy6626.github.io/post/20120711_061900/</link><pubDate>Wed, 11 Jul 2012 06:19:00 +0800</pubDate><guid>https://dwy6626.github.io/post/20120711_061900/</guid><description>
+&lt;p>也可以在寫作時練習最近讀到的文法與單字，可以加深印象之外，也能增加自己的寫作詞庫。&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>[高中科目心得] 最弱科到最強科，我的物理</title><link>https://dwye.dev/post/20120711_061900/</link><pubDate>Wed, 11 Jul 2012 06:19:00 +0800</pubDate><guid>https://dwye.dev/post/20120711_061900/</guid><description>
 &lt;h2 id="寫在最前面">寫在最前面&lt;/h2>
 &lt;p>我覺得，物理是一科非常吃「讀書方法」的科目，好的讀書方法帶你上天堂，不好的讀書方法帶你到懷寧街某獨棟補習班。一個單元中哪些公式一定要背，哪些觀念要如何釐清，哪些解法是要知道的，在考前一定要掌握這些脈絡，考試時才能從容地正確作答。&lt;/p>
 &lt;h2 id="全新的挑戰">全新的挑戰&lt;/h2>
@@ -2581,7 +2581,7 @@ $$&lt;/p>
 &lt;p>至於成效怎樣呢&amp;hellip;&amp;hellip;至少我很滿意我現在這個分數，雖然沒有達到當初立下要考滿分的目標，但也夠了。&lt;/p>
 &lt;h2 id="後記">後記&lt;/h2>
 &lt;p>從這麼長一篇文章裡面要撈點有用的經驗感覺會像是大海撈針呢&amp;hellip;&amp;hellip;，但各位看倌就辛苦點吧，至少這樣才能保持住我這篇心得的原汁原味。有時候我在算物理時會想，高中物理是不是太過理想化了，但後來仔細思考，這其實只是方便我們學習吧，當我們越學越深入，也許要考慮的東西就會越來越多，像是阻力、能量散失等等，所以其實距離物理在現實中的應用還有一段距離吧，只是不學好基礎，何談應用？也許這就是高中教育的目的了。第二篇也打完了，我也不預告下一篇會是什麼，因為我也不清楚我會不會打下一篇，你們以為我很熱心一直想分享自己的經驗給需要的人嗎？其實我主要只是想記下這些東西而已，當作未來的一種懷念吧。&lt;/p>
-&lt;p>by YDW 2012.07.11&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>[高中科目心得] 自修一年生物的小心得</title><link>https://dwy6626.github.io/post/20120710_061600/</link><pubDate>Tue, 10 Jul 2012 06:16:00 +0800</pubDate><guid>https://dwy6626.github.io/post/20120710_061600/</guid><description>
+&lt;p>by YDW 2012.07.11&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>[高中科目心得] 自修一年生物的小心得</title><link>https://dwye.dev/post/20120710_061600/</link><pubDate>Tue, 10 Jul 2012 06:16:00 +0800</pubDate><guid>https://dwye.dev/post/20120710_061600/</guid><description>
 &lt;h2 id="緣起">緣起&lt;/h2>
 &lt;p>先說說緣起好了。從高一開始我就一直待在二類班沒有轉班，當時的心態是我不想當醫生，所以也就直接把三類排除在外了（那時我不知道三類還有那麼多選擇&amp;hellip;&amp;hellip;也是一大疏失吧），當時很天真的想說把探索志願這件事情留到以後再說，先在二類待著，直到我的腳踝中了一箭&amp;hellip;&amp;hellip;沒錯一直到升高三的暑假我才發現自己有興趣的是生物化學領域，所以就毅然決然的抱起自修，開始一趟漫長（但不怎麼艱辛）的生物自讀旅程&amp;hellip;&amp;hellip;。&lt;/p>
 &lt;h2 id="從喜歡上生物開始">從喜歡上生物開始&lt;/h2>
@@ -2597,7 +2597,7 @@ $$&lt;/p>
 &lt;h2 id="考前的衝刺">考前的衝刺&lt;/h2>
 &lt;p>等到考前大約二十來天的時候，我把上面那本總複習參考書讀完了，其實那本書要讀完並不用花很久的時間，只是有些較深入的觀念真的要自己補充（當然指考不一定會考那麼難）。因此我又在某次逛書店的時候買了一本複習的題本，是補教老師姜孟希寫的題庫，從這麼多本書中選擇它的理由是因為題型夠活，而解答也很精闢。然而有些題目真的是有一點刁鑽，我的處理方式也是像之前寫段考題那樣。這本題本有點厚所以我就沒有寫完了，只有在每次有時間的時候挑選我覺得重要的章節來寫（動物生理學、內分泌學和胚胎學、植物生理學、新陳代謝及能量轉換、人體的防禦系統、組織學、植物構造與運輸&amp;hellip;&amp;hellip;好啦其實我還寫蠻多的），而大部份我都是利用通勤的時間在寫。而在最後一天，我就拿起那本總複習，快速掃過之前畫的重點，準備赴戰。&lt;/p>
 &lt;h2 id="總結">總結&lt;/h2>
-&lt;p>其實到後面感覺一直都很穩，寫完歷屆就知道大概會考什麼樣的東西，也懂得去避開一些太細節的記憶，找到每章節的重點。此外，在讀的過程中，常常感受到生命實在不愧是累積億年的奇蹟，居然能協調的如此奇妙！但我將來要克服的東西其實還很多，像是之前一直都逃避沒去接觸的解剖。雖然我不確定我的讀書方式是否是最好的，但至少這次的指考生物成績還算是滿意了，因此作此心得文，當作記錄之外，也給需要的人作為一點參考。&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>進台大重要嗎</title><link>https://dwy6626.github.io/post/20120219-to-ntu/</link><pubDate>Sun, 19 Feb 2012 18:38:00 +0800</pubDate><guid>https://dwy6626.github.io/post/20120219-to-ntu/</guid><description>
+&lt;p>其實到後面感覺一直都很穩，寫完歷屆就知道大概會考什麼樣的東西，也懂得去避開一些太細節的記憶，找到每章節的重點。此外，在讀的過程中，常常感受到生命實在不愧是累積億年的奇蹟，居然能協調的如此奇妙！但我將來要克服的東西其實還很多，像是之前一直都逃避沒去接觸的解剖。雖然我不確定我的讀書方式是否是最好的，但至少這次的指考生物成績還算是滿意了，因此作此心得文，當作記錄之外，也給需要的人作為一點參考。&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>進台大重要嗎</title><link>https://dwye.dev/post/20120219-to-ntu/</link><pubDate>Sun, 19 Feb 2012 18:38:00 +0800</pubDate><guid>https://dwye.dev/post/20120219-to-ntu/</guid><description>
 &lt;p>　　台大，既然能擁有著台灣第一學府的名號，也必定有它的本事。台大有著自由開放的學風、豐富的學習資源、許多厲害的教授、強大的同伴兼競爭對手&amp;hellip;&amp;hellip;.等等。但凡是有正面的誇獎，就會有負面批評：在企業界中最受歡迎的學生是成大畢業的，而不是台大，為什麼呢？有人說，台大學生太過高傲，仗勢著自己的高學歷，就要企業給他們更好的待遇，相較於成大學生而言，成大校友形成了一個堅強的體系，校內教授也積極努力的給學生學習資源，因此成大出來的學生雖然比較被動，卻也比較易於「駕馭」，有著一種願意從基層打拼的感覺。也難免成大的學生在企業界占盡優勢。&lt;br>
 　　但其實這只是學校的走向問題：成大很明顯是一所為企業界培育人才的學校，清大交大也有這種走向。然而台大卻是往台灣的學術中心發展，台大培育出的學生不一定是為企業界量身打造的，不過不能否認的是他們在學術領域的表現，尤其是在醫學領域台大明顯是最優秀的。台大擔當著讓台灣減少對國外的依賴，讓台灣在學術領域走出自己的一片天的重要角色。說實在的，台大培養的主要不是企業員工，而是研究人才。&lt;br>
 　　那麼就回到根本的問題，進台大重要嗎？&lt;br>
