@@ -1,4 +1,79 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sun, 14 Mar 2021 22:01:56 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>GitHub Action 自動化部署 Hugo 網站</title><link>https://dwye.dev/post/hugo-github-action/</link><pubDate>Sun, 14 Mar 2021 22:01:56 +0800</pubDate><guid>https://dwye.dev/post/hugo-github-action/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 27 Mar 2021 19:01:56 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>GitHub Page + Google Domain 設定個人化網域</title><link>https://dwye.dev/post/github-page-google-domain/</link><pubDate>Sat, 27 Mar 2021 19:01:56 +0800</pubDate><guid>https://dwye.dev/post/github-page-google-domain/</guid><description>
+&lt;p>以前在 KK 實習時，跟 RD 們聊過自架 blog 的事情，並聽說了這個很潮的 &lt;code>.dev&lt;/code> 網域，就把購買個人網域列為將來想嘗試的事之一。&lt;br>
+找工作的事情告一段落了（其實也只是在原本實習的公司轉正職 XD），有了固定收入就可以來養個人品牌了 XD。&lt;/p>
+&lt;h2 id="需要做的事情">需要做的事情&lt;/h2>
+&lt;ul>
+&lt;li>購買一個你喜歡的個人網域，我在 Google Domain 購買&lt;/li>
+&lt;li>在 Google Domain 設定你的 GitHub Page url&lt;/li>
+&lt;li>在 GitHub Repo 設定你的個人網域以及 HTTPS&lt;/li>
+&lt;li>修改 Repo 內相關設定&lt;/li>
+&lt;/ul>
+&lt;h2 id="google-domain">Google Domain&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://domains.google.com/">https://domains.google.com/&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>Google 自家的網域供應商，也提供了 DNS 服務，Google 雖然 do evil 但他們家服務的可靠性還是直得讚賞的，也不會跟你搞奇怪的首年特價第二年漲價。我二話不說直接選了 Google Domain 來購買個人網域。&lt;/p>
+&lt;p>&lt;code>dwye.dev&lt;/code>，就決定是你了！&lt;/p>
+&lt;p>&lt;code>.dev&lt;/code> 網域的一年價格是 12 USD，大約 350 台幣附近，其他網域結尾的價格可以參考 &lt;a href="https://support.google.com/domains/answer/6010092">Google 的說明&lt;/a>。&lt;/p>
+&lt;p>比較需要注意的是 Google Domain 目前沒有開放台灣地區購買，但也不限制你用外幣結帳，但就要付跨區交易的手續費。&lt;/p>
+&lt;p>中間會另外需要填寫一次給 ICANN（網際網路名稱與數字位址分配機構）的個人資訊，這些資訊不會被公開，最好填寫真實的（就算跨區了，寫台灣也沒問題）。&lt;/p>
+&lt;h2 id="google-domain-設定">Google Domain 設定&lt;/h2>
+&lt;p>購買完成之後，回到 Google Domain 就會出現「my domain」選項，為了連接到 GitHub Page，需要做一些 DNS 資源設定：&lt;/p>
+&lt;h3 id="base-domain-apex-domain">Base Domain (Apex Domain)&lt;/h3>
+&lt;p>為了支援 GitHub Page 的 HTTPS 設定，根據&lt;a href="https://docs.github.com/en/github/working-with-github-pages/managing-a-custom-domain-for-your-github-pages-site#configuring-a-records-with-your-dns-provider">官方文件&lt;/a>，需要在 DNS 中將 base domain 設定至下列 IP：&lt;/p>
+&lt;pre>&lt;code>185.199.108.153
+185.199.109.153
+185.199.110.153
+185.199.111.153
+&lt;/code>&lt;/pre>&lt;p>具體做法是在 DNS 頁面中下方 Custom resource records 中，選擇 resource type: A，並新增上述四組 IP：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/1P3zHXX.png" alt="DNS apex domain setting">&lt;/p>
+&lt;p>DNS 設定需要一段時間生效，Google Domain 算是很快的，只讓我等了幾分鐘而已，下列指令可以確定剛剛的設定是否生效：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ dig dwye.dev +nostats +nocomments +nocmd
+; &amp;lt;&amp;lt;&amp;gt;&amp;gt; DiG 9.10.6 &amp;lt;&amp;lt;&amp;gt;&amp;gt; dwye.dev +nostats +nocomments +nocmd
+;; global options: +cmd
+;dwye.dev. IN A
+dwye.dev. 3599 IN A 185.199.111.153
+dwye.dev. 3599 IN A 185.199.109.153
+dwye.dev. 3599 IN A 185.199.108.153
+dwye.dev. 3599 IN A 185.199.110.153
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>出現了上面的 IP 代表生效了。&lt;/p>
+&lt;h3 id="cname">CNAME&lt;/h3>
+&lt;p>CNAME (canonical name) 就是真實名稱的意思，在 DNS 這裡的作用是將個人化網域 map 到真實網域，以我的例子來說，要將 &lt;code>dwye.dev&lt;/code> map 到 &lt;code>dwy6626.github.io&lt;/code>，因此一樣在 DNS 頁面中下方 Custom resource records 中，選擇 resource type: DNS，並輸入真實名稱 &lt;code>dwy6626.github.io&lt;/code>：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/CfdasYG.png" alt="DNS CNAME setting">&lt;/p>
+&lt;h2 id="github-repo-設定">GitHub Repo 設定&lt;/h2>
+&lt;p>這邊是架設 GitHub Page 的 repo，以我的例子來說是這個 repo：&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/dwy6626/dwy6626.github.io">https://github.com/dwy6626/dwy6626.github.io&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>在 Setting 第一頁找到 &lt;strong>GitHub Pages&lt;/strong> 設定，並在 custom domain 填入個人化網域 &lt;code>dwye.dev&lt;/code>，就這麼簡單。&lt;/p>
+&lt;p>不過如果你做得太快，Google Domain 的 DNS 設定還沒生效的話，會暫時無法使用 HTTPS，一樣等個幾分鐘再回來打勾就好。&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/kcZgbaZ.png" alt="GitHub Repo Setting Custom Domain">&lt;/p>
+&lt;p>到這邊基本上大致上就完成了，然而修改完了設定之後，code base 以及 CI/CD 也有需要修改的地方，這樣才能保證下次部署後資料是正常的。&lt;/p>
+&lt;h2 id="repo-內修改">Repo 內修改&lt;/h2>
+&lt;p>我是用 &lt;a href="https://dwye.dev/hugo-github-action">Hugo + GitHub Action&lt;/a> 產生並透過 CI/CD 自動部署靜態網站，裡面也有相關的設定需要修改：&lt;/p>
+&lt;h3 id="hugo">Hugo&lt;/h3>
+&lt;p>修改 config 中 baseURL 設定：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-toml" data-lang="toml">&lt;span style="color:#75715e"># config.toml&lt;/span>
+&lt;span style="color:#a6e22e">baseURL&lt;/span> = &lt;span style="color:#e6db74">&amp;#34;https://dwye.dev/&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="github-action">GitHub Action&lt;/h3>
+&lt;p>因為我使用的是 &lt;code>peaceiris/actions-gh-pages@v3&lt;/code> 這個 Action，已經內建支援設定 CNAME 了，只需要加上去就好：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">Deploy&lt;/span>
+&lt;span style="color:#f92672">uses&lt;/span>: &lt;span style="color:#ae81ff">peaceiris/actions-gh-pages@v3&lt;/span>
+&lt;span style="color:#f92672">with&lt;/span>:
+&lt;span style="color:#f92672">external_repository&lt;/span>: &lt;span style="color:#ae81ff">dwy6626/dwy6626.github.io&lt;/span>
+&lt;span style="color:#f92672">deploy_key&lt;/span>: &lt;span style="color:#ae81ff">${{ secrets.ACTIONS_DEPLOY_KEY }}&lt;/span>
+&lt;span style="color:#f92672">publish_dir&lt;/span>: &lt;span style="color:#ae81ff">./public&lt;/span>
+&lt;span style="color:#f92672">publish_branch&lt;/span>: &lt;span style="color:#ae81ff">master&lt;/span>
+&lt;span style="color:#f92672">cname&lt;/span>: &lt;span style="color:#ae81ff">dwye.dev&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>最後那行即是 CNAME 設定，部署完成後就會自動產生一個 CNAME 檔案在 GitHub Page Repo 內。&lt;/p>
+&lt;h2 id="結語">結語&lt;/h2>
+&lt;p>完成上面所有步驟之後，就可以連去你的網誌看看了，網址變短變的有個性，就是爽 XDDD&lt;/p>
+&lt;p>所以個人化網域，其實就是花錢買個爽（Ｘ），當然還有個人品牌經營的部分，但對我來說比較是個人興趣吧。&lt;/p>
+&lt;p>留一些 TO-DO：&lt;/p>
+&lt;ul>
+&lt;li>Google Search Console 以及 Google Analytics 更新（應該會寫在下篇）&lt;/li>
+&lt;li>個人化 email 網址（可能又是個坑）&lt;/li>
+&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>GitHub Action 自動化部署 Hugo 網站</title><link>https://dwye.dev/post/hugo-github-action/</link><pubDate>Sun, 14 Mar 2021 22:01:56 +0800</pubDate><guid>https://dwye.dev/post/hugo-github-action/</guid><description>
 &lt;p>在今天之前，這個 blog 是&lt;a href="https://dwye.dev/post/hugo-wercker">用 Wercker 做自動化部署&lt;/a>，當時對於 CI/CD 工具沒有太多比較，就直接使用了。&lt;/p>
 &lt;p>在 2018 年底，&lt;a href="https://github.blog/2018-10-16-future-of-software/">GitHub 公開了他們的自有 CI/CD 工具 GitHub Action&lt;/a>，並於 2019 年底正式推出。這個工具經過了兩年多的發展，如今也有一定成熟度，社群有很多相關的工具發展起來，當然也不乏 Hugo 的自動化部署。如果 repo 使用 GitHub，那整合 GitHub 自家 CI/CD 當然是最方便的。&lt;/p>
 &lt;p>因此去年在公司實習時，主管就叫我研究一下 GitHub Action 套用在當時開發的 Rails 專案，我只參考了官方文件並套用了一些社群貢獻的 GitHub Action，就成功完成任務，包含在開 PR 時自動跑 coding style review (rubocop) 以及 push 時跑單元測試 (RSpec)。&lt;del>人生又往 YAML 工程師前進了一步。&lt;/del>&lt;/p>
