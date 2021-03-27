@@ -42,9 +42,7 @@ dwye.dev. 3599 IN A 185.199.110.153
 &lt;p>&lt;img src="https://i.imgur.com/CfdasYG.png" alt="DNS CNAME setting">&lt;/p>
 &lt;h2 id="github-repo-設定">GitHub Repo 設定&lt;/h2>
 &lt;p>這邊是架設 GitHub Page 的 repo，以我的例子來說是這個 repo：&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://github.com/dwy6626/dwy6626.github.io">https://github.com/dwy6626/dwy6626.github.io&lt;/a>&lt;/li>
-&lt;/ul>
+&lt;p>&lt;a href="https://github.com/dwy6626/dwy6626.github.io">https://github.com/dwy6626/dwy6626.github.io&lt;/a>&lt;/p>
 &lt;p>在 Setting 第一頁找到 &lt;strong>GitHub Pages&lt;/strong> 設定，並在 custom domain 填入個人化網域 &lt;code>dwye.dev&lt;/code>，就這麼簡單。&lt;/p>
 &lt;p>不過如果你做得太快，Google Domain 的 DNS 設定還沒生效的話，會暫時無法使用 HTTPS，一樣等個幾分鐘再回來打勾就好。&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/kcZgbaZ.png" alt="GitHub Repo Setting Custom Domain">&lt;/p>
@@ -57,7 +55,8 @@ dwye.dev. 3599 IN A 185.199.110.153
 &lt;span style="color:#a6e22e">baseURL&lt;/span> = &lt;span style="color:#e6db74">&amp;#34;https://dwye.dev/&amp;#34;&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="github-action">GitHub Action&lt;/h3>
 &lt;p>因為我使用的是 &lt;code>peaceiris/actions-gh-pages@v3&lt;/code> 這個 Action，已經內建支援設定 CNAME 了，只需要加上去就好：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">Deploy&lt;/span>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#75715e"># .github/workflows/deploy.yml&lt;/span>
+- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">Deploy&lt;/span>
 &lt;span style="color:#f92672">uses&lt;/span>: &lt;span style="color:#ae81ff">peaceiris/actions-gh-pages@v3&lt;/span>
 &lt;span style="color:#f92672">with&lt;/span>:
 &lt;span style="color:#f92672">external_repository&lt;/span>: &lt;span style="color:#ae81ff">dwy6626/dwy6626.github.io&lt;/span>
