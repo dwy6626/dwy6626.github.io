@@ -1,4 +1,109 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 27 Mar 2021 19:01:56 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>GitHub Page + Google Domain 設定個人化網域</title><link>https://dwye.dev/post/github-page-google-domain/</link><pubDate>Sat, 27 Mar 2021 19:01:56 +0800</pubDate><guid>https://dwye.dev/post/github-page-google-domain/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sun, 28 Mar 2021 20:18:25 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>Python 費氏數列解法（一）</title><link>https://dwye.dev/post/python-fibonacci/</link><pubDate>Sun, 28 Mar 2021 20:18:25 +0800</pubDate><guid>https://dwye.dev/post/python-fibonacci/</guid><description>
+&lt;p>面試被問到的題目，雖然是很基本的題目，但相關延伸也有不少，寫篇文章記錄一下。&lt;/p>
+&lt;h2 id="遞迴最基本又直觀的解法">遞迴：最基本又直觀的解法&lt;/h2>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fibonacci&lt;/span>(n):
+&lt;span style="color:#66d9ef">if&lt;/span> n &lt;span style="color:#f92672">&amp;lt;&lt;/span> &lt;span style="color:#ae81ff">3&lt;/span>:
+&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
+&lt;span style="color:#66d9ef">return&lt;/span> fibonacci(n&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>) &lt;span style="color:#f92672">+&lt;/span> fibonacci(n&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>)
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="時間複雜度">時間複雜度&lt;/h3>
+&lt;p>$O(2^n)$，每次呼叫 &lt;code>fibonacci(n)&lt;/code> 都會進行額外兩次呼叫，n 每次會 -1，直到 n == 2。整個呼叫會是高度 n 的二元樹的子集合，而每次運行時間都是 $O(1)$，因此整體時間的 upper bound 就是二元樹的節點數量：&lt;/p>
+&lt;p>$$&lt;br>
+2^0 + 2^1 + 2^2 + &amp;hellip; + 2^{n-1} = \frac{2^n - 1}{2 - 1}&lt;br>
+$$&lt;/p>
+&lt;h3 id="空間複雜度">空間複雜度&lt;/h3>
+&lt;p>$O(1)$&lt;/p>
+&lt;h2 id="遞迴優化利用-hash-減少計算次數">遞迴優化：利用 Hash 減少計算次數&lt;/h2>
+&lt;p>在原本的解法中，會有很多次重複計算 &lt;code>fibonacci(n-1)&lt;/code>, &lt;code>fibonacci(n-2)&lt;/code> &amp;hellip; 等，因此可以把計算結果儲存起來，&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fibonacci&lt;/span>(n):
+table &lt;span style="color:#f92672">=&lt;/span> {}
+&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fib_table&lt;/span>(n):
+&lt;span style="color:#66d9ef">if&lt;/span> n &lt;span style="color:#f92672">&amp;lt;&lt;/span> &lt;span style="color:#ae81ff">3&lt;/span>:
+&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
+table[n] &lt;span style="color:#f92672">=&lt;/span> fib_table(n&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>) &lt;span style="color:#f92672">+&lt;/span> fib_table(n&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>)
+&lt;span style="color:#66d9ef">return&lt;/span> table[n]
+&lt;span style="color:#66d9ef">return&lt;/span> fib_table(n)
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>這邊我利用了 Python 變數 scope 的 LEGB 特性，也就是查找順序為：local, enclosed, global, built-in。可以參見&lt;a href="https://docs.python.org/3/tutorial/classes.html">官方 document&lt;/a>，有趣的是 LEGB 並不是官方名詞而是社群流傳的口訣。&lt;/p>
+&lt;p>也許聽起來很複雜，但其實也就是簡單的&lt;strong>往外查找&lt;/strong>規則罷了。&lt;/p>
+&lt;p>因此 &lt;code>table&lt;/code> 雖然是在外部的 &lt;code>fibonacci&lt;/code> 定義的，但 &lt;code>fib_table&lt;/code> 內（local）沒有另外定義 &lt;code>table&lt;/code> 變數的情況下，會往外查找，因此可以讀取外部的 &lt;code>table&lt;/code>（enclosed）。&lt;/p>
+&lt;p>可能有人會問，我有 assign 值到 &lt;code>table&lt;/code> 內部啊，這樣不用宣告 &lt;code>global table&lt;/code> 嗎？答案是不需要的，在 Python 中，&lt;code>table&lt;/code> 變數存的是物件的 reference，因此改變物件內的屬性並不會影響 &lt;code>table&lt;/code> 這個變數。而 &lt;code>table[n] = fib_table(n-1) + fib_table(n-2)&lt;/code> 這行實際上是呼叫了 &lt;code>table&lt;/code> 指向的物件的 &lt;code>__setitem__&lt;/code> 方法，改變物件內部的屬性。&lt;/p>
+&lt;h3 id="時間複雜度-1">時間複雜度&lt;/h3>
+&lt;p>$O(n)$，對每個 n 只需要算一遍，不會每次都要往 n-1，n-2 展開。&lt;/p>
+&lt;h3 id="空間複雜度-1">空間複雜度&lt;/h3>
+&lt;p>$O(n)$，&lt;code>table&lt;/code> 需要存 &lt;code>fib_table(3)&lt;/code> 到 &lt;code>fib_table(n)&lt;/code> 的結果。&lt;/p>
+&lt;h2 id="遞迴優化使用-cache">遞迴優化：使用 Cache&lt;/h2>
+&lt;p>Python 有內建的 Cache 可以記錄函式呼叫結果：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#a6e22e">@cache&lt;/span>
+&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fibonacci&lt;/span>(n):
+&lt;span style="color:#66d9ef">if&lt;/span> n &lt;span style="color:#f92672">&amp;lt;&lt;/span> &lt;span style="color:#ae81ff">3&lt;/span>:
+&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
+&lt;span style="color:#66d9ef">return&lt;/span> fibonacci(n&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>) &lt;span style="color:#f92672">+&lt;/span> fibonacci(n&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>)
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>這其實就是第一個解法加上一行 &lt;code>@cache&lt;/code> 而已。&lt;/p>
+&lt;p>在函式開頭加上 &lt;code>@something&lt;/code> 的寫法是呼叫 Python 中的 decorator，是 Python 中一個重要的特性。在 Python 語言中，函式是一等公民，也就是函式可以被當作變數 assign，也可以當作參數傳遞。 decorator 實際上就是把他裝飾的函式傳到 decorator 內部再做一些事情，以這邊的 &lt;code>@cache&lt;/code> 為例，decorator 會自動幫忙把 &lt;code>fibonacci&lt;/code> 這個函式的呼叫結果記錄起來，並回傳&lt;strong>包裝後的函數&lt;/strong>，我們最後拿到的 &lt;code>fibonacci&lt;/code> 實際上會多了包裝後的方法：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#f92672">&amp;gt;&lt;/span> fibonacci&lt;span style="color:#f92672">.&lt;/span>__dir__()
+[&lt;span style="color:#e6db74">&amp;#39;cache_parameters&amp;#39;&lt;/span>,
+&lt;span style="color:#f92672">...&lt;/span>
+&lt;span style="color:#e6db74">&amp;#39;cache_info&amp;#39;&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#39;cache_clear&amp;#39;&lt;/span>,
+&lt;span style="color:#f92672">...&lt;/span>
+]
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>比自己用 hash 實作簡單多了。&lt;/p>
+&lt;p>這邊的 &lt;code>cache&lt;/code> 實際上是 &lt;code>functools.lru_cache(maxsize=None)&lt;/code>，一個不限制大小的 LRU Cache，如果想要限制大小可以在修改 &lt;code>maxsize&lt;/code> 發揮 LRU 的功能。&lt;/p>
+&lt;p>學會了這招才是真正的 Pythonist。&lt;/p>
+&lt;h3 id="cache-size-要設定成多少">Cache Size 要設定成多少？&lt;/h3>
+&lt;p>既然可以設定 cache size，我們真的需要一直記著每次計算的結果嗎？&lt;/p>
+&lt;p>當計算第 n 項時，只需要 n-1 和 n-2 兩項結果，所以就設成 2 就好了對吧？但如果直接這樣改，會發現程式跑的時間還是會變很長。&lt;/p>
+&lt;p>實際上當計算 n-1 時，需要知道 n-2 和 n-3 的值，先計算 n-2 後計算 n-3。因此最後 cache 內記錄的會是 n-1 和 n-3 的值。&lt;br>
+所以會在接下來算 n-2 時造成一個 cache miss。&lt;/p>
+&lt;p>如果不改其他部分，可以把 &lt;code>maxsize&lt;/code> 設成 3，就可以避免掉這個 cache miss。&lt;/p>
+&lt;p>但仔細思考，其實會有這個 miss，歸根究底是我們先計算比較靠近 n 的 n-1，後計算比較遠離 n 的 n-2 造成的。那何不將兩者交換呢？&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#a6e22e">@lru_cache&lt;/span>(maxsize&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>)
+&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fibonacci&lt;/span>(n):
+&lt;span style="color:#66d9ef">if&lt;/span> n &lt;span style="color:#f92672">&amp;lt;&lt;/span> &lt;span style="color:#ae81ff">3&lt;/span>:
+&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
+&lt;span style="color:#66d9ef">return&lt;/span> fibonacci(n&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>) &lt;span style="color:#f92672">+&lt;/span> fibonacci(n&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>)
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>做完簡單的修改，一樣漂亮的 code，可以給出不錯的時間複雜度和常數的空間複雜度。&lt;/p>
+&lt;h3 id="時間複雜度-2">時間複雜度&lt;/h3>
+&lt;p>$O(n)$，不會有 cache miss，每個 n 只需要計算一次。&lt;/p>
+&lt;h3 id="空間複雜度-2">空間複雜度&lt;/h3>
+&lt;p>$O(1)$，因為 cache size 最大是 2。&lt;/p>
+&lt;h2 id="尾遞迴-tail-recursive--tail-call">尾遞迴 Tail Recursive / Tail Call&lt;/h2>
+&lt;p>當函式本身在回傳時會呼叫自己即為尾遞迴，可以說是遞迴中的特例。&lt;/p>
+&lt;p>要撰寫尾遞迴，需要思考每次遞迴時我們往前取了什麼資訊。在上一個 LRU cache 的解法中知道，我們只需要紀錄 n-2 和 n-1 兩個值即可。分別命名為 &lt;code>f1&lt;/code> 和 &lt;code>f2&lt;/code>，每次呼叫我們把 n 減 1，把 &lt;code>f1&lt;/code> 指定為 &lt;code>f2&lt;/code>，並把 &lt;code>f2&lt;/code> 改為 &lt;code>f1 + f2&lt;/code>：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fibonacci&lt;/span>(n):
+&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fib_tail_recursive&lt;/span>(n, f1, f2):
+&lt;span style="color:#66d9ef">if&lt;/span> n &lt;span style="color:#f92672">&amp;lt;&lt;/span> &lt;span style="color:#ae81ff">3&lt;/span>:
+&lt;span style="color:#66d9ef">return&lt;/span> f2
+&lt;span style="color:#66d9ef">return&lt;/span> fib_tail_recursive(n &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>, f2, f1 &lt;span style="color:#f92672">+&lt;/span> f2)
+&lt;span style="color:#66d9ef">return&lt;/span> fib_tail_recursive(n, &lt;span style="color:#ae81ff">1&lt;/span>, &lt;span style="color:#ae81ff">1&lt;/span>)
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>尾遞迴的版本我認為比較不好理解，但是為了下一個迭代法，還是練習了一下尾遞迴的解法。&lt;/p>
+&lt;p>下面對於不同的 n 做分析：&lt;/p>
+&lt;ul>
+&lt;li>初始時 &lt;code>f1&lt;/code> 和 &lt;code>f2&lt;/code> 分別代表第一項和第二項，都是 1。&lt;/li>
+&lt;li>當 n &amp;lt; 3 時直接回傳 &lt;code>f1&lt;/code> 為 1&lt;/li>
+&lt;li>當 n = 3 時，會跑一次尾遞迴，此時 n 變成 2，&lt;code>f1&lt;/code> 變成 1， &lt;code>f2&lt;/code> 變成 1 + 1 = 2，接著回傳 &lt;code>f2&lt;/code> 即為 2&lt;/li>
+&lt;/ul>
+&lt;p>以下依此類推&amp;hellip;&lt;/p>
+&lt;h2 id="時間複雜度-3">時間複雜度&lt;/h2>
+&lt;p>$O(n)$，從 n 呼叫到 2。&lt;/p>
+&lt;h2 id="空間複雜度-3">空間複雜度&lt;/h2>
+&lt;p>$O(1)$，沒有額外的 cache 或是查表。&lt;/p>
+&lt;h2 id="迭代法使用迴圈攤平遞迴">迭代法：使用迴圈，攤平遞迴&lt;/h2>
+&lt;p>尾遞迴是攤平遞迴的中間做法，可以寫成尾遞迴的函式，就能快速改寫成迭代形式：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fibonacci&lt;/span>(n):
+f1, f2 &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>, &lt;span style="color:#ae81ff">1&lt;/span>
+&lt;span style="color:#66d9ef">for&lt;/span> i &lt;span style="color:#f92672">in&lt;/span> range(&lt;span style="color:#ae81ff">2&lt;/span>, n): &lt;span style="color:#75715e"># 當 n &amp;lt; 3 時不會進入迴圈&lt;/span>
+f1, f2 &lt;span style="color:#f92672">=&lt;/span> f2, f1 &lt;span style="color:#f92672">+&lt;/span> f2
+&lt;span style="color:#66d9ef">return&lt;/span> f2
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>做的事情和尾遞迴版本一模一樣。&lt;/p>
+&lt;p>也因此有些語言對於尾遞迴有做優化，當編譯器看到尾遞迴，會自動幫你攤平成迴圈（用 GOTO 實現），稱為尾遞迴優化（Tail Call Optimization）。主要會在以 functional programming 為主的語言中看到，例如 erlang 或是 haskell。&lt;/p>
+&lt;p>很可惜，Python 是沒有支援的那部分。&lt;/p>
+&lt;h2 id="時間複雜度-4">時間複雜度&lt;/h2>
+&lt;p>$O(n)$，只有一個迴圈，迴圈內部運算都是 $O(1)$&lt;/p>
+&lt;h2 id="空間複雜度-4">空間複雜度&lt;/h2>
+&lt;p>$O(1)$，只用了固定兩個變數&lt;/p>
+&lt;h2 id="預告">預告&lt;/h2>
+&lt;p>雖然到這邊已經說明完正常的解法，但其實費氏數列還有更多有趣的解法。&lt;/p>
+&lt;p>下篇會介紹時間複雜度更短的矩陣解，第三篇則會介紹疑似（？）常數時間的公式解。&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>GitHub Page + Google Domain 設定個人化網域</title><link>https://dwye.dev/post/github-page-google-domain/</link><pubDate>Sat, 27 Mar 2021 19:01:56 +0800</pubDate><guid>https://dwye.dev/post/github-page-google-domain/</guid><description>
 &lt;p>以前在 KK 實習時，跟 RD 們聊過自架 blog 的事情，並聽說了這個很潮的 &lt;code>.dev&lt;/code> 網域，就把購買個人網域列為將來想嘗試的事之一。&lt;br>
 找工作的事情告一段落了（其實也只是在原本實習的公司轉正職 XD），有了固定收入就可以來養個人品牌了 XD。&lt;/p>
 &lt;h2 id="需要做的事情">需要做的事情&lt;/h2>
