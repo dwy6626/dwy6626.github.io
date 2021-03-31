@@ -1,4 +1,162 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 30 Mar 2021 16:01:56 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>Google Domain 客製化 Email Address</title><link>https://dwye.dev/post/google-domain-mail/</link><pubDate>Tue, 30 Mar 2021 16:01:56 +0800</pubDate><guid>https://dwye.dev/post/google-domain-mail/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 31 Mar 2021 20:18:25 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>Python 費氏數列解法（二）：矩陣解</title><link>https://dwye.dev/post/python-fibonacci-2/</link><pubDate>Wed, 31 Mar 2021 20:18:25 +0800</pubDate><guid>https://dwye.dev/post/python-fibonacci-2/</guid><description>
+&lt;p>在&lt;a href="https://dwye.dev/post/python-fibonacci">上篇&lt;/a>我們討論了費氏數列的各種基本解法。&lt;/p>
+&lt;p>原本我也以為 O(n) 的迭代解就已經是標準解法了，直到被大神朋友指正：&lt;/p>
+&lt;blockquote>
+&lt;p>問費氏數列應該是想聽 $O(\lg n)$ 解法吧？&lt;/p>
+&lt;/blockquote>
+&lt;p>查了一下還真的有，&lt;a href="https://medium.com/fcamels-notes/%E8%B2%BB%E6%B0%8F%E6%95%B8%E5%88%97-o-logn-%E7%9A%84%E8%A7%A3%E6%B3%95-e36067e57baa">這篇文章&lt;/a>寫得蠻完整的，這篇會參考該篇文章來撰寫，但會用我自己的話以及 Python 寫出來。&lt;/p>
+&lt;h2 id="哪來的矩陣">哪來的矩陣？&lt;/h2>
+&lt;p>$$&lt;br>
+\begin{bmatrix}&lt;br>
+F(n)\\&lt;br>
+F(n-1)&lt;br>
+\end{bmatrix} = \begin{bmatrix}&lt;br>
+F(n-1) + F(n-2) \\&lt;br>
+F(n-1)&lt;br>
+\end{bmatrix} = \begin{bmatrix}&lt;br>
+1 &amp;amp; 1\\&lt;br>
+1 &amp;amp; 0&lt;br>
+\end{bmatrix} \begin{bmatrix}&lt;br>
+F(n-1)\\&lt;br>
+F(n-2)&lt;br>
+\end{bmatrix}&lt;br>
+$$&lt;/p>
+&lt;p>其實就是將&lt;a href="https://dwye.dev/post/python-fibonacci">上篇&lt;/a>的尾遞迴方法及迭代法中每次的運算內容，使用矩陣乘法表達出來。&lt;/p>
+&lt;h2 id="有了矩陣可以幹嘛公式推導">有了矩陣可以幹嘛（公式推導）&lt;/h2>
+&lt;p>有了矩陣表示法，對於費氏數列第 n 項 $F(n)$ 就可以表示成：&lt;/p>
+&lt;p>$$&lt;br>
+\begin{bmatrix}&lt;br>
+F(n)\\&lt;br>
+F(n-1)&lt;br>
+\end{bmatrix} = \begin{bmatrix}&lt;br>
+1 &amp;amp; 1\\&lt;br>
+1 &amp;amp; 0&lt;br>
+\end{bmatrix} &amp;hellip; \begin{bmatrix}&lt;br>
+1 &amp;amp; 1\\&lt;br>
+1 &amp;amp; 0&lt;br>
+\end{bmatrix}\begin{bmatrix}&lt;br>
+F(2)\\&lt;br>
+F(1)&lt;br>
+\end{bmatrix} = \begin{bmatrix}&lt;br>
+1 &amp;amp; 1\\&lt;br>
+1 &amp;amp; 0&lt;br>
+\end{bmatrix}^{n-2} \begin{bmatrix}&lt;br>
+1\\&lt;br>
+1&lt;br>
+\end{bmatrix}&lt;br>
+$$&lt;/p>
+&lt;p>兩邊同乘中間那個 1 1 1 0 的矩陣：&lt;/p>
+&lt;p>$$&lt;br>
+\begin{bmatrix}&lt;br>
+1 &amp;amp; 1\\&lt;br>
+1 &amp;amp; 0&lt;br>
+\end{bmatrix}&lt;br>
+\begin{bmatrix}&lt;br>
+F(n)\\&lt;br>
+F(n-1)&lt;br>
+\end{bmatrix} = \begin{bmatrix}&lt;br>
+F(n+1)\\&lt;br>
+F(n)&lt;br>
+\end{bmatrix} = \begin{bmatrix}&lt;br>
+1 &amp;amp; 1\\&lt;br>
+1 &amp;amp; 0&lt;br>
+\end{bmatrix}^{n-1} \begin{bmatrix}&lt;br>
+1\\&lt;br>
+1&lt;br>
+\end{bmatrix}&lt;br>
+$$&lt;/p>
+&lt;p>又：&lt;/p>
+&lt;p>$$&lt;br>
+\begin{bmatrix}&lt;br>
+F(n)\\&lt;br>
+F(n-1)&lt;br>
+\end{bmatrix} = \begin{bmatrix}&lt;br>
+1 &amp;amp; 1\\&lt;br>
+1 &amp;amp; 0&lt;br>
+\end{bmatrix}^{n-1} \begin{bmatrix}&lt;br>
+1\\&lt;br>
+0&lt;br>
+\end{bmatrix}&lt;br>
+$$&lt;/p>
+&lt;p>把 $F(n+1)$ 和 $F(n)$ 開頭的兩行做合併之後可以得到更漂亮的寫法：&lt;/p>
+&lt;p>$$&lt;br>
+\begin{bmatrix}&lt;br>
+F(n+1) &amp;amp; F(n)\\&lt;br>
+F(n) &amp;amp; F(n-1)&lt;br>
+\end{bmatrix} = \begin{bmatrix}&lt;br>
+1 &amp;amp; 1\\&lt;br>
+1 &amp;amp; 0&lt;br>
+\end{bmatrix}^{n-1} \begin{bmatrix}&lt;br>
+1 &amp;amp; 1\\&lt;br>
+1 &amp;amp; 0&lt;br>
+\end{bmatrix}&lt;br>
+$$&lt;/p>
+&lt;p>得到最後的公式：&lt;/p>
+&lt;p>$$&lt;br>
+\begin{bmatrix}&lt;br>
+F(n+1) &amp;amp; F(n)\\&lt;br>
+F(n) &amp;amp; F(n-1)&lt;br>
+\end{bmatrix} = \begin{bmatrix}&lt;br>
+1 &amp;amp; 1\\&lt;br>
+1 &amp;amp; 0&lt;br>
+\end{bmatrix}^{n}&lt;br>
+$$&lt;/p>
+&lt;h2 id="矩陣的-n-次方真的可以-olg-n-嗎">矩陣的 n 次方真的可以 $O(\lg n)$ 嗎？&lt;/h2>
+&lt;p>不同的例子不同，因為矩陣的乘法實際上並不會都是 $O(1)$，但是在這裡我們固定了矩陣的大小為 $2 \times 2$，只會對費氏數列的 n 做增長，因此矩陣乘法本身的複雜度並不會增長。&lt;/p>
+&lt;p>這邊有個名詞是&lt;strong>快速冪&lt;/strong>，中文也許不好懂，英文就是 &lt;strong>exponentiation by squaring&lt;/strong>，就是把高次方的 power 用 2 的次方去組合。或著是說，用其二進位時數值是 1 的位元來做組合。&lt;br>
+因此算某數的 n 次方，我們只需要進行 $O(\lg n)$ 次計算即可。&lt;/p>
+&lt;p>舉個簡單的例子，當計算 x 的 23 次方時，我們知道 23 的二進位可以表示成 10111，因為：&lt;/p>
+&lt;p>$$&lt;br>
+23 = 2^4 + 2^2 + 2^1 + 2^0&lt;br>
+$$&lt;/p>
+&lt;p>所以實際上我們只要計算：&lt;/p>
+&lt;p>$$&lt;br>
+x^{23} = x^{2^4 + 2^2 + 2^1 + 2^0} = x^{16}x^4x^2x&lt;br>
+$$&lt;/p>
+&lt;p>其中四個數值的次方計算為：&lt;/p>
+&lt;ul>
+&lt;li>$x^{16} = x^8x^8$&lt;/li>
+&lt;li>$x^{8} = x^4x^4$&lt;/li>
+&lt;li>$x^{4} = x^2x^2$&lt;/li>
+&lt;li>$x^{2} = xx$&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>時間複雜度&lt;/strong>和&lt;strong>空間複雜度&lt;/strong>都是 $O(\lg n)$&lt;/p>
+&lt;p>拿來應用在矩陣上，就是所謂&lt;strong>矩陣快速冪&lt;/strong>&lt;/p>
+&lt;h2 id="說了這麼多給我-code-吧">說了這麼多，給我 code 吧&lt;/h2>
+&lt;p>這裡參考了 &lt;a href="https://leetcode.com/problems/fibonacci-number/solution/">leetcode 的官方解法&lt;/a>：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fibonacci&lt;/span>(n):
+A &lt;span style="color:#f92672">=&lt;/span> [[&lt;span style="color:#ae81ff">1&lt;/span>, &lt;span style="color:#ae81ff">1&lt;/span>], [&lt;span style="color:#ae81ff">1&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>]]
+power(A, n&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>)
+&lt;span style="color:#66d9ef">return&lt;/span> A[&lt;span style="color:#ae81ff">0&lt;/span>][&lt;span style="color:#ae81ff">0&lt;/span>]
+&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">power&lt;/span>(A, n):
+&lt;span style="color:#66d9ef">if&lt;/span> n &lt;span style="color:#f92672">&amp;lt;&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span>:
+&lt;span style="color:#66d9ef">return&lt;/span> A
+q, r &lt;span style="color:#f92672">=&lt;/span> divmod(n, &lt;span style="color:#ae81ff">2&lt;/span>)
+power(A, q)
+multiply(A, A)
+&lt;span style="color:#66d9ef">if&lt;/span> r &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>:
+multiply(A, [[&lt;span style="color:#ae81ff">1&lt;/span>, &lt;span style="color:#ae81ff">1&lt;/span>], [&lt;span style="color:#ae81ff">1&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>]])
+&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">multiply&lt;/span>(A, B):
+x &lt;span style="color:#f92672">=&lt;/span> A[&lt;span style="color:#ae81ff">0&lt;/span>][&lt;span style="color:#ae81ff">0&lt;/span>] &lt;span style="color:#f92672">*&lt;/span> B[&lt;span style="color:#ae81ff">0&lt;/span>][&lt;span style="color:#ae81ff">0&lt;/span>] &lt;span style="color:#f92672">+&lt;/span> A[&lt;span style="color:#ae81ff">0&lt;/span>][&lt;span style="color:#ae81ff">1&lt;/span>] &lt;span style="color:#f92672">*&lt;/span> B[&lt;span style="color:#ae81ff">1&lt;/span>][&lt;span style="color:#ae81ff">0&lt;/span>]
+y &lt;span style="color:#f92672">=&lt;/span> A[&lt;span style="color:#ae81ff">0&lt;/span>][&lt;span style="color:#ae81ff">0&lt;/span>] &lt;span style="color:#f92672">*&lt;/span> B[&lt;span style="color:#ae81ff">0&lt;/span>][&lt;span style="color:#ae81ff">1&lt;/span>] &lt;span style="color:#f92672">+&lt;/span> A[&lt;span style="color:#ae81ff">0&lt;/span>][&lt;span style="color:#ae81ff">1&lt;/span>] &lt;span style="color:#f92672">*&lt;/span> B[&lt;span style="color:#ae81ff">1&lt;/span>][&lt;span style="color:#ae81ff">1&lt;/span>]
+z &lt;span style="color:#f92672">=&lt;/span> A[&lt;span style="color:#ae81ff">1&lt;/span>][&lt;span style="color:#ae81ff">0&lt;/span>] &lt;span style="color:#f92672">*&lt;/span> B[&lt;span style="color:#ae81ff">0&lt;/span>][&lt;span style="color:#ae81ff">0&lt;/span>] &lt;span style="color:#f92672">+&lt;/span> A[&lt;span style="color:#ae81ff">1&lt;/span>][&lt;span style="color:#ae81ff">1&lt;/span>] &lt;span style="color:#f92672">*&lt;/span> B[&lt;span style="color:#ae81ff">1&lt;/span>][&lt;span style="color:#ae81ff">0&lt;/span>]
+w &lt;span style="color:#f92672">=&lt;/span> A[&lt;span style="color:#ae81ff">1&lt;/span>][&lt;span style="color:#ae81ff">0&lt;/span>] &lt;span style="color:#f92672">*&lt;/span> B[&lt;span style="color:#ae81ff">0&lt;/span>][&lt;span style="color:#ae81ff">1&lt;/span>] &lt;span style="color:#f92672">+&lt;/span> A[&lt;span style="color:#ae81ff">1&lt;/span>][&lt;span style="color:#ae81ff">1&lt;/span>] &lt;span style="color:#f92672">*&lt;/span> B[&lt;span style="color:#ae81ff">1&lt;/span>][&lt;span style="color:#ae81ff">1&lt;/span>]
+A[&lt;span style="color:#ae81ff">0&lt;/span>][&lt;span style="color:#ae81ff">0&lt;/span>] &lt;span style="color:#f92672">=&lt;/span> x
+A[&lt;span style="color:#ae81ff">0&lt;/span>][&lt;span style="color:#ae81ff">1&lt;/span>] &lt;span style="color:#f92672">=&lt;/span> y
+A[&lt;span style="color:#ae81ff">1&lt;/span>][&lt;span style="color:#ae81ff">0&lt;/span>] &lt;span style="color:#f92672">=&lt;/span> z
+A[&lt;span style="color:#ae81ff">1&lt;/span>][&lt;span style="color:#ae81ff">1&lt;/span>] &lt;span style="color:#f92672">=&lt;/span> w
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>因為要進行矩陣運算，我們必須另外實作相關 code，所以才多了 &lt;code>power&lt;/code> 和 &lt;code>multiply&lt;/code> 兩個 function。&lt;br>
+當然，也可以直接使用 numpy：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fibonacci&lt;/span>(n):
+A &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>array([[&lt;span style="color:#ae81ff">1&lt;/span>, &lt;span style="color:#ae81ff">1&lt;/span>], [&lt;span style="color:#ae81ff">1&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>]])
+&lt;span style="color:#66d9ef">return&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>linalg&lt;span style="color:#f92672">.&lt;/span>matrix_power(A, n&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>)[&lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>]
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>以上就是費氏數列的 $O(\lg n)$ 矩陣解法。&lt;/p>
+&lt;p>不過其實這個方法還能進一步改善，就留到&lt;a href="https://dwye.dev/post/python-fibonacci-3">下一篇&lt;/a>再說明吧。&lt;/p>
+&lt;h2 id="參考資料">參考資料：&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://medium.com/fcamels-notes/%E8%B2%BB%E6%B0%8F%E6%95%B8%E5%88%97-o-logn-%E7%9A%84%E8%A7%A3%E6%B3%95-e36067e57baa">Medium 文章：費氏數列 O (LogN) 的解法&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://leetcode.com/problems/fibonacci-number/solution/">LeetCode 509. Fibonacci Number 的 Solution&lt;/a>&lt;/li>
+&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>Google Domain 客製化 Email Address</title><link>https://dwye.dev/post/google-domain-mail/</link><pubDate>Tue, 30 Mar 2021 16:01:56 +0800</pubDate><guid>https://dwye.dev/post/google-domain-mail/</guid><description>
 &lt;p>&lt;a href="https://dwye.dev/post/github-page-google-domain">在 Google Domain 買了網域之後&lt;/a>，就覺得該多利用一下這個新的個人網域 &lt;code>dwye.dev&lt;/code>。&lt;/p>
 &lt;p>最簡單的事情就是做一個 email address。&lt;/p>
 &lt;p>原本以為會需要配合 Google Workspace (原本的 G Suite，畢竟在 Google Domain 一直出現他的廣告&amp;hellip;)，後來才發現其實 Google Domain 可以直接免費設置轉信到現有信箱。&lt;/p>
@@ -98,9 +256,9 @@ table[n] &lt;span style="color:#f92672">=&lt;/span> fib_table(n&lt;span style="c
 &lt;li>當 n = 3 時，會跑一次尾遞迴，此時 n 變成 2，&lt;code>f1&lt;/code> 變成 1， &lt;code>f2&lt;/code> 變成 1 + 1 = 2，接著回傳 &lt;code>f2&lt;/code> 即為 2&lt;/li>
 &lt;/ul>
 &lt;p>以下依此類推&amp;hellip;&lt;/p>
-&lt;h2 id="時間複雜度-3">時間複雜度&lt;/h2>
+&lt;h3 id="時間複雜度-3">時間複雜度&lt;/h3>
 &lt;p>$O(n)$，從 n 呼叫到 2。&lt;/p>
-&lt;h2 id="空間複雜度-3">空間複雜度&lt;/h2>
+&lt;h3 id="空間複雜度-3">空間複雜度&lt;/h3>
 &lt;p>$O(1)$，沒有額外的 cache 或是查表。&lt;/p>
 &lt;h2 id="迭代法使用迴圈攤平遞迴">迭代法：使用迴圈，攤平遞迴&lt;/h2>
 &lt;p>尾遞迴是攤平遞迴的中間做法，可以寫成尾遞迴的函式，就能快速改寫成迭代形式：&lt;/p>
@@ -112,9 +270,9 @@ f1, f2 &lt;span style="color:#f92672">=&lt;/span> f2, f1 &lt;span style="color:#
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>做的事情和尾遞迴版本一模一樣。&lt;/p>
 &lt;p>也因此有些語言對於尾遞迴有做優化，當編譯器看到尾遞迴，會自動幫你攤平成迴圈（用 GOTO 實現），稱為尾遞迴優化（Tail Call Optimization）。主要會在以 functional programming 為主的語言中看到，例如 erlang 或是 haskell。&lt;/p>
 &lt;p>很可惜，Python 是沒有支援的那部分。&lt;/p>
-&lt;h2 id="時間複雜度-4">時間複雜度&lt;/h2>
+&lt;h3 id="時間複雜度-4">時間複雜度&lt;/h3>
 &lt;p>$O(n)$，只有一個迴圈，迴圈內部運算都是 $O(1)$&lt;/p>
-&lt;h2 id="空間複雜度-4">空間複雜度&lt;/h2>
+&lt;h3 id="空間複雜度-4">空間複雜度&lt;/h3>
 &lt;p>$O(1)$，只用了固定兩個變數&lt;/p>
 &lt;h2 id="預告">預告&lt;/h2>
 &lt;p>雖然到這邊已經說明完正常的解法，但其實費氏數列還有更多有趣的解法。&lt;/p>
