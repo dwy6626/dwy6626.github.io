@@ -1,4 +1,42 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 31 Mar 2021 20:18:25 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>Python 費氏數列解法（二）：矩陣解</title><link>https://dwye.dev/post/python-fibonacci-2/</link><pubDate>Wed, 31 Mar 2021 20:18:25 +0800</pubDate><guid>https://dwye.dev/post/python-fibonacci-2/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 03 Apr 2021 02:59:59 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>Hugo 排程發表文章</title><link>https://dwye.dev/post/hugo-scheduled-post/</link><pubDate>Sat, 03 Apr 2021 02:59:59 +0800</pubDate><guid>https://dwye.dev/post/hugo-scheduled-post/</guid><description>
+&lt;p>不管是 FB 粉專，或是以前無名小站時代的部落格系統，都有提供排程發表文章的功能，讓寫手在靈感特別多的時候，或是行銷人員希望配合特定時程，可以預先寫好未來要發表的文章，並且在時間到的時候自動發表。&lt;/p>
+&lt;p>問題來了，如果是使用像 Hugo 這種靜態網站產生器，能否實現相同的功能呢？&lt;/p>
+&lt;p>答案是可以的，&lt;a href="//gohugo.io/troubleshooting/faq/#how-do-i-schedule-posts">官方網站&lt;/a>有提到：&lt;/p>
+&lt;blockquote>
+&lt;h3 id="how-do-i-schedule-posts">How do I schedule posts?&lt;/h3>
+&lt;ol>
+&lt;li>Set publishDate in the page Front Matter to a date in the future.&lt;/li>
+&lt;li>Build and publish at intervals.&lt;/li>
+&lt;/ol>
+&lt;/blockquote>
+&lt;p>就是叫你把日期設定在未來，然後每隔一段時間部署就好。&lt;/p>
+&lt;p>這篇就是要來講我如何使用 GitHub Action 實現排程發表。&lt;/p>
+&lt;h2 id="正文">正文&lt;/h2>
+&lt;p>&lt;a href="https://dwye.dev/post/hugo-github-action">之前的文章&lt;/a>有提到我把 blog CD 轉換到 GitHub Action。&lt;/p>
+&lt;p>&lt;a href="https://docs.github.com/en/actions/reference/events-that-trigger-workflows">GitHub Action 的官方文件&lt;/a>提到，可以使用 cronjob 格式來設定排程：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#75715e"># .github/workflows/deploy.yml&lt;/span>
+&lt;span style="color:#f92672">on&lt;/span>:
+&lt;span style="color:#f92672">push&lt;/span>:
+&lt;span style="color:#f92672">branches&lt;/span>:
+- &lt;span style="color:#ae81ff">master&lt;/span>
+&lt;span style="color:#f92672">schedule&lt;/span>:
+- &lt;span style="color:#f92672">cron&lt;/span>: &lt;span style="color:#e6db74">&amp;#39;0 19 * * *&amp;#39;&lt;/span>
+&lt;span style="color:#75715e"># 下略&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>這邊的時間是 UTC，會在每天 19:00 UTC 跑一次部署，也就是 (19 + 8) % 24 = 台灣時間半夜三點跑 deploy job，重新部署我的 blog。&lt;/p>
+&lt;blockquote>
+&lt;p>：&lt;em>誰會想在凌晨三點部署部落格&lt;/em>&lt;br>
+GitHub Action：&lt;em>歐好棒，三點了&lt;/em>&lt;/p>
+&lt;/blockquote>
+&lt;p>我把兩個條件並列，就會變成 or 關係，任一個條件成立（push on master branch 或是每天的半夜三點），都會 trigger 這個 workflow，有了 CD 是不是很方便呢？&lt;/p>
+&lt;p>一個需要注意的是，如果你設定的 interval 太短，會自動被拉長到每五分鐘執行一次。&lt;/p>
+&lt;h2 id="預覽未來文章">預覽未來文章&lt;/h2>
+&lt;p>因為 Hugo 預設會忽略未來與草稿文章，可以分別用 &lt;code>-F&lt;/code> 和 &lt;code>-D&lt;/code> 兩個 flag 來讓 Hugo 把這些文章也 build 起來：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ hugo serve -FD
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>想要知道有哪些未來文章可以使用 &lt;code>hugo list&lt;/code>：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ hugo list future
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>同理，列出草稿：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ hugo list drafts
+&lt;/code>&lt;/pre>&lt;/div></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>Python 費氏數列解法（二）：矩陣解</title><link>https://dwye.dev/post/python-fibonacci-2/</link><pubDate>Wed, 31 Mar 2021 20:18:25 +0800</pubDate><guid>https://dwye.dev/post/python-fibonacci-2/</guid><description>
 &lt;p>在&lt;a href="https://dwye.dev/post/python-fibonacci">上篇&lt;/a>我們討論了費氏數列的各種基本解法。&lt;/p>
 &lt;p>原本我也以為 O(n) 的迭代解就已經是標準解法了，直到被大神朋友指正：&lt;/p>
 &lt;blockquote>
