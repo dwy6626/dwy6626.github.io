@@ -1,4 +1,96 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 03 Apr 2021 02:59:59 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>Hugo 排程發表文章</title><link>https://dwye.dev/post/hugo-scheduled-post/</link><pubDate>Sat, 03 Apr 2021 02:59:59 +0800</pubDate><guid>https://dwye.dev/post/hugo-scheduled-post/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 06 Apr 2021 20:18:25 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>Python 費氏數列解法（三）：Fast Doubling</title><link>https://dwye.dev/post/python-fibonacci-3/</link><pubDate>Tue, 06 Apr 2021 20:18:25 +0800</pubDate><guid>https://dwye.dev/post/python-fibonacci-3/</guid><description>
+&lt;p>&lt;a href="https://dwye.dev/post/python-fibonacci-2">上篇&lt;/a>寫到費氏數列的矩陣解法來達成 $O(\lg n)$ 的時間複雜度，實際上可以再做一些變化來簡化計算。如果目標時間複雜度是 $O(\lg n)$，代表我們要能每次直接計算當 n 變成兩倍時的數值。&lt;/p>
+&lt;p>下面介紹的 Fast Doubling 方法就是這個例子。&lt;/p>
+&lt;h2 id="推導">推導&lt;/h2>
+&lt;p>先直接從 2n+1 和 2n 的矩陣開始出發：&lt;/p>
+&lt;p>$$&lt;br>
+\begin{bmatrix}&lt;br>
+F(2n+1)\\&lt;br>
+F(2n)&lt;br>
+\end{bmatrix} = \begin{bmatrix}&lt;br>
+1 &amp;amp; 1\\&lt;br>
+1 &amp;amp; 0&lt;br>
+\end{bmatrix}^{2n}\begin{bmatrix}&lt;br>
+1\\&lt;br>
+0&lt;br>
+\end{bmatrix}&lt;br>
+$$&lt;/p>
+&lt;p>&lt;a href="https://dwye.dev/post/python-fibonacci-2">上篇&lt;/a>最後的公式告訴我們，中間 1 1 1 0 的矩陣 n 次方可以替換成費氏數 n 附近的矩陣：&lt;/p>
+&lt;p>$$&lt;br>
+\begin{bmatrix}&lt;br>
+F(2n+1)\\&lt;br>
+F(2n)&lt;br>
+\end{bmatrix} = \begin{bmatrix}&lt;br>
+F(n+1) &amp;amp; F(n)\\&lt;br>
+F(n) &amp;amp; F(n-1)&lt;br>
+\end{bmatrix}\begin{bmatrix}&lt;br>
+F(n+1) &amp;amp; F(n)\\&lt;br>
+F(n) &amp;amp; F(n-1)&lt;br>
+\end{bmatrix}\begin{bmatrix}&lt;br>
+1\\&lt;br>
+0&lt;br>
+\end{bmatrix}\\&lt;br>
+= \begin{bmatrix}&lt;br>
+F(n+1)^2 + F(n)^2\\&lt;br>
+F(n)(F(n+1) + F(n-1))&lt;br>
+\end{bmatrix}\\&lt;br>
+= \begin{bmatrix}&lt;br>
+F(n+1)^2 + F(n)^2\\&lt;br>
+F(n)(2F(n+1) - F(n))&lt;br>
+\end{bmatrix}&lt;br>
+$$&lt;/p>
+&lt;p>最後一次運算我們把 $F(n-1)$ 用費氏數列的定義替換掉了，即 $F(n-1) = F(n+1) - F(n)$。&lt;/p>
+&lt;p>整理一下結果，對於奇數和偶數的不同算法如下：&lt;/p>
+&lt;ul>
+&lt;li>$F(2n+1) = F(n+1)^2 + F(n)^2$&lt;/li>
+&lt;li>$F(2n) = F(n)(2F(n+1) - F(n))$&lt;/li>
+&lt;/ul>
+&lt;p>因此我們每次都可以把 n 變成兩倍，需要進行遞迴次數和&lt;a href="https://dwye.dev/post/python-fibonacci">第一篇&lt;/a>的遞迴解法相比，從 $O(n)$ 變成 $O(\lg n)$，所以時間複雜度也跟著變成 $O(\lg n)$。&lt;/p>
+&lt;h2 id="實作">實作&lt;/h2>
+&lt;h3 id="遞迴解法">遞迴解法&lt;/h3>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fibonacci&lt;/span>(n):
+&lt;span style="color:#66d9ef">return&lt;/span> recursive(n)[&lt;span style="color:#ae81ff">1&lt;/span>]
+&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">recursive&lt;/span>(n):
+&lt;span style="color:#75715e"># calculate f(n+1) and f(n)&lt;/span>
+&lt;span style="color:#66d9ef">if&lt;/span> n &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>:
+&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>
+q, r &lt;span style="color:#f92672">=&lt;/span> divmod(n, &lt;span style="color:#ae81ff">2&lt;/span>)
+f2, f1 &lt;span style="color:#f92672">=&lt;/span> recursive(q) &lt;span style="color:#75715e"># f2 is the larger one&lt;/span>
+f2, f1 &lt;span style="color:#f92672">=&lt;/span> f1 &lt;span style="color:#f92672">**&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#f92672">+&lt;/span> f2 &lt;span style="color:#f92672">**&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span>, f1 &lt;span style="color:#f92672">*&lt;/span> (&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#f92672">*&lt;/span> f2 &lt;span style="color:#f92672">-&lt;/span> f1)
+&lt;span style="color:#66d9ef">if&lt;/span> r &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>:
+&lt;span style="color:#66d9ef">return&lt;/span> f2, f1
+&lt;span style="color:#66d9ef">return&lt;/span> f1 &lt;span style="color:#f92672">+&lt;/span> f2, f2
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>可能有個疑問是，這個遞迴解法會不會像&lt;a href="https://dwye.dev/post/python-fibonacci">第一篇&lt;/a>的遞迴那樣，做了許多重複計算？&lt;br>
+答案是&lt;strong>不會&lt;/strong>，因為每次進入 &lt;code>recursive&lt;/code> 的數字一定是前一個的一半，而且 recursive tree 不會有增長，每次呼叫只會重複呼叫自己一次而已，因此不需要另外再做 cache 了。&lt;/p>
+&lt;h3 id="迭代解法">迭代解法&lt;/h3>
+&lt;p>迭代解法的思考方向，就是去分析我們在遞迴中每步做了什麼，並用迴圈代替。&lt;/p>
+&lt;p>這邊比較麻煩的是，遞迴中有個邏輯判斷，當 &lt;code>recursive&lt;/code> 接受到的輸入是奇數時，必須多一個額外步驟，這樣結果才是正確的（因為奇數和偶數的算法不同，而我們預設的是偶數的計算公式）。&lt;/p>
+&lt;p>所以我們將 n 往上增長時，會不確定下一步要算到的是 2n 還是 2n+1，不知道需不需要額外的步驟。&lt;/p>
+&lt;p>簡單舉個例子，如果我們要計算的 n 是 21，則遞迴計算的是 [21, 10, 5, 2, 1]。用迭代做 bottom-up 的話，就會是 [1, 2, 5, 10, 21]。我們在計算到 2 的下一項時，沒辦法直接預測下一個要算的是 2n 的 4，還是 2n+1 的 5。&lt;/p>
+&lt;p>如果沒辦法預測，就記起來就好了 XD&lt;/p>
+&lt;p>所以解法就是建立一個 tracker，先記錄我們需要計算的值，然後 bottom-up 組回來。這邊的 tracker 其實就是個 stack，符合 LIFO 的特性（Last-in, First-out）。&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fib_fast_double_iter&lt;/span>(n):
+&lt;span style="color:#75715e"># stack construction&lt;/span>
+tracker &lt;span style="color:#f92672">=&lt;/span> []
+&lt;span style="color:#66d9ef">while&lt;/span> n &lt;span style="color:#f92672">&amp;gt;&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>:
+tracker&lt;span style="color:#f92672">.&lt;/span>append(n)
+n &lt;span style="color:#f92672">//=&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span>
+&lt;span style="color:#75715e"># initialization&lt;/span>
+f1, f2 &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>, &lt;span style="color:#ae81ff">1&lt;/span>
+&lt;span style="color:#75715e"># bottom-up&lt;/span>
+&lt;span style="color:#66d9ef">while&lt;/span> tracker:
+n &lt;span style="color:#f92672">=&lt;/span> tracker&lt;span style="color:#f92672">.&lt;/span>pop()
+f1, f2 &lt;span style="color:#f92672">=&lt;/span> f1 &lt;span style="color:#f92672">*&lt;/span> (&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#f92672">*&lt;/span> f2 &lt;span style="color:#f92672">-&lt;/span> f1), f1 &lt;span style="color:#f92672">**&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#f92672">+&lt;/span> f2 &lt;span style="color:#f92672">**&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span>
+&lt;span style="color:#66d9ef">if&lt;/span> n &lt;span style="color:#f92672">%&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>:
+f1, f2 &lt;span style="color:#f92672">=&lt;/span> f2, f1 &lt;span style="color:#f92672">+&lt;/span> f2
+&lt;span style="color:#66d9ef">return&lt;/span> f1
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;a href="https://chunminchang.github.io/blog/post/calculating-fibonacci-numbers-by-fast-doubling">這篇文章&lt;/a>還用了更進階的技巧，利用二進位表示法其實就是不斷除以二的餘數的特性，把 stack 也省下來了，只需要 $O(1)$ 的空間複雜度。這邊就不繼續探討，有興趣的可以自行去閱讀。&lt;/p>
+&lt;h2 id="參考資料">參考資料：&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://www.geeksforgeeks.org/fast-doubling-method-to-find-the-nth-fibonacci-number/">Fast Doubling method to find the Nth Fibonacci number&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.nayuki.io/page/fast-fibonacci-algorithms">Fast Fibonacci algorithms&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://chunminchang.github.io/blog/post/calculating-fibonacci-numbers-by-fast-doubling">Calculating Fibonacci Numbers by Fast Doubling&lt;/a>&lt;/li>
+&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>Hugo 排程發表文章</title><link>https://dwye.dev/post/hugo-scheduled-post/</link><pubDate>Sat, 03 Apr 2021 02:59:59 +0800</pubDate><guid>https://dwye.dev/post/hugo-scheduled-post/</guid><description>
 &lt;p>不管是 FB 粉專，或是以前無名小站時代的部落格系統，都有提供排程發表文章的功能，讓寫手在靈感特別多的時候，或是行銷人員希望配合特定時程，可以預先寫好未來要發表的文章，並且在時間到的時候自動發表。&lt;/p>
 &lt;p>問題來了，如果是使用像 Hugo 這種靜態網站產生器，能否實現相同的功能呢？&lt;/p>
 &lt;p>答案是可以的，&lt;a href="//gohugo.io/troubleshooting/faq/#how-do-i-schedule-posts">官方網站&lt;/a>有提到：&lt;/p>
