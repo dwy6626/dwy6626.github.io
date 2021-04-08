@@ -16,7 +16,6 @@ a {
 
 #menu .brand {
     font-family: "Helvetica", Arial, sans-serif;
-    font-size: 1.4em;
-    letter-spacing: 0em;
+    letter-spacing: 0.05em;
     margin: 0.5em 0;  
 }

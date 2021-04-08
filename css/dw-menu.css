@@ -1,27 +1,27 @@
 
 #layout.active #menu {
-    left: 160px;
-    width: 160px;
+    left: var(--menu-width);
+    width: var(--menu-width);
 }
 
 #layout.active .menu-link {
-    left: 160px;
+    left: var(--menu-width);
 }
 
 #menu {
-    margin-left: -160px; /* "#menu" width */
-    width: 160px;
+    margin-left: calc(0px - var(--menu-width)); /* "#menu" width */
+    width: var(--menu-width);
     overflow-y: auto;
     overflow-x: hidden;
 }
 
 #menu .brand {
-    font-size: 1.4em;
+    font-size: 1.6em;
     margin: 0.5em 0;  
 }
 
 #menu .pure-menu {
-    font-size: 1.2em;
+    font-size: 1.35em;
 }
 
 #menu .pure-menu ul.pure-menu-children {
@@ -66,28 +66,32 @@ ul.pagination a:hover, a:focus {
     text-decoration: none;
 }
 
+div.copyright-small {
+    font-size: .8em;
+}
+
 @media (min-width: 48em) {
 
     #layout {
-        padding-left: 160px; /* left col width "#menu" */
+        padding-left: var(--menu-width); /* left col width "#menu" */
     }
     #menu {
-        left: 160px;
+        left: var(--menu-width);
     }
 
     .menu-link {
-        left: 160px;
+        left: var(--menu-width);
     }
 
     #layout.active .menu-link {
-        left: 160px;
+        left: var(--menu-width);
     }
 }
 
 @media (max-width: 48em) {
 
     #layout.active {
-        left: 160px;
+        left: var(--menu-width);
     }
 }
 

@@ -6,7 +6,7 @@
 
 #toc-aside {
     position: fixed;
-    max-width: calc(calc(100% - 160px - var(--content-width)) / 2);
+    max-width: calc(calc(100% - var(--menu-width) - var(--content-width)) / 2);
     overflow: auto;
     -webkit-overflow-scrolling: touch;
     z-index: 50;
