@@ -75,7 +75,7 @@ div.content img {
 
 div.content li+li a {
     display: inline-flex;
-    margin-top: 1em;
+    margin-top: .4em;
 }
 
 div.post-meta li {
@@ -137,5 +137,34 @@ div.post-meta span, li {
 }
     
 .content {
-    max-width: 1000px;
+    max-width: var(--content-width);
+}
+
+.toc details summary {
+    cursor: zoom-in;
+    display: list-item;
+    padding-left: 1em;
+}
+
+.toc details[open] summary {
+    cursor: zoom-out
+}
+
+
+
+div.toc-item  {
+    font-size: .9em;
+}
+
+#TableOfContents li {
+    margin-bottom: .3em;
+}
+
+#TableOfContents li+li a {
+    margin-top: 0;
+}
+
+#TableOfContents ul {
+    margin-block-start: .3em;
+    line-height: normal;
 }
