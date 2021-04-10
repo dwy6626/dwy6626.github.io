@@ -1,5 +1,3 @@
-var global_h = $(window).height()
-
 $(window).resize(rwd)
 $(window).on('load', rwd)
 $(window).on('load', outdent_li)

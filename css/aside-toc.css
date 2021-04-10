@@ -8,7 +8,6 @@
     position: fixed;
     max-width: calc(calc(100% - var(--menu-width) - var(--content-width)) / 2);
     overflow: auto;
-    -webkit-overflow-scrolling: touch;
     z-index: 50;
     padding-inline: 1vw;
 }
