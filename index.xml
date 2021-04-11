@@ -2251,13 +2251,13 @@ MV 演出：&lt;a href="https://www.instagram.com/hi_erica_">愛花 -ERICA-&lt;/
 &lt;li>&lt;a href="https://github.com/microsoft/vscode/issues/47816">Feature Request: Reload environment variables on new integrated terminal instance&lt;/a>&lt;/li>
 &lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>在 Jupyter 使用虛擬 Python 環境</title><link>https://dwye.dev/post/venv-jupyter/</link><pubDate>Mon, 04 Mar 2019 23:41:25 +0800</pubDate><guid>https://dwye.dev/post/venv-jupyter/</guid><description>
 &lt;p>因為交作業要有特定套件，但調參數還是用 Jupyter 方便，所以就研究了下怎麼用特定的 Python 來執行 Jupyter Notebook 或是 JupyterLab。方法有兩種，首先我們先從創建虛擬環境講起：&lt;/p>
-&lt;h1 id="準備">準備&lt;/h1>
-&lt;h2 id="創建虛擬環境">創建虛擬環境&lt;/h2>
+&lt;h2 id="準備">準備&lt;/h2>
+&lt;h3 id="創建虛擬環境">創建虛擬環境&lt;/h3>
 &lt;p>這邊以 conda 為例：&lt;/p>
 &lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">conda create --name new_env python&lt;span style="color:#f92672">=&lt;/span>3.6
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>輸入 y（或是直接 enter）就完成這步了，可以看一下視窗內部的訊息來確認。或是列出現有的環境：&lt;/p>
 &lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">conda env list
-&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="啟動虛擬環境">啟動虛擬環境&lt;/h2>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="啟動虛擬環境">啟動虛擬環境&lt;/h3>
 &lt;p>確認你的 .bashrc（或是 macOS 上：.bash_profile）有包含你的虛擬環境的路徑：（以我的 miniconda 為例）&lt;/p>
 &lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#75715e"># .bash_profile&lt;/span>
 export PATH&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;/usr/local/miniconda3/bin:&lt;/span>$PATH&lt;span style="color:#e6db74">&amp;#34;&lt;/span>
@@ -2265,7 +2265,7 @@ export PATH&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db
 &lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">conda activate new_env
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>這時候命令列的前方會多出一個 &lt;code>(new_env)&lt;/code>，就代表我們已經進入這個虛擬環境了，但這時候我們的 Python 還是系統預定的版本，記得也為他安裝一個 Python：&lt;/p>
 &lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">conda install python&lt;span style="color:#f92672">=&lt;/span>你要安裝的版本
-&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="第一招在原本的-jupyter-中加入新的-kernel">第一招：在原本的 Jupyter 中加入新的 Kernel&lt;/h1>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="第一招在原本的-jupyter-中加入新的-kernel">第一招：在原本的 Jupyter 中加入新的 Kernel&lt;/h2>
 &lt;p>首先照著上面做的進入虛擬環境，然後安裝 ipykernel：&lt;/p>
 &lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">conda install ipykernel
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>沒意外的話會有一大堆相依套件被安裝，按 y 繼續就好。&lt;br>
@@ -2278,13 +2278,13 @@ export PATH&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db
 &lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">jupyter kernelspec list
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>就會看到剛剛加入的 kernel&lt;/p>
 &lt;p>&lt;img src="//i.imgur.com/mVfFZOD.png" alt="jupyter kernel list">&lt;/p>
-&lt;h2 id="切換-kernel">切換 kernel&lt;/h2>
+&lt;h3 id="切換-kernel">切換 kernel&lt;/h3>
 &lt;p>可以直接在新增的時候選擇 kernel，或是進入 notebook 之後再修改 kernel。&lt;/p>
-&lt;h3 id="jupyter-lab-選擇頁面">Jupyter lab 選擇頁面&lt;/h3>
-&lt;p>&lt;img src="//i.imgur.com/fCC5TdM.png" alt="Jupyter lab 選擇頁面">&lt;/p>
-&lt;h3 id="notebook-切換-kernel">notebook 切換 kernel&lt;/h3>
-&lt;p>&lt;img src="//i.imgur.com/w7I31we.png" alt="notebook 切換 kernel">&lt;/p>
-&lt;h1 id="第二招為虛擬環境安裝獨立的-jupyter">第二招：為虛擬環境安裝獨立的 Jupyter&lt;/h1>
+&lt;p>Jupyter lab 選擇頁面：&lt;br>
+&lt;img src="//i.imgur.com/fCC5TdM.png" alt="Jupyter lab 選擇頁面">&lt;/p>
+&lt;p>notebook 切換 kernel：&lt;br>
+&lt;img src="//i.imgur.com/w7I31we.png" alt="notebook 切換 kernel">&lt;/p>
+&lt;h2 id="第二招為虛擬環境安裝獨立的-jupyter">第二招：為虛擬環境安裝獨立的 Jupyter&lt;/h2>
 &lt;p>一樣先進入虛擬環境，然後直接在裡面安裝 Jupyter：&lt;/p>
 &lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">conda install jupyter
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>沒啥特別好說的，你開心也可以用 pip。然後去泡杯茶等它安裝好就行了。&lt;/p>

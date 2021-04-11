@@ -142,15 +142,12 @@ div.post-meta span, li {
 
 .toc details summary {
     cursor: zoom-in;
-    display: list-item;
     padding-left: 1em;
 }
 
 .toc details[open] summary {
     cursor: zoom-out
 }
-
-
 
 div.toc-item  {
     font-size: .9em;

@@ -1,6 +1,7 @@
 $(window).resize(rwd)
 $(window).on('load', rwd)
 $(window).on('load', outdent_li)
+$(window).on('load', remove_empty_inner_li)
 
 function rwd() {
     determine_toc()
@@ -34,11 +35,29 @@ function top_aside_height() {
 }
 
 function outdent_li() {
-    var arr = $("#TableOfContents ul li ul li").parent().parent()
-    arr.each(
-        function (index, el) {
+    $("#TableOfContents ul li ul li").parent().parent().each(
+        function (_, el) {
             if ($(el).ignore("ul").blank()) {
-                arr.eq(index).find("ul li").unwrap().unwrap()
+                $(el).find("ul li").unwrap().unwrap()
+            }
+        }
+    )
+}
+
+function remove_empty_inner_li() {
+    // remove empty inner li
+    $("#TableOfContents ul li ul li").each(
+        function (_, el) {
+            if ($(el).blank()) {
+                $(el).remove()
+            }
+        }
+    )
+    // remove empty inner ul
+    $("#TableOfContents ul li ul").each(
+        function (_, el) {
+            if ($(el).blank()) {
+                $(el).remove()
             }
         }
     )

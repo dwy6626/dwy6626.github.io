@@ -11,3 +11,8 @@
     z-index: 50;
     padding-inline: 1vw;
 }
+
+#toc-aside summary {
+    line-height: 1.6em;
+    display: block;
+}
