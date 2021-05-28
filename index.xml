@@ -429,6 +429,7 @@ A[&lt;span style="color:#ae81ff">1&lt;/span>][&lt;span style="color:#ae81ff">1&l
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>因為要進行矩陣運算，我們必須另外實作相關 code，所以才多了 &lt;code>power&lt;/code> 和 &lt;code>multiply&lt;/code> 兩個 function。&lt;br>
 當然，也可以直接使用 numpy：&lt;/p>
 &lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fibonacci&lt;/span>(n):
+&lt;span style="color:#75715e"># 但我自己測試，這個會有精確度問題&lt;/span>
 A &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>array([[&lt;span style="color:#ae81ff">1&lt;/span>, &lt;span style="color:#ae81ff">1&lt;/span>], [&lt;span style="color:#ae81ff">1&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>]])
 &lt;span style="color:#66d9ef">return&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>linalg&lt;span style="color:#f92672">.&lt;/span>matrix_power(A, n&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>)[&lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>]
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>以上就是費氏數列的 $O(\lg n)$ 矩陣解法。&lt;/p>
