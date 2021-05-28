@@ -27,7 +27,7 @@
     <span style=color:#66d9ef>return</span> (golden_ratio <span style=color:#f92672>**</span> n <span style=color:#f92672>-</span> golden_ratio_alt <span style=color:#f92672>**</span> n) <span style=color:#f92672>/</span> <span style=color:#ae81ff>5</span> <span style=color:#f92672>**</span> <span style=color:#ae81ff>0.5</span>
 
     <span style=color:#75715e># 一般來說，還是會轉換型態成 int:</span>
-    <span style=color:#75715e># return int((golden_ratio ** n - golden_ratio_alt ** n) / 5 ** 0.5)</span>
+    <span style=color:#75715e># return round((golden_ratio ** n - golden_ratio_alt ** n) / 5 ** 0.5)</span>
 
 <span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;__main__&#39;</span>:
     <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>30</span>):
@@ -53,8 +53,8 @@ x <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
         <span style=color:#66d9ef>print</span>(x, diff)
         <span style=color:#66d9ef>break</span>
 </code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ python binet.py
-<span style=color:#ae81ff>72</span> <span style=color:#ae81ff>1</span>
-</code></pre></div><p>實際寫個 code 去跑就可以發現，在第 72 項之後就會出現誤差了。</p><p>其實用上一篇的<a href=https://dwye.dev/post/python-fibonacci-3>fast doubling</a>來計算，不但沒有慢上多少，也不用擔心誤差問題。</p><h3 id=常數時間>常數時間？</h3><p>不是程式碼沒有迴圈就是常數時間，這個公式裡面有黃金比例次方：</p><p>$$<br>(\frac{1 + \sqrt{5}}{2})^n<br>$$</p><p>如果是二的次方，可以靠 shift 來達到常數時間運算，但這是個浮點數次方，以前篇提到的<a href=https://dwye.dev/post/python-fibonacci-3>快速冪 fast doubling</a> 來計算也是要 $O(\lg n)$ 的複雜度，即便這個增長很小，在理論上也不是常數時間。</p><h2 id=有趣的小故事>有趣的小故事</h2><p>其實會來研究 Python 與費氏數列的，與幾年前一串 <a href=https://www.facebook.com/groups/pythontw/permalink/10158445814613438/>Python Taiwan 的討論串</a>有關，可惜最熱鬧的那則已經被刪掉了。</p><p>故事大致上就是有人在底下說了費氏數列公式解是 $O(1)$ 的言論，甚至提出只要把 $\pi$ 和 $e$ 等無理數都存在月球上的話，就能直接 $O(1)$ 解決很多問題，嗯&mldr;</p><p>其實 $O(1)$ 在這種時候已經變成迷思了，不然我大可以寫個 function，不管輸入是多少，我都故弄玄虛，算到一個超級大的值，然後再把相對應個輸出丟出去就好，就可以宣稱我是 $O(1)$ 解。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>fib_fake_o1</span>(n):
+<span style=color:#ae81ff>123</span> -1
+</code></pre></div><p>實際寫個 code 去跑就可以發現，在第 124 項之後就會出現誤差。</p><p>其實用上一篇的<a href=https://dwye.dev/post/python-fibonacci-3>fast doubling</a>來計算，不但沒有慢上多少，也不用擔心誤差問題。</p><h3 id=常數時間>常數時間？</h3><p>不是程式碼沒有迴圈就是常數時間，這個公式裡面有黃金比例次方：</p><p>$$<br>(\frac{1 + \sqrt{5}}{2})^n<br>$$</p><p>如果是二的次方，可以靠 shift 來達到常數時間運算，但這是個浮點數次方，以前篇提到的<a href=https://dwye.dev/post/python-fibonacci-3>快速冪 fast doubling</a> 來計算也是要 $O(\lg n)$ 的複雜度，即便這個增長很小，在理論上也不是常數時間。</p><h2 id=有趣的小故事>有趣的小故事</h2><p>其實會來研究 Python 與費氏數列的，與幾年前一串 <a href=https://www.facebook.com/groups/pythontw/permalink/10158445814613438/>Python Taiwan 的討論串</a>有關，可惜最熱鬧的那則已經被刪掉了。</p><p>故事大致上就是有人在底下說了費氏數列公式解是 $O(1)$ 的言論，甚至提出只要把 $\pi$ 和 $e$ 等無理數都存在月球上的話，就能直接 $O(1)$ 解決很多問題，嗯&mldr;</p><p>其實 $O(1)$ 在這種時候已經變成迷思了，不然我大可以寫個 function，不管輸入是多少，我都故弄玄虛，算到一個超級大的值，然後再把相對應個輸出丟出去就好，就可以宣稱我是 $O(1)$ 解。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>fib_fake_o1</span>(n):
     max_n <span style=color:#f92672>=</span> <span style=color:#ae81ff>300</span>
     <span style=color:#66d9ef>if</span> n <span style=color:#f92672>&gt;=</span> max_n:
         <span style=color:#66d9ef>raise</span> <span style=color:#a6e22e>Exception</span>(f<span style=color:#e6db74>&#34;n must be &lt; {max_n}&#34;</span>)

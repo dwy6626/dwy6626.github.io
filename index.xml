@@ -12,7 +12,7 @@ golden_ratio &lt;span style="color:#f92672">=&lt;/span> (&lt;span style="color:#
 golden_ratio_alt &lt;span style="color:#f92672">=&lt;/span> (&lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">5&lt;/span> &lt;span style="color:#f92672">**&lt;/span> &lt;span style="color:#ae81ff">0.5&lt;/span>) &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span>
 &lt;span style="color:#66d9ef">return&lt;/span> (golden_ratio &lt;span style="color:#f92672">**&lt;/span> n &lt;span style="color:#f92672">-&lt;/span> golden_ratio_alt &lt;span style="color:#f92672">**&lt;/span> n) &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#ae81ff">5&lt;/span> &lt;span style="color:#f92672">**&lt;/span> &lt;span style="color:#ae81ff">0.5&lt;/span>
 &lt;span style="color:#75715e"># 一般來說，還是會轉換型態成 int:&lt;/span>
-&lt;span style="color:#75715e"># return int((golden_ratio ** n - golden_ratio_alt ** n) / 5 ** 0.5)&lt;/span>
+&lt;span style="color:#75715e"># return round((golden_ratio ** n - golden_ratio_alt ** n) / 5 ** 0.5)&lt;/span>
 &lt;span style="color:#66d9ef">if&lt;/span> __name__ &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#e6db74">&amp;#39;__main__&amp;#39;&lt;/span>:
 &lt;span style="color:#66d9ef">for&lt;/span> i &lt;span style="color:#f92672">in&lt;/span> range(&lt;span style="color:#ae81ff">30&lt;/span>):
 &lt;span style="color:#66d9ef">print&lt;/span>(fib_binet(i))
@@ -116,8 +116,8 @@ diff &lt;span style="color:#f92672">=&lt;/span> fib_binet(x) &lt;span style="col
 &lt;span style="color:#66d9ef">print&lt;/span>(x, diff)
 &lt;span style="color:#66d9ef">break&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ python binet.py
-&lt;span style="color:#ae81ff">72&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>實際寫個 code 去跑就可以發現，在第 72 項之後就會出現誤差了。&lt;/p>
+&lt;span style="color:#ae81ff">123&lt;/span> -1
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>實際寫個 code 去跑就可以發現，在第 124 項之後就會出現誤差。&lt;/p>
 &lt;p>其實用上一篇的&lt;a href="https://dwye.dev/post/python-fibonacci-3">fast doubling&lt;/a>來計算，不但沒有慢上多少，也不用擔心誤差問題。&lt;/p>
 &lt;h3 id="常數時間">常數時間？&lt;/h3>
 &lt;p>不是程式碼沒有迴圈就是常數時間，這個公式裡面有黃金比例次方：&lt;/p>
