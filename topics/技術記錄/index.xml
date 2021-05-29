@@ -22,4 +22,6 @@
 &lt;p>於是就找到了這個 issue:&lt;/p></description></item><item><title>在 Jupyter 使用虛擬 Python 環境</title><link>https://dwye.dev/post/venv-jupyter/</link><pubDate>Mon, 04 Mar 2019 23:41:25 +0800</pubDate><guid>https://dwye.dev/post/venv-jupyter/</guid><description>&lt;p>因為交作業要有特定套件，但調參數還是用 Jupyter 方便，所以就研究了下怎麼用特定的 Python 來執行 Jupyter Notebook 或是 JupyterLab。方法有兩種，首先我們先從創建虛擬環境講起：&lt;/p>
 &lt;h2 id="準備">準備&lt;/h2>
 &lt;h3 id="創建虛擬環境">創建虛擬環境&lt;/h3>
-&lt;p>這邊以 conda 為例：&lt;/p></description></item></channel></rss>
+&lt;p>這邊以 conda 為例：&lt;/p></description></item><item><title>Python 費氏數列解法（五）：不同解法的執行時間比較</title><link>https://dwye.dev/post/python-fibonacci-5/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://dwye.dev/post/python-fibonacci-5/</guid><description>&lt;p>終於來到最後一篇了，前面幾篇依序寫了各種不同費氏數列的寫法，包含：&lt;a href="https://dwye.dev/post/python-fibonacci">遞迴、迭代&lt;/a>、&lt;a href="https://dwye.dev/post/python-fibonacci-2">矩陣&lt;/a>、從矩陣衍生的&lt;a href="https://dwye.dev/post/python-fibonacci-3">Fast doubling&lt;/a>、以及最後&lt;a href="https://dwye.dev/post/python-fibonacci-4">公式解&lt;/a>和補充的&lt;a href="https://dwye.dev/post/python-decimal">精確版公式解&lt;/a>。&lt;/p>
+&lt;p>從時間複雜度來看，從矩陣開始都是 $O(\lg n)$（如果我們把公式解內指數運算當作 $O(\lg n)$ 的話），那這三個哪個比較快呢？&lt;/p>
+&lt;p>&lt;a href="https://yodalee.me/2019/02/2019_fibonacci/">這篇&lt;/a>文章裡面用 c 比較了 fast doubling 和公式解，發現號稱常數時間複雜度的公式解，反而慢上很多，而且還需要考慮精確度問題。&lt;/p></description></item></channel></rss>
