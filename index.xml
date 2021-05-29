@@ -1,4 +1,62 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sun, 09 May 2021 17:18:25 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>Python 費氏數列解法（四）：公式解與推導</title><link>https://dwye.dev/post/python-fibonacci-4/</link><pubDate>Sun, 09 May 2021 17:18:25 +0800</pubDate><guid>https://dwye.dev/post/python-fibonacci-4/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Fri, 28 May 2021 20:18:25 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>使用 Decimal 提高浮點運算精確度</title><link>https://dwye.dev/post/python-decimal/</link><pubDate>Fri, 28 May 2021 20:18:25 +0800</pubDate><guid>https://dwye.dev/post/python-decimal/</guid><description>
+&lt;p>在&lt;a href="https://dwye.dev/post/python-fibonacci-4/">第四篇&lt;/a>提到費氏數列的公式解會遇到浮點數問題，只能精準算到 122 位。因為浮點數是利用二進位的小數來做儲存，對於非二進位的數字會有誤差。而且其儲存位數有上限，對於無理數的運算，超過一定的大小就會出現精確度問題。&lt;/p>
+&lt;p>所以這篇就要來簡單使用 Python 內建的 Decimal module 來拉高浮點數運算的精確度。&lt;/p>
+&lt;h2 id="以費氏數列公式解為例">以費氏數列公式解為例&lt;/h2>
+&lt;p>首先回顧一下公式：&lt;/p>
+&lt;p>$$&lt;br>
+F_n = \frac{1}{\sqrt{5}}\left( (\frac{1 + \sqrt{5}}{2})^n - (\frac{1 - \sqrt{5}}{2})^n \right)&lt;br>
+$$&lt;/p>
+&lt;p>可以注意到裡面有無理數，也就是黃金比例的部分。對無理數做 n 次方運算，當 n 放大後很明顯誤差也會樂乘越大。為了提高精確度，我們可以提高儲存的位元。&lt;/p>
+&lt;h3 id="decimal-module">Decimal module&lt;/h3>
+&lt;p>Python 提供了一個內建 module：&lt;code>Decimal&lt;/code>，是一個十進位運算模型，可以避免一些浮點數誤差問題：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">In [&lt;span style="color:#ae81ff">1&lt;/span>]: &lt;span style="color:#ae81ff">0.1&lt;/span> &lt;span style="color:#f92672">*&lt;/span> &lt;span style="color:#ae81ff">3&lt;/span> &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#ae81ff">0.3&lt;/span>
+Out[&lt;span style="color:#ae81ff">1&lt;/span>]: False
+In [&lt;span style="color:#ae81ff">2&lt;/span>]: &lt;span style="color:#f92672">from&lt;/span> decimal &lt;span style="color:#f92672">import&lt;/span> Decimal
+&lt;span style="color:#f92672">...&lt;/span>:
+In [&lt;span style="color:#ae81ff">3&lt;/span>]: Decimal(&lt;span style="color:#e6db74">&amp;#39;0.1&amp;#39;&lt;/span>) &lt;span style="color:#f92672">*&lt;/span> &lt;span style="color:#ae81ff">3&lt;/span> &lt;span style="color:#f92672">==&lt;/span> Decimal(&lt;span style="color:#e6db74">&amp;#39;0.3&amp;#39;&lt;/span>)
+Out[&lt;span style="color:#ae81ff">3&lt;/span>]: True
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>注意我們是使用 &lt;code>Decimal('0.1')&lt;/code> 而不是 &lt;code>Decimal(0.1)&lt;/code>，因為後者會把不精確的 float 0.1 丟到 Decimal，還是變得不精確：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">In [&lt;span style="color:#ae81ff">4&lt;/span>]: Decimal(&lt;span style="color:#ae81ff">0.1&lt;/span>)
+Out[&lt;span style="color:#ae81ff">4&lt;/span>]: Decimal(&lt;span style="color:#e6db74">&amp;#39;0.1000000000000000055511151231257827021181583404541015625&amp;#39;&lt;/span>)
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="套用到費氏數列公式解">套用到費氏數列公式解&lt;/h3>
+&lt;p>原本的 code:&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fib_binet&lt;/span>(n):
+golden_ratio &lt;span style="color:#f92672">=&lt;/span> (&lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">5&lt;/span> &lt;span style="color:#f92672">**&lt;/span> &lt;span style="color:#ae81ff">0.5&lt;/span>) &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span>
+golden_ratio_alt &lt;span style="color:#f92672">=&lt;/span> (&lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">5&lt;/span> &lt;span style="color:#f92672">**&lt;/span> &lt;span style="color:#ae81ff">0.5&lt;/span>) &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span>
+&lt;span style="color:#66d9ef">return&lt;/span> round((golden_ratio &lt;span style="color:#f92672">**&lt;/span> n &lt;span style="color:#f92672">-&lt;/span> golden_ratio_alt &lt;span style="color:#f92672">**&lt;/span> n) &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#ae81ff">5&lt;/span> &lt;span style="color:#f92672">**&lt;/span> &lt;span style="color:#ae81ff">0.5&lt;/span>)
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>我們把數字用 Decimal 包起來：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">accurate_fib_binet&lt;/span>(n):
+sqrt5 &lt;span style="color:#f92672">=&lt;/span> Decimal(&lt;span style="color:#ae81ff">5&lt;/span>) &lt;span style="color:#f92672">**&lt;/span> Decimal(&lt;span style="color:#ae81ff">0.5&lt;/span>)
+golden_ratio &lt;span style="color:#f92672">=&lt;/span> (&lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">+&lt;/span> sqrt5) &lt;span style="color:#f92672">/&lt;/span> Decimal(&lt;span style="color:#ae81ff">2&lt;/span>)
+golden_ratio_alt &lt;span style="color:#f92672">=&lt;/span> (&lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">-&lt;/span> sqrt5) &lt;span style="color:#f92672">/&lt;/span> Decimal(&lt;span style="color:#ae81ff">2&lt;/span>)
+&lt;span style="color:#66d9ef">return&lt;/span> round((golden_ratio &lt;span style="color:#f92672">**&lt;/span> Decimal(n) &lt;span style="color:#f92672">-&lt;/span> golden_ratio_alt &lt;span style="color:#f92672">**&lt;/span> Decimal(n)) &lt;span style="color:#f92672">/&lt;/span> sqrt5)
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>並拿&lt;a href="https://dwye.dev/post/python-fibonacci-3/">矩陣解法&lt;/a>的 &lt;code>fib_fast_double_iter&lt;/code> 來比較：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">x &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>
+&lt;span style="color:#66d9ef">while&lt;/span> True:
+x &lt;span style="color:#f92672">+=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
+diff &lt;span style="color:#f92672">=&lt;/span> decimal_fib_binet(x) &lt;span style="color:#f92672">-&lt;/span> fib_fast_double_iter(x)
+&lt;span style="color:#66d9ef">if&lt;/span> diff &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>:
+&lt;span style="color:#66d9ef">print&lt;/span>(x, diff)
+&lt;span style="color:#66d9ef">break&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ python binet_de.py
+&lt;span style="color:#ae81ff">123&lt;/span> -1
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>嗯？跟原本一樣？&lt;/p>
+&lt;p>主要是因為我們的問題最主要是儲存位數不夠，畢竟我們原本的數值就是無理數，用十進位也無法精確表示。&lt;/p>
+&lt;p>然而 Decimal module 提供了我們提升精確度的方法：&lt;/p>
+&lt;h3 id="以空間換取精確度">以空間換取精確度&lt;/h3>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#f92672">from&lt;/span> decimal &lt;span style="color:#f92672">import&lt;/span> getcontext
+getcontext()&lt;span style="color:#f92672">.&lt;/span>prec &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">10000&lt;/span> &lt;span style="color:#75715e"># default is 28&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>把上面這段 code 加進去之後，原本的 while loop 就會跑很久&amp;hellip;，也就代表數字到很大的時候，還是可以算準。我自己測試約可以到四萬附近。&lt;/p>
+&lt;p>不過精確度越大，就會算越久，可以從 &lt;code>MAX_PREC&lt;/code> 這個常數看最大可以設到多少：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">In [&lt;span style="color:#ae81ff">1&lt;/span>]: &lt;span style="color:#f92672">from&lt;/span> decimal &lt;span style="color:#f92672">import&lt;/span> MAX_PREC
+&lt;span style="color:#f92672">...&lt;/span>: MAX_PREC
+Out[&lt;span style="color:#ae81ff">1&lt;/span>]: &lt;span style="color:#ae81ff">999999999999999999&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>不要真的設到這麼大，不然會卡住 &amp;hellip;&lt;/p>
+&lt;p>但實際上還是要看應用情境吧，對我來說如果不知道進來的數字會多大，不如直接使用公式解以外的算法比較保險。&lt;/p>
+&lt;h2 id="reference">Reference&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://docs.python.org/3/library/decimal.html">Decimal - Decimal fixed point and floating point arithmetic&lt;/a>&lt;/li>
+&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>Python 費氏數列解法（四）：公式解與推導</title><link>https://dwye.dev/post/python-fibonacci-4/</link><pubDate>Sun, 09 May 2021 17:18:25 +0800</pubDate><guid>https://dwye.dev/post/python-fibonacci-4/</guid><description>
 &lt;p>在&lt;a href="https://dwye.dev/post/python-fibonacci-2">第二篇&lt;/a>介紹了費氏數列的矩陣解法，不過費氏數列其實是可以直接用公式算出第 n 項的值的，這邊就來介紹並推導一下公式解，順便幫自己複習一下數學 XD&lt;/p>
 &lt;h2 id="公式解binets-formula">公式解：Binet&amp;rsquo;s Formula&lt;/h2>
 &lt;p>$$&lt;br>
