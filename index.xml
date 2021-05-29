@@ -1,4 +1,39 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Fri, 28 May 2021 20:18:25 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>使用 Decimal 提高浮點運算精確度</title><link>https://dwye.dev/post/python-decimal/</link><pubDate>Fri, 28 May 2021 20:18:25 +0800</pubDate><guid>https://dwye.dev/post/python-decimal/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 29 May 2021 20:18:25 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>Python 費氏數列解法（五）：不同解法的執行時間比較</title><link>https://dwye.dev/post/python-fibonacci-5/</link><pubDate>Sat, 29 May 2021 20:18:25 +0800</pubDate><guid>https://dwye.dev/post/python-fibonacci-5/</guid><description>
+&lt;p>終於來到最後一篇了，前面幾篇依序寫了各種不同費氏數列的寫法，包含：&lt;a href="https://dwye.dev/post/python-fibonacci">遞迴、迭代&lt;/a>、&lt;a href="https://dwye.dev/post/python-fibonacci-2">矩陣&lt;/a>、從矩陣衍生的&lt;a href="https://dwye.dev/post/python-fibonacci-3">Fast doubling&lt;/a>、以及最後&lt;a href="https://dwye.dev/post/python-fibonacci-4">公式解&lt;/a>和補充的&lt;a href="https://dwye.dev/post/python-decimal">精確版公式解&lt;/a>。&lt;/p>
+&lt;p>從時間複雜度來看，從矩陣開始都是 $O(\lg n)$（如果我們把公式解內指數運算當作 $O(\lg n)$ 的話），那這三個哪個比較快呢？&lt;/p>
+&lt;p>&lt;a href="https://yodalee.me/2019/02/2019_fibonacci/">這篇&lt;/a>文章裡面用 c 比較了 fast doubling 和公式解，發現號稱常數時間複雜度的公式解，反而慢上很多，而且還需要考慮精確度問題。&lt;/p>
+&lt;p>所以，Fast doubling 勝。&lt;/p>
+&lt;p>但在 Python 又是如何呢？前幾篇我們都在講 Python，因此所以我寫了一段 Python code 來做實驗，把這幾篇提到的方法全部一起比較了一下。&lt;/p>
+&lt;h2 id="實驗結果">實驗結果&lt;/h2>
+&lt;p>&lt;img src="https://i.imgur.com/emlCKFs.png" alt="fibonacci time comparison">&lt;/p>
+&lt;p>對照如下：&lt;/p>
+&lt;ul>
+&lt;li>fib_binet: 公式解（Decimal 實作版本，&lt;a href="https://dwye.dev/post/python-decimal">補充篇&lt;/a>），時間複雜度 $O(\lg n)$&lt;/li>
+&lt;li>fib_fast_double: 遞迴版本的 fast double（&lt;a href="(/post/python-fibonacci-3)">第三篇&lt;/a>），時間複雜度 $O(\lg n)$&lt;/li>
+&lt;li>fib_fast_double_iter: 迭代版本的 fast double（&lt;a href="(/post/python-fibonacci-3)">第三篇&lt;/a>），時間複雜度 $O(\lg n)$，最快的一個&lt;/li>
+&lt;li>fib_matrix: 矩陣解法（&lt;a href="(/post/python-fibonacci-2)">第二篇&lt;/a>），時間複雜度 $O(\lg n)$&lt;/li>
+&lt;li>fib_iterative: 迭代解法（&lt;a href="(/post/python-fibonacci-1)">第一篇&lt;/a>），時間複雜度 $O(n)$&lt;/li>
+&lt;li>fib_lru: 遞迴解法，加上 lru_cache（&lt;a href="(/post/python-fibonacci-1)">第一篇&lt;/a>），時間複雜度 $O(n)$&lt;/li>
+&lt;/ul>
+&lt;p>看看那個公式解浮在那個地方 XDDD&lt;/p>
+&lt;p>可能是 Decimal 把精確度開高之後效能犧牲太多了，因為常數部分被拉了很高，曲線看起來很接近 $O(1)$。&lt;/p>
+&lt;p>如果刪掉公式解之後，其他解法的結果如下：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/6WCIyFC.png" alt="fibonacci time comparison, binet removed">&lt;/p>
+&lt;p>相較其他每個解法都跑得快多了，即便是 $O(n)$ 的基本遞迴和迭代也是，有趣的是，使用 lru_cache 的遞迴速度仍然比相同複雜度的迭代版本要來得慢不少，我猜也許是因為重複 call function 並處理 cache 所造成的的 overhead 在 Python 內還是不小，所以能不要偷懶還是不要偷懶，就改寫成 iterative 吧。&lt;/p>
+&lt;p>矩陣解和 fast double 雖然都是 $O(lg n)$，但兩者常數也是插上很多，雖然增長速度都很慢，但 fast_double 快上一截，而且又以迭代版本的比遞迴版本的更快。&lt;/p>
+&lt;p>最後附上實驗的原始碼：&lt;/p>
+&lt;script src="https://gist.github.com/dwy6626/ca70c57da3b79daae1bd8df05e98d0c2.js">&lt;/script>
+&lt;p>測試 CPU 是 4.00GHz 的 i7-6700K，作業系統是 ubuntu 18.04，Python 3.9.1。&lt;/p>
+&lt;h2 id="後記">後記&lt;/h2>
+&lt;p>拖稿了很久，終於來完成這系列文章了。&lt;/p>
+&lt;p>原先只打算寫個兩篇，沒想到越深入研究就越拆越多篇出來。其實費氏數列相關的討論還有很多，也有負數、無理數甚至複數的推廣，但後面就是數學系的事情了，對於工數只有線性代數和一點點微分方程基礎的我還是先在此打住好了 XD&lt;/p>
+&lt;p>可以來寫最近學的其他東西了～一坑開完又是一坑，這個系列實在有點解題+興趣導向，下次來寫點更實用的好了。&lt;/p>
+&lt;h2 id="參考資料">參考資料：&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://hackmd.io/@sysprog/fibonacci-number">費氏數列分析&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://yodalee.me/2019/02/2019_fibonacci/">關於費式數列的那些事&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://en.wikipedia.org/wiki/Generalizations_of_Fibonacci_numbers">Generalizations of Fibonacci numbers&lt;/a>&lt;/li>
+&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>使用 Decimal 提高浮點運算精確度</title><link>https://dwye.dev/post/python-decimal/</link><pubDate>Fri, 28 May 2021 20:18:25 +0800</pubDate><guid>https://dwye.dev/post/python-decimal/</guid><description>
 &lt;p>在&lt;a href="https://dwye.dev/post/python-fibonacci-4/">第四篇&lt;/a>提到費氏數列的公式解會遇到浮點數問題，只能精準算到 122 位。因為浮點數是利用二進位的小數來做儲存，對於非二進位的數字會有誤差。而且其儲存位數有上限，對於無理數的運算，超過一定的大小就會出現精確度問題。&lt;/p>
 &lt;p>所以這篇就要來簡單使用 Python 內建的 Decimal module 來拉高浮點數運算的精確度。&lt;/p>
 &lt;h2 id="以費氏數列公式解為例">以費氏數列公式解為例&lt;/h2>
@@ -3454,39 +3489,4 @@ $$&lt;/p>
 　　不如問問自己，我想要的是什麼？&lt;br>
 　　台大在綜合評比下一定是最優秀的，不過在個別領域上前幾名的大學卻各有勝負，例如清大理學院、交大資工、陽明生科等等也都是數一數二的，但它們在台大的對手都掛著台大的光環，所以這些科系在台大的分數就隨著潮流一直被衝高。只是我們不能只因為前幾名的順序就評斷哪個好、哪個壞。講句實在話，這些大學、這些科系都算很好了，若不是追求頂尖，又何必斤斤計較？更何況這些不是台大的學校也常培育出不輸台大的學生，說不定你我就會是那個人，那刁鑽於這細細的錄取分數上就顯得更沒有意義了。&lt;br>
 　　套一句陸董說的話，大學不是人生的「終點站」，只是個「中點站」，重要的是我們在社會上的表現，人一生的成敗總是在入棺之後才能評斷的，就像希特勒在發動第二次世界大戰之前，也曾經是當時世界上令人崇拜的領導人，也有像林書豪那樣念了全球頂尖的哈佛大學卻出來打籃球在球壇上嶄露身手的人。擺在我們面前的是許多條路，條條大道都能抵達羅馬，只要我們能清楚地知道方向並抱著決心走下去。&lt;br>
-　　最後再問一次自己，進台大重要嗎？&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>Python 費氏數列解法（五）：不同解法的執行時間比較</title><link>https://dwye.dev/post/python-fibonacci-5/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://dwye.dev/post/python-fibonacci-5/</guid><description>
-&lt;p>終於來到最後一篇了，前面幾篇依序寫了各種不同費氏數列的寫法，包含：&lt;a href="https://dwye.dev/post/python-fibonacci">遞迴、迭代&lt;/a>、&lt;a href="https://dwye.dev/post/python-fibonacci-2">矩陣&lt;/a>、從矩陣衍生的&lt;a href="https://dwye.dev/post/python-fibonacci-3">Fast doubling&lt;/a>、以及最後&lt;a href="https://dwye.dev/post/python-fibonacci-4">公式解&lt;/a>和補充的&lt;a href="https://dwye.dev/post/python-decimal">精確版公式解&lt;/a>。&lt;/p>
-&lt;p>從時間複雜度來看，從矩陣開始都是 $O(\lg n)$（如果我們把公式解內指數運算當作 $O(\lg n)$ 的話），那這三個哪個比較快呢？&lt;/p>
-&lt;p>&lt;a href="https://yodalee.me/2019/02/2019_fibonacci/">這篇&lt;/a>文章裡面用 c 比較了 fast doubling 和公式解，發現號稱常數時間複雜度的公式解，反而慢上很多，而且還需要考慮精確度問題。&lt;/p>
-&lt;p>所以，Fast doubling 勝。&lt;/p>
-&lt;p>但在 Python 又是如何呢？前幾篇我們都在講 Python，因此所以我寫了一段 Python code 來做實驗，把這幾篇提到的方法全部一起比較了一下。&lt;/p>
-&lt;h2 id="實驗結果">實驗結果&lt;/h2>
-&lt;p>&lt;img src="https://i.imgur.com/emlCKFs.png" alt="fibonacci time comparison">&lt;/p>
-&lt;p>對照如下：&lt;/p>
-&lt;ul>
-&lt;li>fib_binet: 公式解（Decimal 實作版本，&lt;a href="https://dwye.dev/post/python-decimal">補充篇&lt;/a>），時間複雜度 $O(\lg n)$&lt;/li>
-&lt;li>fib_fast_double: 遞迴版本的 fast double（&lt;a href="(/post/python-fibonacci-3)">第三篇&lt;/a>），時間複雜度 $O(\lg n)$&lt;/li>
-&lt;li>fib_fast_double_iter: 迭代版本的 fast double（&lt;a href="(/post/python-fibonacci-3)">第三篇&lt;/a>），時間複雜度 $O(\lg n)$，最快的一個&lt;/li>
-&lt;li>fib_matrix: 矩陣解法（&lt;a href="(/post/python-fibonacci-2)">第二篇&lt;/a>），時間複雜度 $O(\lg n)$&lt;/li>
-&lt;li>fib_iterative: 迭代解法（&lt;a href="(/post/python-fibonacci-1)">第一篇&lt;/a>），時間複雜度 $O(n)$&lt;/li>
-&lt;li>fib_lru: 遞迴解法，加上 lru_cache（&lt;a href="(/post/python-fibonacci-1)">第一篇&lt;/a>），時間複雜度 $O(n)$&lt;/li>
-&lt;/ul>
-&lt;p>看看那個公式解浮在那個地方 XDDD&lt;/p>
-&lt;p>可能是 Decimal 把精確度開高之後效能犧牲太多了，因為常數部分被拉了很高，曲線看起來很接近 $O(1)$。&lt;/p>
-&lt;p>如果刪掉公式解之後，其他解法的結果如下：&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/6WCIyFC.png" alt="fibonacci time comparison, binet removed">&lt;/p>
-&lt;p>相較其他每個解法都跑得快多了，即便是 $O(n)$ 的基本遞迴和迭代也是，有趣的是，使用 lru_cache 的遞迴速度仍然比相同複雜度的迭代版本要來得慢不少，我猜也許是因為重複 call function 並處理 cache 所造成的的 overhead 在 Python 內還是不小，所以能不要偷懶還是不要偷懶，就改寫成 iterative 吧。&lt;/p>
-&lt;p>矩陣解和 fast double 雖然都是 $O(lg n)$，但兩者常數也是插上很多，雖然增長速度都很慢，但 fast_double 快上一截，而且又以迭代版本的比遞迴版本的更快。&lt;/p>
-&lt;p>最後附上實驗的原始碼：&lt;/p>
-&lt;script src="https://gist.github.com/dwy6626/ca70c57da3b79daae1bd8df05e98d0c2.js">&lt;/script>
-&lt;p>測試 CPU 是 4.00GHz 的 i7-6700K，作業系統是 ubuntu 18.04，Python 3.9.1。&lt;/p>
-&lt;h2 id="後記">後記&lt;/h2>
-&lt;p>拖稿了很久，終於來完成這系列文章了。&lt;/p>
-&lt;p>原先只打算寫個兩篇，沒想到越深入研究就越拆越多篇出來。其實費氏數列相關的討論還有很多，也有負數、無理數甚至複數的推廣，但後面就是數學系的事情了，對於工數只有線性代數和一點點微分方程基礎的我還是先在此打住好了 XD&lt;/p>
-&lt;p>可以來寫最近學的其他東西了～一坑開完又是一坑，這個系列實在有點解題+興趣導向，下次來寫點更實用的好了。&lt;/p>
-&lt;h2 id="參考資料">參考資料：&lt;/h2>
-&lt;ul>
-&lt;li>&lt;a href="https://hackmd.io/@sysprog/fibonacci-number">費氏數列分析&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://yodalee.me/2019/02/2019_fibonacci/">關於費式數列的那些事&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://en.wikipedia.org/wiki/Generalizations_of_Fibonacci_numbers">Generalizations of Fibonacci numbers&lt;/a>&lt;/li>
-&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item></channel></rss>
+　　最後再問一次自己，進台大重要嗎？&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item></channel></rss>
