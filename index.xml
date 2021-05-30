@@ -1,6 +1,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Mon, 31 May 2021 00:41:25 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>一次搞懂物件導向程式設計的特性</title><link>https://dwye.dev/post/oop-design-principles/</link><pubDate>Mon, 31 May 2021 00:41:25 +0800</pubDate><guid>https://dwye.dev/post/oop-design-principles/</guid><description>
 &lt;p>會寫程式很簡單，寫出好的程式很難。上次寫了一篇 &lt;a href="https://dwye.dev/post/clean-code">Clean Code 筆記&lt;/a>，算是比較進階的，最近剛好複習了比較基本的一些物件導向相關原則與特性，於是就寫出了這篇。&lt;/p>
 &lt;p>不只 Code Review 時可以拿來嗆同事（Ｘ），也算是面試的熱門考題之一，一次整理成一篇記下來，希望能幫助到自己和其他剛好找到這篇的人。&lt;/p>
+&lt;p>如果你認為有寫錯或需要補充的，也歡迎留言或&lt;a href="https://dwye.dev/about">寄信&lt;/a>告訴我。&lt;/p>
 &lt;h2 id="software-implementation-goal">Software Implementation Goal&lt;/h2>
 &lt;ul>
 &lt;li>Robustness 可以處理預料外的 input&lt;/li>
