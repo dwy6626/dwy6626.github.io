@@ -1,4 +1,90 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 29 May 2021 20:18:25 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>Python 費氏數列解法（五）：不同解法的執行時間比較</title><link>https://dwye.dev/post/python-fibonacci-5/</link><pubDate>Sat, 29 May 2021 20:18:25 +0800</pubDate><guid>https://dwye.dev/post/python-fibonacci-5/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Mon, 31 May 2021 00:41:25 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>一次搞懂物件導向程式設計的特性</title><link>https://dwye.dev/post/oop-design-principles/</link><pubDate>Mon, 31 May 2021 00:41:25 +0800</pubDate><guid>https://dwye.dev/post/oop-design-principles/</guid><description>
+&lt;p>會寫程式很簡單，寫出好的程式很難。上次寫了一篇 &lt;a href="https://dwye.dev/post/clean-code">Clean Code 筆記&lt;/a>，算是比較進階的，最近剛好複習了比較基本的一些物件導向相關原則與特性，於是就寫出了這篇。&lt;/p>
+&lt;p>不只 Code Review 時可以拿來嗆同事（Ｘ），也算是面試的熱門考題之一，一次整理成一篇記下來，希望能幫助到自己和其他剛好找到這篇的人。&lt;/p>
+&lt;h2 id="software-implementation-goal">Software Implementation Goal&lt;/h2>
+&lt;ul>
+&lt;li>Robustness 可以處理預料外的 input&lt;/li>
+&lt;li>Adaptability 在不同平台與環境之間的變動越小越好（現在可以透過 docker 實現）&lt;/li>
+&lt;li>Reusability 重複使用&lt;/li>
+&lt;/ul>
+&lt;h3 id="design-pattern-的面向">Design Pattern 的面向&lt;/h3>
+&lt;p>Algorithms: Recursion / Divide-and-conquer / Amortization &amp;hellip;&lt;/p>
+&lt;p>Software Design: Template method / Composition / Adapter / Decorator &amp;hellip;&lt;/p>
+&lt;p>Software Architecture: MVC / Event Sourcing &amp;hellip;&lt;/p>
+&lt;h2 id="物件導向程式設計object-oriented-programmingoop">物件導向程式設計（Object-Oriented Programming，OOP）&lt;/h2>
+&lt;h3 id="三個-design-principle">三個 Design Principle&lt;/h3>
+&lt;ul>
+&lt;li>Abstraction 抽象化
+&lt;ul>
+&lt;li>將一個複雜的系統，用簡單的方式精準呈現，而不需要知道其實作細節
+&lt;ul>
+&lt;li>ADT abstract data type: 描述資料結構&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>可藉由定義 Public interface 來實現&lt;/li>
+&lt;li>Interface vs Class: Interface 是抽象的（what），Class 是細節的（how）
+&lt;ul>
+&lt;li>A class implements an interface&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Encapsulation 封裝
+&lt;ul>
+&lt;li>一個元件的內部狀態要可以被隱藏&lt;/li>
+&lt;li>Public / Protected / Private
+&lt;ul>
+&lt;li>Protected 的子類別可以存取，而 Private 不行&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Modularity 模組化
+&lt;ul>
+&lt;li>軟體的不同元件要被分散於不同 funcational unit&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="hierarchical-organization">Hierarchical Organization&lt;/h2>
+&lt;p>→ reusability&lt;/p>
+&lt;ul>
+&lt;li>Inheritance 繼承
+&lt;ul>
+&lt;li>Specialization: 於子類別 override 其 methods&lt;/li>
+&lt;li>Extension: 於子類別新增 methods&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Polymorphism 多型
+&lt;ul>
+&lt;li>一個變數可以是多種型別&lt;/li>
+&lt;li>同名 function 能根據其 Input 型別 去 call 不同 function&lt;/li>
+&lt;li>同名 method 能根據其 Class 去 call 實際上於不同 class 的 method → Duck Typing&lt;/li>
+&lt;li>類似 functional programming 的 pattern matching&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>網路上常看到的三大特性：封裝、繼承、多型&lt;/p>
+&lt;h2 id="solid-principle">SOLID Principle&lt;/h2>
+&lt;p>目的：減少「改程式」。&lt;/p>
+&lt;h3 id="single-responsibility-principle--srp-單一職責原則">Single Responsibility Principle / SRP 單一職責原則&lt;/h3>
+&lt;p>一個 function 應該只有一個讓你去修改他的理由（一種職責）&lt;/p>
+&lt;h3 id="open-closed-principle--ocp-開放閉合原則">Open Closed Principle / OCP 開放閉合原則&lt;/h3>
+&lt;p>要設計得易於延展（例如：繼承、增加新 function），不用因新型態、新需求加入而改變原本的部分&lt;/p>
+&lt;h3 id="liskov-substitution-principle--lsp-里氏替換原則">Liskov Substitution Principle / LSP 里氏替換原則&lt;/h3>
+&lt;p>子類別要能夠完全支援父類別的功能&lt;/p>
+&lt;h3 id="interface-segregation-principles--isp-介面隔離原則">Interface Segregation Principles / ISP 介面隔離原則&lt;/h3>
+&lt;p>介面功能單一化，不要有龐大的介面&lt;/p>
+&lt;h3 id="dependency-inversion-principle--dip-依賴反轉原則">Dependency Inversion Principle / DIP 依賴反轉原則&lt;/h3>
+&lt;p>Dependency Injection 依賴注入：讓實作類別 (class) 依賴抽象類別 (interface)，不要讓兩個實作類別直接依賴&lt;/p>
+&lt;h2 id="其他">其他&lt;/h2>
+&lt;p>子類別可以依賴父類別，父類別不能依賴子類別&lt;/p>
+&lt;p>program to an interface, not an implementation，interface 的實做就必須要遵守定義 interface 的人所期待的行為&lt;/p>
+&lt;h2 id="參考資料">參考資料&lt;/h2>
+&lt;ul>
+&lt;li>Data Structures and Algorithms in C++ 2/e by Michael T. Goodrich, Roberto Tamassia, David M. Mount&lt;/li>
+&lt;li>&lt;a href="http://teddy-chen-tw.blogspot.com/2014/04/solid.html">SOLID：五則皆變 by 搞笑談軟工&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://zh.wikipedia.org/wiki/SOLID_(%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1)">維基百科頁面&lt;/a>&lt;/li>
+&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>Python 費氏數列解法（五）：不同解法的執行時間比較</title><link>https://dwye.dev/post/python-fibonacci-5/</link><pubDate>Sat, 29 May 2021 20:18:25 +0800</pubDate><guid>https://dwye.dev/post/python-fibonacci-5/</guid><description>
 &lt;p>終於來到最後一篇了，前面幾篇依序寫了各種不同費氏數列的寫法，包含：&lt;a href="https://dwye.dev/post/python-fibonacci">遞迴、迭代&lt;/a>、&lt;a href="https://dwye.dev/post/python-fibonacci-2">矩陣&lt;/a>、從矩陣衍生的&lt;a href="https://dwye.dev/post/python-fibonacci-3">Fast doubling&lt;/a>、以及最後&lt;a href="https://dwye.dev/post/python-fibonacci-4">公式解&lt;/a>和補充的&lt;a href="https://dwye.dev/post/python-decimal">精確版公式解&lt;/a>。&lt;/p>
 &lt;p>從時間複雜度來看，從矩陣開始都是 $O(\lg n)$（如果我們把公式解內指數運算當作 $O(\lg n)$ 的話），那這三個哪個比較快呢？&lt;/p>
 &lt;p>&lt;a href="https://yodalee.me/2019/02/2019_fibonacci/">這篇&lt;/a>文章裡面用 c 比較了 fast doubling 和公式解，發現號稱常數時間複雜度的公式解，反而慢上很多，而且還需要考慮精確度問題。&lt;/p>
@@ -1011,7 +1097,7 @@ self&lt;span style="color:#f92672">.&lt;/span>rank &lt;span style="color:#f92672
 &lt;li>不要傳 flag（true/false）進函數讓他做兩件事&lt;/li>
 &lt;/ul>
 &lt;h3 id="open-closed-principle-ocp-開放閉合原則">Open Closed Principle, OCP 開放閉合原則&lt;/h3>
-&lt;p>不用因新型態加入而改變&lt;/p>
+&lt;p>要設計得易於延展（例如：繼承），不用因新型態、新需求加入而改變原本的部分&lt;/p>
 &lt;h2 id="註解">註解&lt;/h2>
 &lt;p>彌補程式碼&lt;strong>表達意圖的失敗&lt;/strong>&lt;br>
 常常會沒有跟著程式碼一起改到（&lt;strong>只有程式碼是真的&lt;/strong>）&lt;/p>
