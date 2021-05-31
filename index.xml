@@ -78,9 +78,6 @@
 &lt;p>介面功能單一化，不要有龐大的介面&lt;/p>
 &lt;h3 id="dependency-inversion-principle--dip-依賴反轉原則">Dependency Inversion Principle / DIP 依賴反轉原則&lt;/h3>
 &lt;p>Dependency Injection 依賴注入：讓實作類別 (class) 依賴抽象類別 (interface)，不要讓兩個實作類別直接依賴&lt;/p>
-&lt;h2 id="其他">其他&lt;/h2>
-&lt;p>子類別可以依賴父類別，父類別不能依賴子類別&lt;/p>
-&lt;p>program to an interface, not an implementation，interface 的實做就必須要遵守定義 interface 的人所期待的行為&lt;/p>
 &lt;h2 id="參考資料">參考資料&lt;/h2>
 &lt;ul>
 &lt;li>Data Structures and Algorithms in C++ 2/e by Michael T. Goodrich, Roberto Tamassia, David M. Mount&lt;/li>
