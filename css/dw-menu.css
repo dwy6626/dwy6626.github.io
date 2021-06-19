@@ -67,7 +67,8 @@ ul.pagination a:hover, a:focus {
 }
 
 div.copyright-small {
-    font-size: .8em;
+    font-size: .76em;
+    white-space: nowrap;
 }
 
 @media (min-width: 48em) {
