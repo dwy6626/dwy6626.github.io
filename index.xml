@@ -1,4 +1,130 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Mon, 31 May 2021 00:41:25 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>一次搞懂物件導向程式設計的特性</title><link>https://dwye.dev/post/oop-design-principles/</link><pubDate>Mon, 31 May 2021 00:41:25 +0800</pubDate><guid>https://dwye.dev/post/oop-design-principles/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sun, 27 Jun 2021 13:41:25 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>如何在 Rails 中寫 Rake Tasks</title><link>https://dwye.dev/post/rake/</link><pubDate>Sun, 27 Jun 2021 13:41:25 +0800</pubDate><guid>https://dwye.dev/post/rake/</guid><description>
+&lt;p>本文使用當下最新的 Ruby 3.0.1 和 Rails 6.1.4 作為示範&lt;/p>
+&lt;h2 id="什麼是-rake">什麼是 Rake&lt;/h2>
+&lt;p>Rake 就像是 Ruby 的 Make，或是 Golang 的 Mage，其實也就是可以讓我們寫一些基本的 task 和 build 程序的地方。&lt;/p>
+&lt;p>在 Ruby on Rails 裡面，已經自帶了幾個常用的 rake tasks（有時候我們也會簡稱 rake）:&lt;/p>
+&lt;pre>&lt;code>rake about
+rake db:create
+rake db:migrate
+rake db:seed
+&lt;/code>&lt;/pre>&lt;p>當然還有更多，可以用 &lt;code>rake -T&lt;/code> 來查看。&lt;/p>
+&lt;h2 id="rails-的-rakefile">Rails 的 Rakefile&lt;/h2>
+&lt;p>Rakefile 其實就是 Ruby 的 Makefile，是用來定義 rake 的地方。&lt;/p>
+&lt;p>不過如果你在 Rails 的框架中打開 Rakefile，會發現只有簡單兩行：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">require_relative &lt;span style="color:#e6db74">&amp;#34;config/application&amp;#34;&lt;/span>
+&lt;span style="color:#66d9ef">Rails&lt;/span>&lt;span style="color:#f92672">.&lt;/span>application&lt;span style="color:#f92672">.&lt;/span>load_tasks
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>如果你把 Rails 的原始碼打開，發現其中第二行會去讀取 &lt;code>lib/tasks&lt;/code> 裏面的所有檔案:&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#75715e"># https://github.com/rails/rails/blob/v6.1.4/railties/lib/rails/engine.rb&lt;/span>
+&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">load_tasks&lt;/span>(app &lt;span style="color:#f92672">=&lt;/span> self)
+require &lt;span style="color:#e6db74">&amp;#34;rake&amp;#34;&lt;/span>
+run_tasks_blocks(app)
+self
+&lt;span style="color:#66d9ef">end&lt;/span>
+&lt;span style="color:#f92672">...&lt;/span>
+&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">run_tasks_blocks&lt;/span>(&lt;span style="color:#f92672">*&lt;/span>) &lt;span style="color:#75715e">#:nodoc:&lt;/span>
+&lt;span style="color:#66d9ef">super&lt;/span>
+paths&lt;span style="color:#f92672">[&lt;/span>&lt;span style="color:#e6db74">&amp;#34;lib/tasks&amp;#34;&lt;/span>&lt;span style="color:#f92672">].&lt;/span>existent&lt;span style="color:#f92672">.&lt;/span>sort&lt;span style="color:#f92672">.&lt;/span>each { &lt;span style="color:#f92672">|&lt;/span>ext&lt;span style="color:#f92672">|&lt;/span> load(ext) }
+&lt;span style="color:#66d9ef">end&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>也就是說我們不只可以在 &lt;code>Rakefile&lt;/code> 寫 task，也可以在 &lt;code>lib/tasks&lt;/code> 寫，更方便大型專案的管理。&lt;/p>
+&lt;p>附帶一提，因為 &lt;code>Rails.application&lt;/code> 繼承了上面的 &lt;code>Engine&lt;/code> class，他還會另外去讀取 &lt;a href="https://github.com/rails/rails/tree/v6.1.4/railties/lib/rails/tasks">Rails 自定義的常用 rake 們&lt;/a>，也就是剛剛提到的 &lt;code>db:create&lt;/code> 之類的 rakes:&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#75715e"># https://github.com/rails/rails/blob/v6.1.4/railties/lib/rails/application.rb#L526&lt;/span>
+&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">run_tasks_blocks&lt;/span>(app) &lt;span style="color:#75715e">#:nodoc:&lt;/span>
+railties&lt;span style="color:#f92672">.&lt;/span>each { &lt;span style="color:#f92672">|&lt;/span>r&lt;span style="color:#f92672">|&lt;/span> r&lt;span style="color:#f92672">.&lt;/span>run_tasks_blocks(app) }
+&lt;span style="color:#66d9ef">super&lt;/span>
+load &lt;span style="color:#e6db74">&amp;#34;rails/tasks.rb&amp;#34;&lt;/span>
+task &lt;span style="color:#e6db74">:environment&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
+&lt;span style="color:#66d9ef">ActiveSupport&lt;/span>&lt;span style="color:#f92672">.&lt;/span>on_load(&lt;span style="color:#e6db74">:before_initialize&lt;/span>) { config&lt;span style="color:#f92672">.&lt;/span>eager_load &lt;span style="color:#f92672">=&lt;/span> config&lt;span style="color:#f92672">.&lt;/span>rake_eager_load }
+require_environment!
+&lt;span style="color:#66d9ef">end&lt;/span>
+&lt;span style="color:#66d9ef">end&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>而且在 Rails 中最基本的 &lt;code>environment&lt;/code> rake 也是定義在這裡，他會去讀取 &lt;code>config/environment&lt;/code> 這個檔案。&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#75715e"># https://github.com/rails/rails/blob/v6.1.4/railties/lib/rails/application.rb#L365&lt;/span>
+&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">require_environment!&lt;/span> &lt;span style="color:#75715e">#:nodoc:&lt;/span>
+environment &lt;span style="color:#f92672">=&lt;/span> paths&lt;span style="color:#f92672">[&lt;/span>&lt;span style="color:#e6db74">&amp;#34;config/environment&amp;#34;&lt;/span>&lt;span style="color:#f92672">].&lt;/span>existent&lt;span style="color:#f92672">.&lt;/span>first
+require environment &lt;span style="color:#66d9ef">if&lt;/span> environment
+&lt;span style="color:#66d9ef">end&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="rake-怎麼寫">Rake 怎麼寫&lt;/h2>
+&lt;p>實際打開一個 Rails 新專案，會發現 &lt;code>lib/tasks&lt;/code> 這個資料夾已經幫我們保留下來了。在裡面新增一個 rake task:&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#75715e"># lib/tasks/hello.rake&lt;/span>
+namespace &lt;span style="color:#e6db74">:hello&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
+desc &lt;span style="color:#e6db74">&amp;#39;print hello world&amp;#39;&lt;/span>
+task &lt;span style="color:#e6db74">:world&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
+puts &lt;span style="color:#e6db74">&amp;#39;Hello, world!&amp;#39;&lt;/span>
+&lt;span style="color:#66d9ef">end&lt;/span>
+&lt;span style="color:#66d9ef">end&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>這裡出現了三個 function，或著是說，Rake 的 DSL:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>namespace&lt;/code>: 如其名，可以幫助 rake task 命名與分類管理&lt;/li>
+&lt;li>&lt;code>desc&lt;/code>: &lt;code>rake -T&lt;/code> 時顯示的描述，rake 必須加上 &lt;code>desc&lt;/code> 才會顯示在 &lt;code>rake -T&lt;/code> 的列表中&lt;/li>
+&lt;li>&lt;code>task&lt;/code>: 定義 task 名稱與內容&lt;/li>
+&lt;/ul>
+&lt;p>附上 Rake 的文件，裡面有更完整的用法：&lt;a href="https://ruby.github.io/rake/Rake/DSL.html">https://ruby.github.io/rake/Rake/DSL.html&lt;/a>&lt;/p>
+&lt;p>執行剛寫好的 rake task:&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ bundle exec rake hello:world
+Hello, world!
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="task-dependencies">Task Dependencies&lt;/h3>
+&lt;p>&lt;code>task&lt;/code> 這個 DSL 可以吃除了名稱之外的參數：&lt;/p>
+&lt;pre>&lt;code>task task_name
+task task_name: dependencies
+task task_name, arguments → dependencies
+&lt;/code>&lt;/pre>&lt;p>剛剛我們用的是第一個定義。&lt;br>
+接下來介紹 dependencies，其實就是在執行這個 rake task 時，哪些 rake 需要被確保執行。&lt;/p>
+&lt;p>我們舉最常用的 database 操作相關的 rake 為例子（只截取部分片段）：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#75715e"># https://github.com/rails/rails/blob/v6.1.4/activerecord/lib/active_record/railties/databases.rake&lt;/span>
+db_namespace &lt;span style="color:#f92672">=&lt;/span> namespace &lt;span style="color:#e6db74">:db&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
+desc &lt;span style="color:#e6db74">&amp;#34;Creates the database, loads the schema, and initializes with the seed data (use db:reset to also drop the database first)&amp;#34;&lt;/span>
+task &lt;span style="color:#e6db74">setup&lt;/span>: &lt;span style="color:#f92672">[&lt;/span>&lt;span style="color:#e6db74">&amp;#34;db:create&amp;#34;&lt;/span>, &lt;span style="color:#e6db74">:environment&lt;/span>, &lt;span style="color:#e6db74">&amp;#34;db:schema:load&amp;#34;&lt;/span>, &lt;span style="color:#e6db74">:seed&lt;/span>&lt;span style="color:#f92672">]&lt;/span>
+&lt;span style="color:#66d9ef">end&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>這是 &lt;code>db:setup&lt;/code> 這個 rake task 的定義，傳給 task 的是個 hash，一個 key value pair，括號在這裡省略了，&lt;code>setup&lt;/code> 是 &lt;code>task_name&lt;/code>，而後面的 array 則是 &lt;code>dependencies&lt;/code>。&lt;br>
+這段 code 的意思是說，當我執行 &lt;code>db:setup&lt;/code> 時，會需要&lt;strong>先&lt;/strong>跑 dependencies 裡面的 task。&lt;br>
+這裡的「先」指的是和 task 後面接的 block 相比較，會先跑 &lt;code>dependencies&lt;/code> 才跑 block 內的東西。不巧 &lt;code>db:setup&lt;/code> 剛好沒有 block，所以我們修改剛剛的 &lt;code>hello:world&lt;/code> task：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#75715e"># lib/tasks/hello.rake&lt;/span>
+namespace &lt;span style="color:#e6db74">:hello&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
+desc &lt;span style="color:#e6db74">&amp;#39;print hello world&amp;#39;&lt;/span>
+task &lt;span style="color:#e6db74">world&lt;/span>: &lt;span style="color:#e6db74">%w[hello:man]&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
+puts &lt;span style="color:#e6db74">&amp;#39;Hello, world!&amp;#39;&lt;/span>
+&lt;span style="color:#66d9ef">end&lt;/span>
+task &lt;span style="color:#e6db74">:man&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
+puts &lt;span style="color:#e6db74">&amp;#39;Hello, man.&amp;#39;&lt;/span>
+&lt;span style="color:#66d9ef">end&lt;/span>
+&lt;span style="color:#66d9ef">end&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>再跑一次 &lt;code>hello:world&lt;/code>：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ bundle exec rake hello:world
+Hello, man.
+Hello, world!
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>既然叫做 dependency，如果被呼叫很多遍，會發生什麼事呢？&lt;/p>
+&lt;p>可以在同個 namespace 內再定義一個 rake 來實驗看看：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#75715e"># lib/tasks/hello.rake&lt;/span>
+namespace &lt;span style="color:#e6db74">:hello&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
+desc &lt;span style="color:#e6db74">&amp;#39;print hello world&amp;#39;&lt;/span>
+task &lt;span style="color:#e6db74">world&lt;/span>: &lt;span style="color:#e6db74">%w[hello:man hello:earth]&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
+puts &lt;span style="color:#e6db74">&amp;#39;Hello, world!&amp;#39;&lt;/span>
+&lt;span style="color:#66d9ef">end&lt;/span>
+task &lt;span style="color:#e6db74">earth&lt;/span>: &lt;span style="color:#e6db74">%w[hello:man]&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
+puts &lt;span style="color:#e6db74">&amp;#39;Hello, Earth~&amp;#39;&lt;/span>
+&lt;span style="color:#66d9ef">end&lt;/span>
+task &lt;span style="color:#e6db74">:man&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
+puts &lt;span style="color:#e6db74">&amp;#39;Hello, man.&amp;#39;&lt;/span>
+&lt;span style="color:#66d9ef">end&lt;/span>
+&lt;span style="color:#66d9ef">end&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>現在 &lt;code>world&lt;/code> depends on &lt;code>man&lt;/code> 和 &lt;code>earth&lt;/code>，而 &lt;code>earth&lt;/code> 也 depends on &lt;code>man&lt;/code>。根據我們對相依這個詞的了解，&lt;code>hello:man&lt;/code> 應該只會被執行一遍，而事實也是如此：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ bundle exec rake hello:world
+Hello, man.
+Hello, Earth~
+Hello, world!
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>可以使用 &lt;code>--trace&lt;/code> 來追蹤 rake task 彼此之間被 invoke 和執行的過程：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ bundle exec rake hello:world --trace
+** Invoke hello:world &lt;span style="color:#f92672">(&lt;/span>first_time&lt;span style="color:#f92672">)&lt;/span>
+** Invoke hello:man &lt;span style="color:#f92672">(&lt;/span>first_time&lt;span style="color:#f92672">)&lt;/span>
+** Execute hello:man
+Hello, man.
+** Invoke hello:earth &lt;span style="color:#f92672">(&lt;/span>first_time&lt;span style="color:#f92672">)&lt;/span>
+** Invoke hello:man
+** Execute hello:earth
+Hello, Earth~
+** Execute hello:world
+Hello, world!
+&lt;/code>&lt;/pre>&lt;/div></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>一次搞懂物件導向程式設計的特性</title><link>https://dwye.dev/post/oop-design-principles/</link><pubDate>Mon, 31 May 2021 00:41:25 +0800</pubDate><guid>https://dwye.dev/post/oop-design-principles/</guid><description>
 &lt;p>會寫程式很簡單，寫出好的程式很難。上次寫了一篇 &lt;a href="https://dwye.dev/post/clean-code">Clean Code 筆記&lt;/a>，算是比較進階的，最近剛好複習了比較基本的一些物件導向相關原則與特性，於是就寫出了這篇。&lt;/p>
 &lt;p>這些物件導向的基本觀念和 Clean Code 一樣，平常可以幫助自己讓 code 寫得更易懂且更好維護，而且 Code Review 時可以拿來嗆同事（Ｘ），同時也算是面試的熱門考題之一，因此一次整理成一篇記下來，希望能幫助到自己和其他剛好找到這篇的人。&lt;/p>
 &lt;p>這邊主要以條列和簡單說明為主，因為我相信原則和定律皆由其簡單的解釋方式，若要更深的討論也是可以分別寫成文章的，但就不是這篇的目的了。&lt;/p>

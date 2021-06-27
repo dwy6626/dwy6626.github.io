@@ -1,0 +1,125 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="一些爬 Rails 原始碼以及實作 Rake 的筆記"><meta name=generator content="Hugo 0.80.0"><meta property="og:title" content="如何在 Rails 中寫 Rake Tasks"><meta name=twitter:title content="如何在 Rails 中寫 Rake Tasks"><meta property="og:url" content="https://dwye.dev/post/rake/"><meta name=twitter:card content="summary"><meta name=twitter:site content="dw's 小站"><meta name=twitter:creator content="De-Wei Ye"><meta name=twitter:description content="本文使用當下最新的 Ruby 3.0.1 和 Rails 6.1.4 作為示範
+什麼是 Rake
+Rake 就像是 Ruby 的 Make，或是 Golang 的 Mage，其實也就是可以讓我們寫一些基本的 task 和 build 程序的地方。"><link rel=preconnect href=https://s.ytimg.com><link rel=preconnect href=https://i.imgur.com><title>如何在 Rails 中寫 Rake Tasks &#183; dw's 小站</title><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.5/pure-min.css media=screen><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.5/grids-responsive-min.css media=screen><link rel=stylesheet href=https://dwye.dev/css/side-menu.css media=screen><link rel=stylesheet href=https://dwye.dev/css/blackburn.css media=screen><link rel=stylesheet href=https://dwye.dev/css/dw-burn.css media=screen><link rel=stylesheet href=https://dwye.dev/css/dw-menu.css media=screen><link rel=stylesheet href=https://dwye.dev/css/vars.css media=screen><link rel=stylesheet href=https://dwye.dev/css/menu-x.css media=screen><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css><link rel=preconnect href=https://fonts.gstatic.com><link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel=stylesheet type=text/css><script type=text/javascript async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML"></script><script type=text/x-mathjax-config>
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [['$$','$$']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+    CommonHTML: { linebreaks: { automatic: true } },
+    "HTML-CSS": { linebreaks: { automatic: true } },
+          SVG: { linebreaks: { automatic: true } }    
+  });
+</script><script type=text/x-mathjax-config>
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script><link async rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/vs2015.min.css media=screen><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js></script><script defer src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/yaml.min.js></script><script defer src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/vbnet.min.js></script><script>hljs.highlightAll();</script><link rel="shortcut icon" href=https://dwye.dev/img/favicon.ico type=image/x-icon><link rel=stylesheet href=https://dwye.dev/css/color.css media=screen><script src=https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js></script><meta name=google-site-verification content="pC2le32KaKDSGh9V637p5YC81zixbAMyKN3nPqkKscE"><script data-ad-client=ca-pub-3454014140664886 async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script></head><body><div id=layout><a href=#menu class=menu-link id=menuLink aria-label="Go to menu of this website"><s class=bar></s><s class=bar></s></a><div id=menu><a class="pure-menu-heading brand" href=https://dwye.dev/>De-Wei Ye</a><div class=pure-menu><ul class=pure-menu-list><li class=pure-menu-item><a class=pure-menu-link href=https://dwye.dev/about/><i class="fas fa-user-circle fa-fw"></i><span>關於</span></a></li><li class=pure-menu-item><a class=pure-menu-link href=https://dwye.dev/notes/><i class="fas fa-book fa-fw"></i><span>筆記</span></a></li><li class=pure-menu-item><a class=pure-menu-link href=https://dwye.dev/post/><i class="fas fa-list-ul fa-fw"></i><span>文章列表</span></a></li><li class=pure-menu-item><a class=pure-menu-link href=https://dwye.dev/topics/><i class="fas fa-folder fa-fw"></i><span>主題分類</span></a></li><li class=pure-menu-item><a class=pure-menu-link href=https://dwye.dev/tags/><i class="fas fa-tags fa-fw"></i><span>標籤</span></a></li><li class=pure-menu-item><a class=pure-menu-link href=https://dwye.dev/../en/><i class="fas fa-globe-americas fa-fw"></i><span>English</span></a></li></ul></div><div class="pure-menu social"><ul class=pure-menu-list><li class=pure-menu-item><a class=pure-menu-link href=https://linkedin.com/in/dwy6626 rel="me external noopener" target=_blank><i class="fab fa-linkedin fa-fw"></i><span>LinkedIn</span></a></li><li class=pure-menu-item><a class=pure-menu-link href=https://github.com/dwy6626 rel="me external noopener" target=_blank><i class="fab fa-github-square fa-fw"></i><span>GitHub</span></a></li><li class=pure-menu-item><a class=pure-menu-link href=https://leetcode.com/mirror0227 rel="me external noopener" target=_blank><i class="fas fa-laptop-code fa-fw"></i><span>LeetCode</span></a></li></ul></div><div class=copyright-small>Built with <a href=https://gohugo.io/ rel="external noopener" target=_blank>Hugo</a></div><div class=copyright-small>W/ <a href=https://github.com/dwy6626/dw-favored-blackburn rel="external noopener" target=_blank>DW-Favored-Blackburn</a></div><div class=copyright-small>Based on <a href=https://github.com/yoshiharuyamashita/blackburn rel="external noopener" target=_blank>Blackburn</a></div><div class=copyright-small>and <a href=https://purecss.io/ rel="external noopener" target=_blank>Pure CSS</a></div><div class=copyright-small>Icons <a href=https://fontawesome.com rel="external noopener" target=_blank>Font Awesome</a></div><div class=copyright-small><a href=https://dwye.dev/copyright>&copy; 2020. All rights reserved.</a></div></div><div id=main><div class=header><h1>如何在 Rails 中寫 Rake Tasks</h1><h2>一些爬 Rails 原始碼以及實作 Rake 的筆記</h2></div><div class=aside-container><div id=toc-aside style=display:none><link rel=stylesheet href=https://dwye.dev/css/aside-toc.css media=screen><script src=https://dwye.dev/js/toc.js></script><div class=toc><aside><summary>目錄</summary><div class=toc-item><p><a rel=tag href=#>如何在 Rails 中寫 Rake Tasks</a></p><nav id=TableOfContents><ul><li><a href=#什麼是-rake>什麼是 Rake</a></li><li><a href=#rails-的-rakefile>Rails 的 Rakefile</a></li><li><a href=#rake-怎麼寫>Rake 怎麼寫</a><ul><li><a href=#task-dependencies>Task Dependencies</a></li></ul></li></ul></nav></div></aside></div></div></div><div class=content><div class=post-meta><div><li><i class="fa fa-calendar fa-fw"></i><time><span>Jun 27, 2021</span></time></li></div><div><a class=post-taxonomy-topic href=https://dwye.dev/topics/%E6%8A%80%E8%A1%93%E8%A8%98%E9%8C%84><li><i class="fas fa-folder fa-fw"></i><span>技術記錄</span></li></a><a class=post-taxonomy-tag href=https://dwye.dev/tags/ruby><li><i class="fas fa-tag fa-fw"></i><span>Ruby</span></li></a><a class=post-taxonomy-tag href=https://dwye.dev/tags/rails><li><i class="fas fa-tag fa-fw"></i><span>Rails</span></li></a><a class=post-taxonomy-tag href=https://dwye.dev/tags/rake><li><i class="fas fa-tag fa-fw"></i><span>Rake</span></li></a></div></div><div id=toc-top style=display:none><div class=toc><aside><details><summary>目錄</summary><div class=toc-item><nav id=TableOfContents><ul><li><a href=#什麼是-rake>什麼是 Rake</a></li><li><a href=#rails-的-rakefile>Rails 的 Rakefile</a></li><li><a href=#rake-怎麼寫>Rake 怎麼寫</a><ul><li><a href=#task-dependencies>Task Dependencies</a></li></ul></li></ul></nav></div></details></aside></div></div><p>本文使用當下最新的 Ruby 3.0.1 和 Rails 6.1.4 作為示範</p><h2 id=什麼是-rake>什麼是 Rake</h2><p>Rake 就像是 Ruby 的 Make，或是 Golang 的 Mage，其實也就是可以讓我們寫一些基本的 task 和 build 程序的地方。</p><p>在 Ruby on Rails 裡面，已經自帶了幾個常用的 rake tasks（有時候我們也會簡稱 rake）:</p><pre><code>rake about
+rake db:create
+rake db:migrate
+rake db:seed
+</code></pre><p>當然還有更多，可以用 <code>rake -T</code> 來查看。</p><h2 id=rails-的-rakefile>Rails 的 Rakefile</h2><p>Rakefile 其實就是 Ruby 的 Makefile，是用來定義 rake 的地方。</p><p>不過如果你在 Rails 的框架中打開 Rakefile，會發現只有簡單兩行：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ruby data-lang=ruby>require_relative <span style=color:#e6db74>&#34;config/application&#34;</span>
+
+<span style=color:#66d9ef>Rails</span><span style=color:#f92672>.</span>application<span style=color:#f92672>.</span>load_tasks
+</code></pre></div><p>如果你把 Rails 的原始碼打開，發現其中第二行會去讀取 <code>lib/tasks</code> 裏面的所有檔案:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ruby data-lang=ruby><span style=color:#75715e># https://github.com/rails/rails/blob/v6.1.4/railties/lib/rails/engine.rb</span>
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>load_tasks</span>(app <span style=color:#f92672>=</span> self)
+  require <span style=color:#e6db74>&#34;rake&#34;</span>
+  run_tasks_blocks(app)
+  self
+<span style=color:#66d9ef>end</span>
+
+<span style=color:#f92672>...</span>
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>run_tasks_blocks</span>(<span style=color:#f92672>*</span>) <span style=color:#75715e>#:nodoc:</span>
+  <span style=color:#66d9ef>super</span>
+  paths<span style=color:#f92672>[</span><span style=color:#e6db74>&#34;lib/tasks&#34;</span><span style=color:#f92672>].</span>existent<span style=color:#f92672>.</span>sort<span style=color:#f92672>.</span>each { <span style=color:#f92672>|</span>ext<span style=color:#f92672>|</span> load(ext) }
+<span style=color:#66d9ef>end</span>
+</code></pre></div><p>也就是說我們不只可以在 <code>Rakefile</code> 寫 task，也可以在 <code>lib/tasks</code> 寫，更方便大型專案的管理。</p><p>附帶一提，因為 <code>Rails.application</code> 繼承了上面的 <code>Engine</code> class，他還會另外去讀取 <a href=https://github.com/rails/rails/tree/v6.1.4/railties/lib/rails/tasks>Rails 自定義的常用 rake 們</a>，也就是剛剛提到的 <code>db:create</code> 之類的 rakes:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ruby data-lang=ruby><span style=color:#75715e># https://github.com/rails/rails/blob/v6.1.4/railties/lib/rails/application.rb#L526</span>
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>run_tasks_blocks</span>(app) <span style=color:#75715e>#:nodoc:</span>
+  railties<span style=color:#f92672>.</span>each { <span style=color:#f92672>|</span>r<span style=color:#f92672>|</span> r<span style=color:#f92672>.</span>run_tasks_blocks(app) }
+  <span style=color:#66d9ef>super</span>
+  load <span style=color:#e6db74>&#34;rails/tasks.rb&#34;</span>
+  task <span style=color:#e6db74>:environment</span> <span style=color:#66d9ef>do</span>
+    <span style=color:#66d9ef>ActiveSupport</span><span style=color:#f92672>.</span>on_load(<span style=color:#e6db74>:before_initialize</span>) { config<span style=color:#f92672>.</span>eager_load <span style=color:#f92672>=</span> config<span style=color:#f92672>.</span>rake_eager_load }
+
+    require_environment!
+  <span style=color:#66d9ef>end</span>
+<span style=color:#66d9ef>end</span>
+</code></pre></div><p>而且在 Rails 中最基本的 <code>environment</code> rake 也是定義在這裡，他會去讀取 <code>config/environment</code> 這個檔案。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ruby data-lang=ruby><span style=color:#75715e># https://github.com/rails/rails/blob/v6.1.4/railties/lib/rails/application.rb#L365</span>
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>require_environment!</span> <span style=color:#75715e>#:nodoc:</span>
+  environment <span style=color:#f92672>=</span> paths<span style=color:#f92672>[</span><span style=color:#e6db74>&#34;config/environment&#34;</span><span style=color:#f92672>].</span>existent<span style=color:#f92672>.</span>first
+  require environment <span style=color:#66d9ef>if</span> environment
+<span style=color:#66d9ef>end</span>
+</code></pre></div><h2 id=rake-怎麼寫>Rake 怎麼寫</h2><p>實際打開一個 Rails 新專案，會發現 <code>lib/tasks</code> 這個資料夾已經幫我們保留下來了。在裡面新增一個 rake task:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ruby data-lang=ruby><span style=color:#75715e># lib/tasks/hello.rake</span>
+namespace <span style=color:#e6db74>:hello</span> <span style=color:#66d9ef>do</span>
+  desc <span style=color:#e6db74>&#39;print hello world&#39;</span>
+  task <span style=color:#e6db74>:world</span> <span style=color:#66d9ef>do</span>
+    puts <span style=color:#e6db74>&#39;Hello, world!&#39;</span>
+  <span style=color:#66d9ef>end</span>
+<span style=color:#66d9ef>end</span>
+</code></pre></div><p>這裡出現了三個 function，或著是說，Rake 的 DSL:</p><ul><li><code>namespace</code>: 如其名，可以幫助 rake task 命名與分類管理</li><li><code>desc</code>: <code>rake -T</code> 時顯示的描述，rake 必須加上 <code>desc</code> 才會顯示在 <code>rake -T</code> 的列表中</li><li><code>task</code>: 定義 task 名稱與內容</li></ul><p>附上 Rake 的文件，裡面有更完整的用法：<a href=https://ruby.github.io/rake/Rake/DSL.html>https://ruby.github.io/rake/Rake/DSL.html</a></p><p>執行剛寫好的 rake task:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ bundle exec rake hello:world
+Hello, world!
+</code></pre></div><h3 id=task-dependencies>Task Dependencies</h3><p><code>task</code> 這個 DSL 可以吃除了名稱之外的參數：</p><pre><code>task task_name
+task task_name: dependencies
+task task_name, arguments → dependencies
+</code></pre><p>剛剛我們用的是第一個定義。<br>接下來介紹 dependencies，其實就是在執行這個 rake task 時，哪些 rake 需要被確保執行。</p><p>我們舉最常用的 database 操作相關的 rake 為例子（只截取部分片段）：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ruby data-lang=ruby><span style=color:#75715e># https://github.com/rails/rails/blob/v6.1.4/activerecord/lib/active_record/railties/databases.rake</span>
+db_namespace <span style=color:#f92672>=</span> namespace <span style=color:#e6db74>:db</span> <span style=color:#66d9ef>do</span>
+  desc <span style=color:#e6db74>&#34;Creates the database, loads the schema, and initializes with the seed data (use db:reset to also drop the database first)&#34;</span>
+  task <span style=color:#e6db74>setup</span>: <span style=color:#f92672>[</span><span style=color:#e6db74>&#34;db:create&#34;</span>, <span style=color:#e6db74>:environment</span>, <span style=color:#e6db74>&#34;db:schema:load&#34;</span>, <span style=color:#e6db74>:seed</span><span style=color:#f92672>]</span>
+<span style=color:#66d9ef>end</span>
+</code></pre></div><p>這是 <code>db:setup</code> 這個 rake task 的定義，傳給 task 的是個 hash，一個 key value pair，括號在這裡省略了，<code>setup</code> 是 <code>task_name</code>，而後面的 array 則是 <code>dependencies</code>。<br>這段 code 的意思是說，當我執行 <code>db:setup</code> 時，會需要<strong>先</strong>跑 dependencies 裡面的 task。<br>這裡的「先」指的是和 task 後面接的 block 相比較，會先跑 <code>dependencies</code> 才跑 block 內的東西。不巧 <code>db:setup</code> 剛好沒有 block，所以我們修改剛剛的 <code>hello:world</code> task：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ruby data-lang=ruby><span style=color:#75715e># lib/tasks/hello.rake</span>
+namespace <span style=color:#e6db74>:hello</span> <span style=color:#66d9ef>do</span>
+  desc <span style=color:#e6db74>&#39;print hello world&#39;</span>
+  task <span style=color:#e6db74>world</span>: <span style=color:#e6db74>%w[hello:man]</span> <span style=color:#66d9ef>do</span>
+    puts <span style=color:#e6db74>&#39;Hello, world!&#39;</span>
+  <span style=color:#66d9ef>end</span>
+
+  task <span style=color:#e6db74>:man</span> <span style=color:#66d9ef>do</span>
+    puts <span style=color:#e6db74>&#39;Hello, man.&#39;</span>
+  <span style=color:#66d9ef>end</span>
+<span style=color:#66d9ef>end</span>
+</code></pre></div><p>再跑一次 <code>hello:world</code>：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ bundle exec rake hello:world
+Hello, man.
+Hello, world!
+</code></pre></div><p>既然叫做 dependency，如果被呼叫很多遍，會發生什麼事呢？</p><p>可以在同個 namespace 內再定義一個 rake 來實驗看看：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ruby data-lang=ruby><span style=color:#75715e># lib/tasks/hello.rake</span>
+namespace <span style=color:#e6db74>:hello</span> <span style=color:#66d9ef>do</span>
+  desc <span style=color:#e6db74>&#39;print hello world&#39;</span>
+  task <span style=color:#e6db74>world</span>: <span style=color:#e6db74>%w[hello:man hello:earth]</span> <span style=color:#66d9ef>do</span>
+    puts <span style=color:#e6db74>&#39;Hello, world!&#39;</span>
+  <span style=color:#66d9ef>end</span>
+
+  task <span style=color:#e6db74>earth</span>: <span style=color:#e6db74>%w[hello:man]</span> <span style=color:#66d9ef>do</span>
+    puts <span style=color:#e6db74>&#39;Hello, Earth~&#39;</span>
+  <span style=color:#66d9ef>end</span>
+
+  task <span style=color:#e6db74>:man</span> <span style=color:#66d9ef>do</span>
+    puts <span style=color:#e6db74>&#39;Hello, man.&#39;</span>
+  <span style=color:#66d9ef>end</span>
+<span style=color:#66d9ef>end</span>
+</code></pre></div><p>現在 <code>world</code> depends on <code>man</code> 和 <code>earth</code>，而 <code>earth</code> 也 depends on <code>man</code>。根據我們對相依這個詞的了解，<code>hello:man</code> 應該只會被執行一遍，而事實也是如此：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ bundle exec rake hello:world
+Hello, man.
+Hello, Earth~
+Hello, world!
+</code></pre></div><p>可以使用 <code>--trace</code> 來追蹤 rake task 彼此之間被 invoke 和執行的過程：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ bundle exec rake hello:world --trace
+** Invoke hello:world <span style=color:#f92672>(</span>first_time<span style=color:#f92672>)</span>
+** Invoke hello:man <span style=color:#f92672>(</span>first_time<span style=color:#f92672>)</span>
+** Execute hello:man
+Hello, man.
+** Invoke hello:earth <span style=color:#f92672>(</span>first_time<span style=color:#f92672>)</span>
+** Invoke hello:man 
+** Execute hello:earth
+Hello, Earth~
+** Execute hello:world
+Hello, world!
+</code></pre></div><div class=copyright>本文原創部分採用
+<a rel=license href=http://creativecommons.org/licenses/by-nc-nd/4.0/>創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款</a>
+授權。</div><div class="prev-next-post pure-g"><div class=pure-u-1-24 style=text-align:left><a href=https://dwye.dev/post/oop-design-principles/><i class="fa fa-chevron-left"></i></a></div><div class=pure-u-10-24><nav class=prev><a href=https://dwye.dev/post/oop-design-principles/>一次搞懂物件導向程式設計的特性</a></nav></div><div class=pure-u-2-24>&nbsp;</div><div class=pure-u-10-24></div><div class=pure-u-1-24 style=text-align:right></div></div><div id=disqus_thread></div><script type=text/javascript>(function(){if(window.location.hostname=="localhost")
+return;var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;var disqus_shortname='dwy6626';dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=http://disqus.com/ class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div></div></div><script src=https://dwye.dev/js/ui.js></script><script src=https://dwye.dev/js/menus.js></script><script>if(window.location.hostname!="localhost"){(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-132034008-1','auto');ga('send','pageview');}</script></body></html>
