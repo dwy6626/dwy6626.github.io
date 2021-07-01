@@ -1,4 +1,161 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sun, 27 Jun 2021 13:41:25 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>如何在 Rails 中寫 Rake Tasks</title><link>https://dwye.dev/post/rake/</link><pubDate>Sun, 27 Jun 2021 13:41:25 +0800</pubDate><guid>https://dwye.dev/post/rake/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Thu, 01 Jul 2021 13:41:25 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>Rake Tasks 進階：Invoke, Execute, Enhance</title><link>https://dwye.dev/post/rake-execute-invoke-enhance/</link><pubDate>Thu, 01 Jul 2021 13:41:25 +0800</pubDate><guid>https://dwye.dev/post/rake-execute-invoke-enhance/</guid><description>
+&lt;p>在「&lt;a href="https://dwye.dev/post/rake">如何在 Rails 中寫 Rake Tasks&lt;/a>」一文中，已經紀錄了在 Ruby on Rails 中 Rake Task 的基本寫法。&lt;/p>
+&lt;p>這邊要來談一些最近碰到的議題：&lt;/p>
+&lt;ul>
+&lt;li>如何直接在一個 rake task 中呼叫另一個 rake task？&lt;/li>
+&lt;li>或是如何在一個 rake task 執行時，做額外的事情？&lt;/li>
+&lt;/ul>
+&lt;h2 id="在程式中呼叫-rake-task-invoke-與-execute">在程式中呼叫 Rake Task: Invoke 與 Execute&lt;/h2>
+&lt;p>如果我們想要在 ruby 的程式中執行一個 rake task，可以使用 &lt;code>Rake::Task['rake::name'].invoke&lt;/code>，或是 &lt;code>Rake::Task['rake::name'].execute&lt;/code>。&lt;/p>
+&lt;h3 id="invoke-與-execute-的差別">Invoke 與 Execute 的差別&lt;/h3>
+&lt;p>一般執行 Rake task 時，會先 invoke 該 task，然後依序 invoke 其 dependencies，然後 execute dependencies，接著才 execute 我們從外部 invoke 的 task。&lt;/p>
+&lt;p>也因此兩者的差別在於：&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>invoke&lt;/code> 如同在 command line 呼叫，完整的拉起 dependencies，並且每個 task 只會執行一次。&lt;/li>
+&lt;li>&lt;code>execute&lt;/code> 直接執行該 task 內容，不管該 task 有沒有被執行過。&lt;/li>
+&lt;/ul>
+&lt;h3 id="寫點-code-做實驗">寫點 Code 做實驗&lt;/h3>
+&lt;p>我們利用「&lt;a href="https://dwye.dev/post/rake">如何在 Rails 中寫 Rake Tasks&lt;/a>」中定義好的 Task &lt;code>hello:world&lt;/code>：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">namespace &lt;span style="color:#e6db74">:hello&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
+desc &lt;span style="color:#e6db74">&amp;#39;print hello world&amp;#39;&lt;/span>
+task &lt;span style="color:#e6db74">world&lt;/span>: &lt;span style="color:#e6db74">%w[hello:man hello:earth]&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
+puts &lt;span style="color:#e6db74">&amp;#39;Hello, world!&amp;#39;&lt;/span>
+&lt;span style="color:#66d9ef">end&lt;/span>
+task &lt;span style="color:#e6db74">earth&lt;/span>: &lt;span style="color:#e6db74">%w[hello:man]&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
+puts &lt;span style="color:#e6db74">&amp;#39;Hello, Earth~&amp;#39;&lt;/span>
+&lt;span style="color:#66d9ef">end&lt;/span>
+task &lt;span style="color:#e6db74">:man&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
+puts &lt;span style="color:#e6db74">&amp;#39;Hello, man.&amp;#39;&lt;/span>
+&lt;span style="color:#66d9ef">end&lt;/span>
+&lt;span style="color:#66d9ef">end&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>另外再加上兩個 tasks，分別用上了 &lt;code>invoke&lt;/code> 和 &lt;code>execute&lt;/code>：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">task &lt;span style="color:#e6db74">:invoke&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
+&lt;span style="color:#66d9ef">Rake&lt;/span>&lt;span style="color:#f92672">::&lt;/span>&lt;span style="color:#66d9ef">Task&lt;/span>&lt;span style="color:#f92672">[&lt;/span>&lt;span style="color:#e6db74">&amp;#39;hello:world&amp;#39;&lt;/span>&lt;span style="color:#f92672">].&lt;/span>invoke
+&lt;span style="color:#66d9ef">end&lt;/span>
+task &lt;span style="color:#e6db74">:execute&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
+&lt;span style="color:#66d9ef">Rake&lt;/span>&lt;span style="color:#f92672">::&lt;/span>&lt;span style="color:#66d9ef">Task&lt;/span>&lt;span style="color:#f92672">[&lt;/span>&lt;span style="color:#e6db74">&amp;#39;hello:world&amp;#39;&lt;/span>&lt;span style="color:#f92672">].&lt;/span>execute
+&lt;span style="color:#66d9ef">end&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>分別執行這兩個 tasks:&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ bundle exec rake invoke
+Hello, man.
+Hello, Earth~
+Hello, world!
+$ bundle exec rake execute
+Hello, world!
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>可以發現 execute &lt;code>hello:world&lt;/code> 這個 task，並不會跟著跑他的 dependencies &lt;code>hello:man&lt;/code> 和 &lt;code>hello:earth&lt;/code>&lt;/p>
+&lt;h3 id="更多實驗">更多實驗&lt;/h3>
+&lt;p>rake 其實是可以一次 invoke 多個的，例如：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">bundle exec rake db:create db:migrate db:seed
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>所以我們也可以分別將剛剛的 &lt;code>invoke&lt;/code> 和 &lt;code>excute&lt;/code> 排列組合一下：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ bundle exec rake execute invoke
+Hello, world!
+Hello, man.
+Hello, Earth~
+Hello, world!
+$ bundle exec rake invoke execute
+Hello, man.
+Hello, Earth~
+Hello, world!
+Hello, world!
+$ bundle exec rake invoke invoke
+Hello, man.
+Hello, Earth~
+Hello, world!
+$ bundle exec rake execute execute
+Hello, world!
+Hello, world!
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>前兩種組合的結果告訴我們，先 &lt;code>execute&lt;/code> 一次，該 task 下次 &lt;code>invoke&lt;/code> 時還是會照常被執行。因此 &lt;code>execute&lt;/code> 對於需要直接執行該 task 的 block 裡面的內容是很好用的。&lt;br>
+而 &lt;code>invoke&lt;/code> 則是要考慮到之前是不是有被 &lt;code>invoke&lt;/code> 過，如果已經被 &lt;code>invoke&lt;/code> 過，即便再次 &lt;code>invoke&lt;/code> 一次，之後就不會再重複 &lt;code>execute&lt;/code> 了&lt;/p>
+&lt;h3 id="如何重複-invoke-一個-task">如何重複 invoke 一個 task？&lt;/h3>
+&lt;p>使用 &lt;code>reenable&lt;/code> 這個方法即可：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">task &lt;span style="color:#e6db74">:reenable&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
+puts &lt;span style="color:#e6db74">&amp;#39;Reenable!&amp;#39;&lt;/span>
+&lt;span style="color:#75715e"># because we invoke `invoke` to invoke `hello:world`, we need to re-enable both&lt;/span>
+&lt;span style="color:#66d9ef">Rake&lt;/span>&lt;span style="color:#f92672">::&lt;/span>&lt;span style="color:#66d9ef">Task&lt;/span>&lt;span style="color:#f92672">[&lt;/span>&lt;span style="color:#e6db74">&amp;#39;invoke&amp;#39;&lt;/span>&lt;span style="color:#f92672">].&lt;/span>reenable
+&lt;span style="color:#66d9ef">Rake&lt;/span>&lt;span style="color:#f92672">::&lt;/span>&lt;span style="color:#66d9ef">Task&lt;/span>&lt;span style="color:#f92672">[&lt;/span>&lt;span style="color:#e6db74">&amp;#39;hello:world&amp;#39;&lt;/span>&lt;span style="color:#f92672">].&lt;/span>reenable
+&lt;span style="color:#66d9ef">end&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>這樣下次跑 &lt;code>invoke&lt;/code> 就會重複印出 &lt;code>Hello, world!&lt;/code>：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ bundle exec rake invoke reenable invoke
+Hello, man.
+Hello, Earth~
+Hello, world!
+Reenable!
+Hello, world!
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="enhance幫-rake-task-打補丁">Enhance：幫 Rake Task 打補丁&lt;/h2>
+&lt;p>如果你需要在執行特定的 rake task 前後做特定的事，那使用 &lt;code>enhance&lt;/code> 是不錯的選擇。&lt;code>enhance&lt;/code> 就像是在某個 task 加裝 hook 一樣，執行到該 task 時，就會執行他被 &lt;code>enhance&lt;/code> 的內容。&lt;/p>
+&lt;p>一個例子是 &lt;a href="https://github.com/ctran/annotate_models">annotate_models&lt;/a> 這個 gem，可以在 database migration 後，對 model 檔案加上註解，翻開其原始碼，果然是用 &lt;code>enhance&lt;/code> 實現的：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#75715e"># https://github.com/ctran/annotate_models/blob/v3.1.1/lib/tasks/annotate_models_migrate.rake&lt;/span>
+&lt;span style="color:#e6db74">%w(db:migrate db:migrate:up db:migrate:down db:migrate:reset db:migrate:redo db:rollback)&lt;/span>&lt;span style="color:#f92672">.&lt;/span>each &lt;span style="color:#66d9ef">do&lt;/span> &lt;span style="color:#f92672">|&lt;/span>task&lt;span style="color:#f92672">|&lt;/span>
+&lt;span style="color:#66d9ef">Rake&lt;/span>&lt;span style="color:#f92672">::&lt;/span>&lt;span style="color:#66d9ef">Task&lt;/span>&lt;span style="color:#f92672">[&lt;/span>task&lt;span style="color:#f92672">].&lt;/span>enhance &lt;span style="color:#66d9ef">do&lt;/span>
+&lt;span style="color:#66d9ef">Rake&lt;/span>&lt;span style="color:#f92672">::&lt;/span>&lt;span style="color:#66d9ef">Task&lt;/span>&lt;span style="color:#f92672">[&lt;/span>&lt;span style="color:#66d9ef">Rake&lt;/span>&lt;span style="color:#f92672">.&lt;/span>application&lt;span style="color:#f92672">.&lt;/span>top_level_tasks&lt;span style="color:#f92672">.&lt;/span>last&lt;span style="color:#f92672">].&lt;/span>enhance &lt;span style="color:#66d9ef">do&lt;/span>
+annotation_options_task &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#66d9ef">Rake&lt;/span>&lt;span style="color:#f92672">::&lt;/span>&lt;span style="color:#66d9ef">Task&lt;/span>&lt;span style="color:#f92672">.&lt;/span>task_defined?(&lt;span style="color:#e6db74">&amp;#39;app:set_annotation_options&amp;#39;&lt;/span>)
+&lt;span style="color:#e6db74">&amp;#39;app:set_annotation_options&amp;#39;&lt;/span>
+&lt;span style="color:#66d9ef">else&lt;/span>
+&lt;span style="color:#e6db74">&amp;#39;set_annotation_options&amp;#39;&lt;/span>
+&lt;span style="color:#66d9ef">end&lt;/span>
+&lt;span style="color:#66d9ef">Rake&lt;/span>&lt;span style="color:#f92672">::&lt;/span>&lt;span style="color:#66d9ef">Task&lt;/span>&lt;span style="color:#f92672">[&lt;/span>annotation_options_task&lt;span style="color:#f92672">].&lt;/span>invoke
+&lt;span style="color:#66d9ef">Annotate&lt;/span>&lt;span style="color:#f92672">::&lt;/span>&lt;span style="color:#66d9ef">Migration&lt;/span>&lt;span style="color:#f92672">.&lt;/span>update_annotations
+&lt;span style="color:#66d9ef">end&lt;/span>
+&lt;span style="color:#66d9ef">end&lt;/span>
+&lt;span style="color:#66d9ef">end&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>這樣寫之後，當「執行完」上面所窮舉跟 database migration 有關的 rake task 時，就會 block 內的 code。&lt;/p>
+&lt;p>那如果要在「執行前」插入 code 呢？&lt;/p>
+&lt;p>&lt;code>enhance&lt;/code> 是可以額外增加 dependencies 的，可以將執行前要插入的 code 寫成另一個 rake task，然後將其定義為 &lt;code>enhance&lt;/code> 的 dependencies 即可：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">task &lt;span style="color:#e6db74">:before&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
+puts &lt;span style="color:#e6db74">&amp;#39;before task&amp;#39;&lt;/span>
+&lt;span style="color:#66d9ef">end&lt;/span>
+&lt;span style="color:#75715e"># 這裡 dependencies 一定要是 array，不然會報錯&lt;/span>
+&lt;span style="color:#66d9ef">Rake&lt;/span>&lt;span style="color:#f92672">::&lt;/span>&lt;span style="color:#66d9ef">Task&lt;/span>&lt;span style="color:#f92672">[&lt;/span>&lt;span style="color:#e6db74">&amp;#39;hello:world&amp;#39;&lt;/span>&lt;span style="color:#f92672">].&lt;/span>enhance(&lt;span style="color:#e6db74">%w[before]&lt;/span>) &lt;span style="color:#66d9ef">do&lt;/span>
+puts &lt;span style="color:#e6db74">&amp;#39;after task&amp;#39;&lt;/span>
+&lt;span style="color:#66d9ef">end&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>接著重跑一次 &lt;code>invoke&lt;/code> 這個 task:&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ bundle exec rake invoke
+Hello, man.
+Hello, Earth~
+before task
+Hello, world!
+after task
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>可以發現 &lt;code>enhance&lt;/code> 的 dependency 會接在原先定義的 dependencies 後面。&lt;/p>
+&lt;h3 id="如果-execute-一個被-enhance-的-task-會發生什麼事">如果 Execute 一個被 Enhance 的 Task 會發生什麼事？&lt;/h3>
+&lt;p>前面有討論到，如果我們直接 &lt;code>execute&lt;/code> 一個 task，其 dependencies 都會被忽略。而 &lt;code>enhance&lt;/code> 也包含了定義 dependencies 和後方的 block 的部分。揪竟 &lt;code>enhance&lt;/code> 一個 task 會不會對其被 &lt;code>execute&lt;/code> 時產生影響呢？&lt;/p>
+&lt;p>實驗一次就會知道了：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ bundle exec rake execute
+Hello, world!
+after task
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>enhance&lt;/code> 的 dependencies 也被扔掉了。&lt;br>
+然而其 block 內定義的 code 仍然會執行到。&lt;/p>
+&lt;p>這個行為算是我覺得比較容易搞混的地方，老實說 &lt;code>enhance&lt;/code> 給人一種 monkey patch 的感覺，我個人是認為需要謹慎使用。&lt;/p>
+&lt;h3 id="enhance-多次的影響">Enhance 多次的影響&lt;/h3>
+&lt;p>附帶一提，一個 task 是可以被 &lt;code>enhance&lt;/code> 多次的，每次 &lt;code>enhance&lt;/code> 的結果會依照先後順序疊加：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">task &lt;span style="color:#e6db74">:before&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
+puts &lt;span style="color:#e6db74">&amp;#39;before task&amp;#39;&lt;/span>
+&lt;span style="color:#66d9ef">end&lt;/span>
+task &lt;span style="color:#e6db74">:before2&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
+puts &lt;span style="color:#e6db74">&amp;#39;before task 2&amp;#39;&lt;/span>
+&lt;span style="color:#66d9ef">end&lt;/span>
+&lt;span style="color:#66d9ef">Rake&lt;/span>&lt;span style="color:#f92672">::&lt;/span>&lt;span style="color:#66d9ef">Task&lt;/span>&lt;span style="color:#f92672">[&lt;/span>&lt;span style="color:#e6db74">&amp;#39;hello:world&amp;#39;&lt;/span>&lt;span style="color:#f92672">].&lt;/span>enhance(&lt;span style="color:#e6db74">%w[before]&lt;/span>) &lt;span style="color:#66d9ef">do&lt;/span>
+puts &lt;span style="color:#e6db74">&amp;#39;after task&amp;#39;&lt;/span>
+&lt;span style="color:#66d9ef">end&lt;/span>
+&lt;span style="color:#66d9ef">Rake&lt;/span>&lt;span style="color:#f92672">::&lt;/span>&lt;span style="color:#66d9ef">Task&lt;/span>&lt;span style="color:#f92672">[&lt;/span>&lt;span style="color:#e6db74">&amp;#39;hello:world&amp;#39;&lt;/span>&lt;span style="color:#f92672">].&lt;/span>enhance(&lt;span style="color:#e6db74">%w[before2]&lt;/span>) &lt;span style="color:#66d9ef">do&lt;/span>
+puts &lt;span style="color:#e6db74">&amp;#39;after task 2&amp;#39;&lt;/span>
+&lt;span style="color:#66d9ef">end&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ bundle exec rake invoke
+Hello, man.
+Hello, Earth~
+before task
+before task &lt;span style="color:#ae81ff">2&lt;/span>
+Hello, world!
+after task
+after task &lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>本文中所有的 code 都放在&lt;a href="https://github.com/dwy6626/rake-experiment/">這個 repo&lt;/a> 的 &lt;code>hello.rake&lt;/code> 檔案內：&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/dwy6626/rake-experiment/blob/master/lib/tasks/hello.rake">https://github.com/dwy6626/rake-experiment/blob/master/lib/tasks/hello.rake&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="參考資料">參考資料&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://www.rubydoc.info/gems/rake/Rake/Task">Rake::Task 官方文件&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://dev.to/molly/rake-task-enhance-method-explained-3bo0">Rake::Task .enhance() Method Explained&lt;/a>&lt;/li>
+&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>如何在 Rails 中寫 Rake Tasks</title><link>https://dwye.dev/post/rake/</link><pubDate>Sun, 27 Jun 2021 13:41:25 +0800</pubDate><guid>https://dwye.dev/post/rake/</guid><description>
 &lt;p>本文使用當下最新的 Ruby 3.0.1 和 Rails 6.1.4 作為示範&lt;/p>
 &lt;h2 id="什麼是-rake">什麼是 Rake&lt;/h2>
 &lt;p>Rake 就像是 Ruby 的 Make，或是 Golang 的 Mage，其實也就是可以讓我們寫一些基本的 task 和 build 程序的地方。&lt;/p>
