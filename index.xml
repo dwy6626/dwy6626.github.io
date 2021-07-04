@@ -1,4 +1,105 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Thu, 01 Jul 2021 13:41:25 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>Rake Tasks 進階：Invoke, Execute, Enhance</title><link>https://dwye.dev/post/rake-execute-invoke-enhance/</link><pubDate>Thu, 01 Jul 2021 13:41:25 +0800</pubDate><guid>https://dwye.dev/post/rake-execute-invoke-enhance/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sun, 04 Jul 2021 23:41:25 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>傳說對決 桐人語音台詞 來源對照（第一彈）</title><link>https://dwye.dev/post/sao-kirito-aov/</link><pubDate>Sun, 04 Jul 2021 23:41:25 +0800</pubDate><guid>https://dwye.dev/post/sao-kirito-aov/</guid><description>
+&lt;p>身為一個業餘 SAO 粉來就該來發一篇粉絲文。也好久沒寫技術文以外的東西了，就來寫點興趣導向的東西吧。&lt;br>
+這邊語音出處基本上都是刀劍神域第一季，除了大招的之外（大概是第一季沒有符合的招式吧 XD）。&lt;br>
+找的方法就是打開訓練場聽台詞，把台詞打下來，然後 Google，再開動畫去裡面找。&lt;/p>
+&lt;h2 id="選角">選角&lt;/h2>
+&lt;p>&lt;img src="https://dwye.dev/img/SAO/kirito1.jpg" alt="kirito">&lt;/p>
+&lt;blockquote>
+&lt;p>必ず勝つ、勝ってこの世界を終わらせる&lt;/p>
+&lt;/blockquote>
+&lt;p>我一定會贏的，打贏他並且終結這個世界&lt;br>
+出處：第 14 話，8:10，桐人在跟茅場決鬥前對亞絲娜說&lt;br>
+&lt;img src="https://dwye.dev/img/SAO/the_world.jpg" alt="kirito hug asuna">&lt;/p>
+&lt;blockquote>
+&lt;p>君たちは、俺が絶対に守るから&lt;/p>
+&lt;/blockquote>
+&lt;p>我一定會全力保護你們的&lt;br>
+出處：第 3 話，10:42，跟幸同床的桐人在心中表示絕對會保護他們（QAQ&lt;/p>
+&lt;blockquote>
+&lt;p>ビーター、いい呼び名だな、それ&lt;/p>
+&lt;/blockquote>
+&lt;p>封弊者，這叫法聽起來不錯嘛&lt;br>
+出處：第 2 話，20:20，打倒第一層 boss 後桐人被嘴封弊者&lt;br>
+&lt;img src="https://dwye.dev/img/SAO/beater.jpg" alt="beater kirito">&lt;/p>
+&lt;h2 id="平常">平常&lt;/h2>
+&lt;blockquote>
+&lt;p>俺は、俺は、生き延びて見せる、この世界で&lt;/p>
+&lt;/blockquote>
+&lt;p>我，我啊，一定會活下去的，在這個世界&lt;br>
+出處：第 1 話，21:28，桐人和克萊因道別後，一個人率先衝去隔壁城鎮的途中說的（同時也使出了 Rage Spike）&lt;/p>
+&lt;blockquote>
+&lt;p>このゲームは遊びじゃないだ&lt;/p>
+&lt;/blockquote>
+&lt;p>這遊戲可不是鬧著玩的&lt;br>
+出處：第 4 話 9:03，桐人跟西莉卡解釋紅色玩家&lt;br>
+&lt;img src="https://dwye.dev/img/SAO/game.jpg" alt="kirito eat with silica">&lt;/p>
+&lt;blockquote>
+&lt;p>君は、何があろうと帰してみせる、あの世界に&lt;/p>
+&lt;/blockquote>
+&lt;p>無論發生什麼事，我都會把你送回去的，回到現實世界裡&lt;br>
+出處：第 10 話，紅色殺意 18:25，桐人差點被亞絲娜的前護衛幹掉，事情解決之後的對話&lt;br>
+&lt;img src="https://dwye.dev/img/SAO/kiss.jpg" alt="kirito kiss asuna">&lt;/p>
+&lt;blockquote>
+&lt;p>たかが数字が増えるだけで無茶な差が着く。それがレベル制MMOの理不尽さなんだ&lt;/p>
+&lt;/blockquote>
+&lt;p>只是增加數字就能拉大實力的差距，這就是等級制 MMO RPG 不合理的地方&lt;br>
+出處：第 4 話 19:44，桐人站著給橘色公會的人打&lt;br>
+&lt;img src="https://dwye.dev/img/SAO/stand_kirito.jpg" alt="kirito not hurt">&lt;/p>
+&lt;blockquote>
+&lt;p>誰かを見殺しにするくらいなら、一緒に死んだ方がずっとマシだ&lt;/p>
+&lt;/blockquote>
+&lt;p>與其見死不救，不如一起死去比較好吧&lt;br>
+出處：第 7 話，心的溫度 11:19，莉茲貝特問桐人為何要冒風險救她&lt;/p>
+&lt;h2 id="首殺">首殺&lt;/h2>
+&lt;blockquote>
+&lt;p>これはデュエルじゃない、単純な殺し合いだ&lt;/p>
+&lt;/blockquote>
+&lt;p>這不是決鬥，只是單純的互相殺害&lt;br>
+出處：第 14 話，9:55，75 層打完 boss 後，和茅場單挑&lt;br>
+&lt;img src="https://dwye.dev/img/SAO/koroshiai.jpg" alt="kirito and kayaba">&lt;/p>
+&lt;h2 id="多殺">多殺&lt;/h2>
+&lt;blockquote>
+&lt;p>俺はビーターだ、元テスター如きと一緒にしないでくれ&lt;/p>
+&lt;/blockquote>
+&lt;p>我就是封弊者，不要把我和那些封測玩家相提並論&lt;br>
+出處：第 2 話，20:26，打倒第一層 boss 後桐人被嘴封弊者&lt;/p>
+&lt;h2 id="死亡">死亡&lt;/h2>
+&lt;blockquote>
+&lt;p>ごめん、君だけは生きて&lt;/p>
+&lt;/blockquote>
+&lt;p>抱歉了，至少你要好好活下去&lt;br>
+出處：第 14 話，11:01，桐人被茅場引用使出 Eclipse 的時候&lt;br>
+&lt;img src="https://dwye.dev/img/SAO/eclipse.jpg" alt="eclipse">&lt;/p>
+&lt;h2 id="復活">復活&lt;/h2>
+&lt;blockquote>
+&lt;p>この世界での強さは、単なる幻想に過ぎない。そんなものより、もっと大事なものがある&lt;/p>
+&lt;/blockquote>
+&lt;p>在這個世界再如何強大，也只不過是幻想而已。比起這些，還有更重要的事物。&lt;br>
+出處：第 4 話 21:05，桐人安慰西莉卡的等級差距&lt;br>
+&lt;img src="https://dwye.dev/img/SAO/strength.jpg" alt="kirito and silica and bed">&lt;/p>
+&lt;h2 id="技能">技能&lt;/h2>
+&lt;p>以一二三技能排序：&lt;/p>
+&lt;blockquote>
+&lt;p>スターバースト・ストリーム&lt;/p>
+&lt;/blockquote>
+&lt;p>Starburst Stream / 星光流連擊（星爆氣流斬）&lt;br>
+第 9 話，13:45 開始，不解釋&lt;/p>
+&lt;blockquote>
+&lt;p>レイジ・スパイク&lt;/p>
+&lt;/blockquote>
+&lt;p>Rage Spike / 憤怒刺擊&lt;br>
+單手劍突進技&lt;br>
+第 1 話，21:30 開始&lt;br>
+&lt;img src="https://dwye.dev/img/SAO/rage_spike.jpg" alt="rage spike">&lt;/p>
+&lt;blockquote>
+&lt;p>ライトニング・フォール&lt;/p>
+&lt;/blockquote>
+&lt;p>Lightning Fall / 閃電墜擊&lt;br>
+單手劍廣範圍攻擊技&lt;br>
+出處：第二季第 17 話，聖劍篇，桐人對寶物堆使用，用來找出雷屬性的槌子（動畫沒有喊出招式名&amp;hellip;這個超難找）&lt;br>
+&lt;img src="https://dwye.dev/img/SAO/ligntning_fall.jpg" alt="lightning fall">&lt;/p>
+&lt;blockquote class="twitter-tweet">&lt;p lang="ja" dir="ltr">キリトが使ったのは《ライトニング・フォール》というソードスキルで、真下への物理ダメージに加えて、周囲にスタン効果のある範囲攻撃を行うという技です。 &lt;a href="https://twitter.com/hashtag/sao2_jk?src=hash&amp;amp;ref_src=twsrc%5Etfw">#sao2_jk&lt;/a>&lt;/p>&amp;mdash; 川原礫;SAOP8巻6月発売 (@kunori) &lt;a href="https://twitter.com/kunori/status/528910909079425024?ref_src=twsrc%5Etfw">November 2, 2014&lt;/a>&lt;/blockquote> &lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script>
+&lt;p>根據川原自己的描述和小說內容，是從高處落下，對下方使用的廣範圍雷屬性 + 物理攻擊&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>Rake Tasks 進階：Invoke, Execute, Enhance</title><link>https://dwye.dev/post/rake-execute-invoke-enhance/</link><pubDate>Thu, 01 Jul 2021 13:41:25 +0800</pubDate><guid>https://dwye.dev/post/rake-execute-invoke-enhance/</guid><description>
 &lt;p>在「&lt;a href="https://dwye.dev/post/rake">如何在 Rails 中寫 Rake Tasks&lt;/a>」一文中，已經紀錄了在 Ruby on Rails 中 Rake Task 的基本寫法。&lt;/p>
 &lt;p>這邊要來談一些最近碰到的議題：&lt;/p>
 &lt;ul>
@@ -326,7 +427,7 @@ Hello, world!
 &lt;/li>
 &lt;li>Modularity 模組化
 &lt;ul>
-&lt;li>軟體的不同元件要被分散於不同 funcational unit&lt;/li>
+&lt;li>軟體的不同元件要被分散於不同 functional unit&lt;/li>
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
@@ -342,7 +443,7 @@ Hello, world!
 &lt;li>Polymorphism 多型
 &lt;ul>
 &lt;li>一個變數可以是多種型別&lt;/li>
-&lt;li>同名 function 能根據其 Input 型別 去 call 不同 function&lt;/li>
+&lt;li>同名 function 能根據其 Input 型別 去 call 不同 function → Overloading&lt;/li>
 &lt;li>同名 method 能根據其 Class 去 call 實際上於不同 class 的 method → Duck Typing&lt;/li>
 &lt;li>類似 functional programming 的 pattern matching&lt;/li>
 &lt;/ul>
