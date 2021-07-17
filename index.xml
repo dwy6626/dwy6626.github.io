@@ -1209,9 +1209,15 @@ f1, f2 &lt;span style="color:#f92672">=&lt;/span> f2, f1 &lt;span style="color:#
 &lt;p>$O(n)$，只有一個迴圈，迴圈內部運算都是 $O(1)$&lt;/p>
 &lt;h3 id="空間複雜度-4">空間複雜度&lt;/h3>
 &lt;p>$O(1)$，只用了固定兩個變數&lt;/p>
-&lt;h2 id="預告">預告&lt;/h2>
+&lt;h2 id="其他解法">其他解法&lt;/h2>
 &lt;p>雖然到這邊已經說明完正常的解法，但其實費氏數列還有更多有趣的解法。&lt;/p>
-&lt;p>下篇會介紹時間複雜度更短的矩陣解，第三篇則會介紹疑似（？）常數時間的公式解。&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>GitHub Page + Google Domain 設定個人化網域</title><link>https://dwye.dev/post/github-page-google-domain/</link><pubDate>Sat, 27 Mar 2021 19:01:56 +0800</pubDate><guid>https://dwye.dev/post/github-page-google-domain/</guid><description>
+&lt;p>時間複雜度更短的 $O(\lg n)$ 的：&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://dwye.dev/post/python-fibonacci-2/">矩陣解&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://dwye.dev/post/python-fibonacci-3/">快速冪&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://dwye.dev/post/python-fibonacci-4/">疑似（？）常數時間但其實最多也只能到 $O(\lg n)$ 的公式解&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>以及&lt;a href="https://dwye.dev/post/python-fibonacci-5/">所有解法的執行時間比較&lt;/a>&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>GitHub Page + Google Domain 設定個人化網域</title><link>https://dwye.dev/post/github-page-google-domain/</link><pubDate>Sat, 27 Mar 2021 19:01:56 +0800</pubDate><guid>https://dwye.dev/post/github-page-google-domain/</guid><description>
 &lt;p>以前在 KK 實習時，跟 RD 們聊過自架 blog 的事情，並聽說了這個很潮的 &lt;code>.dev&lt;/code> 網域，就把購買個人網域列為將來想嘗試的事之一。&lt;br>
 找工作的事情告一段落了（其實也只是在原本實習的公司轉正職 XD），有了固定收入就可以來養個人品牌了 XD。&lt;/p>
 &lt;h2 id="需要做的事情">需要做的事情&lt;/h2>
