@@ -1,4 +1,202 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Mon, 05 Jul 2021 23:41:25 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>傳說對決 桐人語音台詞 來源對照（第二彈）</title><link>https://dwye.dev/post/sao-kirito-aov-2/</link><pubDate>Mon, 05 Jul 2021 23:41:25 +0800</pubDate><guid>https://dwye.dev/post/sao-kirito-aov-2/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 17 Jul 2021 23:41:25 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>Ruby Object Model</title><link>https://dwye.dev/post/ruby-object-model/</link><pubDate>Sat, 17 Jul 2021 23:41:25 +0800</pubDate><guid>https://dwye.dev/post/ruby-object-model/</guid><description>
+&lt;h2 id="前言ruby-中的物件導向">前言：Ruby 中的物件導向&lt;/h2>
+&lt;p>Ruby Object Model 是我覺得 Ruby 算是十分特別也是十分重要的概念。&lt;/p>
+&lt;p>在一般的物件導向程式語言中，物件是類別的實體，而資料型態是資料型態。一個變數可以儲存一個資料型態，一個變數也可以指向一個物件，但資料型態和物件是兩回事。&lt;/p>
+&lt;p>但在 Ruby 中，&lt;strong>所有的東西都是物件&lt;/strong>。&lt;/p>
+&lt;h3 id="所有東西都是物件">所有東西都是物件&lt;/h3>
+&lt;p>對，在 Ruby 中，主程序（Main）本身是一個物件，被定義好的 function 是物件，你所知道的資料型態如：整數、浮點、Boolean、字串（Ruby 中沒有字串與字元的分別）等是物件，就連平常代表虛無的 &lt;code>nil&lt;/code> 也是一個物件！&lt;/p>
+&lt;p>打開 irb 試試看：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#ae81ff">3&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span> :&lt;span style="color:#ae81ff">001&lt;/span> &lt;span style="color:#f92672">&amp;gt;&lt;/span> a &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span>
+&lt;span style="color:#f92672">=&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span>
+&lt;span style="color:#ae81ff">3&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span> :&lt;span style="color:#ae81ff">002&lt;/span> &lt;span style="color:#f92672">&amp;gt;&lt;/span> a&lt;span style="color:#f92672">.&lt;/span>nil?
+&lt;span style="color:#f92672">=&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">true&lt;/span>
+&lt;span style="color:#ae81ff">3&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span> :&lt;span style="color:#ae81ff">003&lt;/span> &lt;span style="color:#f92672">&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span>&lt;span style="color:#f92672">.&lt;/span>class
+&lt;span style="color:#f92672">=&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">NilClass&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>因為 Ruby 中 &lt;code>nil&lt;/code> 是一個 &lt;code>NilClass&lt;/code> 的 instance（也是唯一的 instance，不能 new 一個出來），所以有 &lt;code>nil?&lt;/code> 這種方法，可以問一個變數是不是 &lt;code>nil&lt;/code>，夠神奇吧？&lt;br>
+這個語法糖相當於其他語言的 &lt;code>a == nil&lt;/code> 或是 &lt;code>a is None&lt;/code>，但變成 method 的形式讀起來更直觀。&lt;/p>
+&lt;h3 id="所有-functions-都是-methods">所有 Functions 都是 Methods&lt;/h3>
+&lt;p>因為所有東西都是物件，在主程序以 &lt;code>def&lt;/code> 定義的 function，其實也只是掛在 Main object 下的 private method:&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#ae81ff">3&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span> :&lt;span style="color:#ae81ff">001&lt;/span> &lt;span style="color:#f92672">&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">my_custom_method&lt;/span>
+&lt;span style="color:#ae81ff">3&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span> :&lt;span style="color:#ae81ff">002&lt;/span> &lt;span style="color:#f92672">&amp;gt;&lt;/span> puts &lt;span style="color:#e6db74">&amp;#39;hello&amp;#39;&lt;/span>
+&lt;span style="color:#ae81ff">3&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span> :&lt;span style="color:#ae81ff">003&lt;/span> &lt;span style="color:#f92672">&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">end&lt;/span>
+&lt;span style="color:#f92672">=&amp;gt;&lt;/span> &lt;span style="color:#e6db74">:my_custom_method&lt;/span>
+&lt;span style="color:#75715e"># 注意如果用 methods 只會拿到 public 和 protected methods&lt;/span>
+&lt;span style="color:#75715e"># 這邊的 self 其實是可以省略的，但為了強調我們是在存取 `main` 這個 object，先保留了：&lt;/span>
+&lt;span style="color:#ae81ff">3&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span> :&lt;span style="color:#ae81ff">004&lt;/span> &lt;span style="color:#f92672">&amp;gt;&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>private_methods&lt;span style="color:#f92672">.&lt;/span>include? &lt;span style="color:#e6db74">:my_custom_method&lt;/span>
+&lt;span style="color:#f92672">=&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">true&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>而 Main object 已經在使用了，還可以後續再寫入方法，這也是 ruby 的特色之一。&lt;/p>
+&lt;h2 id="ruby-object-model">Ruby Object Model&lt;/h2>
+&lt;p>Ruby 的物件模型，也就是 Ruby 中物件導向的運作機制。&lt;/p>
+&lt;h3 id="instance">Instance&lt;/h3>
+&lt;p>在 Ruby 中，可以利用 &lt;code>Class#new&lt;/code> 幫一個類別建立新的 instance，這時 instance 內儲存的資訊有：&lt;/p>
+&lt;ul>
+&lt;li>instance_variable&lt;/li>
+&lt;li>class&lt;/li>
+&lt;li>object_id&lt;/li>
+&lt;/ul>
+&lt;p>instance methods 不需要存在每個物件裡，可以透過 class 的 instance_methods 來查找方法。&lt;/p>
+&lt;h3 id="self">Self&lt;/h3>
+&lt;p>在 ruby 中，永遠都會有一個代表「現在的物件」，可以透過 &lt;code>self&lt;/code> 取得：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">puts self
+&lt;span style="color:#75715e"># =&amp;gt; main，在最外層，self 代表 main object&lt;/span>
+&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Car&lt;/span>
+puts self
+&lt;span style="color:#75715e"># =&amp;gt; Car，在 class 內，self 是當下的 class object&lt;/span>
+&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">run&lt;/span>
+puts &lt;span style="color:#e6db74">&amp;#34;&lt;/span>&lt;span style="color:#e6db74">#{&lt;/span>self&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74"> run! pupu!&amp;#34;&lt;/span>
+&lt;span style="color:#75715e"># 在 method 內，self 是物件本身！&lt;/span>
+&lt;span style="color:#66d9ef">end&lt;/span>
+&lt;span style="color:#66d9ef">end&lt;/span>
+c &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">Car&lt;/span>&lt;span style="color:#f92672">.&lt;/span>new
+c&lt;span style="color:#f92672">.&lt;/span>run &lt;span style="color:#75715e"># =&amp;gt; #&amp;lt;Car:0x00007fe17f8eeac8&amp;gt; run! pupu!&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>而這邊還有個有趣的觀察：&lt;br>
+在 ruby 中，定義 class 是當下就會執行，而 def 定義 method 則是使用時動態執行。&lt;/p>
+&lt;h3 id="singleton-class">Singleton Class&lt;/h3>
+&lt;p>因為 ruby 的物件不存 method，但 ruby 又有個特色，可以為現有的物件定義新方法：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> c
+&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">run_twice&lt;/span>
+run
+run
+&lt;span style="color:#66d9ef">end&lt;/span>
+&lt;span style="color:#66d9ef">end&lt;/span>
+c&lt;span style="color:#f92672">.&lt;/span>run_twice
+&lt;span style="color:#75715e"># #&amp;lt;Car:0x00007fe17f8eeac8&amp;gt; run! pupu!&lt;/span>
+&lt;span style="color:#75715e"># #&amp;lt;Car:0x00007fe17f8eeac8&amp;gt; run! pupu!&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>這時候這個 &lt;code>run_twice&lt;/code> 方法是只有 &lt;code>c&lt;/code> 這個物件擁有，其他的 &lt;code>Car&lt;/code> 的 instance 是不會擁有的，因此 &lt;code>run_twice&lt;/code> 不能被放在 &lt;code>Car&lt;/code> 這個 class 裡。&lt;/p>
+&lt;p>在 ruby 中，這種單一物件特有的 method，就叫做 singleton method：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">c&lt;span style="color:#f92672">.&lt;/span>singleton_methods
+&lt;span style="color:#75715e"># =&amp;gt; [:run_twice]&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>而 Singleton method 會存放在 singleton class，這個 class 跟著每個物件自動產生，對於每個物件是&lt;strong>獨一無二&lt;/strong>的。&lt;/p>
+&lt;p>Singleton class 有幾個限制：&lt;/p>
+&lt;ul>
+&lt;li>不能建立新的 instance（畢竟要是獨一無二，才叫 singleton）&lt;/li>
+&lt;li>不能被繼承&lt;/li>
+&lt;/ul>
+&lt;p>對於一般 object （並不是 Class 的 instance）來說，每個物件都有 singleton class，因此會在後面加上物件本身的識別，並繼承自他的 class：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">c&lt;span style="color:#f92672">.&lt;/span>singleton_class
+&lt;span style="color:#75715e"># =&amp;gt; #&amp;lt;Class:#&amp;lt;Car:0x00007fe17f8eeac8&amp;gt;&amp;gt;&lt;/span>
+c&lt;span style="color:#f92672">.&lt;/span>singleton_class&lt;span style="color:#f92672">.&lt;/span>superclass &lt;span style="color:#f92672">==&lt;/span> c&lt;span style="color:#f92672">.&lt;/span>class
+&lt;span style="color:#75715e"># =&amp;gt; true&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>對於一般 class（Class 的 instance），因為 class 本身為為一，所以 singleton class 也是唯一的，並繼承自其 superclass 的 singleton class。&lt;br>
+也就是 class 的 singleton class 們是形成一條繼承鏈，直到最後繼承自 Class。&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#66d9ef">Car&lt;/span>&lt;span style="color:#f92672">.&lt;/span>singleton_class&lt;span style="color:#f92672">.&lt;/span>superclass &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#66d9ef">Car&lt;/span>&lt;span style="color:#f92672">.&lt;/span>class
+&lt;span style="color:#75715e"># =&amp;gt; false&lt;/span>
+&lt;span style="color:#66d9ef">Car&lt;/span>&lt;span style="color:#f92672">.&lt;/span>superclass&lt;span style="color:#f92672">.&lt;/span>singleton_class &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#66d9ef">Car&lt;/span>&lt;span style="color:#f92672">.&lt;/span>singleton_class&lt;span style="color:#f92672">.&lt;/span>superclass
+&lt;span style="color:#75715e"># =&amp;gt; true&lt;/span>
+&lt;span style="color:#66d9ef">Car&lt;/span>&lt;span style="color:#f92672">.&lt;/span>singleton_class&lt;span style="color:#f92672">.&lt;/span>ancestors
+&lt;span style="color:#75715e"># =&amp;gt; [#&amp;lt;Class:Car&amp;gt;, #&amp;lt;Class:Object&amp;gt;, #&amp;lt;Class:BasicObject&amp;gt;,&lt;/span>
+&lt;span style="color:#75715e"># Class, Module, Object, Kernel, BasicObject]&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="receiver">Receiver&lt;/h3>
+&lt;p>當我們呼叫一個 method，會需要有一個 receiver，使用 &lt;code>receiver.method_name&lt;/code> 的形式調用 method。&lt;br>
+以上面 &lt;code>c.run&lt;/code> 為例，這時的 receiver 就是 &lt;code>c&lt;/code>。&lt;br>
+如果沒有指定 receiver，預設會使用 &lt;code>self&lt;/code>，也就是當下的物件。&lt;/p>
+&lt;p>而 Ruby 的 &lt;code>private&lt;/code> method 的定義，即是&lt;strong>不能明確指定 receiver&lt;/strong>，換句話說，就是只能透過 &lt;code>self&lt;/code> 來呼叫（當然如果你指定成 &lt;code>self&lt;/code> 還是會噴 error 的喔 XD）。&lt;br>
+不過 Ruby 這麼自由的語言，當然可以繞過去，透過 &lt;code>receiver.send(:method_name)&lt;/code> 的方式即可呼叫 private method。&lt;/p>
+&lt;p>Ruby 的哲學就是把給開發者最大的自由，當然也需要開發者謹慎的使用。&lt;/p>
+&lt;h3 id="method-lookup">Method Lookup&lt;/h3>
+&lt;p>當我們呼叫一個物件的 methods，ruby 會去看該物件的 class 有沒有該方法定義。&lt;br>
+而 class 的查找順序為：&lt;/p>
+&lt;ol>
+&lt;li>Singleton class&lt;/li>
+&lt;li>繼承鏈中的 class 一路上找 (&lt;code>Class#ancestors&lt;/code> 可以拿出繼承鏈，不過會把 Module 也包含在內)&lt;/li>
+&lt;/ol>
+&lt;p>而對於每個 class &lt;code>C&lt;/code>而言，再以以下順序查找：&lt;/p>
+&lt;ol>
+&lt;li>&lt;a href="https://ruby-doc.org/core-3.0.2/doc/syntax/refinements_rdoc.html">Refinements&lt;/a>，LIFO（後啟用，優先查找）&lt;/li>
+&lt;li>prepended module&lt;/li>
+&lt;li>自身定義的 methods&lt;/li>
+&lt;li>included module&lt;/li>
+&lt;/ol>
+&lt;p>而每個 Refinements 內部也會依照 prepend -&amp;gt; 直接定義 -&amp;gt; include 的順序來查找。&lt;/p>
+&lt;p>如果到了繼承鏈底部，都沒有找到該方法，會回到 singleton class 並重新查找 &lt;code>method_missing&lt;/code>。&lt;/p>
+&lt;p>上面就是目前 Ruby 的整個 method 查找過程。&lt;/p>
+&lt;p>整理一下，可以分解成三層：&lt;/p>
+&lt;ol>
+&lt;li>class 層：根據 singleton class -&amp;gt; superclass -&amp;gt; superclass 的順序查找。&lt;/li>
+&lt;li>Refinement 層：若有 Refinements，則依照 LIFO 順序查找，最後才是該 class 自己。&lt;/li>
+&lt;li>最內層：prepend -&amp;gt; def -&amp;gt; include。&lt;/li>
+&lt;/ol>
+&lt;p>一般看到的是沒有 refinements 的版本，而且 refinements 我自己也不常用 XD，拿掉也比較簡單：&lt;/p>
+&lt;ol>
+&lt;li>singleton class -&amp;gt; superclass -&amp;gt; superclass &amp;hellip;&lt;/li>
+&lt;li>prepend -&amp;gt; def -&amp;gt; include&lt;/li>
+&lt;/ol>
+&lt;p>所以一個 instance 的 method 組成，其實就是 &lt;strong>singleton methods + 繼承鏈上的所有 instance methods + refinements 時定義的 methods&lt;/strong>（當然，不包含用 &lt;code>method_missing&lt;/code> 動態處理的 ghost methods）。&lt;/p>
+&lt;p>當呼叫 class method 時，其實也是一樣的，因為在 ruby 中 class 也是個物件，所以也是先找 singleton class，然後隨著繼承鏈上找。&lt;/p>
+&lt;h3 id="例如">例如：&lt;/h3>
+&lt;p>以下面這個 &lt;code>MyClass&lt;/code> 為例：&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">MyClass&lt;/span> &lt;span style="color:#f92672">&amp;lt;&lt;/span> &lt;span style="color:#66d9ef">ParentClass&lt;/span>
+&lt;span style="color:#66d9ef">end&lt;/span>
+instance &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">MyClass&lt;/span>&lt;span style="color:#f92672">.&lt;/span>new
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>class 與 superclass 分別為：&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Name&lt;/th>
+&lt;th>Class&lt;/th>
+&lt;th>Superclass&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>my_instance&lt;/code>&lt;/td>
+&lt;td>&lt;code>MyClass&lt;/code>&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>my_instance&lt;/code> 的 singleton class&lt;/td>
+&lt;td>&lt;code>Class&lt;/code>&lt;/td>
+&lt;td>&lt;code>MyClass&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>MyClass&lt;/code>&lt;/td>
+&lt;td>&lt;code>Class&lt;/code>&lt;/td>
+&lt;td>&lt;code>ParentClass&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>ParentClass&lt;/code>&lt;/td>
+&lt;td>&lt;code>Class&lt;/code>&lt;/td>
+&lt;td>&lt;code>Object&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>Object&lt;/code>&lt;/td>
+&lt;td>&lt;code>Class&lt;/code>&lt;/td>
+&lt;td>&lt;code>BasicObject&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>BasicObject&lt;/code>&lt;/td>
+&lt;td>&lt;code>Class&lt;/code>&lt;/td>
+&lt;td>&lt;code>nil&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>畫成圖：&lt;/p>
+&lt;pre>&lt;code> BasicObject
+^
+|
+Object
+^
+|
+ParentClass
+^
+|
+MyClass
+^
+|
+instance -&amp;gt; singelton_class
+&lt;/code>&lt;/pre>&lt;p>（參考自 &lt;a href="https://gist.github.com/damien-roche/351bf4e7991449714533#one-more-step">https://gist.github.com/damien-roche/351bf4e7991449714533#one-more-step&lt;/a> 的圖並小修改）&lt;/p>
+&lt;p>所以有個 method lookup 的口訣是「往右，然後一直往上」，其實就是：&lt;/p>
+&lt;ul>
+&lt;li>往右：instance 的 singleton_class&lt;/li>
+&lt;li>往上：superclass -&amp;gt; superclass &amp;hellip;&lt;/li>
+&lt;/ul>
+&lt;h2 id="參考資料">參考資料&lt;/h2>
+&lt;ul>
+&lt;li>Metaprogramming Ruby 2, Paolo Perrotta&lt;/li>
+&lt;li>我同事 Anthony 大神的 Metaprogramming Ruby 筆記，感謝他 XD&lt;/li>
+&lt;li>&lt;a href="https://stackoverflow.com/questions/23848667/">Ruby method lookup path for an object&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://gist.github.com/damien-roche/351bf4e7991449714533">A Primer on Ruby Method Lookup&lt;/a>&lt;/li>
+&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>傳說對決 桐人語音台詞 來源對照（第二彈）</title><link>https://dwye.dev/post/sao-kirito-aov-2/</link><pubDate>Mon, 05 Jul 2021 23:41:25 +0800</pubDate><guid>https://dwye.dev/post/sao-kirito-aov-2/</guid><description>
 &lt;p>身為一個業餘 SAO 粉來就該來發第二篇粉絲文。&lt;br>
 出處都是刀劍神域第三季，Alicization 篇，而且大部分都是爬塔篇的內容。&lt;br>
 找的方法就是打開訓練場聽台詞，把台詞打下來，然後 Google，再開動畫去裡面找。&lt;/p>
