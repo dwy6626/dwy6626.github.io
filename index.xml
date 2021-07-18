@@ -34,7 +34,7 @@
 &lt;li>class&lt;/li>
 &lt;li>object_id&lt;/li>
 &lt;/ul>
-&lt;p>instance methods 不需要存在每個物件裡，可以透過 class 的 instance_methods 來查找方法。&lt;/p>
+&lt;p>Instance methods 不需要存在每個物件裡，只需要存在 class 並查找 instance methods 就好。&lt;/p>
 &lt;h3 id="self">Self&lt;/h3>
 &lt;p>在 ruby 中，永遠都會有一個代表「現在的物件」，可以透過 &lt;code>self&lt;/code> 取得：&lt;/p>
 &lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">puts self
@@ -52,7 +52,9 @@ c&lt;span style="color:#f92672">.&lt;/span>run &lt;span style="color:#75715e"># 
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>而這邊還有個有趣的觀察：&lt;br>
 在 ruby 中，定義 class 是當下就會執行，而 def 定義 method 則是使用時動態執行。&lt;/p>
 &lt;h3 id="singleton-class">Singleton Class&lt;/h3>
-&lt;p>因為 ruby 的物件不存 method，但 ruby 又有個特色，可以為現有的物件定義新方法：&lt;/p>
+&lt;p>Singleton Class 是跟著每個 ruby 物件自動產生，對於每個物件是&lt;strong>獨一無二&lt;/strong>的 Class。&lt;br>
+會有這樣的設計，要回到剛剛說的 ruby 的物件不會儲存 instance method 的特性。&lt;/p>
+&lt;p>因為物件不存 method，但 ruby 又有個特色，可以為現有的物件定義新方法：&lt;/p>
 &lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> c
 &lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">run_twice&lt;/span>
 run
@@ -66,18 +68,18 @@ c&lt;span style="color:#f92672">.&lt;/span>run_twice
 &lt;p>在 ruby 中，這種單一物件特有的 method，就叫做 singleton method：&lt;/p>
 &lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">c&lt;span style="color:#f92672">.&lt;/span>singleton_methods
 &lt;span style="color:#75715e"># =&amp;gt; [:run_twice]&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>而 Singleton method 會存放在 singleton class，這個 class 跟著每個物件自動產生，對於每個物件是&lt;strong>獨一無二&lt;/strong>的。&lt;/p>
-&lt;p>Singleton class 有幾個限制：&lt;/p>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>而 singleton class 就是拿來儲存 singleton method 用的。&lt;/p>
+&lt;p>因為 singleton class 是獨一無二的，所以有幾個限制：&lt;/p>
 &lt;ul>
 &lt;li>不能建立新的 instance（畢竟要是獨一無二，才叫 singleton）&lt;/li>
-&lt;li>不能被繼承&lt;/li>
+&lt;li>不能被繼承（但這個有例外，就是 class 的 singleton class，會自動跟著 class 自己產生繼承鏈（見下方），只是仍然不能手動去繼承他，不然會扔出 &lt;code>TypeError&lt;/code>）&lt;/li>
 &lt;/ul>
-&lt;p>對於一般 object （並不是 Class 的 instance）來說，每個物件都有 singleton class，因此會在後面加上物件本身的識別，並繼承自他的 class：&lt;/p>
+&lt;p>對於一般 object （並不是 &lt;code>Class&lt;/code> 的 instance）來說，每個物件都有 singleton class，因此會在後面加上物件本身的識別，並繼承自他的 class：&lt;/p>
 &lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">c&lt;span style="color:#f92672">.&lt;/span>singleton_class
 &lt;span style="color:#75715e"># =&amp;gt; #&amp;lt;Class:#&amp;lt;Car:0x00007fe17f8eeac8&amp;gt;&amp;gt;&lt;/span>
 c&lt;span style="color:#f92672">.&lt;/span>singleton_class&lt;span style="color:#f92672">.&lt;/span>superclass &lt;span style="color:#f92672">==&lt;/span> c&lt;span style="color:#f92672">.&lt;/span>class
 &lt;span style="color:#75715e"># =&amp;gt; true&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>對於一般 class（Class 的 instance），因為 class 本身為為一，所以 singleton class 也是唯一的，並繼承自其 superclass 的 singleton class。&lt;br>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>對於一般 class（&lt;code>Class&lt;/code> 的 instance），因為 class 本身為為一，所以 singleton class 也是唯一的，並繼承自其 superclass 的 singleton class。&lt;br>
 也就是 class 的 singleton class 們是形成一條繼承鏈，直到最後繼承自 Class。&lt;/p>
 &lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#66d9ef">Car&lt;/span>&lt;span style="color:#f92672">.&lt;/span>singleton_class&lt;span style="color:#f92672">.&lt;/span>superclass &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#66d9ef">Car&lt;/span>&lt;span style="color:#f92672">.&lt;/span>class
 &lt;span style="color:#75715e"># =&amp;gt; false&lt;/span>
@@ -94,7 +96,7 @@ c&lt;span style="color:#f92672">.&lt;/span>singleton_class&lt;span style="color:
 不過 Ruby 這麼自由的語言，當然可以繞過去，透過 &lt;code>receiver.send(:method_name)&lt;/code> 的方式即可呼叫 private method。&lt;/p>
 &lt;p>Ruby 的哲學就是把給開發者最大的自由，當然也需要開發者謹慎的使用。&lt;/p>
 &lt;h3 id="method-lookup">Method Lookup&lt;/h3>
-&lt;p>當我們呼叫一個物件的 methods，ruby 會去看該物件的 class 有沒有該方法定義。&lt;br>
+&lt;p>當我們呼叫一個物件的 method，ruby 會去看該物件的 class 有沒有該方法定義。&lt;br>
 而 class 的查找順序為：&lt;/p>
 &lt;ol>
 &lt;li>Singleton class&lt;/li>
@@ -108,21 +110,26 @@ c&lt;span style="color:#f92672">.&lt;/span>singleton_class&lt;span style="color:
 &lt;li>included module&lt;/li>
 &lt;/ol>
 &lt;p>而每個 Refinements 內部也會依照 prepend -&amp;gt; 直接定義 -&amp;gt; include 的順序來查找。&lt;/p>
-&lt;p>如果到了繼承鏈底部，都沒有找到該方法，會回到 singleton class 並重新查找 &lt;code>method_missing&lt;/code>。&lt;/p>
+&lt;p>如果到了繼承鏈底部，都沒有找到該方法，會回到 singleton class 並重新查找 &lt;code>method_missing&lt;/code>（這也是透過 &lt;code>method_missing&lt;/code> 定義的 ghost method 會比較慢的原因：要爬兩次繼承鏈）。&lt;/p>
 &lt;p>上面就是目前 Ruby 的整個 method 查找過程。&lt;/p>
-&lt;p>整理一下，可以分解成三層：&lt;/p>
+&lt;h4 id="整理一下可以分解成三層">整理一下，可以分解成三層：&lt;/h4>
 &lt;ol>
 &lt;li>class 層：根據 singleton class -&amp;gt; superclass -&amp;gt; superclass 的順序查找。&lt;/li>
 &lt;li>Refinement 層：若有 Refinements，則依照 LIFO 順序查找，最後才是該 class 自己。&lt;/li>
 &lt;li>最內層：prepend -&amp;gt; def -&amp;gt; include。&lt;/li>
 &lt;/ol>
+&lt;h4 id="簡化版本">簡化版本：&lt;/h4>
 &lt;p>一般看到的是沒有 refinements 的版本，而且 refinements 我自己也不常用 XD，拿掉也比較簡單：&lt;/p>
 &lt;ol>
 &lt;li>singleton class -&amp;gt; superclass -&amp;gt; superclass &amp;hellip;&lt;/li>
 &lt;li>prepend -&amp;gt; def -&amp;gt; include&lt;/li>
 &lt;/ol>
 &lt;p>所以一個 instance 的 method 組成，其實就是 &lt;strong>singleton methods + 繼承鏈上的所有 instance methods + refinements 時定義的 methods&lt;/strong>（當然，不包含用 &lt;code>method_missing&lt;/code> 動態處理的 ghost methods）。&lt;/p>
-&lt;p>當呼叫 class method 時，其實也是一樣的，因為在 ruby 中 class 也是個物件，所以也是先找 singleton class，然後隨著繼承鏈上找。&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#75715e"># 因為 refinement 的 method 無法透過 Kernel#methods 取得，因此先忽略&lt;/span>
+&lt;span style="color:#75715e"># 這裡示範了 singleton methods + 繼承鏈上的所有 instance methods = instance 的 methods&lt;/span>
+c&lt;span style="color:#f92672">.&lt;/span>methods &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#f92672">[&lt;/span>c&lt;span style="color:#f92672">.&lt;/span>singleton_class, &lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#66d9ef">Car&lt;/span>&lt;span style="color:#f92672">.&lt;/span>ancestors&lt;span style="color:#f92672">].&lt;/span>map { &lt;span style="color:#f92672">|&lt;/span>a&lt;span style="color:#f92672">|&lt;/span> a&lt;span style="color:#f92672">.&lt;/span>instance_methods(&lt;span style="color:#66d9ef">false&lt;/span>) }&lt;span style="color:#f92672">.&lt;/span>reduce(&lt;span style="color:#e6db74">:+&lt;/span>)
+&lt;span style="color:#75715e"># =&amp;gt; true&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>附帶一提，當呼叫 class method 時，其實也是一樣的，因為在 ruby 中 class 也是個物件，所以也是先找 singleton class，然後隨著繼承鏈上找。&lt;/p>
 &lt;h3 id="例如">例如：&lt;/h3>
 &lt;p>以下面這個 &lt;code>MyClass&lt;/code> 為例：&lt;/p>
 &lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">MyClass&lt;/span> &lt;span style="color:#f92672">&amp;lt;&lt;/span> &lt;span style="color:#66d9ef">ParentClass&lt;/span>
@@ -139,12 +146,12 @@ instance &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9e
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td>&lt;code>my_instance&lt;/code>&lt;/td>
+&lt;td>&lt;code>instance&lt;/code>&lt;/td>
 &lt;td>&lt;code>MyClass&lt;/code>&lt;/td>
 &lt;td>&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>&lt;code>my_instance&lt;/code> 的 singleton class&lt;/td>
+&lt;td>&lt;code>instance&lt;/code> 的 singleton class&lt;/td>
 &lt;td>&lt;code>Class&lt;/code>&lt;/td>
 &lt;td>&lt;code>MyClass&lt;/code>&lt;/td>
 &lt;/tr>
