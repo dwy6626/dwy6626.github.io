@@ -1,7 +1,38 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Ruby 中的物件模型完整介紹與筆記"><meta name=generator content="Hugo 0.80.0"><meta property="og:title" content="Ruby Object Model"><meta name=twitter:title content="Ruby Object Model"><meta property="og:url" content="https://dwye.dev/post/ruby-object-model/"><meta name=twitter:card content="summary"><meta name=twitter:site content="dw's 小站"><meta name=twitter:creator content="De-Wei Ye"><meta name=twitter:description content="前言：Ruby 中的物件導向
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="
+  
+      Ruby 中的物件模型完整介紹與筆記
+    ">
+<meta name=generator content="Hugo 0.86.1">
+<meta property="og:title" content="Ruby Object Model">
+<meta name=twitter:title content="Ruby Object Model">
+<meta property="og:url" content="https://dwye.dev/post/ruby-object-model/">
+<meta name=twitter:card content="summary">
+<meta name=twitter:site content="dw's 小站">
+<meta name=twitter:creator content="De-Wei Ye">
+<meta name=twitter:description content="前言：Ruby 中的物件導向
 Ruby Object Model 是我覺得 Ruby 算是十分特別也是十分重要的概念。
 在一般的物件導向程式語言中，物件是類別的實體，而資料型態是資料型態。一個變數可以儲存一個資料型態，一個變數也可以指向一個物件，但資料型態和物件是兩回事。
-但在 Ruby 中，所有的東西都是物件。"><link rel=preconnect href=https://s.ytimg.com><link rel=preconnect href=https://i.imgur.com><title>Ruby Object Model &#183; dw's 小站</title><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.5/pure-min.css media=screen><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.5/grids-responsive-min.css media=screen><link rel=stylesheet href=https://dwye.dev/css/side-menu.css media=screen><link rel=stylesheet href=https://dwye.dev/css/blackburn.css media=screen><link rel=stylesheet href=https://dwye.dev/css/dw-burn.css media=screen><link rel=stylesheet href=https://dwye.dev/css/dw-menu.css media=screen><link rel=stylesheet href=https://dwye.dev/css/vars.css media=screen><link rel=stylesheet href=https://dwye.dev/css/menu-x.css media=screen><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css><link rel=preconnect href=https://fonts.gstatic.com><link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel=stylesheet type=text/css><script type=text/javascript async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML"></script><script type=text/x-mathjax-config>
+但在 Ruby 中，所有的東西都是物件。">
+<link rel=preconnect href=https://s.ytimg.com>
+<link rel=preconnect href=https://i.imgur.com>
+<title>Ruby Object Model &#183; dw's 小站</title>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.5/pure-min.css media=screen>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.5/grids-responsive-min.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/side-menu.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/blackburn.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/dw-burn.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/dw-menu.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/vars.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/menu-x.css media=screen>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css>
+<link rel=preconnect href=https://fonts.gstatic.com>
+<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel=stylesheet type=text/css>
+<script type=text/javascript async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML"></script>
+<script type=text/x-mathjax-config>
   MathJax.Hub.Config({
     tex2jax: {
       inlineMath: [['$','$']],
@@ -16,20 +47,210 @@ Ruby Object Model 是我覺得 Ruby 算是十分特別也是十分重要的概�
     "HTML-CSS": { linebreaks: { automatic: true } },
           SVG: { linebreaks: { automatic: true } }    
   });
-</script><script type=text/x-mathjax-config>
+</script>
+<script type=text/x-mathjax-config>
   // Fix <code> tags after MathJax finishes running. This is a
   // hack to overcome a shortcoming of Markdown. Discussion at
   // https://github.com/mojombo/jekyll/issues/199
   MathJax.Hub.Queue(() => {
     MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
   });
-</script><link async rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/vs2015.min.css media=screen><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js></script><script defer src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/yaml.min.js></script><script defer src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/vbnet.min.js></script><script>hljs.highlightAll();</script><link rel="shortcut icon" href=https://dwye.dev/img/favicon.ico type=image/x-icon><link rel=stylesheet href=https://dwye.dev/css/color.css media=screen><script src=https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js></script><meta name=google-site-verification content="pC2le32KaKDSGh9V637p5YC81zixbAMyKN3nPqkKscE"><script data-ad-client=ca-pub-3454014140664886 async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script></head><body><div id=layout><a href=#menu class=menu-link id=menuLink aria-label="Go to menu of this website"><s class=bar></s><s class=bar></s></a><div id=menu><a class="pure-menu-heading brand" href=https://dwye.dev/>De-Wei Ye</a><div class=pure-menu><ul class=pure-menu-list><li class=pure-menu-item><a class=pure-menu-link href=https://dwye.dev/about/><i class="fas fa-user-circle fa-fw"></i><span>關於</span></a></li><li class=pure-menu-item><a class=pure-menu-link href=https://dwye.dev/notes/><i class="fas fa-book fa-fw"></i><span>筆記</span></a></li><li class=pure-menu-item><a class=pure-menu-link href=https://dwye.dev/post/><i class="fas fa-list-ul fa-fw"></i><span>文章列表</span></a></li><li class=pure-menu-item><a class=pure-menu-link href=https://dwye.dev/topics/><i class="fas fa-folder fa-fw"></i><span>主題分類</span></a></li><li class=pure-menu-item><a class=pure-menu-link href=https://dwye.dev/tags/><i class="fas fa-tags fa-fw"></i><span>標籤</span></a></li><li class=pure-menu-item><a class=pure-menu-link href=https://dwye.dev/../en/><i class="fas fa-globe-americas fa-fw"></i><span>English</span></a></li></ul></div><div class="pure-menu social"><ul class=pure-menu-list><li class=pure-menu-item><a class=pure-menu-link href=https://linkedin.com/in/dwy6626 rel="me external noopener" target=_blank><i class="fab fa-linkedin fa-fw"></i><span>LinkedIn</span></a></li><li class=pure-menu-item><a class=pure-menu-link href=https://github.com/dwy6626 rel="me external noopener" target=_blank><i class="fab fa-github-square fa-fw"></i><span>GitHub</span></a></li><li class=pure-menu-item><a class=pure-menu-link href=https://leetcode.com/mirror0227 rel="me external noopener" target=_blank><i class="fas fa-laptop-code fa-fw"></i><span>LeetCode</span></a></li></ul></div><div class=copyright-small>Built with <a href=https://gohugo.io/ rel="external noopener" target=_blank>Hugo</a></div><div class=copyright-small>W/ <a href=https://github.com/dwy6626/dw-favored-blackburn rel="external noopener" target=_blank>DW-Favored-Blackburn</a></div><div class=copyright-small>Based on <a href=https://github.com/yoshiharuyamashita/blackburn rel="external noopener" target=_blank>Blackburn</a></div><div class=copyright-small>and <a href=https://purecss.io/ rel="external noopener" target=_blank>Pure CSS</a></div><div class=copyright-small>Icons <a href=https://fontawesome.com rel="external noopener" target=_blank>Font Awesome</a></div><div class=copyright-small><a href=https://dwye.dev/copyright>&copy; 2020. All rights reserved.</a></div></div><div id=main><div class=header><h1>Ruby Object Model</h1><h2>Ruby 中的物件模型完整介紹與筆記</h2></div><div class=aside-container><div id=toc-aside style=display:none><link rel=stylesheet href=https://dwye.dev/css/aside-toc.css media=screen><script src=https://dwye.dev/js/toc.js></script><div class=toc><aside><summary>目錄</summary><div class=toc-item><p><a rel=tag href=#>Ruby Object Model</a></p><nav id=TableOfContents><ul><li><a href=#前言ruby-中的物件導向>前言：Ruby 中的物件導向</a><ul><li><a href=#所有東西都是物件>所有東西都是物件</a></li><li><a href=#所有-functions-都是-methods>所有 Functions 都是 Methods</a></li></ul></li><li><a href=#ruby-object-model>Ruby Object Model</a><ul><li><a href=#instance>Instance</a></li><li><a href=#self>Self</a></li><li><a href=#singleton-class>Singleton Class</a></li><li><a href=#receiver>Receiver</a></li><li><a href=#method-lookup>Method Lookup</a></li><li><a href=#例如>例如：</a></li></ul></li><li><a href=#參考資料>參考資料</a></li></ul></nav></div></aside></div></div></div><div class=content><div class=post-meta><div><li><i class="fa fa-calendar fa-fw"></i><time><span>Jul 17, 2021</span></time></li></div><div><a class=post-taxonomy-topic href=https://dwye.dev/topics/%E6%8A%80%E8%A1%93%E8%A8%98%E9%8C%84><li><i class="fas fa-folder fa-fw"></i><span>技術記錄</span></li></a><a class=post-taxonomy-tag href=https://dwye.dev/tags/ruby><li><i class="fas fa-tag fa-fw"></i><span>Ruby</span></li></a></div></div><div id=toc-top style=display:none><div class=toc><aside><details><summary>目錄</summary><div class=toc-item><nav id=TableOfContents><ul><li><a href=#前言ruby-中的物件導向>前言：Ruby 中的物件導向</a><ul><li><a href=#所有東西都是物件>所有東西都是物件</a></li><li><a href=#所有-functions-都是-methods>所有 Functions 都是 Methods</a></li></ul></li><li><a href=#ruby-object-model>Ruby Object Model</a><ul><li><a href=#instance>Instance</a></li><li><a href=#self>Self</a></li><li><a href=#singleton-class>Singleton Class</a></li><li><a href=#receiver>Receiver</a></li><li><a href=#method-lookup>Method Lookup</a></li><li><a href=#例如>例如：</a></li></ul></li><li><a href=#參考資料>參考資料</a></li></ul></nav></div></details></aside></div></div><h2 id=前言ruby-中的物件導向>前言：Ruby 中的物件導向</h2><p>Ruby Object Model 是我覺得 Ruby 算是十分特別也是十分重要的概念。</p><p>在一般的物件導向程式語言中，物件是類別的實體，而資料型態是資料型態。一個變數可以儲存一個資料型態，一個變數也可以指向一個物件，但資料型態和物件是兩回事。</p><p>但在 Ruby 中，<strong>所有的東西都是物件</strong>。</p><h3 id=所有東西都是物件>所有東西都是物件</h3><p>對，在 Ruby 中，主程序（Main）本身是一個物件，被定義好的 function 是物件，你所知道的資料型態如：整數、浮點、Boolean、字串（Ruby 中沒有字串與字元的分別）等是物件，就連平常代表虛無的 <code>nil</code> 也是一個物件！</p><p>打開 irb 試試看：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ruby data-lang=ruby><span style=color:#ae81ff>3</span><span style=color:#f92672>.</span><span style=color:#ae81ff>0</span><span style=color:#f92672>.</span><span style=color:#ae81ff>1</span> :<span style=color:#ae81ff>001</span> <span style=color:#f92672>&gt;</span> a <span style=color:#f92672>=</span> <span style=color:#66d9ef>nil</span>
+</script>
+<link async rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/vs2015.min.css media=screen>
+<script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js></script>
+<script defer src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/yaml.min.js></script>
+<script defer src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/vbnet.min.js></script>
+<script>hljs.highlightAll()</script>
+<link rel="shortcut icon" href=https://dwye.dev/img/favicon.ico type=image/x-icon>
+<link rel=stylesheet href=https://dwye.dev/css/color.css media=screen>
+<script src=https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js></script>
+<meta name=google-site-verification content="pC2le32KaKDSGh9V637p5YC81zixbAMyKN3nPqkKscE">
+<script data-ad-client=ca-pub-3454014140664886 async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
+</head>
+<body>
+<div id=layout>
+<a href=#menu class=menu-link id=menuLink aria-label="Go to menu of this website">
+<s class=bar></s><s class=bar></s>
+</a>
+<div id=menu>
+<a class="pure-menu-heading brand" href=https://dwye.dev/>De-Wei Ye</a>
+<div class=pure-menu>
+<ul class=pure-menu-list>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/about/><i class="fas fa-user-circle fa-fw"></i><span>關於</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/notes/><i class="fas fa-book fa-fw"></i><span>筆記</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/post/><i class="fas fa-list-ul fa-fw"></i><span>文章列表</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/topics/><i class="fas fa-folder fa-fw"></i><span>主題分類</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/tags/><i class="fas fa-tags fa-fw"></i><span>標籤</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/../en/><i class="fas fa-globe-americas fa-fw"></i><span>English</span></a>
+</li>
+</ul>
+</div>
+<div class="pure-menu social">
+<ul class=pure-menu-list>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://linkedin.com/in/dwy6626 rel="me external noopener" target=_blank><i class="fab fa-linkedin fa-fw"></i><span>LinkedIn</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://github.com/dwy6626 rel="me external noopener" target=_blank><i class="fab fa-github-square fa-fw"></i><span>GitHub</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://leetcode.com/mirror0227 rel="me external noopener" target=_blank><i class="fas fa-laptop-code fa-fw"></i><span>LeetCode</span></a>
+</li>
+</ul>
+</div>
+<div class=copyright-small>
+Built with <a href=https://gohugo.io/ rel="external noopener" target=_blank>Hugo</a>
+</div>
+<div class=copyright-small>
+W/ <a href=https://github.com/dwy6626/dw-favored-blackburn rel="external noopener" target=_blank>DW-Favored-Blackburn</a>
+</div>
+<div class=copyright-small>
+Based on <a href=https://github.com/yoshiharuyamashita/blackburn rel="external noopener" target=_blank>Blackburn</a>
+</div>
+<div class=copyright-small>
+and <a href=https://purecss.io/ rel="external noopener" target=_blank>Pure CSS</a>
+</div>
+<div class=copyright-small>
+Icons <a href=https://fontawesome.com rel="external noopener" target=_blank>Font Awesome</a>
+</div>
+<div class=copyright-small>
+<a href=https://dwye.dev/copyright>
+&copy; 2020. All rights reserved.
+</a>
+</div>
+</div>
+<div id=main>
+<div class=header>
+<h1>
+Ruby Object Model
+</h1>
+<h2>
+Ruby 中的物件模型完整介紹與筆記
+</h2>
+</div>
+<div class=aside-container>
+<div id=toc-aside style=display:none>
+<link rel=stylesheet href=https://dwye.dev/css/aside-toc.css media=screen>
+<script src=https://dwye.dev/js/toc.js></script>
+<div class=toc>
+<aside>
+<summary>目錄</summary>
+<div class=toc-item>
+<p><a rel=tag href=#>Ruby Object Model</a></p>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#前言ruby-中的物件導向>前言：Ruby 中的物件導向</a>
+<ul>
+<li><a href=#所有東西都是物件>所有東西都是物件</a></li>
+<li><a href=#所有-functions-都是-methods>所有 Functions 都是 Methods</a></li>
+</ul>
+</li>
+<li><a href=#ruby-object-model>Ruby Object Model</a>
+<ul>
+<li><a href=#instance>Instance</a></li>
+<li><a href=#self>Self</a></li>
+<li><a href=#singleton-class>Singleton Class</a></li>
+<li><a href=#receiver>Receiver</a></li>
+<li><a href=#method-lookup>Method Lookup</a></li>
+<li><a href=#例如>例如：</a></li>
+</ul>
+</li>
+<li><a href=#參考資料>參考資料</a></li>
+</ul>
+</nav>
+</div>
+</aside>
+</div>
+</div>
+</div>
+<div class=content>
+<div class=post-meta>
+<div>
+<li>
+<i class="fa fa-calendar fa-fw"></i>
+<time>
+<span>
+Jul 17, 2021
+</span>
+</time>
+</li>
+</div>
+<div>
+<a class=post-taxonomy-topic href=https://dwye.dev/topics/%E6%8A%80%E8%A1%93%E8%A8%98%E9%8C%84>
+<li>
+<i class="fas fa-folder fa-fw"></i>
+<span>技術記錄</span>
+</li>
+</a>
+<a class=post-taxonomy-tag href=https://dwye.dev/tags/ruby>
+<li>
+<i class="fas fa-tag fa-fw"></i>
+<span>Ruby</span>
+</li>
+</a>
+</div>
+</div>
+<div id=toc-top style=display:none>
+<div class=toc>
+<aside>
+<details>
+<summary>目錄</summary>
+<div class=toc-item>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#前言ruby-中的物件導向>前言：Ruby 中的物件導向</a>
+<ul>
+<li><a href=#所有東西都是物件>所有東西都是物件</a></li>
+<li><a href=#所有-functions-都是-methods>所有 Functions 都是 Methods</a></li>
+</ul>
+</li>
+<li><a href=#ruby-object-model>Ruby Object Model</a>
+<ul>
+<li><a href=#instance>Instance</a></li>
+<li><a href=#self>Self</a></li>
+<li><a href=#singleton-class>Singleton Class</a></li>
+<li><a href=#receiver>Receiver</a></li>
+<li><a href=#method-lookup>Method Lookup</a></li>
+<li><a href=#例如>例如：</a></li>
+</ul>
+</li>
+<li><a href=#參考資料>參考資料</a></li>
+</ul>
+</nav>
+</div>
+</details>
+</aside>
+</div>
+</div>
+<h2 id=前言ruby-中的物件導向>前言：Ruby 中的物件導向</h2>
+<p>Ruby Object Model 是我覺得 Ruby 算是十分特別也是十分重要的概念。</p>
+<p>在一般的物件導向程式語言中，物件是類別的實體，而資料型態是資料型態。一個變數可以儲存一個資料型態，一個變數也可以指向一個物件，但資料型態和物件是兩回事。</p>
+<p>但在 Ruby 中，<strong>所有的東西都是物件</strong>。</p>
+<h3 id=所有東西都是物件>所有東西都是物件</h3>
+<p>對，在 Ruby 中，主程序（Main）本身是一個物件，被定義好的 function 是物件，你所知道的資料型態如：整數、浮點、Boolean、字串（Ruby 中沒有字串與字元的分別）等是物件，就連平常代表虛無的 <code>nil</code> 也是一個物件！</p>
+<p>打開 irb 試試看：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ruby data-lang=ruby><span style=color:#ae81ff>3</span><span style=color:#f92672>.</span><span style=color:#ae81ff>0</span><span style=color:#f92672>.</span><span style=color:#ae81ff>1</span> :<span style=color:#ae81ff>001</span> <span style=color:#f92672>&gt;</span> a <span style=color:#f92672>=</span> <span style=color:#66d9ef>nil</span>
  <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>nil</span> 
 <span style=color:#ae81ff>3</span><span style=color:#f92672>.</span><span style=color:#ae81ff>0</span><span style=color:#f92672>.</span><span style=color:#ae81ff>1</span> :<span style=color:#ae81ff>002</span> <span style=color:#f92672>&gt;</span> a<span style=color:#f92672>.</span>nil?
  <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>true</span> 
 <span style=color:#ae81ff>3</span><span style=color:#f92672>.</span><span style=color:#ae81ff>0</span><span style=color:#f92672>.</span><span style=color:#ae81ff>1</span> :<span style=color:#ae81ff>003</span> <span style=color:#f92672>&gt;</span> <span style=color:#66d9ef>nil</span><span style=color:#f92672>.</span>class
  <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>NilClass</span> 
-</code></pre></div><p>因為 Ruby 中 <code>nil</code> 是一個 <code>NilClass</code> 的 instance（也是唯一的 instance，不能 new 一個出來），所以有 <code>nil?</code> 這種方法，可以問一個變數是不是 <code>nil</code>，夠神奇吧？<br>這個語法糖相當於其他語言的 <code>a == nil</code> 或是 <code>a is None</code>，但變成 method 的形式讀起來更直觀。</p><h3 id=所有-functions-都是-methods>所有 Functions 都是 Methods</h3><p>因為所有東西都是物件，在主程序以 <code>def</code> 定義的 function，其實也只是掛在 Main object 下的 private method:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ruby data-lang=ruby><span style=color:#ae81ff>3</span><span style=color:#f92672>.</span><span style=color:#ae81ff>0</span><span style=color:#f92672>.</span><span style=color:#ae81ff>1</span> :<span style=color:#ae81ff>001</span> <span style=color:#f92672>&gt;</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>my_custom_method</span>
+</code></pre></div><p>因為 Ruby 中 <code>nil</code> 是一個 <code>NilClass</code> 的 instance（也是唯一的 instance，不能 new 一個出來），所以有 <code>nil?</code> 這種方法，可以問一個變數是不是 <code>nil</code>，夠神奇吧？<br>
+這個語法糖相當於其他語言的 <code>a == nil</code> 或是 <code>a is None</code>，但變成 method 的形式讀起來更直觀。</p>
+<h3 id=所有-functions-都是-methods>所有 Functions 都是 Methods</h3>
+<p>因為所有東西都是物件，在主程序以 <code>def</code> 定義的 function，其實也只是掛在 Main object 下的 private method:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ruby data-lang=ruby><span style=color:#ae81ff>3</span><span style=color:#f92672>.</span><span style=color:#ae81ff>0</span><span style=color:#f92672>.</span><span style=color:#ae81ff>1</span> :<span style=color:#ae81ff>001</span> <span style=color:#f92672>&gt;</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>my_custom_method</span>
 <span style=color:#ae81ff>3</span><span style=color:#f92672>.</span><span style=color:#ae81ff>0</span><span style=color:#f92672>.</span><span style=color:#ae81ff>1</span> :<span style=color:#ae81ff>002</span> <span style=color:#f92672>&gt;</span>   puts <span style=color:#e6db74>&#39;hello&#39;</span>
 <span style=color:#ae81ff>3</span><span style=color:#f92672>.</span><span style=color:#ae81ff>0</span><span style=color:#f92672>.</span><span style=color:#ae81ff>1</span> :<span style=color:#ae81ff>003</span> <span style=color:#f92672>&gt;</span> <span style=color:#66d9ef>end</span>
  <span style=color:#f92672>=&gt;</span> <span style=color:#e6db74>:my_custom_method</span>
@@ -38,7 +259,20 @@ Ruby Object Model 是我覺得 Ruby 算是十分特別也是十分重要的概�
 <span style=color:#75715e># 這邊的 self 其實是可以省略的，但為了強調我們是在存取 `main` 這個 object，先保留了：</span>
 <span style=color:#ae81ff>3</span><span style=color:#f92672>.</span><span style=color:#ae81ff>0</span><span style=color:#f92672>.</span><span style=color:#ae81ff>1</span> :<span style=color:#ae81ff>004</span> <span style=color:#f92672>&gt;</span> self<span style=color:#f92672>.</span>private_methods<span style=color:#f92672>.</span>include? <span style=color:#e6db74>:my_custom_method</span>
  <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>true</span>
-</code></pre></div><p>而 Main object 已經在使用了，還可以後續再寫入方法，這也是 ruby 的特色之一。</p><h2 id=ruby-object-model>Ruby Object Model</h2><p>Ruby 的物件模型，也就是 Ruby 中物件導向的運作機制。</p><h3 id=instance>Instance</h3><p>在 Ruby 中，可以利用 <code>Class#new</code> 幫一個類別建立新的 instance，這時 instance 內儲存的資訊有：</p><ul><li>instance_variable</li><li>class</li><li>object_id</li></ul><p>Instance methods 不需要存在每個物件裡，只需要存在 class 並查找 instance methods 就好。</p><h3 id=self>Self</h3><p>在 ruby 中，永遠都會有一個代表「現在的物件」，可以透過 <code>self</code> 取得：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ruby data-lang=ruby>puts self
+</code></pre></div><p>而 Main object 已經在使用了，還可以後續再寫入方法，這也是 ruby 的特色之一。</p>
+<h2 id=ruby-object-model>Ruby Object Model</h2>
+<p>Ruby 的物件模型，也就是 Ruby 中物件導向的運作機制。</p>
+<h3 id=instance>Instance</h3>
+<p>在 Ruby 中，可以利用 <code>Class#new</code> 幫一個類別建立新的 instance，這時 instance 內儲存的資訊有：</p>
+<ul>
+<li>instance_variable</li>
+<li>class</li>
+<li>object_id</li>
+</ul>
+<p>Instance methods 不需要存在每個物件裡，只需要存在 class 並查找 instance methods 就好。</p>
+<h3 id=self>Self</h3>
+<p>在 ruby 中，永遠都會有一個代表「現在的物件」，可以透過 <code>self</code> 取得：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ruby data-lang=ruby>puts self
 <span style=color:#75715e># =&gt; main，在最外層，self 代表 main object</span>
 
 <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Car</span>
@@ -52,7 +286,13 @@ Ruby Object Model 是我覺得 Ruby 算是十分特別也是十分重要的概�
 
 c <span style=color:#f92672>=</span> <span style=color:#66d9ef>Car</span><span style=color:#f92672>.</span>new
 c<span style=color:#f92672>.</span>run <span style=color:#75715e># =&gt; #&lt;Car:0x00007fe17f8eeac8&gt; run! pupu!</span>
-</code></pre></div><p>而這邊還有個有趣的觀察：<br>在 ruby 中，定義 class 是當下就會執行，而 def 定義 method 則是使用時動態執行。</p><h3 id=singleton-class>Singleton Class</h3><p>Singleton Class 是跟著每個 ruby 物件自動產生，對於每個物件是<strong>獨一無二</strong>的 Class。<br>會有這樣的設計，要回到剛剛說的 ruby 的物件不會儲存 instance method 的特性。</p><p>因為物件不存 method，但 ruby 又有個特色，可以為現有的物件定義新方法：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ruby data-lang=ruby><span style=color:#66d9ef>class</span> <span style=color:#f92672>&lt;&lt;</span> c
+</code></pre></div><p>而這邊還有個有趣的觀察：<br>
+在 ruby 中，定義 class 是當下就會執行，而 def 定義 method 則是使用時動態執行。</p>
+<h3 id=singleton-class>Singleton Class</h3>
+<p>Singleton Class 是跟著每個 ruby 物件自動產生，對於每個物件是<strong>獨一無二</strong>的 Class。<br>
+會有這樣的設計，要回到剛剛說的 ruby 的物件不會儲存 instance method 的特性。</p>
+<p>因為物件不存 method，但 ruby 又有個特色，可以為現有的物件定義新方法：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ruby data-lang=ruby><span style=color:#66d9ef>class</span> <span style=color:#f92672>&lt;&lt;</span> c
   <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>run_twice</span>
     run
     run
@@ -61,13 +301,24 @@ c<span style=color:#f92672>.</span>run <span style=color:#75715e># =&gt; #&lt;Ca
 c<span style=color:#f92672>.</span>run_twice 
 <span style=color:#75715e># #&lt;Car:0x00007fe17f8eeac8&gt; run! pupu!</span>
 <span style=color:#75715e># #&lt;Car:0x00007fe17f8eeac8&gt; run! pupu!</span>
-</code></pre></div><p>這時候這個 <code>run_twice</code> 方法是只有 <code>c</code> 這個物件擁有，其他的 <code>Car</code> 的 instance 是不會擁有的，因此 <code>run_twice</code> 不能被放在 <code>Car</code> 這個 class 裡。</p><p>在 ruby 中，這種單一物件特有的 method，就叫做 singleton method：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ruby data-lang=ruby>c<span style=color:#f92672>.</span>singleton_methods
+</code></pre></div><p>這時候這個 <code>run_twice</code> 方法是只有 <code>c</code> 這個物件擁有，其他的 <code>Car</code> 的 instance 是不會擁有的，因此 <code>run_twice</code> 不能被放在 <code>Car</code> 這個 class 裡。</p>
+<p>在 ruby 中，這種單一物件特有的 method，就叫做 singleton method：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ruby data-lang=ruby>c<span style=color:#f92672>.</span>singleton_methods
 <span style=color:#75715e># =&gt; [:run_twice]</span>
-</code></pre></div><p>而 singleton class 就是拿來儲存 singleton method 用的。</p><p>因為 singleton class 是獨一無二的，所以有幾個限制：</p><ul><li>不能建立新的 instance（畢竟要是獨一無二，才叫 singleton）</li><li>不能被繼承（但這個有例外，就是 class 的 singleton class，會自動跟著 class 自己產生繼承鏈（見下方），只是仍然不能手動去繼承他，不然會扔出 <code>TypeError</code>）</li></ul><p>對於一般 object （並不是 <code>Class</code> 的 instance）來說，每個物件都有 singleton class，因此會在後面加上物件本身的識別，並繼承自他的 class：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ruby data-lang=ruby>c<span style=color:#f92672>.</span>singleton_class
+</code></pre></div><p>而 singleton class 就是拿來儲存 singleton method 用的。</p>
+<p>因為 singleton class 是獨一無二的，所以有幾個限制：</p>
+<ul>
+<li>不能建立新的 instance（畢竟要是獨一無二，才叫 singleton）</li>
+<li>不能被繼承（但這個有例外，就是 class 的 singleton class，會自動跟著 class 自己產生繼承鏈（見下方），只是仍然不能手動去繼承他，不然會扔出 <code>TypeError</code>）</li>
+</ul>
+<p>對於一般 object （並不是 <code>Class</code> 的 instance）來說，每個物件都有 singleton class，因此會在後面加上物件本身的識別，並繼承自他的 class：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ruby data-lang=ruby>c<span style=color:#f92672>.</span>singleton_class
 <span style=color:#75715e># =&gt; #&lt;Class:#&lt;Car:0x00007fe17f8eeac8&gt;&gt;</span>
 c<span style=color:#f92672>.</span>singleton_class<span style=color:#f92672>.</span>superclass <span style=color:#f92672>==</span> c<span style=color:#f92672>.</span>class
 <span style=color:#75715e># =&gt; true</span>
-</code></pre></div><p>對於一般 class（<code>Class</code> 的 instance），因為 class 本身為為一，所以 singleton class 也是唯一的，並繼承自其 superclass 的 singleton class。<br>也就是 class 的 singleton class 們是形成一條繼承鏈，直到最後繼承自 Class。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ruby data-lang=ruby><span style=color:#66d9ef>Car</span><span style=color:#f92672>.</span>singleton_class<span style=color:#f92672>.</span>superclass <span style=color:#f92672>==</span> <span style=color:#66d9ef>Car</span><span style=color:#f92672>.</span>class
+</code></pre></div><p>對於一般 class（<code>Class</code> 的 instance），因為 class 本身為為一，所以 singleton class 也是唯一的，並繼承自其 superclass 的 singleton class。<br>
+也就是 class 的 singleton class 們是形成一條繼承鏈，直到最後繼承自 Class。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ruby data-lang=ruby><span style=color:#66d9ef>Car</span><span style=color:#f92672>.</span>singleton_class<span style=color:#f92672>.</span>superclass <span style=color:#f92672>==</span> <span style=color:#66d9ef>Car</span><span style=color:#f92672>.</span>class
 <span style=color:#75715e># =&gt; false</span>
 
 <span style=color:#66d9ef>Car</span><span style=color:#f92672>.</span>superclass<span style=color:#f92672>.</span>singleton_class <span style=color:#f92672>==</span> <span style=color:#66d9ef>Car</span><span style=color:#f92672>.</span>singleton_class<span style=color:#f92672>.</span>superclass
@@ -76,15 +327,98 @@ c<span style=color:#f92672>.</span>singleton_class<span style=color:#f92672>.</s
 <span style=color:#66d9ef>Car</span><span style=color:#f92672>.</span>singleton_class<span style=color:#f92672>.</span>ancestors
 <span style=color:#75715e># =&gt; [#&lt;Class:Car&gt;, #&lt;Class:Object&gt;, #&lt;Class:BasicObject&gt;,</span>
 <span style=color:#75715e>#     Class, Module, Object, Kernel, BasicObject]</span>
-</code></pre></div><h3 id=receiver>Receiver</h3><p>當我們呼叫一個 method，會需要有一個 receiver，使用 <code>receiver.method_name</code> 的形式調用 method。<br>以上面 <code>c.run</code> 為例，這時的 receiver 就是 <code>c</code>。<br>如果沒有指定 receiver，預設會使用 <code>self</code>，也就是當下的物件。</p><p>而 Ruby 的 <code>private</code> method 的定義，即是<strong>不能明確指定 receiver</strong>，換句話說，就是只能透過 <code>self</code> 來呼叫（當然如果你指定成 <code>self</code> 還是會噴 error 的喔 XD）。<br>不過 Ruby 這麼自由的語言，當然可以繞過去，透過 <code>receiver.send(:method_name)</code> 的方式即可呼叫 private method。</p><p>Ruby 的哲學就是把給開發者最大的自由，當然也需要開發者謹慎的使用。</p><h3 id=method-lookup>Method Lookup</h3><p>當我們呼叫一個物件的 method，ruby 會去看該物件的 class 有沒有該方法定義。<br>而 class 的查找順序為：</p><ol><li>Singleton class</li><li>繼承鏈中的 class 一路上找 (<code>Class#ancestors</code> 可以拿出繼承鏈，不過會把 Module 也包含在內)</li></ol><p>而對於每個 class <code>C</code>而言，再以以下順序查找：</p><ol><li><a href=https://ruby-doc.org/core-3.0.2/doc/syntax/refinements_rdoc.html>Refinements</a>，LIFO（後啟用，優先查找）</li><li>prepended module</li><li>自身定義的 methods</li><li>included module</li></ol><p>而每個 Refinements 內部也會依照 prepend -> 直接定義 -> include 的順序來查找。</p><p>如果到了繼承鏈底部，都沒有找到該方法，會回到 singleton class 並重新查找 <code>method_missing</code>（這也是透過 <code>method_missing</code> 定義的 ghost method 會比較慢的原因：要爬兩次繼承鏈）。</p><p>上面就是目前 Ruby 的整個 method 查找過程。</p><h4 id=整理一下可以分解成三層>整理一下，可以分解成三層：</h4><ol><li>class 層：根據 singleton class -> superclass -> superclass 的順序查找。</li><li>Refinement 層：若有 Refinements，則依照 LIFO 順序查找，最後才是該 class 自己。</li><li>最內層：prepend -> def -> include。</li></ol><h4 id=簡化版本>簡化版本：</h4><p>一般看到的是沒有 refinements 的版本，而且 refinements 我自己也不常用 XD，拿掉也比較簡單：</p><ol><li>singleton class -> superclass -> superclass &mldr;</li><li>prepend -> def -> include</li></ol><p>所以一個 instance 的 method 組成，其實就是 <strong>singleton methods + 繼承鏈上的所有 instance methods + refinements 時定義的 methods</strong>（當然，不包含用 <code>method_missing</code> 動態處理的 ghost methods）。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ruby data-lang=ruby><span style=color:#75715e># 因為 refinement 的 method 無法透過 Kernel#methods 取得，因此先忽略</span>
+</code></pre></div><h3 id=receiver>Receiver</h3>
+<p>當我們呼叫一個 method，會需要有一個 receiver，使用 <code>receiver.method_name</code> 的形式調用 method。<br>
+以上面 <code>c.run</code> 為例，這時的 receiver 就是 <code>c</code>。<br>
+如果沒有指定 receiver，預設會使用 <code>self</code>，也就是當下的物件。</p>
+<p>而 Ruby 的 <code>private</code> method 的定義，即是<strong>不能明確指定 receiver</strong>，換句話說，就是只能透過 <code>self</code> 來呼叫（當然如果你指定成 <code>self</code> 還是會噴 error 的喔 XD）。<br>
+不過 Ruby 這麼自由的語言，當然可以繞過去，透過 <code>receiver.send(:method_name)</code> 的方式即可呼叫 private method。</p>
+<p>Ruby 的哲學就是把給開發者最大的自由，當然也需要開發者謹慎的使用。</p>
+<h3 id=method-lookup>Method Lookup</h3>
+<p>當我們呼叫一個物件的 method，ruby 會去看該物件的 class 有沒有該方法定義。<br>
+而 class 的查找順序為：</p>
+<ol>
+<li>Singleton class</li>
+<li>繼承鏈中的 class 一路上找 (<code>Class#ancestors</code> 可以拿出繼承鏈，不過會把 Module 也包含在內)</li>
+</ol>
+<p>而對於每個 class <code>C</code>而言，再以以下順序查找：</p>
+<ol>
+<li><a href=https://ruby-doc.org/core-3.0.2/doc/syntax/refinements_rdoc.html>Refinements</a>，LIFO（後啟用，優先查找）</li>
+<li>prepended module</li>
+<li>自身定義的 methods</li>
+<li>included module</li>
+</ol>
+<p>而每個 Refinements 內部也會依照 prepend -> 直接定義 -> include 的順序來查找。</p>
+<p>如果到了繼承鏈底部，都沒有找到該方法，會回到 singleton class 並重新查找 <code>method_missing</code>（這也是透過 <code>method_missing</code> 定義的 ghost method 會比較慢的原因：要爬兩次繼承鏈）。</p>
+<p>上面就是目前 Ruby 的整個 method 查找過程。</p>
+<h4 id=整理一下可以分解成三層>整理一下，可以分解成三層：</h4>
+<ol>
+<li>class 層：根據 singleton class -> superclass -> superclass 的順序查找。</li>
+<li>Refinement 層：若有 Refinements，則依照 LIFO 順序查找，最後才是該 class 自己。</li>
+<li>最內層：prepend -> def -> include。</li>
+</ol>
+<h4 id=簡化版本>簡化版本：</h4>
+<p>一般看到的是沒有 refinements 的版本，而且 refinements 我自己也不常用 XD，拿掉也比較簡單：</p>
+<ol>
+<li>singleton class -> superclass -> superclass &mldr;</li>
+<li>prepend -> def -> include</li>
+</ol>
+<p>所以一個 instance 的 method 組成，其實就是 <strong>singleton methods + 繼承鏈上的所有 instance methods + refinements 時定義的 methods</strong>（當然，不包含用 <code>method_missing</code> 動態處理的 ghost methods）。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ruby data-lang=ruby><span style=color:#75715e># 因為 refinement 的 method 無法透過 Kernel#methods 取得，因此先忽略</span>
 <span style=color:#75715e># 這裡示範了 singleton methods + 繼承鏈上的所有 instance methods = instance 的 methods</span>
 c<span style=color:#f92672>.</span>methods <span style=color:#f92672>==</span> <span style=color:#f92672>[</span>c<span style=color:#f92672>.</span>singleton_class, <span style=color:#f92672>*</span><span style=color:#66d9ef>Car</span><span style=color:#f92672>.</span>ancestors<span style=color:#f92672>].</span>map { <span style=color:#f92672>|</span>a<span style=color:#f92672>|</span> a<span style=color:#f92672>.</span>instance_methods(<span style=color:#66d9ef>false</span>) }<span style=color:#f92672>.</span>reduce(<span style=color:#e6db74>:+</span>)
 <span style=color:#75715e># =&gt; true</span>
-</code></pre></div><p>附帶一提，當呼叫 class method 時，其實也是一樣的，因為在 ruby 中 class 也是個物件，所以也是先找 singleton class，然後隨著繼承鏈上找。</p><h3 id=例如>例如：</h3><p>以下面這個 <code>MyClass</code> 為例：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ruby data-lang=ruby><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MyClass</span> <span style=color:#f92672>&lt;</span> <span style=color:#66d9ef>ParentClass</span>
+</code></pre></div><p>附帶一提，當呼叫 class method 時，其實也是一樣的，因為在 ruby 中 class 也是個物件，所以也是先找 singleton class，然後隨著繼承鏈上找。</p>
+<h3 id=例如>例如：</h3>
+<p>以下面這個 <code>MyClass</code> 為例：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ruby data-lang=ruby><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MyClass</span> <span style=color:#f92672>&lt;</span> <span style=color:#66d9ef>ParentClass</span>
 <span style=color:#66d9ef>end</span>
 
 instance <span style=color:#f92672>=</span> <span style=color:#66d9ef>MyClass</span><span style=color:#f92672>.</span>new
-</code></pre></div><p>class 與 superclass 分別為：</p><table><thead><tr><th>Name</th><th>Class</th><th>Superclass</th></tr></thead><tbody><tr><td><code>instance</code></td><td><code>MyClass</code></td><td></td></tr><tr><td><code>instance</code> 的 singleton class</td><td><code>Class</code></td><td><code>MyClass</code></td></tr><tr><td><code>MyClass</code></td><td><code>Class</code></td><td><code>ParentClass</code></td></tr><tr><td><code>ParentClass</code></td><td><code>Class</code></td><td><code>Object</code></td></tr><tr><td><code>Object</code></td><td><code>Class</code></td><td><code>BasicObject</code></td></tr><tr><td><code>BasicObject</code></td><td><code>Class</code></td><td><code>nil</code></td></tr></tbody></table><p>畫成圖：</p><pre><code>                BasicObject
+</code></pre></div><p>class 與 superclass 分別為：</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Class</th>
+<th>Superclass</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>instance</code></td>
+<td><code>MyClass</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>instance</code> 的 singleton class</td>
+<td><code>Class</code></td>
+<td><code>MyClass</code></td>
+</tr>
+<tr>
+<td><code>MyClass</code></td>
+<td><code>Class</code></td>
+<td><code>ParentClass</code></td>
+</tr>
+<tr>
+<td><code>ParentClass</code></td>
+<td><code>Class</code></td>
+<td><code>Object</code></td>
+</tr>
+<tr>
+<td><code>Object</code></td>
+<td><code>Class</code></td>
+<td><code>BasicObject</code></td>
+</tr>
+<tr>
+<td><code>BasicObject</code></td>
+<td><code>Class</code></td>
+<td><code>nil</code></td>
+</tr>
+</tbody>
+</table>
+<p>畫成圖：</p>
+<pre><code>                BasicObject
                     ^
                     |
                 Object
@@ -97,7 +431,50 @@ instance <span style=color:#f92672>=</span> <span style=color:#66d9ef>MyClass</s
                     ^
                     |
 instance  -&gt;  singelton_class
-</code></pre><p>（參考自 <a href=https://gist.github.com/damien-roche/351bf4e7991449714533#one-more-step>https://gist.github.com/damien-roche/351bf4e7991449714533#one-more-step</a> 的圖並小修改）</p><p>所以有個 method lookup 的口訣是「往右，然後一直往上」，其實就是：</p><ul><li>往右：instance 的 singleton_class</li><li>往上：superclass -> superclass &mldr;</li></ul><h2 id=參考資料>參考資料</h2><ul><li>Metaprogramming Ruby 2, Paolo Perrotta</li><li>我同事 Anthony 大神的 Metaprogramming Ruby 筆記，感謝他 XD</li><li><a href=https://stackoverflow.com/questions/23848667/>Ruby method lookup path for an object</a></li><li><a href=https://gist.github.com/damien-roche/351bf4e7991449714533>A Primer on Ruby Method Lookup</a></li></ul><div class=copyright>本文原創部分採用
+</code></pre><p>（參考自 <a href=https://gist.github.com/damien-roche/351bf4e7991449714533#one-more-step>https://gist.github.com/damien-roche/351bf4e7991449714533#one-more-step</a> 的圖並小修改）</p>
+<p>所以有個 method lookup 的口訣是「往右，然後一直往上」，其實就是：</p>
+<ul>
+<li>往右：instance 的 singleton_class</li>
+<li>往上：superclass -> superclass &mldr;</li>
+</ul>
+<h2 id=參考資料>參考資料</h2>
+<ul>
+<li>Metaprogramming Ruby 2, Paolo Perrotta</li>
+<li>我同事 Anthony 大神的 Metaprogramming Ruby 筆記，感謝他 XD</li>
+<li><a href=https://stackoverflow.com/questions/23848667/>Ruby method lookup path for an object</a></li>
+<li><a href=https://gist.github.com/damien-roche/351bf4e7991449714533>A Primer on Ruby Method Lookup</a></li>
+</ul>
+<div class=copyright>
+本文原創部分採用
 <a rel=license href=http://creativecommons.org/licenses/by-nc-nd/4.0/>創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款</a>
-授權。</div><div class="prev-next-post pure-g"><div class=pure-u-1-24 style=text-align:left><a href=https://dwye.dev/post/sao-kirito-aov-2/><i class="fa fa-chevron-left"></i></a></div><div class=pure-u-10-24><nav class=prev><a href=https://dwye.dev/post/sao-kirito-aov-2/>傳說對決 桐人語音台詞 來源對照（第二彈）</a></nav></div><div class=pure-u-2-24>&nbsp;</div><div class=pure-u-10-24></div><div class=pure-u-1-24 style=text-align:right></div></div><div id=disqus_thread></div><script type=text/javascript>(function(){if(window.location.hostname=="localhost")
-return;var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;var disqus_shortname='dwy6626';dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=http://disqus.com/ class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div></div></div><script src=https://dwye.dev/js/ui.js></script><script src=https://dwye.dev/js/menus.js></script><script>if(window.location.hostname!="localhost"){(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-132034008-1','auto');ga('send','pageview');}</script></body></html>
+授權。
+</div>
+<div class="prev-next-post pure-g">
+<div class=pure-u-1-24 style=text-align:left>
+<a href=https://dwye.dev/post/sao-kirito-aov-2/><i class="fa fa-chevron-left"></i></a>
+</div>
+<div class=pure-u-10-24>
+<nav class=prev>
+<a href=https://dwye.dev/post/sao-kirito-aov-2/>傳說對決 桐人語音台詞 來源對照（第二彈）</a>
+</nav>
+</div>
+<div class=pure-u-2-24>
+&nbsp;
+</div>
+<div class=pure-u-10-24>
+</div>
+<div class=pure-u-1-24 style=text-align:right>
+</div>
+</div>
+<div id=disqus_thread></div>
+<script type=text/javascript>(function(){var a,b;if(window.location.hostname=="localhost")return;a=document.createElement('script'),a.type='text/javascript',a.async=!0,b='dwy6626',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+<a href=http://disqus.com/ class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
+</div>
+</div>
+</div>
+<script src=https://dwye.dev/js/ui.js></script>
+<script src=https://dwye.dev/js/menus.js></script>
+<script>window.location.hostname!="localhost"&&(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-132034008-1','auto'),ga('send','pageview'))</script>
+</body>
+</html>

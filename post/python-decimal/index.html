@@ -1,5 +1,36 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="以費氏數列公式解為例"><meta name=generator content="Hugo 0.80.0"><meta property="og:title" content="使用 Decimal 提高浮點運算精確度"><meta name=twitter:title content="使用 Decimal 提高浮點運算精確度"><meta property="og:url" content="https://dwye.dev/post/python-decimal/"><meta name=twitter:card content="summary"><meta name=twitter:site content="dw's 小站"><meta name=twitter:creator content="De-Wei Ye"><meta name=twitter:description content="在第四篇提到費氏數列的公式解會遇到浮點數問題，只能精準算到 122 位。因為浮點數是利用二進位的小數來做儲存，對於非二進位的數字會有誤差。而且其儲存位數有上限，對於無理數的運算，超過一定的大小就會出現精確度問題。
-所以這篇就要來簡單使用 Python 內建的 Decimal module 來拉高浮點數運算的精確度。"><link rel=preconnect href=https://s.ytimg.com><link rel=preconnect href=https://i.imgur.com><title>使用 Decimal 提高浮點運算精確度 &#183; dw's 小站</title><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.5/pure-min.css media=screen><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.5/grids-responsive-min.css media=screen><link rel=stylesheet href=https://dwye.dev/css/side-menu.css media=screen><link rel=stylesheet href=https://dwye.dev/css/blackburn.css media=screen><link rel=stylesheet href=https://dwye.dev/css/dw-burn.css media=screen><link rel=stylesheet href=https://dwye.dev/css/dw-menu.css media=screen><link rel=stylesheet href=https://dwye.dev/css/vars.css media=screen><link rel=stylesheet href=https://dwye.dev/css/menu-x.css media=screen><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css><link rel=preconnect href=https://fonts.gstatic.com><link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel=stylesheet type=text/css><script type=text/javascript async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML"></script><script type=text/x-mathjax-config>
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="
+  
+      以費氏數列公式解為例
+    ">
+<meta name=generator content="Hugo 0.86.1">
+<meta property="og:title" content="使用 Decimal 提高浮點運算精確度">
+<meta name=twitter:title content="使用 Decimal 提高浮點運算精確度">
+<meta property="og:url" content="https://dwye.dev/post/python-decimal/">
+<meta name=twitter:card content="summary">
+<meta name=twitter:site content="dw's 小站">
+<meta name=twitter:creator content="De-Wei Ye">
+<meta name=twitter:description content="在第四篇提到費氏數列的公式解會遇到浮點數問題，只能精準算到 122 位。因為浮點數是利用二進位的小數來做儲存，對於非二進位的數字會有誤差。而且其儲存位數有上限，對於無理數的運算，超過一定的大小就會出現精確度問題。
+所以這篇就要來簡單使用 Python 內建的 Decimal module 來拉高浮點數運算的精確度。">
+<link rel=preconnect href=https://s.ytimg.com>
+<link rel=preconnect href=https://i.imgur.com>
+<title>使用 Decimal 提高浮點運算精確度 &#183; dw's 小站</title>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.5/pure-min.css media=screen>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.5/grids-responsive-min.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/side-menu.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/blackburn.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/dw-burn.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/dw-menu.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/vars.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/menu-x.css media=screen>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css>
+<link rel=preconnect href=https://fonts.gstatic.com>
+<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel=stylesheet type=text/css>
+<script type=text/javascript async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML"></script>
+<script type=text/x-mathjax-config>
   MathJax.Hub.Config({
     tex2jax: {
       inlineMath: [['$','$']],
@@ -14,48 +45,288 @@
     "HTML-CSS": { linebreaks: { automatic: true } },
           SVG: { linebreaks: { automatic: true } }    
   });
-</script><script type=text/x-mathjax-config>
+</script>
+<script type=text/x-mathjax-config>
   // Fix <code> tags after MathJax finishes running. This is a
   // hack to overcome a shortcoming of Markdown. Discussion at
   // https://github.com/mojombo/jekyll/issues/199
   MathJax.Hub.Queue(() => {
     MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
   });
-</script><link async rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/vs2015.min.css media=screen><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js></script><script defer src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/yaml.min.js></script><script defer src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/vbnet.min.js></script><script>hljs.highlightAll();</script><link rel="shortcut icon" href=https://dwye.dev/img/favicon.ico type=image/x-icon><link rel=stylesheet href=https://dwye.dev/css/color.css media=screen><script src=https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js></script><meta name=google-site-verification content="pC2le32KaKDSGh9V637p5YC81zixbAMyKN3nPqkKscE"><script data-ad-client=ca-pub-3454014140664886 async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script></head><body><div id=layout><a href=#menu class=menu-link id=menuLink aria-label="Go to menu of this website"><s class=bar></s><s class=bar></s></a><div id=menu><a class="pure-menu-heading brand" href=https://dwye.dev/>De-Wei Ye</a><div class=pure-menu><ul class=pure-menu-list><li class=pure-menu-item><a class=pure-menu-link href=https://dwye.dev/about/><i class="fas fa-user-circle fa-fw"></i><span>關於</span></a></li><li class=pure-menu-item><a class=pure-menu-link href=https://dwye.dev/notes/><i class="fas fa-book fa-fw"></i><span>筆記</span></a></li><li class=pure-menu-item><a class=pure-menu-link href=https://dwye.dev/post/><i class="fas fa-list-ul fa-fw"></i><span>文章列表</span></a></li><li class=pure-menu-item><a class=pure-menu-link href=https://dwye.dev/topics/><i class="fas fa-folder fa-fw"></i><span>主題分類</span></a></li><li class=pure-menu-item><a class=pure-menu-link href=https://dwye.dev/tags/><i class="fas fa-tags fa-fw"></i><span>標籤</span></a></li><li class=pure-menu-item><a class=pure-menu-link href=https://dwye.dev/../en/><i class="fas fa-globe-americas fa-fw"></i><span>English</span></a></li></ul></div><div class="pure-menu social"><ul class=pure-menu-list><li class=pure-menu-item><a class=pure-menu-link href=https://linkedin.com/in/dwy6626 rel="me external noopener" target=_blank><i class="fab fa-linkedin fa-fw"></i><span>LinkedIn</span></a></li><li class=pure-menu-item><a class=pure-menu-link href=https://github.com/dwy6626 rel="me external noopener" target=_blank><i class="fab fa-github-square fa-fw"></i><span>GitHub</span></a></li><li class=pure-menu-item><a class=pure-menu-link href=https://leetcode.com/mirror0227 rel="me external noopener" target=_blank><i class="fas fa-laptop-code fa-fw"></i><span>LeetCode</span></a></li></ul></div><div class=copyright-small>Built with <a href=https://gohugo.io/ rel="external noopener" target=_blank>Hugo</a></div><div class=copyright-small>W/ <a href=https://github.com/dwy6626/dw-favored-blackburn rel="external noopener" target=_blank>DW-Favored-Blackburn</a></div><div class=copyright-small>Based on <a href=https://github.com/yoshiharuyamashita/blackburn rel="external noopener" target=_blank>Blackburn</a></div><div class=copyright-small>and <a href=https://purecss.io/ rel="external noopener" target=_blank>Pure CSS</a></div><div class=copyright-small>Icons <a href=https://fontawesome.com rel="external noopener" target=_blank>Font Awesome</a></div><div class=copyright-small><a href=https://dwye.dev/copyright>&copy; 2020. All rights reserved.</a></div></div><div id=main><div class=header><h1>使用 Decimal 提高浮點運算精確度</h1><h2>以費氏數列公式解為例</h2></div><div class=aside-container><div id=toc-aside style=display:none><link rel=stylesheet href=https://dwye.dev/css/aside-toc.css media=screen><script src=https://dwye.dev/js/toc.js></script><div class=toc><aside><summary>目錄</summary><div class=toc-item><p><a rel=tag href=#>使用 Decimal 提高浮點運算精確度</a></p><nav id=TableOfContents><ul><li><a href=#以費氏數列公式解為例>以費氏數列公式解為例</a><ul><li><a href=#decimal-module>Decimal module</a></li><li><a href=#套用到費氏數列公式解>套用到費氏數列公式解</a></li><li><a href=#以空間換取精確度>以空間換取精確度</a></li></ul></li><li><a href=#reference>Reference</a></li></ul></nav></div></aside></div></div></div><div class=content><div class=post-meta><div><li><i class="fa fa-calendar fa-fw"></i><time><span>May 28, 2021</span></time></li></div><div><a class=post-taxonomy-topic href=https://dwye.dev/topics/%E6%8A%80%E8%A1%93%E8%A8%98%E9%8C%84><li><i class="fas fa-folder fa-fw"></i><span>技術記錄</span></li></a><a class=post-taxonomy-tag href=https://dwye.dev/tags/algorithm><li><i class="fas fa-tag fa-fw"></i><span>Algorithm</span></li></a><a class=post-taxonomy-tag href=https://dwye.dev/tags/python><li><i class="fas fa-tag fa-fw"></i><span>Python</span></li></a><a class=post-taxonomy-tag href=https://dwye.dev/tags/%E8%B2%BB%E6%B0%8F%E6%95%B8%E5%88%97><li><i class="fas fa-tag fa-fw"></i><span>費氏數列</span></li></a><a class=post-taxonomy-tag href=https://dwye.dev/tags/%E6%95%B8%E5%80%BC%E8%A8%88%E7%AE%97><li><i class="fas fa-tag fa-fw"></i><span>數值計算</span></li></a></div></div><div id=toc-top style=display:none><div class=toc><aside><details><summary>目錄</summary><div class=toc-item><nav id=TableOfContents><ul><li><a href=#以費氏數列公式解為例>以費氏數列公式解為例</a><ul><li><a href=#decimal-module>Decimal module</a></li><li><a href=#套用到費氏數列公式解>套用到費氏數列公式解</a></li><li><a href=#以空間換取精確度>以空間換取精確度</a></li></ul></li><li><a href=#reference>Reference</a></li></ul></nav></div></details></aside></div></div><p>在<a href=https://dwye.dev/post/python-fibonacci-4/>第四篇</a>提到費氏數列的公式解會遇到浮點數問題，只能精準算到 122 位。因為浮點數是利用二進位的小數來做儲存，對於非二進位的數字會有誤差。而且其儲存位數有上限，對於無理數的運算，超過一定的大小就會出現精確度問題。</p><p>所以這篇就要來簡單使用 Python 內建的 Decimal module 來拉高浮點數運算的精確度。</p><h2 id=以費氏數列公式解為例>以費氏數列公式解為例</h2><p>首先回顧一下公式：</p><p>$$<br>F_n = \frac{1}{\sqrt{5}}\left( (\frac{1 + \sqrt{5}}{2})^n - (\frac{1 - \sqrt{5}}{2})^n \right)<br>$$</p><p>可以注意到裡面有無理數，也就是黃金比例的部分。對無理數做 n 次方運算，當 n 放大後很明顯誤差也會樂乘越大。為了提高精確度，我們可以提高儲存的位元。</p><h3 id=decimal-module>Decimal module</h3><p>Python 提供了一個內建 module：<code>Decimal</code>，是一個十進位運算模型，可以避免一些浮點數誤差問題：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>In [<span style=color:#ae81ff>1</span>]: <span style=color:#ae81ff>0.1</span> <span style=color:#f92672>*</span> <span style=color:#ae81ff>3</span> <span style=color:#f92672>==</span> <span style=color:#ae81ff>0.3</span>
-Out[<span style=color:#ae81ff>1</span>]: False
+</script>
+<link async rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/vs2015.min.css media=screen>
+<script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js></script>
+<script defer src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/yaml.min.js></script>
+<script defer src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/vbnet.min.js></script>
+<script>hljs.highlightAll()</script>
+<link rel="shortcut icon" href=https://dwye.dev/img/favicon.ico type=image/x-icon>
+<link rel=stylesheet href=https://dwye.dev/css/color.css media=screen>
+<script src=https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js></script>
+<meta name=google-site-verification content="pC2le32KaKDSGh9V637p5YC81zixbAMyKN3nPqkKscE">
+<script data-ad-client=ca-pub-3454014140664886 async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
+</head>
+<body>
+<div id=layout>
+<a href=#menu class=menu-link id=menuLink aria-label="Go to menu of this website">
+<s class=bar></s><s class=bar></s>
+</a>
+<div id=menu>
+<a class="pure-menu-heading brand" href=https://dwye.dev/>De-Wei Ye</a>
+<div class=pure-menu>
+<ul class=pure-menu-list>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/about/><i class="fas fa-user-circle fa-fw"></i><span>關於</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/notes/><i class="fas fa-book fa-fw"></i><span>筆記</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/post/><i class="fas fa-list-ul fa-fw"></i><span>文章列表</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/topics/><i class="fas fa-folder fa-fw"></i><span>主題分類</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/tags/><i class="fas fa-tags fa-fw"></i><span>標籤</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/../en/><i class="fas fa-globe-americas fa-fw"></i><span>English</span></a>
+</li>
+</ul>
+</div>
+<div class="pure-menu social">
+<ul class=pure-menu-list>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://linkedin.com/in/dwy6626 rel="me external noopener" target=_blank><i class="fab fa-linkedin fa-fw"></i><span>LinkedIn</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://github.com/dwy6626 rel="me external noopener" target=_blank><i class="fab fa-github-square fa-fw"></i><span>GitHub</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://leetcode.com/mirror0227 rel="me external noopener" target=_blank><i class="fas fa-laptop-code fa-fw"></i><span>LeetCode</span></a>
+</li>
+</ul>
+</div>
+<div class=copyright-small>
+Built with <a href=https://gohugo.io/ rel="external noopener" target=_blank>Hugo</a>
+</div>
+<div class=copyright-small>
+W/ <a href=https://github.com/dwy6626/dw-favored-blackburn rel="external noopener" target=_blank>DW-Favored-Blackburn</a>
+</div>
+<div class=copyright-small>
+Based on <a href=https://github.com/yoshiharuyamashita/blackburn rel="external noopener" target=_blank>Blackburn</a>
+</div>
+<div class=copyright-small>
+and <a href=https://purecss.io/ rel="external noopener" target=_blank>Pure CSS</a>
+</div>
+<div class=copyright-small>
+Icons <a href=https://fontawesome.com rel="external noopener" target=_blank>Font Awesome</a>
+</div>
+<div class=copyright-small>
+<a href=https://dwye.dev/copyright>
+&copy; 2020. All rights reserved.
+</a>
+</div>
+</div>
+<div id=main>
+<div class=header>
+<h1>
+使用 Decimal 提高浮點運算精確度
+</h1>
+<h2>
+以費氏數列公式解為例
+</h2>
+</div>
+<div class=aside-container>
+<div id=toc-aside style=display:none>
+<link rel=stylesheet href=https://dwye.dev/css/aside-toc.css media=screen>
+<script src=https://dwye.dev/js/toc.js></script>
+<div class=toc>
+<aside>
+<summary>目錄</summary>
+<div class=toc-item>
+<p><a rel=tag href=#>使用 Decimal 提高浮點運算精確度</a></p>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#以費氏數列公式解為例>以費氏數列公式解為例</a>
+<ul>
+<li><a href=#decimal-module>Decimal module</a></li>
+<li><a href=#套用到費氏數列公式解>套用到費氏數列公式解</a></li>
+<li><a href=#以空間換取精確度>以空間換取精確度</a></li>
+</ul>
+</li>
+<li><a href=#reference>Reference</a></li>
+</ul>
+</nav>
+</div>
+</aside>
+</div>
+</div>
+</div>
+<div class=content>
+<div class=post-meta>
+<div>
+<li>
+<i class="fa fa-calendar fa-fw"></i>
+<time>
+<span>
+May 28, 2021
+</span>
+</time>
+</li>
+</div>
+<div>
+<a class=post-taxonomy-topic href=https://dwye.dev/topics/%E6%8A%80%E8%A1%93%E8%A8%98%E9%8C%84>
+<li>
+<i class="fas fa-folder fa-fw"></i>
+<span>技術記錄</span>
+</li>
+</a>
+<a class=post-taxonomy-tag href=https://dwye.dev/tags/algorithm>
+<li>
+<i class="fas fa-tag fa-fw"></i>
+<span>Algorithm</span>
+</li>
+</a>
+<a class=post-taxonomy-tag href=https://dwye.dev/tags/python>
+<li>
+<i class="fas fa-tag fa-fw"></i>
+<span>Python</span>
+</li>
+</a>
+<a class=post-taxonomy-tag href=https://dwye.dev/tags/%E8%B2%BB%E6%B0%8F%E6%95%B8%E5%88%97>
+<li>
+<i class="fas fa-tag fa-fw"></i>
+<span>費氏數列</span>
+</li>
+</a>
+<a class=post-taxonomy-tag href=https://dwye.dev/tags/%E6%95%B8%E5%80%BC%E8%A8%88%E7%AE%97>
+<li>
+<i class="fas fa-tag fa-fw"></i>
+<span>數值計算</span>
+</li>
+</a>
+</div>
+</div>
+<div id=toc-top style=display:none>
+<div class=toc>
+<aside>
+<details>
+<summary>目錄</summary>
+<div class=toc-item>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#以費氏數列公式解為例>以費氏數列公式解為例</a>
+<ul>
+<li><a href=#decimal-module>Decimal module</a></li>
+<li><a href=#套用到費氏數列公式解>套用到費氏數列公式解</a></li>
+<li><a href=#以空間換取精確度>以空間換取精確度</a></li>
+</ul>
+</li>
+<li><a href=#reference>Reference</a></li>
+</ul>
+</nav>
+</div>
+</details>
+</aside>
+</div>
+</div>
+<p>在<a href=https://dwye.dev/post/python-fibonacci-4/>第四篇</a>提到費氏數列的公式解會遇到浮點數問題，只能精準算到 122 位。因為浮點數是利用二進位的小數來做儲存，對於非二進位的數字會有誤差。而且其儲存位數有上限，對於無理數的運算，超過一定的大小就會出現精確度問題。</p>
+<p>所以這篇就要來簡單使用 Python 內建的 Decimal module 來拉高浮點數運算的精確度。</p>
+<h2 id=以費氏數列公式解為例>以費氏數列公式解為例</h2>
+<p>首先回顧一下公式：</p>
+<p>$$<br>
+F_n = \frac{1}{\sqrt{5}}\left( (\frac{1 + \sqrt{5}}{2})^n - (\frac{1 - \sqrt{5}}{2})^n \right)<br>
+$$</p>
+<p>可以注意到裡面有無理數，也就是黃金比例的部分。對無理數做 n 次方運算，當 n 放大後很明顯誤差也會樂乘越大。為了提高精確度，我們可以提高儲存的位元。</p>
+<h3 id=decimal-module>Decimal module</h3>
+<p>Python 提供了一個內建 module：<code>Decimal</code>，是一個十進位運算模型，可以避免一些浮點數誤差問題：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>In [<span style=color:#ae81ff>1</span>]: <span style=color:#ae81ff>0.1</span> <span style=color:#f92672>*</span> <span style=color:#ae81ff>3</span> <span style=color:#f92672>==</span> <span style=color:#ae81ff>0.3</span>
+Out[<span style=color:#ae81ff>1</span>]: <span style=color:#66d9ef>False</span>
 
 In [<span style=color:#ae81ff>2</span>]: <span style=color:#f92672>from</span> decimal <span style=color:#f92672>import</span> Decimal
     <span style=color:#f92672>...</span>: 
 
 In [<span style=color:#ae81ff>3</span>]: Decimal(<span style=color:#e6db74>&#39;0.1&#39;</span>) <span style=color:#f92672>*</span> <span style=color:#ae81ff>3</span> <span style=color:#f92672>==</span> Decimal(<span style=color:#e6db74>&#39;0.3&#39;</span>)
-Out[<span style=color:#ae81ff>3</span>]: True
-</code></pre></div><p>注意我們是使用 <code>Decimal('0.1')</code> 而不是 <code>Decimal(0.1)</code>，因為後者會把不精確的 float 0.1 丟到 Decimal，還是變得不精確：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>In [<span style=color:#ae81ff>4</span>]: Decimal(<span style=color:#ae81ff>0.1</span>)
+Out[<span style=color:#ae81ff>3</span>]: <span style=color:#66d9ef>True</span>
+</code></pre></div><p>注意我們是使用 <code>Decimal('0.1')</code> 而不是 <code>Decimal(0.1)</code>，因為後者會把不精確的 float 0.1 丟到 Decimal，還是變得不精確：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>In [<span style=color:#ae81ff>4</span>]: Decimal(<span style=color:#ae81ff>0.1</span>)
 Out[<span style=color:#ae81ff>4</span>]: Decimal(<span style=color:#e6db74>&#39;0.1000000000000000055511151231257827021181583404541015625&#39;</span>)
-</code></pre></div><h3 id=套用到費氏數列公式解>套用到費氏數列公式解</h3><p>原本的 code:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>fib_binet</span>(n):
+</code></pre></div><h3 id=套用到費氏數列公式解>套用到費氏數列公式解</h3>
+<p>原本的 code:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>fib_binet</span>(n):
     golden_ratio <span style=color:#f92672>=</span> (<span style=color:#ae81ff>1</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>5</span> <span style=color:#f92672>**</span> <span style=color:#ae81ff>0.5</span>) <span style=color:#f92672>/</span> <span style=color:#ae81ff>2</span>
     golden_ratio_alt <span style=color:#f92672>=</span> (<span style=color:#ae81ff>1</span> <span style=color:#f92672>-</span> <span style=color:#ae81ff>5</span> <span style=color:#f92672>**</span> <span style=color:#ae81ff>0.5</span>) <span style=color:#f92672>/</span> <span style=color:#ae81ff>2</span>
     <span style=color:#66d9ef>return</span> round((golden_ratio <span style=color:#f92672>**</span> n <span style=color:#f92672>-</span> golden_ratio_alt <span style=color:#f92672>**</span> n) <span style=color:#f92672>/</span> <span style=color:#ae81ff>5</span> <span style=color:#f92672>**</span> <span style=color:#ae81ff>0.5</span>)
-</code></pre></div><p>我們把數字用 Decimal 包起來：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>accurate_fib_binet</span>(n):
+</code></pre></div><p>我們把數字用 Decimal 包起來：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>accurate_fib_binet</span>(n):
     sqrt5 <span style=color:#f92672>=</span> Decimal(<span style=color:#ae81ff>5</span>) <span style=color:#f92672>**</span> Decimal(<span style=color:#e6db74>&#39;0.5&#39;</span>)
     golden_ratio <span style=color:#f92672>=</span> (<span style=color:#ae81ff>1</span> <span style=color:#f92672>+</span> sqrt5) <span style=color:#f92672>/</span> Decimal(<span style=color:#ae81ff>2</span>)
     golden_ratio_alt <span style=color:#f92672>=</span> (<span style=color:#ae81ff>1</span> <span style=color:#f92672>-</span> sqrt5) <span style=color:#f92672>/</span> Decimal(<span style=color:#ae81ff>2</span>)
     <span style=color:#66d9ef>return</span> round((golden_ratio <span style=color:#f92672>**</span> Decimal(n) <span style=color:#f92672>-</span> golden_ratio_alt <span style=color:#f92672>**</span> Decimal(n)) <span style=color:#f92672>/</span> sqrt5)
-</code></pre></div><p>並拿<a href=https://dwye.dev/post/python-fibonacci-3/>矩陣解法</a>的 <code>fib_fast_double_iter</code> 來比較：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>x <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-<span style=color:#66d9ef>while</span> True:
+</code></pre></div><p>並拿<a href=https://dwye.dev/post/python-fibonacci-3/>矩陣解法</a>的 <code>fib_fast_double_iter</code> 來比較：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>x <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+<span style=color:#66d9ef>while</span> <span style=color:#66d9ef>True</span>:
     x <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
     diff <span style=color:#f92672>=</span> decimal_fib_binet(x) <span style=color:#f92672>-</span> fib_fast_double_iter(x)
     <span style=color:#66d9ef>if</span> diff <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>:
-        <span style=color:#66d9ef>print</span>(x, diff)
+        print(x, diff)
         <span style=color:#66d9ef>break</span>
-</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ python binet_de.py
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ python binet_de.py
 <span style=color:#ae81ff>123</span> -1
-</code></pre></div><p>嗯？跟原本一樣？</p><p>主要是因為我們的問題最主要是儲存位數不夠，畢竟我們原本的數值就是無理數，用十進位也無法精確表示。</p><p>然而 Decimal module 提供了我們提升精確度的方法：</p><h3 id=以空間換取精確度>以空間換取精確度</h3><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>from</span> decimal <span style=color:#f92672>import</span> getcontext
+</code></pre></div><p>嗯？跟原本一樣？</p>
+<p>主要是因為我們的問題最主要是儲存位數不夠，畢竟我們原本的數值就是無理數，用十進位也無法精確表示。</p>
+<p>然而 Decimal module 提供了我們提升精確度的方法：</p>
+<h3 id=以空間換取精確度>以空間換取精確度</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>from</span> decimal <span style=color:#f92672>import</span> getcontext
 
 getcontext()<span style=color:#f92672>.</span>prec <span style=color:#f92672>=</span> <span style=color:#ae81ff>10000</span>  <span style=color:#75715e># default is 28</span>
-</code></pre></div><p>把上面這段 code 加進去之後，原本的 while loop 就會跑很久&mldr;，也就代表數字到很大的時候，還是可以算準。我自己測試約可以到四萬附近。</p><p>不過精確度越大，就會算越久，可以從 <code>MAX_PREC</code> 這個常數看最大可以設到多少：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>In [<span style=color:#ae81ff>1</span>]: <span style=color:#f92672>from</span> decimal <span style=color:#f92672>import</span> MAX_PREC
+</code></pre></div><p>把上面這段 code 加進去之後，原本的 while loop 就會跑很久&mldr;，也就代表數字到很大的時候，還是可以算準。我自己測試約可以到四萬附近。</p>
+<p>不過精確度越大，就會算越久，可以從 <code>MAX_PREC</code> 這個常數看最大可以設到多少：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>In [<span style=color:#ae81ff>1</span>]: <span style=color:#f92672>from</span> decimal <span style=color:#f92672>import</span> MAX_PREC
    <span style=color:#f92672>...</span>: MAX_PREC
 Out[<span style=color:#ae81ff>1</span>]: <span style=color:#ae81ff>999999999999999999</span>
-</code></pre></div><p>不要真的設到這麼大，不然會卡住 &mldr;</p><p>但實際上還是要看應用情境吧，對我來說如果不知道進來的數字會多大，不如直接使用公式解以外的算法比較保險。</p><h2 id=reference>Reference</h2><ul><li><a href=https://docs.python.org/3/library/decimal.html>Decimal - Decimal fixed point and floating point arithmetic</a></li></ul><div class=copyright>本文原創部分採用
+</code></pre></div><p>不要真的設到這麼大，不然會卡住 &mldr;</p>
+<p>但實際上還是要看應用情境吧，對我來說如果不知道進來的數字會多大，不如直接使用公式解以外的算法比較保險。</p>
+<h2 id=reference>Reference</h2>
+<ul>
+<li><a href=https://docs.python.org/3/library/decimal.html>Decimal - Decimal fixed point and floating point arithmetic</a></li>
+</ul>
+<div class=copyright>
+本文原創部分採用
 <a rel=license href=http://creativecommons.org/licenses/by-nc-nd/4.0/>創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款</a>
-授權。</div><div class="prev-next-post pure-g"><div class=pure-u-1-24 style=text-align:left><a href=https://dwye.dev/post/python-fibonacci-4/><i class="fa fa-chevron-left"></i></a></div><div class=pure-u-10-24><nav class=prev><a href=https://dwye.dev/post/python-fibonacci-4/>Python 費氏數列解法（四）：公式解與推導</a></nav></div><div class=pure-u-2-24>&nbsp;</div><div class=pure-u-10-24><nav class=next><a href=https://dwye.dev/post/python-fibonacci-5/>Python 費氏數列解法（五）：不同解法的執行時間比較</a></nav></div><div class=pure-u-1-24 style=text-align:right><a href=https://dwye.dev/post/python-fibonacci-5/><i class="fa fa-chevron-right"></i></a></div></div><div id=disqus_thread></div><script type=text/javascript>(function(){if(window.location.hostname=="localhost")
-return;var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;var disqus_shortname='dwy6626';dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=http://disqus.com/ class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div></div></div><script src=https://dwye.dev/js/ui.js></script><script src=https://dwye.dev/js/menus.js></script><script>if(window.location.hostname!="localhost"){(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-132034008-1','auto');ga('send','pageview');}</script></body></html>
+授權。
+</div>
+<div class="prev-next-post pure-g">
+<div class=pure-u-1-24 style=text-align:left>
+<a href=https://dwye.dev/post/python-fibonacci-4/><i class="fa fa-chevron-left"></i></a>
+</div>
+<div class=pure-u-10-24>
+<nav class=prev>
+<a href=https://dwye.dev/post/python-fibonacci-4/>Python 費氏數列解法（四）：公式解與推導</a>
+</nav>
+</div>
+<div class=pure-u-2-24>
+&nbsp;
+</div>
+<div class=pure-u-10-24>
+<nav class=next>
+<a href=https://dwye.dev/post/python-fibonacci-5/>Python 費氏數列解法（五）：不同解法的執行時間比較</a>
+</nav>
+</div>
+<div class=pure-u-1-24 style=text-align:right>
+<a href=https://dwye.dev/post/python-fibonacci-5/><i class="fa fa-chevron-right"></i></a>
+</div>
+</div>
+<div id=disqus_thread></div>
+<script type=text/javascript>(function(){var a,b;if(window.location.hostname=="localhost")return;a=document.createElement('script'),a.type='text/javascript',a.async=!0,b='dwy6626',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+<a href=http://disqus.com/ class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
+</div>
+</div>
+</div>
+<script src=https://dwye.dev/js/ui.js></script>
+<script src=https://dwye.dev/js/menus.js></script>
+<script>window.location.hostname!="localhost"&&(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-132034008-1','auto'),ga('send','pageview'))</script>
+</body>
+</html>

@@ -6,7 +6,7 @@
 &lt;h3 id="所有東西都是物件">所有東西都是物件&lt;/h3>
 &lt;p>對，在 Ruby 中，主程序（Main）本身是一個物件，被定義好的 function 是物件，你所知道的資料型態如：整數、浮點、Boolean、字串（Ruby 中沒有字串與字元的分別）等是物件，就連平常代表虛無的 &lt;code>nil&lt;/code> 也是一個物件！&lt;/p>
 &lt;p>打開 irb 試試看：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#ae81ff">3&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span> :&lt;span style="color:#ae81ff">001&lt;/span> &lt;span style="color:#f92672">&amp;gt;&lt;/span> a &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#ae81ff">3&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span> :&lt;span style="color:#ae81ff">001&lt;/span> &lt;span style="color:#f92672">&amp;gt;&lt;/span> a &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span>
 &lt;span style="color:#f92672">=&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span>
 &lt;span style="color:#ae81ff">3&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span> :&lt;span style="color:#ae81ff">002&lt;/span> &lt;span style="color:#f92672">&amp;gt;&lt;/span> a&lt;span style="color:#f92672">.&lt;/span>nil?
 &lt;span style="color:#f92672">=&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">true&lt;/span>
@@ -16,7 +16,7 @@
 這個語法糖相當於其他語言的 &lt;code>a == nil&lt;/code> 或是 &lt;code>a is None&lt;/code>，但變成 method 的形式讀起來更直觀。&lt;/p>
 &lt;h3 id="所有-functions-都是-methods">所有 Functions 都是 Methods&lt;/h3>
 &lt;p>因為所有東西都是物件，在主程序以 &lt;code>def&lt;/code> 定義的 function，其實也只是掛在 Main object 下的 private method:&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#ae81ff">3&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span> :&lt;span style="color:#ae81ff">001&lt;/span> &lt;span style="color:#f92672">&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">my_custom_method&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#ae81ff">3&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span> :&lt;span style="color:#ae81ff">001&lt;/span> &lt;span style="color:#f92672">&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">my_custom_method&lt;/span>
 &lt;span style="color:#ae81ff">3&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span> :&lt;span style="color:#ae81ff">002&lt;/span> &lt;span style="color:#f92672">&amp;gt;&lt;/span> puts &lt;span style="color:#e6db74">&amp;#39;hello&amp;#39;&lt;/span>
 &lt;span style="color:#ae81ff">3&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span> :&lt;span style="color:#ae81ff">003&lt;/span> &lt;span style="color:#f92672">&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">end&lt;/span>
 &lt;span style="color:#f92672">=&amp;gt;&lt;/span> &lt;span style="color:#e6db74">:my_custom_method&lt;/span>
@@ -37,7 +37,7 @@
 &lt;p>Instance methods 不需要存在每個物件裡，只需要存在 class 並查找 instance methods 就好。&lt;/p>
 &lt;h3 id="self">Self&lt;/h3>
 &lt;p>在 ruby 中，永遠都會有一個代表「現在的物件」，可以透過 &lt;code>self&lt;/code> 取得：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">puts self
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">puts self
 &lt;span style="color:#75715e"># =&amp;gt; main，在最外層，self 代表 main object&lt;/span>
 &lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Car&lt;/span>
 puts self
@@ -55,7 +55,7 @@ c&lt;span style="color:#f92672">.&lt;/span>run &lt;span style="color:#75715e"># 
 &lt;p>Singleton Class 是跟著每個 ruby 物件自動產生，對於每個物件是&lt;strong>獨一無二&lt;/strong>的 Class。&lt;br>
 會有這樣的設計，要回到剛剛說的 ruby 的物件不會儲存 instance method 的特性。&lt;/p>
 &lt;p>因為物件不存 method，但 ruby 又有個特色，可以為現有的物件定義新方法：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> c
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> c
 &lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">run_twice&lt;/span>
 run
 run
@@ -66,7 +66,7 @@ c&lt;span style="color:#f92672">.&lt;/span>run_twice
 &lt;span style="color:#75715e"># #&amp;lt;Car:0x00007fe17f8eeac8&amp;gt; run! pupu!&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>這時候這個 &lt;code>run_twice&lt;/code> 方法是只有 &lt;code>c&lt;/code> 這個物件擁有，其他的 &lt;code>Car&lt;/code> 的 instance 是不會擁有的，因此 &lt;code>run_twice&lt;/code> 不能被放在 &lt;code>Car&lt;/code> 這個 class 裡。&lt;/p>
 &lt;p>在 ruby 中，這種單一物件特有的 method，就叫做 singleton method：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">c&lt;span style="color:#f92672">.&lt;/span>singleton_methods
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">c&lt;span style="color:#f92672">.&lt;/span>singleton_methods
 &lt;span style="color:#75715e"># =&amp;gt; [:run_twice]&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>而 singleton class 就是拿來儲存 singleton method 用的。&lt;/p>
 &lt;p>因為 singleton class 是獨一無二的，所以有幾個限制：&lt;/p>
@@ -75,13 +75,13 @@ c&lt;span style="color:#f92672">.&lt;/span>run_twice
 &lt;li>不能被繼承（但這個有例外，就是 class 的 singleton class，會自動跟著 class 自己產生繼承鏈（見下方），只是仍然不能手動去繼承他，不然會扔出 &lt;code>TypeError&lt;/code>）&lt;/li>
 &lt;/ul>
 &lt;p>對於一般 object （並不是 &lt;code>Class&lt;/code> 的 instance）來說，每個物件都有 singleton class，因此會在後面加上物件本身的識別，並繼承自他的 class：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">c&lt;span style="color:#f92672">.&lt;/span>singleton_class
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">c&lt;span style="color:#f92672">.&lt;/span>singleton_class
 &lt;span style="color:#75715e"># =&amp;gt; #&amp;lt;Class:#&amp;lt;Car:0x00007fe17f8eeac8&amp;gt;&amp;gt;&lt;/span>
 c&lt;span style="color:#f92672">.&lt;/span>singleton_class&lt;span style="color:#f92672">.&lt;/span>superclass &lt;span style="color:#f92672">==&lt;/span> c&lt;span style="color:#f92672">.&lt;/span>class
 &lt;span style="color:#75715e"># =&amp;gt; true&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>對於一般 class（&lt;code>Class&lt;/code> 的 instance），因為 class 本身為為一，所以 singleton class 也是唯一的，並繼承自其 superclass 的 singleton class。&lt;br>
 也就是 class 的 singleton class 們是形成一條繼承鏈，直到最後繼承自 Class。&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#66d9ef">Car&lt;/span>&lt;span style="color:#f92672">.&lt;/span>singleton_class&lt;span style="color:#f92672">.&lt;/span>superclass &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#66d9ef">Car&lt;/span>&lt;span style="color:#f92672">.&lt;/span>class
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#66d9ef">Car&lt;/span>&lt;span style="color:#f92672">.&lt;/span>singleton_class&lt;span style="color:#f92672">.&lt;/span>superclass &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#66d9ef">Car&lt;/span>&lt;span style="color:#f92672">.&lt;/span>class
 &lt;span style="color:#75715e"># =&amp;gt; false&lt;/span>
 &lt;span style="color:#66d9ef">Car&lt;/span>&lt;span style="color:#f92672">.&lt;/span>superclass&lt;span style="color:#f92672">.&lt;/span>singleton_class &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#66d9ef">Car&lt;/span>&lt;span style="color:#f92672">.&lt;/span>singleton_class&lt;span style="color:#f92672">.&lt;/span>superclass
 &lt;span style="color:#75715e"># =&amp;gt; true&lt;/span>
@@ -125,14 +125,14 @@ c&lt;span style="color:#f92672">.&lt;/span>singleton_class&lt;span style="color:
 &lt;li>prepend -&amp;gt; def -&amp;gt; include&lt;/li>
 &lt;/ol>
 &lt;p>所以一個 instance 的 method 組成，其實就是 &lt;strong>singleton methods + 繼承鏈上的所有 instance methods + refinements 時定義的 methods&lt;/strong>（當然，不包含用 &lt;code>method_missing&lt;/code> 動態處理的 ghost methods）。&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#75715e"># 因為 refinement 的 method 無法透過 Kernel#methods 取得，因此先忽略&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#75715e"># 因為 refinement 的 method 無法透過 Kernel#methods 取得，因此先忽略&lt;/span>
 &lt;span style="color:#75715e"># 這裡示範了 singleton methods + 繼承鏈上的所有 instance methods = instance 的 methods&lt;/span>
 c&lt;span style="color:#f92672">.&lt;/span>methods &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#f92672">[&lt;/span>c&lt;span style="color:#f92672">.&lt;/span>singleton_class, &lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#66d9ef">Car&lt;/span>&lt;span style="color:#f92672">.&lt;/span>ancestors&lt;span style="color:#f92672">].&lt;/span>map { &lt;span style="color:#f92672">|&lt;/span>a&lt;span style="color:#f92672">|&lt;/span> a&lt;span style="color:#f92672">.&lt;/span>instance_methods(&lt;span style="color:#66d9ef">false&lt;/span>) }&lt;span style="color:#f92672">.&lt;/span>reduce(&lt;span style="color:#e6db74">:+&lt;/span>)
 &lt;span style="color:#75715e"># =&amp;gt; true&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>附帶一提，當呼叫 class method 時，其實也是一樣的，因為在 ruby 中 class 也是個物件，所以也是先找 singleton class，然後隨著繼承鏈上找。&lt;/p>
 &lt;h3 id="例如">例如：&lt;/h3>
 &lt;p>以下面這個 &lt;code>MyClass&lt;/code> 為例：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">MyClass&lt;/span> &lt;span style="color:#f92672">&amp;lt;&lt;/span> &lt;span style="color:#66d9ef">ParentClass&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">MyClass&lt;/span> &lt;span style="color:#f92672">&amp;lt;&lt;/span> &lt;span style="color:#66d9ef">ParentClass&lt;/span>
 &lt;span style="color:#66d9ef">end&lt;/span>
 instance &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">MyClass&lt;/span>&lt;span style="color:#f92672">.&lt;/span>new
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>class 與 superclass 分別為：&lt;/p>
@@ -413,7 +413,7 @@ instance -&amp;gt; singelton_class
 &lt;/ul>
 &lt;h3 id="寫點-code-做實驗">寫點 Code 做實驗&lt;/h3>
 &lt;p>我們利用「&lt;a href="https://dwye.dev/post/rake">如何在 Rails 中寫 Rake Tasks&lt;/a>」中定義好的 Task &lt;code>hello:world&lt;/code>：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">namespace &lt;span style="color:#e6db74">:hello&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">namespace &lt;span style="color:#e6db74">:hello&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
 desc &lt;span style="color:#e6db74">&amp;#39;print hello world&amp;#39;&lt;/span>
 task &lt;span style="color:#e6db74">world&lt;/span>: &lt;span style="color:#e6db74">%w[hello:man hello:earth]&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
 puts &lt;span style="color:#e6db74">&amp;#39;Hello, world!&amp;#39;&lt;/span>
@@ -426,14 +426,14 @@ puts &lt;span style="color:#e6db74">&amp;#39;Hello, man.&amp;#39;&lt;/span>
 &lt;span style="color:#66d9ef">end&lt;/span>
 &lt;span style="color:#66d9ef">end&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>另外再加上兩個 tasks，分別用上了 &lt;code>invoke&lt;/code> 和 &lt;code>execute&lt;/code>：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">task &lt;span style="color:#e6db74">:invoke&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">task &lt;span style="color:#e6db74">:invoke&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
 &lt;span style="color:#66d9ef">Rake&lt;/span>&lt;span style="color:#f92672">::&lt;/span>&lt;span style="color:#66d9ef">Task&lt;/span>&lt;span style="color:#f92672">[&lt;/span>&lt;span style="color:#e6db74">&amp;#39;hello:world&amp;#39;&lt;/span>&lt;span style="color:#f92672">].&lt;/span>invoke
 &lt;span style="color:#66d9ef">end&lt;/span>
 task &lt;span style="color:#e6db74">:execute&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
 &lt;span style="color:#66d9ef">Rake&lt;/span>&lt;span style="color:#f92672">::&lt;/span>&lt;span style="color:#66d9ef">Task&lt;/span>&lt;span style="color:#f92672">[&lt;/span>&lt;span style="color:#e6db74">&amp;#39;hello:world&amp;#39;&lt;/span>&lt;span style="color:#f92672">].&lt;/span>execute
 &lt;span style="color:#66d9ef">end&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>分別執行這兩個 tasks:&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ bundle exec rake invoke
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ bundle exec rake invoke
 Hello, man.
 Hello, Earth~
 Hello, world!
@@ -442,9 +442,9 @@ Hello, world!
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>可以發現 execute &lt;code>hello:world&lt;/code> 這個 task，並不會跟著跑他的 dependencies &lt;code>hello:man&lt;/code> 和 &lt;code>hello:earth&lt;/code>&lt;/p>
 &lt;h3 id="更多實驗">更多實驗&lt;/h3>
 &lt;p>rake 其實是可以一次 invoke 多個的，例如：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">bundle exec rake db:create db:migrate db:seed
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">bundle exec rake db:create db:migrate db:seed
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>所以我們也可以分別將剛剛的 &lt;code>invoke&lt;/code> 和 &lt;code>excute&lt;/code> 排列組合一下：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ bundle exec rake execute invoke
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ bundle exec rake execute invoke
 Hello, world!
 Hello, man.
 Hello, Earth~
@@ -465,14 +465,14 @@ Hello, world!
 而 &lt;code>invoke&lt;/code> 則是要考慮到之前是不是有被 &lt;code>invoke&lt;/code> 過，如果已經被 &lt;code>invoke&lt;/code> 過，即便再次 &lt;code>invoke&lt;/code> 一次，之後就不會再重複 &lt;code>execute&lt;/code> 了&lt;/p>
 &lt;h3 id="如何重複-invoke-一個-task">如何重複 invoke 一個 task？&lt;/h3>
 &lt;p>使用 &lt;code>reenable&lt;/code> 這個方法即可：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">task &lt;span style="color:#e6db74">:reenable&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">task &lt;span style="color:#e6db74">:reenable&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
 puts &lt;span style="color:#e6db74">&amp;#39;Reenable!&amp;#39;&lt;/span>
 &lt;span style="color:#75715e"># because we invoke `invoke` to invoke `hello:world`, we need to re-enable both&lt;/span>
 &lt;span style="color:#66d9ef">Rake&lt;/span>&lt;span style="color:#f92672">::&lt;/span>&lt;span style="color:#66d9ef">Task&lt;/span>&lt;span style="color:#f92672">[&lt;/span>&lt;span style="color:#e6db74">&amp;#39;invoke&amp;#39;&lt;/span>&lt;span style="color:#f92672">].&lt;/span>reenable
 &lt;span style="color:#66d9ef">Rake&lt;/span>&lt;span style="color:#f92672">::&lt;/span>&lt;span style="color:#66d9ef">Task&lt;/span>&lt;span style="color:#f92672">[&lt;/span>&lt;span style="color:#e6db74">&amp;#39;hello:world&amp;#39;&lt;/span>&lt;span style="color:#f92672">].&lt;/span>reenable
 &lt;span style="color:#66d9ef">end&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>這樣下次跑 &lt;code>invoke&lt;/code> 就會重複印出 &lt;code>Hello, world!&lt;/code>：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ bundle exec rake invoke reenable invoke
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ bundle exec rake invoke reenable invoke
 Hello, man.
 Hello, Earth~
 Hello, world!
@@ -481,7 +481,7 @@ Hello, world!
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="enhance幫-rake-task-打補丁">Enhance：幫 Rake Task 打補丁&lt;/h2>
 &lt;p>如果你需要在執行特定的 rake task 前後做特定的事，那使用 &lt;code>enhance&lt;/code> 是不錯的選擇。&lt;code>enhance&lt;/code> 就像是在某個 task 加裝 hook 一樣，執行到該 task 時，就會執行他被 &lt;code>enhance&lt;/code> 的內容。&lt;/p>
 &lt;p>一個例子是 &lt;a href="https://github.com/ctran/annotate_models">annotate_models&lt;/a> 這個 gem，可以在 database migration 後，對 model 檔案加上註解，翻開其原始碼，果然是用 &lt;code>enhance&lt;/code> 實現的：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#75715e"># https://github.com/ctran/annotate_models/blob/v3.1.1/lib/tasks/annotate_models_migrate.rake&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#75715e"># https://github.com/ctran/annotate_models/blob/v3.1.1/lib/tasks/annotate_models_migrate.rake&lt;/span>
 &lt;span style="color:#e6db74">%w(db:migrate db:migrate:up db:migrate:down db:migrate:reset db:migrate:redo db:rollback)&lt;/span>&lt;span style="color:#f92672">.&lt;/span>each &lt;span style="color:#66d9ef">do&lt;/span> &lt;span style="color:#f92672">|&lt;/span>task&lt;span style="color:#f92672">|&lt;/span>
 &lt;span style="color:#66d9ef">Rake&lt;/span>&lt;span style="color:#f92672">::&lt;/span>&lt;span style="color:#66d9ef">Task&lt;/span>&lt;span style="color:#f92672">[&lt;/span>task&lt;span style="color:#f92672">].&lt;/span>enhance &lt;span style="color:#66d9ef">do&lt;/span>
 &lt;span style="color:#66d9ef">Rake&lt;/span>&lt;span style="color:#f92672">::&lt;/span>&lt;span style="color:#66d9ef">Task&lt;/span>&lt;span style="color:#f92672">[&lt;/span>&lt;span style="color:#66d9ef">Rake&lt;/span>&lt;span style="color:#f92672">.&lt;/span>application&lt;span style="color:#f92672">.&lt;/span>top_level_tasks&lt;span style="color:#f92672">.&lt;/span>last&lt;span style="color:#f92672">].&lt;/span>enhance &lt;span style="color:#66d9ef">do&lt;/span>
@@ -498,7 +498,7 @@ annotation_options_task &lt;span style="color:#f92672">=&lt;/span> &lt;span styl
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>這樣寫之後，當「執行完」上面所窮舉跟 database migration 有關的 rake task 時，就會 block 內的 code。&lt;/p>
 &lt;p>那如果要在「執行前」插入 code 呢？&lt;/p>
 &lt;p>&lt;code>enhance&lt;/code> 是可以額外增加 dependencies 的，可以將執行前要插入的 code 寫成另一個 rake task，然後將其定義為 &lt;code>enhance&lt;/code> 的 dependencies 即可：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">task &lt;span style="color:#e6db74">:before&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">task &lt;span style="color:#e6db74">:before&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
 puts &lt;span style="color:#e6db74">&amp;#39;before task&amp;#39;&lt;/span>
 &lt;span style="color:#66d9ef">end&lt;/span>
 &lt;span style="color:#75715e"># 這裡 dependencies 一定要是 array，不然會報錯&lt;/span>
@@ -506,7 +506,7 @@ puts &lt;span style="color:#e6db74">&amp;#39;before task&amp;#39;&lt;/span>
 puts &lt;span style="color:#e6db74">&amp;#39;after task&amp;#39;&lt;/span>
 &lt;span style="color:#66d9ef">end&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>接著重跑一次 &lt;code>invoke&lt;/code> 這個 task:&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ bundle exec rake invoke
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ bundle exec rake invoke
 Hello, man.
 Hello, Earth~
 before task
@@ -516,7 +516,7 @@ after task
 &lt;h3 id="如果-execute-一個被-enhance-的-task-會發生什麼事">如果 Execute 一個被 Enhance 的 Task 會發生什麼事？&lt;/h3>
 &lt;p>前面有討論到，如果我們直接 &lt;code>execute&lt;/code> 一個 task，其 dependencies 都會被忽略。而 &lt;code>enhance&lt;/code> 也包含了定義 dependencies 和後方的 block 的部分。揪竟 &lt;code>enhance&lt;/code> 一個 task 會不會對其被 &lt;code>execute&lt;/code> 時產生影響呢？&lt;/p>
 &lt;p>實驗一次就會知道了：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ bundle exec rake execute
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ bundle exec rake execute
 Hello, world!
 after task
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>enhance&lt;/code> 的 dependencies 也被扔掉了。&lt;br>
@@ -524,7 +524,7 @@ after task
 &lt;p>這個行為算是我覺得比較容易搞混的地方，老實說 &lt;code>enhance&lt;/code> 給人一種 monkey patch 的感覺，我個人是認為需要謹慎使用。&lt;/p>
 &lt;h3 id="enhance-多次的影響">Enhance 多次的影響&lt;/h3>
 &lt;p>附帶一提，一個 task 是可以被 &lt;code>enhance&lt;/code> 多次的，每次 &lt;code>enhance&lt;/code> 的結果會依照先後順序疊加：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">task &lt;span style="color:#e6db74">:before&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">task &lt;span style="color:#e6db74">:before&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
 puts &lt;span style="color:#e6db74">&amp;#39;before task&amp;#39;&lt;/span>
 &lt;span style="color:#66d9ef">end&lt;/span>
 task &lt;span style="color:#e6db74">:before2&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
@@ -536,7 +536,7 @@ puts &lt;span style="color:#e6db74">&amp;#39;after task&amp;#39;&lt;/span>
 &lt;span style="color:#66d9ef">Rake&lt;/span>&lt;span style="color:#f92672">::&lt;/span>&lt;span style="color:#66d9ef">Task&lt;/span>&lt;span style="color:#f92672">[&lt;/span>&lt;span style="color:#e6db74">&amp;#39;hello:world&amp;#39;&lt;/span>&lt;span style="color:#f92672">].&lt;/span>enhance(&lt;span style="color:#e6db74">%w[before2]&lt;/span>) &lt;span style="color:#66d9ef">do&lt;/span>
 puts &lt;span style="color:#e6db74">&amp;#39;after task 2&amp;#39;&lt;/span>
 &lt;span style="color:#66d9ef">end&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ bundle exec rake invoke
+&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ bundle exec rake invoke
 Hello, man.
 Hello, Earth~
 before task
@@ -565,10 +565,10 @@ rake db:seed
 &lt;h2 id="rails-的-rakefile">Rails 的 Rakefile&lt;/h2>
 &lt;p>Rakefile 其實就是 Ruby 的 Makefile，是用來定義 rake 的地方。&lt;/p>
 &lt;p>不過如果你在 Rails 的框架中打開 Rakefile，會發現只有簡單兩行：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">require_relative &lt;span style="color:#e6db74">&amp;#34;config/application&amp;#34;&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">require_relative &lt;span style="color:#e6db74">&amp;#34;config/application&amp;#34;&lt;/span>
 &lt;span style="color:#66d9ef">Rails&lt;/span>&lt;span style="color:#f92672">.&lt;/span>application&lt;span style="color:#f92672">.&lt;/span>load_tasks
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>如果你把 Rails 的原始碼打開，發現其中第二行會去讀取 &lt;code>lib/tasks&lt;/code> 裏面的所有檔案:&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#75715e"># https://github.com/rails/rails/blob/v6.1.4/railties/lib/rails/engine.rb&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#75715e"># https://github.com/rails/rails/blob/v6.1.4/railties/lib/rails/engine.rb&lt;/span>
 &lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">load_tasks&lt;/span>(app &lt;span style="color:#f92672">=&lt;/span> self)
 require &lt;span style="color:#e6db74">&amp;#34;rake&amp;#34;&lt;/span>
 run_tasks_blocks(app)
@@ -581,7 +581,7 @@ paths&lt;span style="color:#f92672">[&lt;/span>&lt;span style="color:#e6db74">&a
 &lt;span style="color:#66d9ef">end&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>也就是說我們不只可以在 &lt;code>Rakefile&lt;/code> 寫 task，也可以在 &lt;code>lib/tasks&lt;/code> 寫，更方便大型專案的管理。&lt;/p>
 &lt;p>附帶一提，因為 &lt;code>Rails.application&lt;/code> 繼承了上面的 &lt;code>Engine&lt;/code> class，他還會另外去讀取 &lt;a href="https://github.com/rails/rails/tree/v6.1.4/railties/lib/rails/tasks">Rails 自定義的常用 rake 們&lt;/a>，也就是剛剛提到的 &lt;code>db:create&lt;/code> 之類的 rakes:&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#75715e"># https://github.com/rails/rails/blob/v6.1.4/railties/lib/rails/application.rb#L526&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#75715e"># https://github.com/rails/rails/blob/v6.1.4/railties/lib/rails/application.rb#L526&lt;/span>
 &lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">run_tasks_blocks&lt;/span>(app) &lt;span style="color:#75715e">#:nodoc:&lt;/span>
 railties&lt;span style="color:#f92672">.&lt;/span>each { &lt;span style="color:#f92672">|&lt;/span>r&lt;span style="color:#f92672">|&lt;/span> r&lt;span style="color:#f92672">.&lt;/span>run_tasks_blocks(app) }
 &lt;span style="color:#66d9ef">super&lt;/span>
@@ -592,14 +592,14 @@ require_environment!
 &lt;span style="color:#66d9ef">end&lt;/span>
 &lt;span style="color:#66d9ef">end&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>而且在 Rails 中最基本的 &lt;code>environment&lt;/code> rake 也是定義在這裡，他會去讀取 &lt;code>config/environment&lt;/code> 這個檔案。&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#75715e"># https://github.com/rails/rails/blob/v6.1.4/railties/lib/rails/application.rb#L365&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#75715e"># https://github.com/rails/rails/blob/v6.1.4/railties/lib/rails/application.rb#L365&lt;/span>
 &lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">require_environment!&lt;/span> &lt;span style="color:#75715e">#:nodoc:&lt;/span>
 environment &lt;span style="color:#f92672">=&lt;/span> paths&lt;span style="color:#f92672">[&lt;/span>&lt;span style="color:#e6db74">&amp;#34;config/environment&amp;#34;&lt;/span>&lt;span style="color:#f92672">].&lt;/span>existent&lt;span style="color:#f92672">.&lt;/span>first
 require environment &lt;span style="color:#66d9ef">if&lt;/span> environment
 &lt;span style="color:#66d9ef">end&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="rake-怎麼寫">Rake 怎麼寫&lt;/h2>
 &lt;p>實際打開一個 Rails 新專案，會發現 &lt;code>lib/tasks&lt;/code> 這個資料夾已經幫我們保留下來了。在裡面新增一個 rake task:&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#75715e"># lib/tasks/hello.rake&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#75715e"># lib/tasks/hello.rake&lt;/span>
 namespace &lt;span style="color:#e6db74">:hello&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
 desc &lt;span style="color:#e6db74">&amp;#39;print hello world&amp;#39;&lt;/span>
 task &lt;span style="color:#e6db74">:world&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
@@ -614,7 +614,7 @@ puts &lt;span style="color:#e6db74">&amp;#39;Hello, world!&amp;#39;&lt;/span>
 &lt;/ul>
 &lt;p>附上 Rake 的文件，裡面有更完整的用法：&lt;a href="https://ruby.github.io/rake/Rake/DSL.html">https://ruby.github.io/rake/Rake/DSL.html&lt;/a>&lt;/p>
 &lt;p>執行剛寫好的 rake task:&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ bundle exec rake hello:world
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ bundle exec rake hello:world
 Hello, world!
 &lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="task-dependencies">Task Dependencies&lt;/h3>
 &lt;p>&lt;code>task&lt;/code> 這個 DSL 可以吃除了名稱之外的參數：&lt;/p>
@@ -624,7 +624,7 @@ task task_name, arguments → dependencies
 &lt;/code>&lt;/pre>&lt;p>剛剛我們用的是第一個定義。&lt;br>
 接下來介紹 dependencies，其實就是在執行這個 rake task 時，哪些 rake 需要被確保執行。&lt;/p>
 &lt;p>我們舉最常用的 database 操作相關的 rake 為例子（只截取部分片段）：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#75715e"># https://github.com/rails/rails/blob/v6.1.4/activerecord/lib/active_record/railties/databases.rake&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#75715e"># https://github.com/rails/rails/blob/v6.1.4/activerecord/lib/active_record/railties/databases.rake&lt;/span>
 db_namespace &lt;span style="color:#f92672">=&lt;/span> namespace &lt;span style="color:#e6db74">:db&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
 desc &lt;span style="color:#e6db74">&amp;#34;Creates the database, loads the schema, and initializes with the seed data (use db:reset to also drop the database first)&amp;#34;&lt;/span>
 task &lt;span style="color:#e6db74">setup&lt;/span>: &lt;span style="color:#f92672">[&lt;/span>&lt;span style="color:#e6db74">&amp;#34;db:create&amp;#34;&lt;/span>, &lt;span style="color:#e6db74">:environment&lt;/span>, &lt;span style="color:#e6db74">&amp;#34;db:schema:load&amp;#34;&lt;/span>, &lt;span style="color:#e6db74">:seed&lt;/span>&lt;span style="color:#f92672">]&lt;/span>
@@ -632,7 +632,7 @@ task &lt;span style="color:#e6db74">setup&lt;/span>: &lt;span style="color:#f926
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>這是 &lt;code>db:setup&lt;/code> 這個 rake task 的定義，傳給 task 的是個 hash，一個 key value pair，括號在這裡省略了，&lt;code>setup&lt;/code> 是 &lt;code>task_name&lt;/code>，而後面的 array 則是 &lt;code>dependencies&lt;/code>。&lt;br>
 這段 code 的意思是說，當我執行 &lt;code>db:setup&lt;/code> 時，會需要&lt;strong>先&lt;/strong>跑 dependencies 裡面的 task。&lt;br>
 這裡的「先」指的是和 task 後面接的 block 相比較，會先跑 &lt;code>dependencies&lt;/code> 才跑 block 內的東西。不巧 &lt;code>db:setup&lt;/code> 剛好沒有 block，所以我們修改剛剛的 &lt;code>hello:world&lt;/code> task：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#75715e"># lib/tasks/hello.rake&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#75715e"># lib/tasks/hello.rake&lt;/span>
 namespace &lt;span style="color:#e6db74">:hello&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
 desc &lt;span style="color:#e6db74">&amp;#39;print hello world&amp;#39;&lt;/span>
 task &lt;span style="color:#e6db74">world&lt;/span>: &lt;span style="color:#e6db74">%w[hello:man]&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
@@ -643,12 +643,12 @@ puts &lt;span style="color:#e6db74">&amp;#39;Hello, man.&amp;#39;&lt;/span>
 &lt;span style="color:#66d9ef">end&lt;/span>
 &lt;span style="color:#66d9ef">end&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>再跑一次 &lt;code>hello:world&lt;/code>：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ bundle exec rake hello:world
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ bundle exec rake hello:world
 Hello, man.
 Hello, world!
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>既然叫做 dependency，如果被呼叫很多遍，會發生什麼事呢？&lt;/p>
 &lt;p>可以在同個 namespace 內再定義一個 rake 來實驗看看：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#75715e"># lib/tasks/hello.rake&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#75715e"># lib/tasks/hello.rake&lt;/span>
 namespace &lt;span style="color:#e6db74">:hello&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
 desc &lt;span style="color:#e6db74">&amp;#39;print hello world&amp;#39;&lt;/span>
 task &lt;span style="color:#e6db74">world&lt;/span>: &lt;span style="color:#e6db74">%w[hello:man hello:earth]&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
@@ -662,12 +662,12 @@ puts &lt;span style="color:#e6db74">&amp;#39;Hello, man.&amp;#39;&lt;/span>
 &lt;span style="color:#66d9ef">end&lt;/span>
 &lt;span style="color:#66d9ef">end&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>現在 &lt;code>world&lt;/code> depends on &lt;code>man&lt;/code> 和 &lt;code>earth&lt;/code>，而 &lt;code>earth&lt;/code> 也 depends on &lt;code>man&lt;/code>。根據我們對相依這個詞的了解，&lt;code>hello:man&lt;/code> 應該只會被執行一遍，而事實也是如此：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ bundle exec rake hello:world
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ bundle exec rake hello:world
 Hello, man.
 Hello, Earth~
 Hello, world!
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>可以使用 &lt;code>--trace&lt;/code> 來追蹤 rake task 彼此之間被 invoke 和執行的過程：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ bundle exec rake hello:world --trace
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ bundle exec rake hello:world --trace
 ** Invoke hello:world &lt;span style="color:#f92672">(&lt;/span>first_time&lt;span style="color:#f92672">)&lt;/span>
 ** Invoke hello:man &lt;span style="color:#f92672">(&lt;/span>first_time&lt;span style="color:#f92672">)&lt;/span>
 ** Execute hello:man
@@ -809,46 +809,46 @@ $$&lt;/p>
 &lt;p>可以注意到裡面有無理數，也就是黃金比例的部分。對無理數做 n 次方運算，當 n 放大後很明顯誤差也會樂乘越大。為了提高精確度，我們可以提高儲存的位元。&lt;/p>
 &lt;h3 id="decimal-module">Decimal module&lt;/h3>
 &lt;p>Python 提供了一個內建 module：&lt;code>Decimal&lt;/code>，是一個十進位運算模型，可以避免一些浮點數誤差問題：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">In [&lt;span style="color:#ae81ff">1&lt;/span>]: &lt;span style="color:#ae81ff">0.1&lt;/span> &lt;span style="color:#f92672">*&lt;/span> &lt;span style="color:#ae81ff">3&lt;/span> &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#ae81ff">0.3&lt;/span>
-Out[&lt;span style="color:#ae81ff">1&lt;/span>]: False
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">In [&lt;span style="color:#ae81ff">1&lt;/span>]: &lt;span style="color:#ae81ff">0.1&lt;/span> &lt;span style="color:#f92672">*&lt;/span> &lt;span style="color:#ae81ff">3&lt;/span> &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#ae81ff">0.3&lt;/span>
+Out[&lt;span style="color:#ae81ff">1&lt;/span>]: &lt;span style="color:#66d9ef">False&lt;/span>
 In [&lt;span style="color:#ae81ff">2&lt;/span>]: &lt;span style="color:#f92672">from&lt;/span> decimal &lt;span style="color:#f92672">import&lt;/span> Decimal
 &lt;span style="color:#f92672">...&lt;/span>:
 In [&lt;span style="color:#ae81ff">3&lt;/span>]: Decimal(&lt;span style="color:#e6db74">&amp;#39;0.1&amp;#39;&lt;/span>) &lt;span style="color:#f92672">*&lt;/span> &lt;span style="color:#ae81ff">3&lt;/span> &lt;span style="color:#f92672">==&lt;/span> Decimal(&lt;span style="color:#e6db74">&amp;#39;0.3&amp;#39;&lt;/span>)
-Out[&lt;span style="color:#ae81ff">3&lt;/span>]: True
+Out[&lt;span style="color:#ae81ff">3&lt;/span>]: &lt;span style="color:#66d9ef">True&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>注意我們是使用 &lt;code>Decimal('0.1')&lt;/code> 而不是 &lt;code>Decimal(0.1)&lt;/code>，因為後者會把不精確的 float 0.1 丟到 Decimal，還是變得不精確：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">In [&lt;span style="color:#ae81ff">4&lt;/span>]: Decimal(&lt;span style="color:#ae81ff">0.1&lt;/span>)
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">In [&lt;span style="color:#ae81ff">4&lt;/span>]: Decimal(&lt;span style="color:#ae81ff">0.1&lt;/span>)
 Out[&lt;span style="color:#ae81ff">4&lt;/span>]: Decimal(&lt;span style="color:#e6db74">&amp;#39;0.1000000000000000055511151231257827021181583404541015625&amp;#39;&lt;/span>)
 &lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="套用到費氏數列公式解">套用到費氏數列公式解&lt;/h3>
 &lt;p>原本的 code:&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fib_binet&lt;/span>(n):
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fib_binet&lt;/span>(n):
 golden_ratio &lt;span style="color:#f92672">=&lt;/span> (&lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">5&lt;/span> &lt;span style="color:#f92672">**&lt;/span> &lt;span style="color:#ae81ff">0.5&lt;/span>) &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span>
 golden_ratio_alt &lt;span style="color:#f92672">=&lt;/span> (&lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">5&lt;/span> &lt;span style="color:#f92672">**&lt;/span> &lt;span style="color:#ae81ff">0.5&lt;/span>) &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span>
 &lt;span style="color:#66d9ef">return&lt;/span> round((golden_ratio &lt;span style="color:#f92672">**&lt;/span> n &lt;span style="color:#f92672">-&lt;/span> golden_ratio_alt &lt;span style="color:#f92672">**&lt;/span> n) &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#ae81ff">5&lt;/span> &lt;span style="color:#f92672">**&lt;/span> &lt;span style="color:#ae81ff">0.5&lt;/span>)
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>我們把數字用 Decimal 包起來：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">accurate_fib_binet&lt;/span>(n):
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">accurate_fib_binet&lt;/span>(n):
 sqrt5 &lt;span style="color:#f92672">=&lt;/span> Decimal(&lt;span style="color:#ae81ff">5&lt;/span>) &lt;span style="color:#f92672">**&lt;/span> Decimal(&lt;span style="color:#e6db74">&amp;#39;0.5&amp;#39;&lt;/span>)
 golden_ratio &lt;span style="color:#f92672">=&lt;/span> (&lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">+&lt;/span> sqrt5) &lt;span style="color:#f92672">/&lt;/span> Decimal(&lt;span style="color:#ae81ff">2&lt;/span>)
 golden_ratio_alt &lt;span style="color:#f92672">=&lt;/span> (&lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">-&lt;/span> sqrt5) &lt;span style="color:#f92672">/&lt;/span> Decimal(&lt;span style="color:#ae81ff">2&lt;/span>)
 &lt;span style="color:#66d9ef">return&lt;/span> round((golden_ratio &lt;span style="color:#f92672">**&lt;/span> Decimal(n) &lt;span style="color:#f92672">-&lt;/span> golden_ratio_alt &lt;span style="color:#f92672">**&lt;/span> Decimal(n)) &lt;span style="color:#f92672">/&lt;/span> sqrt5)
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>並拿&lt;a href="https://dwye.dev/post/python-fibonacci-3/">矩陣解法&lt;/a>的 &lt;code>fib_fast_double_iter&lt;/code> 來比較：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">x &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>
-&lt;span style="color:#66d9ef">while&lt;/span> True:
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">x &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>
+&lt;span style="color:#66d9ef">while&lt;/span> &lt;span style="color:#66d9ef">True&lt;/span>:
 x &lt;span style="color:#f92672">+=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
 diff &lt;span style="color:#f92672">=&lt;/span> decimal_fib_binet(x) &lt;span style="color:#f92672">-&lt;/span> fib_fast_double_iter(x)
 &lt;span style="color:#66d9ef">if&lt;/span> diff &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>:
-&lt;span style="color:#66d9ef">print&lt;/span>(x, diff)
+print(x, diff)
 &lt;span style="color:#66d9ef">break&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ python binet_de.py
+&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ python binet_de.py
 &lt;span style="color:#ae81ff">123&lt;/span> -1
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>嗯？跟原本一樣？&lt;/p>
 &lt;p>主要是因為我們的問題最主要是儲存位數不夠，畢竟我們原本的數值就是無理數，用十進位也無法精確表示。&lt;/p>
 &lt;p>然而 Decimal module 提供了我們提升精確度的方法：&lt;/p>
 &lt;h3 id="以空間換取精確度">以空間換取精確度&lt;/h3>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#f92672">from&lt;/span> decimal &lt;span style="color:#f92672">import&lt;/span> getcontext
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#f92672">from&lt;/span> decimal &lt;span style="color:#f92672">import&lt;/span> getcontext
 getcontext()&lt;span style="color:#f92672">.&lt;/span>prec &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">10000&lt;/span> &lt;span style="color:#75715e"># default is 28&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>把上面這段 code 加進去之後，原本的 while loop 就會跑很久&amp;hellip;，也就代表數字到很大的時候，還是可以算準。我自己測試約可以到四萬附近。&lt;/p>
 &lt;p>不過精確度越大，就會算越久，可以從 &lt;code>MAX_PREC&lt;/code> 這個常數看最大可以設到多少：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">In [&lt;span style="color:#ae81ff">1&lt;/span>]: &lt;span style="color:#f92672">from&lt;/span> decimal &lt;span style="color:#f92672">import&lt;/span> MAX_PREC
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">In [&lt;span style="color:#ae81ff">1&lt;/span>]: &lt;span style="color:#f92672">from&lt;/span> decimal &lt;span style="color:#f92672">import&lt;/span> MAX_PREC
 &lt;span style="color:#f92672">...&lt;/span>: MAX_PREC
 Out[&lt;span style="color:#ae81ff">1&lt;/span>]: &lt;span style="color:#ae81ff">999999999999999999&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>不要真的設到這麼大，不然會卡住 &amp;hellip;&lt;/p>
@@ -864,7 +864,7 @@ F_n = \frac{1}{\sqrt{5}}\left( (\frac{1 + \sqrt{5}}{2})^n - (\frac{1 - \sqrt{5}}
 $$&lt;/p>
 &lt;p>是的，$\frac{1 + \sqrt{5}}{2}$，傳說中的黃金比例。&lt;/p>
 &lt;p>但奇怪，費氏數列不是都是整數嗎？為什麼會跑出一堆根號呢？不信邪的話自己寫程式去跑，就會發現解剛好都是整數：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#75715e"># binet.py&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#75715e"># binet.py&lt;/span>
 &lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fib_binet&lt;/span>(n):
 golden_ratio &lt;span style="color:#f92672">=&lt;/span> (&lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">5&lt;/span> &lt;span style="color:#f92672">**&lt;/span> &lt;span style="color:#ae81ff">0.5&lt;/span>) &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span>
 golden_ratio_alt &lt;span style="color:#f92672">=&lt;/span> (&lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">5&lt;/span> &lt;span style="color:#f92672">**&lt;/span> &lt;span style="color:#ae81ff">0.5&lt;/span>) &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span>
@@ -873,8 +873,8 @@ golden_ratio_alt &lt;span style="color:#f92672">=&lt;/span> (&lt;span style="col
 &lt;span style="color:#75715e"># return round((golden_ratio ** n - golden_ratio_alt ** n) / 5 ** 0.5)&lt;/span>
 &lt;span style="color:#66d9ef">if&lt;/span> __name__ &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#e6db74">&amp;#39;__main__&amp;#39;&lt;/span>:
 &lt;span style="color:#66d9ef">for&lt;/span> i &lt;span style="color:#f92672">in&lt;/span> range(&lt;span style="color:#ae81ff">30&lt;/span>):
-&lt;span style="color:#66d9ef">print&lt;/span>(fib_binet(i))
-&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ python binet.py
+print(fib_binet(i))
+&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ python binet.py
 0.0
 1.0
 1.0
@@ -964,16 +964,16 @@ $$&lt;/p>
 &lt;h3 id="浮點數精確度">浮點數精確度&lt;/h3>
 &lt;p>可以注意到，公式解多了很多浮點數運算。&lt;/p>
 &lt;p>浮點數就是二進位的科學記號，所以當數值大的時候就會有精確度問題出現。因為我們最後會過一個 int，數值小的時候這個誤差其實是不會影響的，但數值夠大就可以看到誤差。&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#75715e"># ./binet.py&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#75715e"># ./binet.py&lt;/span>
 &lt;span style="color:#75715e"># ...&lt;/span>
 x &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>
-&lt;span style="color:#66d9ef">while&lt;/span> True:
+&lt;span style="color:#66d9ef">while&lt;/span> &lt;span style="color:#66d9ef">True&lt;/span>:
 x &lt;span style="color:#f92672">+=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
 diff &lt;span style="color:#f92672">=&lt;/span> fib_binet(x) &lt;span style="color:#f92672">-&lt;/span> fib_fast_double_iter(x)
 &lt;span style="color:#66d9ef">if&lt;/span> diff &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>:
-&lt;span style="color:#66d9ef">print&lt;/span>(x, diff)
+print(x, diff)
 &lt;span style="color:#66d9ef">break&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ python binet.py
+&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ python binet.py
 &lt;span style="color:#ae81ff">123&lt;/span> -1
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>實際寫個 code 去跑就可以發現，在第 124 項之後就會出現誤差。&lt;/p>
 &lt;p>其實用上一篇的&lt;a href="https://dwye.dev/post/python-fibonacci-3">fast doubling&lt;/a>來計算，不但沒有慢上多少，也不用擔心誤差問題。&lt;/p>
@@ -987,10 +987,10 @@ $$&lt;/p>
 &lt;p>其實會來研究 Python 與費氏數列的，與幾年前一串 &lt;a href="https://www.facebook.com/groups/pythontw/permalink/10158445814613438/">Python Taiwan 的討論串&lt;/a>有關，可惜最熱鬧的那則已經被刪掉了。&lt;/p>
 &lt;p>故事大致上就是有人在底下說了費氏數列公式解是 $O(1)$ 的言論，甚至提出只要把 $\pi$ 和 $e$ 等無理數都存在月球上的話，就能直接 $O(1)$ 解決很多問題，嗯&amp;hellip;&lt;/p>
 &lt;p>其實 $O(1)$ 在這種時候已經變成迷思了，不然我大可以寫個 function，不管輸入是多少，我都故弄玄虛，算到一個超級大的值，然後再把相對應個輸出丟出去就好，就可以宣稱我是 $O(1)$ 解。&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fib_fake_o1&lt;/span>(n):
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fib_fake_o1&lt;/span>(n):
 max_n &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">300&lt;/span>
 &lt;span style="color:#66d9ef">if&lt;/span> n &lt;span style="color:#f92672">&amp;gt;=&lt;/span> max_n:
-&lt;span style="color:#66d9ef">raise&lt;/span> &lt;span style="color:#a6e22e">Exception&lt;/span>(f&lt;span style="color:#e6db74">&amp;#34;n must be &amp;lt; {max_n}&amp;#34;&lt;/span>)
+&lt;span style="color:#66d9ef">raise&lt;/span> &lt;span style="color:#a6e22e">Exception&lt;/span>(&lt;span style="color:#e6db74">f&lt;/span>&lt;span style="color:#e6db74">&amp;#34;n must be &amp;lt; &lt;/span>&lt;span style="color:#e6db74">{&lt;/span>max_n&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>)
 f1, f2 &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>, &lt;span style="color:#ae81ff">1&lt;/span>
 res &lt;span style="color:#f92672">=&lt;/span> f2
 &lt;span style="color:#66d9ef">for&lt;/span> i &lt;span style="color:#f92672">in&lt;/span> range(&lt;span style="color:#ae81ff">2&lt;/span>, max_n):
@@ -1057,7 +1057,7 @@ $$&lt;/p>
 &lt;p>因此我們每次都可以把 n 變成兩倍，需要進行遞迴次數和&lt;a href="https://dwye.dev/post/python-fibonacci">第一篇&lt;/a>的遞迴解法相比，從 $O(n)$ 變成 $O(\lg n)$，所以時間複雜度也跟著變成 $O(\lg n)$。&lt;/p>
 &lt;h2 id="實作">實作&lt;/h2>
 &lt;h3 id="遞迴解法">遞迴解法&lt;/h3>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fibonacci&lt;/span>(n):
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fibonacci&lt;/span>(n):
 &lt;span style="color:#66d9ef">return&lt;/span> recursive(n)[&lt;span style="color:#ae81ff">1&lt;/span>]
 &lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">recursive&lt;/span>(n):
 &lt;span style="color:#75715e"># calculate f(n+1) and f(n)&lt;/span>
@@ -1078,7 +1078,7 @@ f2, f1 &lt;span style="color:#f92672">=&lt;/span> f1 &lt;span style="color:#f926
 &lt;p>簡單舉個例子，如果我們要計算的 n 是 21，則遞迴計算的是 [21, 10, 5, 2, 1]。用迭代做 bottom-up 的話，就會是 [1, 2, 5, 10, 21]。我們在計算到 2 的下一項時，沒辦法直接預測下一個要算的是 2n 的 4，還是 2n+1 的 5。&lt;/p>
 &lt;p>如果沒辦法預測，就記起來就好了 XD&lt;/p>
 &lt;p>所以解法就是建立一個 tracker，先記錄我們需要計算的值，然後 bottom-up 組回來。這邊的 tracker 其實就是個 stack，符合 LIFO 的特性（Last-in, First-out）。&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fib_fast_double_iter&lt;/span>(n):
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fib_fast_double_iter&lt;/span>(n):
 &lt;span style="color:#75715e"># stack construction&lt;/span>
 tracker &lt;span style="color:#f92672">=&lt;/span> []
 &lt;span style="color:#66d9ef">while&lt;/span> n &lt;span style="color:#f92672">&amp;gt;&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>:
@@ -1115,7 +1115,7 @@ f1, f2 &lt;span style="color:#f92672">=&lt;/span> f2, f1 &lt;span style="color:#
 &lt;h2 id="正文">正文&lt;/h2>
 &lt;p>&lt;a href="https://dwye.dev/post/hugo-github-action">之前的文章&lt;/a>有提到我把 blog CD 轉換到 GitHub Action。&lt;/p>
 &lt;p>&lt;a href="https://docs.github.com/en/actions/reference/events-that-trigger-workflows">GitHub Action 的官方文件&lt;/a>提到，可以使用 cronjob 格式來設定排程：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#75715e"># .github/workflows/deploy.yml&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#75715e"># .github/workflows/deploy.yml&lt;/span>
 &lt;span style="color:#f92672">on&lt;/span>:
 &lt;span style="color:#f92672">push&lt;/span>:
 &lt;span style="color:#f92672">branches&lt;/span>:
@@ -1132,11 +1132,11 @@ GitHub Action：&lt;em>歐好棒，三點了&lt;/em>&lt;/p>
 &lt;p>一個需要注意的是，如果你設定的 interval 太短，會自動被拉長到每五分鐘執行一次。&lt;/p>
 &lt;h2 id="預覽未來文章">預覽未來文章&lt;/h2>
 &lt;p>因為 Hugo 預設會忽略未來與草稿文章，可以分別用 &lt;code>-F&lt;/code> 和 &lt;code>-D&lt;/code> 兩個 flag 來讓 Hugo 把這些文章也 build 起來：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ hugo serve -FD
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ hugo serve -FD
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>想要知道有哪些未來文章可以使用 &lt;code>hugo list&lt;/code>：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ hugo list future
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ hugo list future
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>同理，列出草稿：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ hugo list drafts
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ hugo list drafts
 &lt;/code>&lt;/pre>&lt;/div></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>Python 費氏數列解法（二）：矩陣解</title><link>https://dwye.dev/post/python-fibonacci-2/</link><pubDate>Wed, 31 Mar 2021 20:18:25 +0800</pubDate><guid>https://dwye.dev/post/python-fibonacci-2/</guid><description>
 &lt;p>在&lt;a href="https://dwye.dev/post/python-fibonacci">上篇&lt;/a>我們討論了費氏數列的各種基本解法。&lt;/p>
 &lt;p>原本我也以為 O(n) 的迭代解就已經是標準解法了，直到被大神朋友指正：&lt;/p>
@@ -1263,7 +1263,7 @@ $$&lt;/p>
 &lt;p>拿來應用在矩陣上，就是所謂&lt;strong>矩陣快速冪&lt;/strong>&lt;/p>
 &lt;h2 id="說了這麼多給我-code-吧">說了這麼多，給我 code 吧&lt;/h2>
 &lt;p>這裡參考了 &lt;a href="https://leetcode.com/problems/fibonacci-number/solution/">leetcode 的官方解法&lt;/a>：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fibonacci&lt;/span>(n):
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fibonacci&lt;/span>(n):
 A &lt;span style="color:#f92672">=&lt;/span> [[&lt;span style="color:#ae81ff">1&lt;/span>, &lt;span style="color:#ae81ff">1&lt;/span>], [&lt;span style="color:#ae81ff">1&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>]]
 power(A, n&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>)
 &lt;span style="color:#66d9ef">return&lt;/span> A[&lt;span style="color:#ae81ff">0&lt;/span>][&lt;span style="color:#ae81ff">0&lt;/span>]
@@ -1286,7 +1286,7 @@ A[&lt;span style="color:#ae81ff">1&lt;/span>][&lt;span style="color:#ae81ff">0&l
 A[&lt;span style="color:#ae81ff">1&lt;/span>][&lt;span style="color:#ae81ff">1&lt;/span>] &lt;span style="color:#f92672">=&lt;/span> w
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>因為要進行矩陣運算，我們必須另外實作相關 code，所以才多了 &lt;code>power&lt;/code> 和 &lt;code>multiply&lt;/code> 兩個 function。&lt;br>
 當然，也可以直接使用 numpy：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fibonacci&lt;/span>(n):
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fibonacci&lt;/span>(n):
 &lt;span style="color:#75715e"># 但我自己測試，這個會有精確度問題&lt;/span>
 A &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>array([[&lt;span style="color:#ae81ff">1&lt;/span>, &lt;span style="color:#ae81ff">1&lt;/span>], [&lt;span style="color:#ae81ff">1&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>]])
 &lt;span style="color:#66d9ef">return&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>linalg&lt;span style="color:#f92672">.&lt;/span>matrix_power(A, n&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>)[&lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>]
@@ -1314,7 +1314,7 @@ A &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&
 &lt;p>&lt;del>可以去更新履歷了（不是才剛找完工作&lt;/del>&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>Python 費氏數列解法（一）</title><link>https://dwye.dev/post/python-fibonacci/</link><pubDate>Sun, 28 Mar 2021 20:18:25 +0800</pubDate><guid>https://dwye.dev/post/python-fibonacci/</guid><description>
 &lt;p>面試被問到的題目，雖然是很基本的題目，但相關延伸也有不少，寫篇文章記錄一下。&lt;/p>
 &lt;h2 id="遞迴最基本又直觀的解法">遞迴：最基本又直觀的解法&lt;/h2>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fibonacci&lt;/span>(n):
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fibonacci&lt;/span>(n):
 &lt;span style="color:#66d9ef">if&lt;/span> n &lt;span style="color:#f92672">&amp;lt;&lt;/span> &lt;span style="color:#ae81ff">3&lt;/span>:
 &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
 &lt;span style="color:#66d9ef">return&lt;/span> fibonacci(n&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>) &lt;span style="color:#f92672">+&lt;/span> fibonacci(n&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>)
@@ -1327,7 +1327,7 @@ $$&lt;/p>
 &lt;p>$O(1)$&lt;/p>
 &lt;h2 id="遞迴優化利用-hash-減少計算次數">遞迴優化：利用 Hash 減少計算次數&lt;/h2>
 &lt;p>在原本的解法中，會有很多次重複計算 &lt;code>fibonacci(n-1)&lt;/code>, &lt;code>fibonacci(n-2)&lt;/code> &amp;hellip; 等，因此可以把計算結果儲存起來，&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fibonacci&lt;/span>(n):
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fibonacci&lt;/span>(n):
 table &lt;span style="color:#f92672">=&lt;/span> {}
 &lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fib_table&lt;/span>(n):
 &lt;span style="color:#66d9ef">if&lt;/span> n &lt;span style="color:#f92672">&amp;lt;&lt;/span> &lt;span style="color:#ae81ff">3&lt;/span>:
@@ -1345,14 +1345,14 @@ table[n] &lt;span style="color:#f92672">=&lt;/span> fib_table(n&lt;span style="c
 &lt;p>$O(n)$，&lt;code>table&lt;/code> 需要存 &lt;code>fib_table(3)&lt;/code> 到 &lt;code>fib_table(n)&lt;/code> 的結果。&lt;/p>
 &lt;h2 id="遞迴優化使用-cache">遞迴優化：使用 Cache&lt;/h2>
 &lt;p>Python 有內建的 Cache 可以記錄函式呼叫結果：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#a6e22e">@cache&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#a6e22e">@cache&lt;/span>
 &lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fibonacci&lt;/span>(n):
 &lt;span style="color:#66d9ef">if&lt;/span> n &lt;span style="color:#f92672">&amp;lt;&lt;/span> &lt;span style="color:#ae81ff">3&lt;/span>:
 &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
 &lt;span style="color:#66d9ef">return&lt;/span> fibonacci(n&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>) &lt;span style="color:#f92672">+&lt;/span> fibonacci(n&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>)
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>這其實就是第一個解法加上一行 &lt;code>@cache&lt;/code> 而已。&lt;/p>
 &lt;p>在函式開頭加上 &lt;code>@something&lt;/code> 的寫法是呼叫 Python 中的 decorator，是 Python 中一個重要的特性。在 Python 語言中，函式是一等公民，也就是函式可以被當作變數 assign，也可以當作參數傳遞。 decorator 實際上就是把他裝飾的函式傳到 decorator 內部再做一些事情，以這邊的 &lt;code>@cache&lt;/code> 為例，decorator 會自動幫忙把 &lt;code>fibonacci&lt;/code> 這個函式的呼叫結果記錄起來，並回傳&lt;strong>包裝後的函數&lt;/strong>，我們最後拿到的 &lt;code>fibonacci&lt;/code> 實際上會多了包裝後的方法：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#f92672">&amp;gt;&lt;/span> fibonacci&lt;span style="color:#f92672">.&lt;/span>__dir__()
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#f92672">&amp;gt;&lt;/span> fibonacci&lt;span style="color:#f92672">.&lt;/span>__dir__()
 [&lt;span style="color:#e6db74">&amp;#39;cache_parameters&amp;#39;&lt;/span>,
 &lt;span style="color:#f92672">...&lt;/span>
 &lt;span style="color:#e6db74">&amp;#39;cache_info&amp;#39;&lt;/span>,
@@ -1369,7 +1369,7 @@ table[n] &lt;span style="color:#f92672">=&lt;/span> fib_table(n&lt;span style="c
 所以會在接下來算 n-2 時造成一個 cache miss。&lt;/p>
 &lt;p>如果不改其他部分，可以把 &lt;code>maxsize&lt;/code> 設成 3，就可以避免掉這個 cache miss。&lt;/p>
 &lt;p>但仔細思考，其實會有這個 miss，歸根究底是我們先計算比較靠近 n 的 n-1，後計算比較遠離 n 的 n-2 造成的。那何不將兩者交換呢？&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#a6e22e">@lru_cache&lt;/span>(maxsize&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>)
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#a6e22e">@lru_cache&lt;/span>(maxsize&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>)
 &lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fibonacci&lt;/span>(n):
 &lt;span style="color:#66d9ef">if&lt;/span> n &lt;span style="color:#f92672">&amp;lt;&lt;/span> &lt;span style="color:#ae81ff">3&lt;/span>:
 &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
@@ -1382,7 +1382,7 @@ table[n] &lt;span style="color:#f92672">=&lt;/span> fib_table(n&lt;span style="c
 &lt;h2 id="尾遞迴-tail-recursive--tail-call">尾遞迴 Tail Recursive / Tail Call&lt;/h2>
 &lt;p>當函式本身在回傳時會呼叫自己即為尾遞迴，可以說是遞迴中的特例。&lt;/p>
 &lt;p>要撰寫尾遞迴，需要思考每次遞迴時我們往前取了什麼資訊。在上一個 LRU cache 的解法中知道，我們只需要紀錄 n-2 和 n-1 兩個值即可。分別命名為 &lt;code>f1&lt;/code> 和 &lt;code>f2&lt;/code>，每次呼叫我們把 n 減 1，把 &lt;code>f1&lt;/code> 指定為 &lt;code>f2&lt;/code>，並把 &lt;code>f2&lt;/code> 改為 &lt;code>f1 + f2&lt;/code>：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fibonacci&lt;/span>(n):
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fibonacci&lt;/span>(n):
 &lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fib_tail_recursive&lt;/span>(n, f1, f2):
 &lt;span style="color:#66d9ef">if&lt;/span> n &lt;span style="color:#f92672">&amp;lt;&lt;/span> &lt;span style="color:#ae81ff">3&lt;/span>:
 &lt;span style="color:#66d9ef">return&lt;/span> f2
@@ -1402,7 +1402,7 @@ table[n] &lt;span style="color:#f92672">=&lt;/span> fib_table(n&lt;span style="c
 &lt;p>$O(1)$，沒有額外的 cache 或是查表。&lt;/p>
 &lt;h2 id="迭代法使用迴圈攤平遞迴">迭代法：使用迴圈，攤平遞迴&lt;/h2>
 &lt;p>尾遞迴是攤平遞迴的中間做法，可以寫成尾遞迴的函式，就能快速改寫成迭代形式：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fibonacci&lt;/span>(n):
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">fibonacci&lt;/span>(n):
 f1, f2 &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>, &lt;span style="color:#ae81ff">1&lt;/span>
 &lt;span style="color:#66d9ef">for&lt;/span> i &lt;span style="color:#f92672">in&lt;/span> range(&lt;span style="color:#ae81ff">2&lt;/span>, n): &lt;span style="color:#75715e"># 當 n &amp;lt; 3 時不會進入迴圈&lt;/span>
 f1, f2 &lt;span style="color:#f92672">=&lt;/span> f2, f1 &lt;span style="color:#f92672">+&lt;/span> f2
@@ -1452,7 +1452,7 @@ f1, f2 &lt;span style="color:#f92672">=&lt;/span> f2, f1 &lt;span style="color:#
 &lt;/code>&lt;/pre>&lt;p>具體做法是在 DNS 頁面中下方 Custom resource records 中，選擇 resource type: A，並新增上述四組 IP：&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/1P3zHXX.png" alt="DNS apex domain setting">&lt;/p>
 &lt;p>DNS 設定需要一段時間生效，Google Domain 算是很快的，只讓我等了幾分鐘而已，下列指令可以確定剛剛的設定是否生效：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ dig dwye.dev +nostats +nocomments +nocmd
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ dig dwye.dev +nostats +nocomments +nocmd
 ; &amp;lt;&amp;lt;&amp;gt;&amp;gt; DiG 9.10.6 &amp;lt;&amp;lt;&amp;gt;&amp;gt; dwye.dev +nostats +nocomments +nocmd
 ;; global options: +cmd
 ;dwye.dev. IN A
@@ -1475,11 +1475,11 @@ dwye.dev. 3599 IN A 185.199.110.153
 &lt;p>我是用 &lt;a href="https://dwye.dev/hugo-github-action">Hugo + GitHub Action&lt;/a> 產生並透過 CI/CD 自動部署靜態網站，裡面也有相關的設定需要修改：&lt;/p>
 &lt;h3 id="hugo">Hugo&lt;/h3>
 &lt;p>修改 config 中 baseURL 設定：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-toml" data-lang="toml">&lt;span style="color:#75715e"># config.toml&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-toml" data-lang="toml">&lt;span style="color:#75715e"># config.toml&lt;/span>
 &lt;span style="color:#a6e22e">baseURL&lt;/span> = &lt;span style="color:#e6db74">&amp;#34;https://dwye.dev/&amp;#34;&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="github-action">GitHub Action&lt;/h3>
 &lt;p>因為我使用的是 &lt;code>peaceiris/actions-gh-pages@v3&lt;/code> 這個 Action，已經內建支援設定 CNAME 了，只需要加上去就好：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#75715e"># .github/workflows/deploy.yml&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#75715e"># .github/workflows/deploy.yml&lt;/span>
 - &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">Deploy&lt;/span>
 &lt;span style="color:#f92672">uses&lt;/span>: &lt;span style="color:#ae81ff">peaceiris/actions-gh-pages@v3&lt;/span>
 &lt;span style="color:#f92672">with&lt;/span>:
@@ -1524,7 +1524,7 @@ dwye.dev. 3599 IN A 185.199.110.153
 &lt;p>&lt;img src="https://i.imgur.com/XovsZ48.png" alt="workflow results">&lt;/p>
 &lt;h2 id="關於-deploy-key">關於 Deploy Key&lt;/h2>
 &lt;p>這邊是稍微比較複雜的地方，這個 deploy key 是需要自己產生自己放上 GitHub 的。產生的方法不外乎使用 &lt;code>ssh-keygen&lt;/code>&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ ssh-keygen
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ ssh-keygen
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>照著指示做就好，之後會生成一組 public-private key。Private key 是沒有副檔名的，public key 則有附檔名 &lt;code>.pub&lt;/code>。&lt;/p>
 &lt;p>Hugo 原始碼的 repo 要放 private key，放在 action secrets 供 action 存取（注意要把整個檔案內容，包含頭尾兩行 &lt;code>-----BEGIN OPENSSH PRIVATE KEY-----&lt;/code> 等一起貼上去）：&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/bx9WQK9.png" alt="put private key in hugo repo&amp;rsquo;s action secret">&lt;/p>
@@ -1543,7 +1543,7 @@ dwye.dev. 3599 IN A 185.199.110.153
 因為題目只問需要移動幾條 edges，我們可以假設我們移動的都是多出來的 edges，不必去動原本的 n-1 個 edges。&lt;/p>
 &lt;p>假設原本的 graph 被切分成分離的 m 塊 connected components，則我們需要移動 m-1 個 edges 去連接，因此問題變成了&lt;strong>找出目前有幾塊 connected components&lt;/strong>。&lt;/p>
 &lt;p>這個問題的一個標準做法就是使用 disjoint set：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">makeConnected&lt;/span>(self, n: int, connections: List[List[int]]) &lt;span style="color:#f92672">-&amp;gt;&lt;/span> int:
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">makeConnected&lt;/span>(self, n: int, connections: List[List[int]]) &lt;span style="color:#f92672">-&amp;gt;&lt;/span> int:
 &lt;span style="color:#75715e"># 檢查 edges 數量 &amp;gt;= n-1&lt;/span>
 &lt;span style="color:#66d9ef">if&lt;/span> len(connections) &lt;span style="color:#f92672">&amp;lt;&lt;/span> n&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>:
 &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>
@@ -1565,7 +1565,7 @@ ds&lt;span style="color:#f92672">.&lt;/span>union(u, v)
 &lt;li>&lt;code>union/2&lt;/code>：將兩棵樹合併，找到家長之後，將其中一個的 parent 指向另一個&lt;/li>
 &lt;/ul>
 &lt;p>如果是這樣的話我們可以這樣實作：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">DisjointSet&lt;/span>:
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">DisjointSet&lt;/span>:
 &lt;span style="color:#66d9ef">def&lt;/span> __init__(self, elements):
 self&lt;span style="color:#f92672">.&lt;/span>parents &lt;span style="color:#f92672">=&lt;/span> [n &lt;span style="color:#66d9ef">for&lt;/span> n &lt;span style="color:#f92672">in&lt;/span> elements]
 self&lt;span style="color:#f92672">.&lt;/span>count &lt;span style="color:#f92672">=&lt;/span> len(self&lt;span style="color:#f92672">.&lt;/span>parents)
@@ -1589,7 +1589,7 @@ self&lt;span style="color:#f92672">.&lt;/span>count &lt;span style="color:#f9267
 &lt;li>&lt;strong>Path compression&lt;/strong>，有點像是把每次 &lt;code>find&lt;/code> 的結果存起來，做法是當 &lt;code>find&lt;/code> 做完時，把沿路找到的 node 都掛載家長下方，這樣下次在這個子集合裡跑 find 時就會加速許多。&lt;/li>
 &lt;/ul>
 &lt;p>所以 &lt;code>DisjointSet&lt;/code> 改寫為：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">DisjointSet&lt;/span>: &lt;span style="color:#75715e"># with rank and path compression&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">DisjointSet&lt;/span>: &lt;span style="color:#75715e"># with rank and path compression&lt;/span>
 &lt;span style="color:#66d9ef">def&lt;/span> __init__(self, elements):
 self&lt;span style="color:#f92672">.&lt;/span>sets &lt;span style="color:#f92672">=&lt;/span> [Node(n) &lt;span style="color:#66d9ef">for&lt;/span> n &lt;span style="color:#f92672">in&lt;/span> elements]
 self&lt;span style="color:#f92672">.&lt;/span>count &lt;span style="color:#f92672">=&lt;/span> len(self&lt;span style="color:#f92672">.&lt;/span>sets)
@@ -1618,7 +1618,7 @@ self&lt;span style="color:#f92672">.&lt;/span>count &lt;span style="color:#f9267
 &lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">count_sets&lt;/span>(self):
 &lt;span style="color:#66d9ef">return&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>count
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>這邊用到了 Node 物件，其實就是 C 的 struct 的概念。其實也可以只使用 tuple，但我選擇寫成物件比較清楚：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Node&lt;/span>:
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Node&lt;/span>:
 &lt;span style="color:#66d9ef">def&lt;/span> __init__(self, n):
 self&lt;span style="color:#f92672">.&lt;/span>parent &lt;span style="color:#f92672">=&lt;/span> self
 self&lt;span style="color:#f92672">.&lt;/span>rank &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>
@@ -1851,9 +1851,9 @@ self&lt;span style="color:#f92672">.&lt;/span>rank &lt;span style="color:#f92672
 &lt;p>Abstraction: 模組&lt;strong>不該&lt;/strong>知道它所操作的物件的&lt;strong>內部運作&lt;/strong>&lt;/p>
 &lt;h3 id="火車事故-train-wreck">火車事故 (train wreck)&lt;/h3>
 &lt;p>一連串的連續呼叫，對於物件 &lt;code>get_options&lt;/code> 內部理解太深&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">output_dir &lt;span style="color:#f92672">=&lt;/span> obj&lt;span style="color:#f92672">.&lt;/span>get_options()&lt;span style="color:#f92672">.&lt;/span>get_scratch_dir()&lt;span style="color:#f92672">.&lt;/span>get_absolute_path()
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">output_dir &lt;span style="color:#f92672">=&lt;/span> obj&lt;span style="color:#f92672">.&lt;/span>get_options()&lt;span style="color:#f92672">.&lt;/span>get_scratch_dir()&lt;span style="color:#f92672">.&lt;/span>get_absolute_path()
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>Clean Code 認為違反了 Law of Demeter，以下列方式分割：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">opt &lt;span style="color:#f92672">=&lt;/span> obj&lt;span style="color:#f92672">.&lt;/span>get_options()
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">opt &lt;span style="color:#f92672">=&lt;/span> obj&lt;span style="color:#f92672">.&lt;/span>get_options()
 scratch_dir &lt;span style="color:#f92672">=&lt;/span> opt&lt;span style="color:#f92672">.&lt;/span>get_scratch_dir()
 output_dir &lt;span style="color:#f92672">=&lt;/span> scratch_dir&lt;span style="color:#f92672">.&lt;/span>get_absolute_path()
 &lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="資料傳輸物件-data-transfer-objects-dto">資料傳輸物件 Data Transfer Objects (DTO)&lt;/h3>
@@ -2476,9 +2476,9 @@ To be continued…?&lt;/p>
 &lt;p>花了一段時間解決這個問題，發篇文章記錄一下。&lt;/p>
 &lt;h2 id="嘗試">嘗試&lt;/h2>
 &lt;p>一開始想到的是字型設定，所以就看一下系統有哪些中文字型：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">fc-list :lang&lt;span style="color:#f92672">=&lt;/span>zh
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">fc-list :lang&lt;span style="color:#f92672">=&lt;/span>zh
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>挑一個字體在畫圖前修改 font family：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-Python" data-lang="Python">plt&lt;span style="color:#f92672">.&lt;/span>rcParams[&lt;span style="color:#e6db74">&amp;#39;font.family&amp;#39;&lt;/span>] &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#39;Noto Sans CJK TC&amp;#39;&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-Python" data-lang="Python">plt&lt;span style="color:#f92672">.&lt;/span>rcParams[&lt;span style="color:#e6db74">&amp;#39;font.family&amp;#39;&lt;/span>] &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#39;Noto Sans CJK TC&amp;#39;&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>然後就炸了&amp;hellip;噴出錯誤訊息：&lt;br>
 &lt;code>/usr/local/lib/python3.7/site-packages/matplotlib/font_manager.py:1241: UserWarning: findfont: Font family ['Noto Sans CJK TC'] not found. Falling back to DejaVu Sans.&lt;/code>&lt;/p>
 &lt;p>後來找到「&lt;a href="https://medium.com/marketingdatascience/f7b3773a889b">解決 Python 3 Matplotlib 與 Seaborn 視覺化套件中文顯示問題&lt;/a>」這篇文章，裡面提供兩種方法，一種是直接套絕對路徑，另一種則是手動去改設定檔，兩個方法對我而言都蠻麻煩的。&lt;/p>
@@ -2486,19 +2486,19 @@ To be continued…?&lt;/p>
 &lt;p>想說能不能動到最少的 code 來解決這個問題，於是換個想法，可能是 &lt;code>Matplotlib&lt;/code> 沒有找到 &lt;code>fc-list&lt;/code> 列出來的字體，所以就來查到底哪些字體是 &lt;code>Matplotlib&lt;/code> 吃得到的呢？&lt;/p>
 &lt;p>於是就找到這篇 stackoverflow：「&lt;a href="https://stackoverflow.com/questions/18821795/">How can i get list of font family (or Name of Font) in matplotlib&lt;/a>」&lt;br>
 底下的人回答用這個方式可以列出 &lt;code>Matplotlib&lt;/code> 找得到的 &lt;code>.ttf&lt;/code> 字體：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-Python" data-lang="Python">&lt;span style="color:#f92672">import&lt;/span> matplotlib.font_manager
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-Python" data-lang="Python">&lt;span style="color:#f92672">import&lt;/span> matplotlib.font_manager
 [f&lt;span style="color:#f92672">.&lt;/span>name &lt;span style="color:#66d9ef">for&lt;/span> f &lt;span style="color:#f92672">in&lt;/span> matplotlib&lt;span style="color:#f92672">.&lt;/span>font_manager&lt;span style="color:#f92672">.&lt;/span>fontManager&lt;span style="color:#f92672">.&lt;/span>ttflist]
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>不過列出來很大一串，所以稍微修改一下，用集合去掉重複的：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-Python" data-lang="Python">&lt;span style="color:#f92672">from&lt;/span> matplotlib &lt;span style="color:#f92672">import&lt;/span> font_manager
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-Python" data-lang="Python">&lt;span style="color:#f92672">from&lt;/span> matplotlib &lt;span style="color:#f92672">import&lt;/span> font_manager
 font_set &lt;span style="color:#f92672">=&lt;/span> {f&lt;span style="color:#f92672">.&lt;/span>name &lt;span style="color:#66d9ef">for&lt;/span> f &lt;span style="color:#f92672">in&lt;/span> font_manager&lt;span style="color:#f92672">.&lt;/span>fontManager&lt;span style="color:#f92672">.&lt;/span>ttflist}
 &lt;span style="color:#66d9ef">for&lt;/span> f &lt;span style="color:#f92672">in&lt;/span> font_set:
-&lt;span style="color:#66d9ef">print&lt;/span>(f)
+print(f)
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>就可以找到所有可用的 font family 了，再也不會被 Falling back to DejaVu Sans 了。&lt;/p>
 &lt;p>最後找到的是「AR PL UMing CN」這個字體，居然是用 CN 結尾，而沒有 TW 的，真是神奇。但是至少可以用了。&lt;/p>
 &lt;p>順便提供一段簡單的測試代碼：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-Python" data-lang="Python">&lt;span style="color:#f92672">from&lt;/span> matplotlib &lt;span style="color:#f92672">import&lt;/span> pyplot &lt;span style="color:#66d9ef">as&lt;/span> plt
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-Python" data-lang="Python">&lt;span style="color:#f92672">from&lt;/span> matplotlib &lt;span style="color:#f92672">import&lt;/span> pyplot &lt;span style="color:#66d9ef">as&lt;/span> plt
 plt&lt;span style="color:#f92672">.&lt;/span>rcParams[&lt;span style="color:#e6db74">&amp;#39;font.family&amp;#39;&lt;/span>] &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#39;AR PL UMing CN&amp;#39;&lt;/span>
-plt&lt;span style="color:#f92672">.&lt;/span>text(&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#ae81ff">5&lt;/span>, &lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#ae81ff">5&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;中文&amp;#39;&lt;/span>, fontsize&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#ae81ff">50&lt;/span>)
+plt&lt;span style="color:#f92672">.&lt;/span>text(&lt;span style="color:#ae81ff">.5&lt;/span>, &lt;span style="color:#ae81ff">.5&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;中文&amp;#39;&lt;/span>, fontsize&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#ae81ff">50&lt;/span>)
 plt&lt;span style="color:#f92672">.&lt;/span>show()
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>下面這是我後來用 macOS 補截圖的，字型和上面不一樣，是正常的&lt;strong>新細明體&lt;/strong> &lt;code>PMingLiU&lt;/code>&lt;br>
 &lt;img src="https://i.imgur.com/XhFWbE9.png" alt="matplotlib chinese demo">&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>表單大戰 10 週年</title><link>https://dwye.dev/post/form-war/</link><pubDate>Fri, 14 Feb 2020 14:00:00 +0800</pubDate><guid>https://dwye.dev/post/form-war/</guid><description>
@@ -2539,7 +2539,7 @@ plt&lt;span style="color:#f92672">.&lt;/span>show()
 &lt;p>結果 Code 一片慘不忍賭，各種複製貼上，才想到我當時根本沒有學過真正的物件導向，也沒有 Class 和 Function 的概念，原本還想說搞不好可以當自己的作品集，可是這種程度如果放上 GitHub 根本給人笑 QQ。當時也沒有用 Git 進行版控，所以就會有各種不同版本的資料夾，於是決定就趁這個機會花點時間整理一下。&lt;/p>
 &lt;p>所有的舊 Project 中最具代表性的當然就是這篇的主角「&lt;strong>表單大戰&lt;/strong>」了，因此就成了我第一個開刀的目標，剛好今年又是第一版發行的十週年，因此就有了這個突發奇想的計畫。&lt;/p>
 &lt;p>例如說這個片段，是控制表單移動的部分：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-vbnet" data-lang="vbnet">Randomize()
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-vbnet" data-lang="vbnet">Randomize()
 &lt;span style="color:#66d9ef">If&lt;/span> Val(Label1.Text) &lt;span style="color:#f92672">&amp;lt;&lt;/span> 15 &lt;span style="color:#66d9ef">Then&lt;/span>
 &lt;span style="color:#66d9ef">If&lt;/span> &lt;span style="color:#66d9ef">Me&lt;/span>.Location.X &lt;span style="color:#f92672">&amp;lt;&lt;/span> 800 &lt;span style="color:#f92672">And&lt;/span> &lt;span style="color:#66d9ef">Me&lt;/span>.Location.Y &lt;span style="color:#f92672">&amp;lt;&lt;/span> 600 &lt;span style="color:#f92672">And&lt;/span> x_add &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">True&lt;/span> &lt;span style="color:#f92672">And&lt;/span> y_add &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">True&lt;/span> &lt;span style="color:#66d9ef">Then&lt;/span>
 &lt;span style="color:#66d9ef">Me&lt;/span>.SetDesktopLocation(&lt;span style="color:#66d9ef">Me&lt;/span>.Location.X &lt;span style="color:#f92672">+&lt;/span> Int(Rnd() &lt;span style="color:#f92672">*&lt;/span> 50) &lt;span style="color:#f92672">+&lt;/span> 10, &lt;span style="color:#66d9ef">Me&lt;/span>.Location.Y &lt;span style="color:#f92672">+&lt;/span> Int(Rnd() &lt;span style="color:#f92672">*&lt;/span> 50) &lt;span style="color:#f92672">+&lt;/span> 10)
@@ -2572,7 +2572,7 @@ x_add &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">
 &lt;span style="color:#66d9ef">End&lt;/span> &lt;span style="color:#66d9ef">If&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>就是相當冗長又充滿複製貼上的代碼，而且每個分身表單都有這麼一段。因此這次的一項工程，就是把分身表單的 Code 集中起來，每次召喚分身都從同一個物件 New 一個新的出來而不是直接寫很多份 Code。&lt;/p>
 &lt;p>而經過一些簡單的修改之後，這段 Code 變成：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-vbnet" data-lang="vbnet">&lt;span style="color:#66d9ef">Public&lt;/span> &lt;span style="color:#66d9ef">Sub&lt;/span> &lt;span style="color:#a6e22e">FormMove&lt;/span>(&lt;span style="color:#66d9ef">ByRef&lt;/span> form)
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-vbnet" data-lang="vbnet">&lt;span style="color:#66d9ef">Public&lt;/span> &lt;span style="color:#66d9ef">Sub&lt;/span> &lt;span style="color:#a6e22e">FormMove&lt;/span>(&lt;span style="color:#66d9ef">ByRef&lt;/span> form)
 Randomize()
 form.SetDesktopLocation(
 form.Location.X &lt;span style="color:#f92672">+&lt;/span> form.x_sign &lt;span style="color:#f92672">*&lt;/span> SpeedScale,
@@ -2592,9 +2592,9 @@ form.x_sign &lt;span style="color:#f92672">=&lt;/span> 1
 &lt;span style="color:#66d9ef">End&lt;/span> &lt;span style="color:#66d9ef">If&lt;/span>
 &lt;span style="color:#66d9ef">End&lt;/span> &lt;span style="color:#66d9ef">Sub&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>然後讓分身與本尊都來調用這個 Function：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-vbnet" data-lang="vbnet">FormMove(&lt;span style="color:#66d9ef">Me&lt;/span>)
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-vbnet" data-lang="vbnet">FormMove(&lt;span style="color:#66d9ef">Me&lt;/span>)
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>原本的數字 &lt;code>15&lt;/code> 以下會加速的設定，就可以改成另外去修改 &lt;code>SpeedScale&lt;/code> 這個變數：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-vbnet" data-lang="vbnet">&lt;span style="color:#66d9ef">If&lt;/span> Val(Label1.Text) &lt;span style="color:#f92672">&amp;lt;&lt;/span> levelSpeedUp &lt;span style="color:#66d9ef">Then&lt;/span> &lt;span style="color:#75715e">&amp;#39;這邊設定成 15
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-vbnet" data-lang="vbnet">&lt;span style="color:#66d9ef">If&lt;/span> Val(Label1.Text) &lt;span style="color:#f92672">&amp;lt;&lt;/span> levelSpeedUp &lt;span style="color:#66d9ef">Then&lt;/span> &lt;span style="color:#75715e">&amp;#39;這邊設定成 15
 &lt;/span>&lt;span style="color:#75715e">&lt;/span> SpeedScale &lt;span style="color:#f92672">*=&lt;/span> 1.5
 &lt;span style="color:#66d9ef">End&lt;/span> &lt;span style="color:#66d9ef">If&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>維護起來容易很多。（雖然我以後也不一定會繼續來維護了&amp;hellip;XD）&lt;/p>
@@ -2636,7 +2636,7 @@ form.x_sign &lt;span style="color:#f92672">=&lt;/span> 1
 &lt;li>&lt;a href="https://github.com/dwy6626/Markdown-Format-Fixer">dwy6626/Markdown-Format-Fixer&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;p>用法很簡單：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">python main.py &lt;span style="color:#f92672">[&lt;/span>your folder&lt;span style="color:#f92672">]&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">python main.py &lt;span style="color:#f92672">[&lt;/span>your folder&lt;span style="color:#f92672">]&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>當然前提是你要裝好 Python，&lt;del>好像還有你要會用 Terminal&lt;/del>，一般來說 macOS 都有內建，但我用的是 Python 3.7，注意一下版本，如果是 2.X 的話我不保證能跑。&lt;/p>
 &lt;p>順利的話，你會拿到一堆 &lt;code>.md&lt;/code> 檔。&lt;/p>
 &lt;h2 id="匯入-notionso">匯入 Notion.so&lt;/h2>
@@ -2808,7 +2808,7 @@ form.x_sign &lt;span style="color:#f92672">=&lt;/span> 1
 &lt;p>其實相關的說明很多，&lt;a href="https://gohugo.io/hosting-and-deployment/deployment-with-wercker/">Hugo 官方說明&lt;/a>也很詳細，看得懂英文的可以參考，看不懂的看&lt;a href="http://handsomezhu.me/2017/10/hugo-blog-setup-tutorial/">這篇簡中的&lt;/a>也行~~，都看不懂&amp;hellip;Google 翻譯是你的好朋友~~。&lt;/p>
 &lt;p>不過這篇特別談的是 &lt;code>wercker.yaml&lt;/code> 到底要寫什麼？&lt;/p>
 &lt;p>上面的官方說明附上了這個 script:&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#f92672">box&lt;/span>: &lt;span style="color:#ae81ff">debian&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#f92672">box&lt;/span>: &lt;span style="color:#ae81ff">debian&lt;/span>
 &lt;span style="color:#f92672">build&lt;/span>:
 &lt;span style="color:#f92672">steps&lt;/span>:
 - &lt;span style="color:#f92672">arjen/hugo-build&lt;/span>:
@@ -2830,7 +2830,7 @@ form.x_sign &lt;span style="color:#f92672">=&lt;/span> 1
 &lt;p>&lt;del>（結果用了 Markdown 還是想插入 gist XDDDDD）&lt;/del>&lt;/p>
 &lt;p>所以 &lt;code>theme&lt;/code> 那行可以拔掉。&lt;/p>
 &lt;p>另外，因為使用了 git submodule，根據 &lt;a href="//devcenter.wercker.com/integrations/git/submodules/">Wercker 官方的說明&lt;/a>，必須要手動把 submodule 給 &lt;code>clone&lt;/code> 下來（其實也是原本 &lt;code>git clone&lt;/code> 的特性，並不會自動幫導入 submodule），要在 &lt;code>wercker.yml&lt;/code> 把這一步寫入：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml"> - &lt;span style="color:#f92672">script&lt;/span>:
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml"> - &lt;span style="color:#f92672">script&lt;/span>:
 &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">install git&lt;/span>
 &lt;span style="color:#f92672">code&lt;/span>: |&lt;span style="color:#e6db74">
 &lt;/span>&lt;span style="color:#e6db74"> apt-get update
@@ -2847,7 +2847,7 @@ form.x_sign &lt;span style="color:#f92672">=&lt;/span> 1
 &lt;/span>&lt;span style="color:#e6db74"> &lt;/span> &lt;span style="color:#ae81ff">git submodule update --init --recursive&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>不過在 &lt;a href="https://www.kkstream.com/">KKStream&lt;/a> 搞過一些簡單的 CI/CD 之後（你看在 KKStream 什麼都可以學，還不過來當 intern 嗎 XD），回來看到自己的 &lt;code>wercker.yml&lt;/code> 就覺得好像不需要這麼多步驟，真的需要再加一次 ssh key 嗎？還要加一次 known_hosts 嗎？不然一開始 build 的時候，怎麼把檔案從我的 private repo 拉下來的？所以就嘗試刪掉&amp;hellip;就成功了 XD&lt;/p>
 &lt;p>順便把 &lt;code>install git&lt;/code> 那步，用 Wercker 自帶的 &lt;code>install-packages&lt;/code> 取代。&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml"> - &lt;span style="color:#f92672">install-packages&lt;/span>:
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml"> - &lt;span style="color:#f92672">install-packages&lt;/span>:
 &lt;span style="color:#f92672">packages&lt;/span>: &lt;span style="color:#ae81ff">git&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>於是就變成這樣了：&lt;/p>
 &lt;script src="https://gist.github.com/dwy6626/d072c4809db1e04e02e4eab9365e567e.js">&lt;/script>
@@ -3270,28 +3270,28 @@ MV 演出：&lt;a href="https://www.instagram.com/hi_erica_">愛花 -ERICA-&lt;/
 &lt;h2 id="準備">準備&lt;/h2>
 &lt;h3 id="創建虛擬環境">創建虛擬環境&lt;/h3>
 &lt;p>這邊以 conda 為例：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">conda create --name new_env python&lt;span style="color:#f92672">=&lt;/span>3.6
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">conda create --name new_env python&lt;span style="color:#f92672">=&lt;/span>3.6
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>輸入 y（或是直接 enter）就完成這步了，可以看一下視窗內部的訊息來確認。或是列出現有的環境：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">conda env list
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">conda env list
 &lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="啟動虛擬環境">啟動虛擬環境&lt;/h3>
 &lt;p>確認你的 .bashrc（或是 macOS 上：.bash_profile）有包含你的虛擬環境的路徑：（以我的 miniconda 為例）&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#75715e"># .bash_profile&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#75715e"># .bash_profile&lt;/span>
 export PATH&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;/usr/local/miniconda3/bin:&lt;/span>$PATH&lt;span style="color:#e6db74">&amp;#34;&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>接著用這行指令就可以直接啟動了：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">conda activate new_env
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">conda activate new_env
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>這時候命令列的前方會多出一個 &lt;code>(new_env)&lt;/code>，就代表我們已經進入這個虛擬環境了，但這時候我們的 Python 還是系統預定的版本，記得也為他安裝一個 Python：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">conda install python&lt;span style="color:#f92672">=&lt;/span>你要安裝的版本
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">conda install python&lt;span style="color:#f92672">=&lt;/span>你要安裝的版本
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="第一招在原本的-jupyter-中加入新的-kernel">第一招：在原本的 Jupyter 中加入新的 Kernel&lt;/h2>
 &lt;p>首先照著上面做的進入虛擬環境，然後安裝 ipykernel：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">conda install ipykernel
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">conda install ipykernel
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>沒意外的話會有一大堆相依套件被安裝，按 y 繼續就好。&lt;br>
 接下來確認一下你的 Python 是正確的 Python：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&amp;gt; which python
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&amp;gt; which python
 /usr/local/miniconda3/envs/new_env/bin/python
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>正確的話就可以直接幫 Jupyter 增加新的 kernel：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">python -m ipykernel install --name another_name
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">python -m ipykernel install --name another_name
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>接著列出可以使用的 kernel，檢查是否成功：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">jupyter kernelspec list
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">jupyter kernelspec list
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>就會看到剛剛加入的 kernel&lt;/p>
 &lt;p>&lt;img src="//i.imgur.com/mVfFZOD.png" alt="jupyter kernel list">&lt;/p>
 &lt;h3 id="切換-kernel">切換 kernel&lt;/h3>
@@ -3302,10 +3302,10 @@ export PATH&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db
 &lt;img src="//i.imgur.com/w7I31we.png" alt="notebook 切換 kernel">&lt;/p>
 &lt;h2 id="第二招為虛擬環境安裝獨立的-jupyter">第二招：為虛擬環境安裝獨立的 Jupyter&lt;/h2>
 &lt;p>一樣先進入虛擬環境，然後直接在裡面安裝 Jupyter：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">conda install jupyter
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">conda install jupyter
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>沒啥特別好說的，你開心也可以用 pip。然後去泡杯茶等它安裝好就行了。&lt;/p>
 &lt;p>這時候你的 Jupyter 應該就會被置換成虛擬環境的版本，可以用 which 確認一下：&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&amp;gt; which jupyter
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&amp;gt; which jupyter
 /usr/local/miniconda3/envs/new_env/bin/jupyter
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>接下來就跟平常一樣，走進你喜歡的根目錄之後開啟 Jupyter，就大功告成了&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>使用 Bcc 保護收件人的隱私</title><link>https://dwye.dev/post/bcc/</link><pubDate>Wed, 16 Jan 2019 21:00:20 +0800</pubDate><guid>https://dwye.dev/post/bcc/</guid><description>
 &lt;!-- 寄信的學問：To? CC? BCC? -->
