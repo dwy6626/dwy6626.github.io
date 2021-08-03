@@ -1,4 +1,33 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sun, 01 Aug 2021 20:20:00 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>MY FIRST STORY 《I'm a mess》 中文歌詞翻譯</title><link>https://dwye.dev/post/i-am-a-mess/</link><pubDate>Sun, 01 Aug 2021 20:20:00 +0800</pubDate><guid>https://dwye.dev/post/i-am-a-mess/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 03 Aug 2021 20:00:25 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>一個指令切換預設使用的 SSH Key</title><link>https://dwye.dev/post/ssh-switch-key/</link><pubDate>Tue, 03 Aug 2021 20:00:25 +0800</pubDate><guid>https://dwye.dev/post/ssh-switch-key/</guid><description>
+&lt;p>因應公司和個人有分開的 github 帳號，為了能在同一台電腦同使用者內工作，已經幾次重複解決這個問題，故寫篇文章記錄之。&lt;/p>
+&lt;h2 id="檢視現在使用的-ssh-key">檢視現在使用的 SSH Key&lt;/h2>
+&lt;p>我們可以使用 &lt;code>ssh-add&lt;/code> 這個工具來檢視目前使用 &lt;code>ssh&lt;/code> 指令連線時，會使用的 ssh key：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ ssh-add -l
+&lt;span style="color:#ae81ff">3072&lt;/span> SHA256:******************/****************** my-default-email@dwye.dev &lt;span style="color:#f92672">(&lt;/span>RSA&lt;span style="color:#f92672">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>也可以直接用 &lt;code>ssh -T&lt;/code>，使用 ssh 連線但不要使用虛擬終端（pty）&lt;br>
+這也衍生了 github 使用 &lt;code>git&lt;/code> 這個 user，作為設置 ssh key 時常見的確認手段：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ ssh -T git@github.com
+Hi your-account! You&lt;span style="color:#960050;background-color:#1e0010">&amp;#39;&lt;/span>ve successfully authenticated, but GitHub does not provide shell access.
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="ssh-key-的切換">SSH Key 的切換&lt;/h2>
+&lt;p>&lt;code>ssh-add&lt;/code> 顧名思義也可以用來管理 ssh-agent 現在使用的 ssh-key。&lt;/p>
+&lt;p>加入一個 ssh key:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ ssh-add ~/.ssh/my_rsa
+Identity added: /Users/myaccount/.ssh/my_rsa &lt;span style="color:#f92672">(&lt;/span>my-default-email@dwye.dev&lt;span style="color:#f92672">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>清空 ssh key:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ ssh-add -D
+All identities removed.
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>因此我們就可以做如此操作達到切換 ssh key 的效果：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#75715e"># ~/switch_main.sh&lt;/span>
+ssh-add -D
+ssh-add ~/.ssh/id_rsa
+&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#75715e"># ~/switch_personal.sh&lt;/span>
+ssh-add -D
+ssh-add ~/.ssh/my_rsa
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>然後在啟動 shell 時加入 alias 即可&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#75715e"># ~/.bashrc 或是 ~/.zshrc&lt;/span>
+alias gitp&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#39;source ~/switch_personal.sh&amp;#39;&lt;/span>
+alias gitm&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#39;source ~/switch_main.sh&amp;#39;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>之後就可以在 terminal 中透過 &lt;code>gitp&lt;/code> 或 &lt;code>gitm&lt;/code> 一指令切換 ssh key 了。&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>MY FIRST STORY 《I'm a mess》 中文歌詞翻譯</title><link>https://dwye.dev/post/i-am-a-mess/</link><pubDate>Sun, 01 Aug 2021 20:20:00 +0800</pubDate><guid>https://dwye.dev/post/i-am-a-mess/</guid><description>
 &lt;p>《I&amp;rsquo;m a mess》 是 MY FIRST STORY 於2021 年 7 月 14 日發行的單曲《告白》的 B 面曲。&lt;/p>
 &lt;div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
 &lt;iframe src="https://www.youtube.com/embed/PAEgjePd3r8" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video">&lt;/iframe>

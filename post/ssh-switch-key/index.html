@@ -4,27 +4,19 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="
   
-      《I&rsquo;m a mess》 是 MY FIRST STORY 於2021 年 7 月 14 日發行的單曲《告白》的 B 面曲。
-
-  
-
+      因應公司和個人有分開的 github 帳號，為了能在同一台電腦同使用者內工作，已經幾次重複解決這個問題，故寫篇文章記錄之。 檢視現在使用的 SSH Key 我們可以使用 ssh-add 這個工具來檢視目前使用 ssh 指令連線時，會使用的 ssh key： $ ssh-add -l 3072 SHA256:******************/****************** my-default-email@dwye.dev (RSA) 也可以直接用 ssh -T，使用 ssh 連線但不要使用虛擬終端（pty） 這也衍生了 github 使用 git 這個 user，作為設置 ssh key 時常見的確認手段： $ ssh -T git@github.com Hi your-account! You've successfully authenticated, but GitHub does not provide shell access. SSH Key 的切換 ssh-add 顧名思義也可以用來管理 ssh-agent 現在使用的 ssh-key。 加入一個 ssh key: $ ssh-add ~/.ssh/my_rsa Identity added: /Users/myaccount/.ssh/my_rsa (my-default-email@dwye.dev) 清空 ssh key: $ ssh-add -D All identities removed. 因此我們就可以做如此操作達到切換
     ">
 <meta name=generator content="Hugo 0.86.1">
-<meta property="og:title" content="MY FIRST STORY 《I'm a mess》 中文歌詞翻譯">
-<meta name=twitter:title content="MY FIRST STORY 《I'm a mess》 中文歌詞翻譯">
-<meta property="og:url" content="https://dwye.dev/post/i-am-a-mess/">
-<meta property="og:image" content="https://dwye.dev/img/kokuhaku.jpg">
-<meta name=twitter:image content="https://dwye.dev/img/kokuhaku.jpg">
-<meta name=twitter:card content="summary_large_image">
+<meta property="og:title" content="一個指令切換預設使用的 SSH Key">
+<meta name=twitter:title content="一個指令切換預設使用的 SSH Key">
+<meta property="og:url" content="https://dwye.dev/post/ssh-switch-key/">
+<meta name=twitter:card content="summary">
 <meta name=twitter:site content="dw's 小站">
 <meta name=twitter:creator content="De-Wei Ye">
-<meta name=twitter:description content="《I&rsquo;m a mess》 是 MY FIRST STORY 於2021 年 7 月 14 日發行的單曲《告白》的 B 面曲。
-
-  
-">
+<meta name=twitter:description content="因應公司和個人有分開的 github 帳號，為了能在同一台電腦同使用者內工作，已經幾次重複解決這個問題，故寫篇文章記錄之。 檢視現在使用的 SSH Key 我們可以使用 ssh-add 這個工具來檢視目前使用 ssh 指令連線時，會使用的 ssh key： $ ssh-add -l 3072 SHA256:******************/****************** my-default-email@dwye.dev (RSA) 也可以直接用 ssh -T，使用 ssh 連線但不要使用虛擬終端（pty） 這也衍生了 github 使用 git 這個 user，作為設置 ssh key 時常見的確認手段： $ ssh -T git@github.com Hi your-account! You've successfully authenticated, but GitHub does not provide shell access. SSH Key 的切換 ssh-add 顧名思義也可以用來管理 ssh-agent 現在使用的 ssh-key。 加入一個 ssh key: $ ssh-add ~/.ssh/my_rsa Identity added: /Users/myaccount/.ssh/my_rsa (my-default-email@dwye.dev) 清空 ssh key: $ ssh-add -D All identities removed. 因此我們就可以做如此操作達到切換">
 <link rel=preconnect href=https://s.ytimg.com>
 <link rel=preconnect href=https://i.imgur.com>
-<title>MY FIRST STORY 《I'm a mess》 中文歌詞翻譯 &#183; dw's 小站</title>
+<title>一個指令切換預設使用的 SSH Key &#183; dw's 小站</title>
 <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.5/pure-min.css media=screen>
 <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.5/grids-responsive-min.css media=screen>
 <link rel=stylesheet href=https://dwye.dev/css/side-menu.css media=screen>
@@ -138,7 +130,7 @@ Icons <a href=https://fontawesome.com rel="external noopener" target=_blank>Font
 <div id=main>
 <div class=header>
 <h1>
-MY FIRST STORY 《I'm a mess》 中文歌詞翻譯
+一個指令切換預設使用的 SSH Key
 </h1>
 <h2>
 </h2>
@@ -151,14 +143,11 @@ MY FIRST STORY 《I'm a mess》 中文歌詞翻譯
 <aside>
 <summary>目錄</summary>
 <div class=toc-item>
-<p><a rel=tag href=#>MY FIRST STORY 《I'm a mess》 中文歌詞翻譯</a></p>
+<p><a rel=tag href=#>一個指令切換預設使用的 SSH Key</a></p>
 <nav id=TableOfContents>
 <ul>
-<li>
-<ul>
-<li><a href=#im-a-mess>I&rsquo;m a mess</a></li>
-</ul>
-</li>
+<li><a href=#檢視現在使用的-ssh-key>檢視現在使用的 SSH Key</a></li>
+<li><a href=#ssh-key-的切換>SSH Key 的切換</a></li>
 </ul>
 </nav>
 </div>
@@ -173,34 +162,34 @@ MY FIRST STORY 《I'm a mess》 中文歌詞翻譯
 <i class="fa fa-calendar fa-fw"></i>
 <time>
 <span>
-Aug 01, 2021
+Aug 03, 2021
 </span>
 </time>
 </li>
 </div>
 <div>
-<a class=post-taxonomy-topic href=https://dwye.dev/topics/%E9%9F%B3%E6%A8%82%E6%97%A5%E8%AA%8C>
+<a class=post-taxonomy-topic href=https://dwye.dev/topics/%E6%8A%80%E8%A1%93%E8%A8%98%E9%8C%84>
 <li>
 <i class="fas fa-folder fa-fw"></i>
-<span>音樂日誌</span>
+<span>技術記錄</span>
 </li>
 </a>
-<a class=post-taxonomy-tag href=https://dwye.dev/tags/my-first-story>
+<a class=post-taxonomy-tag href=https://dwye.dev/tags/git>
 <li>
 <i class="fas fa-tag fa-fw"></i>
-<span>MY FIRST STORY</span>
+<span>git</span>
 </li>
 </a>
-<a class=post-taxonomy-tag href=https://dwye.dev/tags/%E6%97%A5%E6%9C%AC%E9%9F%B3%E6%A8%82>
+<a class=post-taxonomy-tag href=https://dwye.dev/tags/ssh>
 <li>
 <i class="fas fa-tag fa-fw"></i>
-<span>日本音樂</span>
+<span>ssh</span>
 </li>
 </a>
-<a class=post-taxonomy-tag href=https://dwye.dev/tags/%E6%AD%8C%E8%A9%9E%E7%BF%BB%E8%AD%AF>
+<a class=post-taxonomy-tag href=https://dwye.dev/tags/bash>
 <li>
 <i class="fas fa-tag fa-fw"></i>
-<span>歌詞翻譯</span>
+<span>bash</span>
 </li>
 </a>
 </div>
@@ -213,11 +202,8 @@ Aug 01, 2021
 <div class=toc-item>
 <nav id=TableOfContents>
 <ul>
-<li>
-<ul>
-<li><a href=#im-a-mess>I&rsquo;m a mess</a></li>
-</ul>
-</li>
+<li><a href=#檢視現在使用的-ssh-key>檢視現在使用的 SSH Key</a></li>
+<li><a href=#ssh-key-的切換>SSH Key 的切換</a></li>
 </ul>
 </nav>
 </div>
@@ -225,124 +211,35 @@ Aug 01, 2021
 </aside>
 </div>
 </div>
-<p>《I&rsquo;m a mess》 是 MY FIRST STORY 於2021 年 7 月 14 日發行的單曲《告白》的 B 面曲。</p>
-<div style=position:relative;padding-bottom:56.25%;height:0;overflow:hidden>
-<iframe src=https://www.youtube.com/embed/PAEgjePd3r8 style=position:absolute;top:0;left:0;width:100%;height:100%;border:0 allowfullscreen title="YouTube Video"></iframe>
-</div>
-<p>Mess 在英文中就是一團糟、髒亂麻煩的東西的意思，常常用來形容事物一團亂、很難救的情況。<br>
-也因此這次的 《I&rsquo;m a mess》在歌詞上繼承 MY FIRST STORY 一如以往的負面自卑的風格，以自己和自己的對話，訴說各種不得意，但曲風卻又輕快搖滾，是在低潮時容易共鳴並不斷 replay 的一首。</p>
-<p>這次的這首也是這半個月來十分中意而時常循環的新歌，看到網路上沒有什麼翻譯資料，所以選擇自己來翻譯。附帶一提，不知道為什麼 B 面曲對我來說總有特別的魔力，比起 A 面主打，我通常都比較中意 B 面曲，也許也和 B 面曲通常都是屬於比較特別敢嘗試的風格有關，不過通常 B 面曲都沒有 MV，也不太會收錄到專輯中就是，實在可惜。</p>
-<hr>
-<h3 id=im-a-mess>I&rsquo;m a mess</h3>
-<p>作詞：HIRO<br>
-作曲：SHO</p>
-<p>I’m a mess, I’m a mess</p>
-<p>明けない夜に失いかけた声をあげて<br>
-在沒有黎明的夜裡聲嘶力竭地呼喊著</p>
-<p>I’m a mess, I’m a mess</p>
-<p>振り返れない僕の心はどこへ行くの<br>
-無法收回的我的思念該往何處去</p>
-<p><br>
-閉ざされた世の中で<br>
-在這沒有出口的世界中</p>
-<p>何が不要不急かも分からなくなってしまう<br>
-逐漸變得分不清事情的輕重緩急</p>
-<p>血に濡れてるメッセージ<br>
-浸著血液的訊息</p>
-<p>隠された口元じゃなにも言えないだろう<br>
-隱藏起來的嘴角大概什麼也說不出來吧</p>
-<p><br>
-満たされない日々に<br>
-無法滿足的日子裡</p>
-<p>囚われたくもないな<br>
-不想被囚禁著</p>
-<p>心の底から崩れかけた<br>
-從心靈深處開始崩壞殆盡</p>
-<p><br>
-I’m a mess, I’m a mess</p>
-<p>1人の夜は　こんな想いが溢れていく<br>
-一個人的夜晚裡，滿滿的都是這種想法</p>
-<p>I’m a mess, I’m a mess</p>
-<p>余裕の negative<br>
-太多的負面思想</p>
-<p>同じように苦しめられて<br>
-同樣地被折磨著</p>
-<p><br>
-いらないやらない宣言なんて<br>
-不需要、做不到的宣言什麼的</p>
-<p>何度繰り返せばいいの<br>
-到底要重複幾遍才滿足呢</p>
-<p>もう意味なんてないよな<br>
-已經什麼意義都沒有了</p>
-<p>I’m a mess, I’m a mess</p>
-<p>1人の夜も　乗り越えられたらいいのにな<br>
-要是能撐過這獨自一人的夜晚就好了</p>
-<p><br>
-真っ暗な街中を<br>
-在漆黑的城鎮中</p>
-<p>憂いを帯びた顔で　バラバラに立ち去っていく<br>
-面帶悲傷的人們各自離去</p>
-<p>簡単に作られた意図的なマニュアルに　全て奪われてる<br>
-被廉價的意圖手冊奪去了一切</p>
-<p><br>
-今の世界は先が見えずに<br>
-在這世界裡看不清未來</p>
-<p>どこにも救いはなくて<br>
-也無法得到救贖</p>
-<p>また次の犠牲者が増えていくの<br>
-不斷地出現更多的犧牲者</p>
-<p><br>
-I’m a mess, I’m a mess</p>
-<p>聞こえる声を探し続けてたどり着いた<br>
-不斷尋找著聲音源頭而來到了這裡</p>
-<p>I’m a mess, I’m a mess</p>
-<p>不安な medicine　もっと近くで触れたいのに<br>
-帶來不安的藥物，想要更接近地觸摸</p>
-<p><br>
-泣かない逢えないシンデレラ<br>
-不哭泣、得不到邂逅的灰姑娘</p>
-<p>まだ帰る時間じゃないのに<br>
-明明還沒有到結束時間</p>
-<p>魔法が解けていくの<br>
-魔法卻逐漸消失了</p>
-<p>I’m a mess, I’m a mess</p>
-<p>いつかは君と<br>
-冀望著有一天能與你</p>
-<p>朝まで踊り明かしたいんだ<br>
-跳著舞迎接黎明</p>
-<p><br>
-当たり前じゃないだろう<br>
-並不是理所當然的吧</p>
-<p>やめたわけじゃないよな<br>
-也不是想要放棄的啊</p>
-<p>だとしたら答え探して<br>
-既然如此就去尋找答案吧</p>
-<p><br>
-I’m a mess, I’m a mess</p>
-<p>あの日の僕は　夢は叶うと思ったけど<br>
-那一天的我真心以為夢想會成真</p>
-<p>I’m a mess, I’m a mess</p>
-<p>諦めたくない　なんて言葉じゃ頼りなくて<br>
-不想放棄什麼的言語根本不可靠</p>
-<p><br>
-I’m a mess, I’m a mess</p>
-<p>1人の夜は　こんな想いが溢れていく<br>
-一個人的夜晚裡，滿滿的都是這種想法</p>
-<p>I’m a mess, I’m a mess</p>
-<p>余裕の negative<br>
-太多的負面思想</p>
-<p>同じように苦しめられて<br>
-同樣地被折磨著</p>
-<p><br>
-いらないやらない宣言なんて<br>
-不需要、做不到的宣言什麼的</p>
-<p>何度繰り返せばいいの<br>
-到底要重複幾遍才滿足呢</p>
-<p>もう意味なんてないよな<br>
-已經什麼意義都沒有了</p>
-<p>I’m a mess, I’m a mess</p>
-<p>そんな世界を　君と歩いて行けるのなら<br>
-在那樣的世界裡如果有你一起走過就好了呢</p>
+<p>因應公司和個人有分開的 github 帳號，為了能在同一台電腦同使用者內工作，已經幾次重複解決這個問題，故寫篇文章記錄之。</p>
+<h2 id=檢視現在使用的-ssh-key>檢視現在使用的 SSH Key</h2>
+<p>我們可以使用 <code>ssh-add</code> 這個工具來檢視目前使用 <code>ssh</code> 指令連線時，會使用的 ssh key：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ ssh-add -l
+<span style=color:#ae81ff>3072</span> SHA256:******************/****************** my-default-email@dwye.dev <span style=color:#f92672>(</span>RSA<span style=color:#f92672>)</span>
+</code></pre></div><p>也可以直接用 <code>ssh -T</code>，使用 ssh 連線但不要使用虛擬終端（pty）<br>
+這也衍生了 github 使用 <code>git</code> 這個 user，作為設置 ssh key 時常見的確認手段：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ ssh -T git@github.com
+Hi your-account! You<span style=color:#960050;background-color:#1e0010>&#39;</span>ve successfully authenticated, but GitHub does not provide shell access.
+</code></pre></div><h2 id=ssh-key-的切換>SSH Key 的切換</h2>
+<p><code>ssh-add</code> 顧名思義也可以用來管理 ssh-agent 現在使用的 ssh-key。</p>
+<p>加入一個 ssh key:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ ssh-add ~/.ssh/my_rsa
+Identity added: /Users/myaccount/.ssh/my_rsa <span style=color:#f92672>(</span>my-default-email@dwye.dev<span style=color:#f92672>)</span>
+</code></pre></div><p>清空 ssh key:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ ssh-add -D
+All identities removed.
+</code></pre></div><p>因此我們就可以做如此操作達到切換 ssh key 的效果：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># ~/switch_main.sh</span>
+ssh-add -D
+ssh-add ~/.ssh/id_rsa
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># ~/switch_personal.sh</span>
+ssh-add -D
+ssh-add ~/.ssh/my_rsa
+</code></pre></div><p>然後在啟動 shell 時加入 alias 即可</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># ~/.bashrc 或是 ~/.zshrc</span>
+alias gitp<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;source ~/switch_personal.sh&#39;</span>
+alias gitm<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;source ~/switch_main.sh&#39;</span>
+</code></pre></div><p>之後就可以在 terminal 中透過 <code>gitp</code> 或 <code>gitm</code> 一指令切換 ssh key 了。</p>
 <div class=copyright>
 本文原創部分採用
 <a rel=license href=http://creativecommons.org/licenses/by-nc-nd/4.0/>創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款</a>
@@ -350,23 +247,19 @@ I’m a mess, I’m a mess</p>
 </div>
 <div class="prev-next-post pure-g">
 <div class=pure-u-1-24 style=text-align:left>
-<a href=https://dwye.dev/post/ruby-object-model/><i class="fa fa-chevron-left"></i></a>
+<a href=https://dwye.dev/post/i-am-a-mess/><i class="fa fa-chevron-left"></i></a>
 </div>
 <div class=pure-u-10-24>
 <nav class=prev>
-<a href=https://dwye.dev/post/ruby-object-model/>Ruby Object Model</a>
+<a href=https://dwye.dev/post/i-am-a-mess/>MY FIRST STORY 《I'm a mess》 中文歌詞翻譯</a>
 </nav>
 </div>
 <div class=pure-u-2-24>
 &nbsp;
 </div>
 <div class=pure-u-10-24>
-<nav class=next>
-<a href=https://dwye.dev/post/ssh-switch-key/>一個指令切換預設使用的 SSH Key</a>
-</nav>
 </div>
 <div class=pure-u-1-24 style=text-align:right>
-<a href=https://dwye.dev/post/ssh-switch-key/><i class="fa fa-chevron-right"></i></a>
 </div>
 </div>
 <div id=disqus_thread></div>
