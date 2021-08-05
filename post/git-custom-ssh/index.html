@@ -4,27 +4,19 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="
   
-      如果學物理碰到一個觀念，一直無法想像怎麼辦？
-要怎麼從死板板的圖片變成順暢的動畫在腦中播放？
-在這個數位化的時代
-其實網路上已經有很多資源可以幫助我們學習
-這邊要分享的就是其中之一
+      寫完一個指令切換預設使用的 SSH Key這篇之後，又思考了一下有沒有其他方式來解決這個同個電腦中使用兩個 github 帳號的問題，畢竟那篇是採用 ssh-agent level 來解決，但其實搞不好也可以直接從 git 的 config 下手，因此這次重新用更多關鍵字去調查解法，發現 git 其實也支援客製化 ssh 指令。
     ">
 <meta name=generator content="Hugo 0.86.1">
-<meta property="og:title" content="【好站分享】邱博文物理線上資源">
-<meta name=twitter:title content="【好站分享】邱博文物理線上資源">
-<meta property="og:url" content="https://dwye.dev/post/20140729_060106/">
+<meta property="og:title" content="客製化 git 使用的 SSH Key">
+<meta name=twitter:title content="客製化 git 使用的 SSH Key">
+<meta property="og:url" content="https://dwye.dev/post/git-custom-ssh/">
 <meta name=twitter:card content="summary">
 <meta name=twitter:site content="dw's 小站">
 <meta name=twitter:creator content="De-Wei Ye">
-<meta name=twitter:description content="如果學物理碰到一個觀念，一直無法想像怎麼辦？
-要怎麼從死板板的圖片變成順暢的動畫在腦中播放？
-在這個數位化的時代
-其實網路上已經有很多資源可以幫助我們學習
-這邊要分享的就是其中之一">
+<meta name=twitter:description content="寫完一個指令切換預設使用的 SSH Key這篇之後，又思考了一下有沒有其他方式來解決這個同個電腦中使用兩個 github 帳號的問題，畢竟那篇是採用 ssh-agent level 來解決，但其實搞不好也可以直接從 git 的 config 下手，因此這次重新用更多關鍵字去調查解法，發現 git 其實也支援客製化 ssh 指令。">
 <link rel=preconnect href=https://s.ytimg.com>
 <link rel=preconnect href=https://i.imgur.com>
-<title>【好站分享】邱博文物理線上資源 &#183; dw's 小站</title>
+<title>客製化 git 使用的 SSH Key &#183; dw's 小站</title>
 <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.5/pure-min.css media=screen>
 <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.5/grids-responsive-min.css media=screen>
 <link rel=stylesheet href=https://dwye.dev/css/side-menu.css media=screen>
@@ -138,7 +130,7 @@ Icons <a href=https://fontawesome.com rel="external noopener" target=_blank>Font
 <div id=main>
 <div class=header>
 <h1>
-【好站分享】邱博文物理線上資源
+客製化 git 使用的 SSH Key
 </h1>
 <h2>
 </h2>
@@ -151,8 +143,20 @@ Icons <a href=https://fontawesome.com rel="external noopener" target=_blank>Font
 <aside>
 <summary>目錄</summary>
 <div class=toc-item>
-<p><a rel=tag href=#>【好站分享】邱博文物理線上資源</a></p>
-<nav id=TableOfContents></nav>
+<p><a rel=tag href=#>客製化 git 使用的 SSH Key</a></p>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#解法一環境變數-git_ssh_command>解法一：環境變數 <code>GIT_SSH_COMMAND</code></a>
+<ul>
+<li><a href=#-o-identitiesonlyyes-防止--i-的-key-被-ssh-agent-取代><code>-o IdentitiesOnly=yes</code>: 防止 <code>-i</code> 的 Key 被 SSH Agent 取代</a></li>
+</ul>
+</li>
+<li><a href=#解法二更改-git-configuration-的-coresshcommand>解法二：更改 Git Configuration 的 <code>core.sshCommand</code></a></li>
+<li><a href=#解法三直接切換-ssh-agent>解法三：直接切換 SSH Agent</a></li>
+<li><a href=#小結>小結</a></li>
+<li><a href=#參考資料>參考資料</a></li>
+</ul>
+</nav>
 </div>
 </aside>
 </div>
@@ -165,22 +169,34 @@ Icons <a href=https://fontawesome.com rel="external noopener" target=_blank>Font
 <i class="fa fa-calendar fa-fw"></i>
 <time>
 <span>
-Jul 29, 2014
+Aug 05, 2021
 </span>
 </time>
 </li>
 </div>
 <div>
-<a class=post-taxonomy-topic href=https://dwye.dev/topics/%E9%AB%98%E4%B8%AD%E6%95%99%E5%AD%B8>
+<a class=post-taxonomy-topic href=https://dwye.dev/topics/%E6%8A%80%E8%A1%93%E8%A8%98%E9%8C%84>
 <li>
 <i class="fas fa-folder fa-fw"></i>
-<span>高中教學</span>
+<span>技術記錄</span>
 </li>
 </a>
-<a class=post-taxonomy-tag href=https://dwye.dev/tags/%E9%AB%98%E4%B8%AD%E7%89%A9%E7%90%86>
+<a class=post-taxonomy-tag href=https://dwye.dev/tags/git>
 <li>
 <i class="fas fa-tag fa-fw"></i>
-<span>高中物理</span>
+<span>git</span>
+</li>
+</a>
+<a class=post-taxonomy-tag href=https://dwye.dev/tags/ssh>
+<li>
+<i class="fas fa-tag fa-fw"></i>
+<span>ssh</span>
+</li>
+</a>
+<a class=post-taxonomy-tag href=https://dwye.dev/tags/shell>
+<li>
+<i class="fas fa-tag fa-fw"></i>
+<span>shell</span>
 </li>
 </a>
 </div>
@@ -191,30 +207,53 @@ Jul 29, 2014
 <details>
 <summary>目錄</summary>
 <div class=toc-item>
-<nav id=TableOfContents></nav>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#解法一環境變數-git_ssh_command>解法一：環境變數 <code>GIT_SSH_COMMAND</code></a>
+<ul>
+<li><a href=#-o-identitiesonlyyes-防止--i-的-key-被-ssh-agent-取代><code>-o IdentitiesOnly=yes</code>: 防止 <code>-i</code> 的 Key 被 SSH Agent 取代</a></li>
+</ul>
+</li>
+<li><a href=#解法二更改-git-configuration-的-coresshcommand>解法二：更改 Git Configuration 的 <code>core.sshCommand</code></a></li>
+<li><a href=#解法三直接切換-ssh-agent>解法三：直接切換 SSH Agent</a></li>
+<li><a href=#小結>小結</a></li>
+<li><a href=#參考資料>參考資料</a></li>
+</ul>
+</nav>
 </div>
 </details>
 </aside>
 </div>
 </div>
-<p>如果學物理碰到一個觀念，一直無法想像怎麼辦？<br>
-要怎麼從死板板的圖片變成順暢的動畫在腦中播放？<br>
-在這個數位化的時代<br>
-其實網路上已經有很多資源可以幫助我們學習<br>
-這邊要分享的就是其中之一</p>
-<p>邱博文老師，是現在台北的高中物理補教界名師<br>
-除了曾在儒林、台大等補習班教書之外<br>
-也擁有自己的公司、自己的補習班<br>
-以及遠大的個人教學理念與抱負<br>
-當然他也有建立很多的物理教學動畫<br>
-其中包含歷屆物理試題解題影片、各章重點教學影片、物理3D模擬動畫<br>
-好資源，不用嗎<br>
-以下附上 youtube 網址</p>
-<p><a href=http://www.youtube.com/user/feynmantech/featured>http://www.youtube.com/user/feynmantech/featured</a></p>
-<p>另外，這是費曼因公司的網站<br>
-下載專區也有一些資源可以使用<br>
-主要有用的集中在「3.學習資源」裡</p>
-<p><a href=http://www.e-physics.net/download.html>http://www.e-physics.net/download.html</a></p>
+<p>寫完<a href=https://dwye.dev/post/ssh-switch-key>一個指令切換預設使用的 SSH Key</a>這篇之後，又思考了一下有沒有其他方式來解決這個同個電腦中使用兩個 github 帳號的問題，畢竟那篇是採用 ssh-agent level 來解決，但其實搞不好也可以直接從 git 的 config 下手，因此這次重新用更多關鍵字去調查解法，發現 git 其實也支援客製化 ssh 指令。</p>
+<h2 id=解法一環境變數-git_ssh_command>解法一：環境變數 <code>GIT_SSH_COMMAND</code></h2>
+<p>設定這個環境變數即可改變 git 使用的 ssh 指令。</p>
+<p>可以透過 <code>export</code> 對當下的 shell 做一次性修改（也能達成一指令切換）：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>export GIT_SSH_COMMAND<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;ssh -o IdentitiesOnly=yes -i ~/.ssh/my_rsa&#34;</span>
+</code></pre></div><p>或是直接搭配 git 指令使用：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>GIT_SSH_COMMAND<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;ssh -o IdentitiesOnly=yes -i ~/.ssh/my_rsa&#34;</span> git push 
+</code></pre></div><h3 id=-o-identitiesonlyyes-防止--i-的-key-被-ssh-agent-取代><code>-o IdentitiesOnly=yes</code>: 防止 <code>-i</code> 的 Key 被 SSH Agent 取代</h3>
+<p>我自己也無法 100% 確定什麼時候 <code>-i</code> Options 會無效，不過知道原因是因為即便是加了 <code>-i</code> 指定 key file，還是會參照到 ssh agent 現存的所有 keys。因此還是加上 <code>-o IdentitiesOnly=yes</code> 保險。</p>
+<h2 id=解法二更改-git-configuration-的-coresshcommand>解法二：更改 Git Configuration 的 <code>core.sshCommand</code></h2>
+<p>根據文件，會影響到 <code>git fetch</code> 和 <code>git push</code> 時使用的 ssh 指令。</p>
+<p>因此可以在已經 clone 好的 repo 內下：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>git config --local core.sshCommand <span style=color:#e6db74>&#34;ssh -o IdentitiesOnly=yes -i ~/.ssh/my_rsa&#34;</span>
+</code></pre></div><h2 id=解法三直接切換-ssh-agent>解法三：直接切換 SSH Agent</h2>
+<p>就是我原本的解法，詳見這篇：</p>
+<ul>
+<li><a href=https://dwye.dev/post/ssh-switch-key>一個指令切換預設使用的 SSH Key</a></li>
+</ul>
+<h2 id=小結>小結</h2>
+<p>最後採用解法二 + 三，三用來切換 default 的 SSH Key 用於 clone 自己的 private repo 時使用，之後就在 repo 內直接設定 <code>core.sshCommand</code> 就不用每次再重新切換 ssh key 了。</p>
+<p>順便附上我準備的設定 local gitconfig 的 script：</p>
+<script src=https://gist.github.com/dwy6626/ce6bd08aad6ce17d0d277f21ba2c6a3f.js></script>
+<h2 id=參考資料>參考資料</h2>
+<ul>
+<li><a href=https://superuser.com/questions/232373/>How to tell git which private key to use?</a></li>
+<li><a href=https://superuser.com/questions/681877/ssh-ignores-i-switch>SSH ignores -i switch</a></li>
+<li><a href=https://git-scm.com/docs/git>git doc</a></li>
+<li><a href=https://git-scm.com/docs/git-config>git config doc</a></li>
+</ul>
 <div class=copyright>
 本文原創部分採用
 <a rel=license href=http://creativecommons.org/licenses/by-nc-nd/4.0/>創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款</a>
@@ -222,23 +261,19 @@ Jul 29, 2014
 </div>
 <div class="prev-next-post pure-g">
 <div class=pure-u-1-24 style=text-align:left>
-<a href=https://dwye.dev/post/20140728_074313/><i class="fa fa-chevron-left"></i></a>
+<a href=https://dwye.dev/post/ssh-switch-key/><i class="fa fa-chevron-left"></i></a>
 </div>
 <div class=pure-u-10-24>
 <nav class=prev>
-<a href=https://dwye.dev/post/20140728_074313/>【分享】費曼物理學講義</a>
+<a href=https://dwye.dev/post/ssh-switch-key/>一個指令切換預設使用的 SSH Key</a>
 </nav>
 </div>
 <div class=pure-u-2-24>
 &nbsp;
 </div>
 <div class=pure-u-10-24>
-<nav class=next>
-<a href=https://dwye.dev/post/20140730_041700/>學測自然科參考書推薦</a>
-</nav>
 </div>
 <div class=pure-u-1-24 style=text-align:right>
-<a href=https://dwye.dev/post/20140730_041700/><i class="fa fa-chevron-right"></i></a>
 </div>
 </div>
 <div id=disqus_thread></div>

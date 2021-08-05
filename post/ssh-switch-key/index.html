@@ -150,8 +150,13 @@ Icons <a href=https://fontawesome.com rel="external noopener" target=_blank>Font
 <p><a rel=tag href=#>一個指令切換預設使用的 SSH Key</a></p>
 <nav id=TableOfContents>
 <ul>
+<li>
+<ul>
 <li><a href=#檢視現在使用的-ssh-key>檢視現在使用的 SSH Key</a></li>
 <li><a href=#ssh-key-的切換>SSH Key 的切換</a></li>
+</ul>
+</li>
+<li><a href=#85-更新>8/5 更新</a></li>
 </ul>
 </nav>
 </div>
@@ -190,10 +195,10 @@ Aug 03, 2021
 <span>ssh</span>
 </li>
 </a>
-<a class=post-taxonomy-tag href=https://dwye.dev/tags/bash>
+<a class=post-taxonomy-tag href=https://dwye.dev/tags/shell>
 <li>
 <i class="fas fa-tag fa-fw"></i>
-<span>bash</span>
+<span>shell</span>
 </li>
 </a>
 </div>
@@ -206,8 +211,13 @@ Aug 03, 2021
 <div class=toc-item>
 <nav id=TableOfContents>
 <ul>
+<li>
+<ul>
 <li><a href=#檢視現在使用的-ssh-key>檢視現在使用的 SSH Key</a></li>
 <li><a href=#ssh-key-的切換>SSH Key 的切換</a></li>
+</ul>
+</li>
+<li><a href=#85-更新>8/5 更新</a></li>
 </ul>
 </nav>
 </div>
@@ -216,7 +226,7 @@ Aug 03, 2021
 </div>
 </div>
 <p>因應公司和個人有分開的 github 帳號，為了能在同一台電腦同使用者內工作，已經幾次重複解決這個問題，故寫篇文章記錄之。</p>
-<h2 id=檢視現在使用的-ssh-key>檢視現在使用的 SSH Key</h2>
+<h3 id=檢視現在使用的-ssh-key>檢視現在使用的 SSH Key</h3>
 <p>我們可以使用 <code>ssh-add</code> 這個工具來檢視目前使用 <code>ssh</code> 指令連線時，會使用的 ssh key：</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ ssh-add -l
 <span style=color:#ae81ff>3072</span> SHA256:******************/****************** my-default-email@dwye.dev <span style=color:#f92672>(</span>RSA<span style=color:#f92672>)</span>
@@ -224,7 +234,7 @@ Aug 03, 2021
 這也衍生了 github 使用 <code>git</code> 這個 user，作為設置 ssh key 時常見的確認手段：</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ ssh -T git@github.com
 Hi your-account! You<span style=color:#960050;background-color:#1e0010>&#39;</span>ve successfully authenticated, but GitHub does not provide shell access.
-</code></pre></div><h2 id=ssh-key-的切換>SSH Key 的切換</h2>
+</code></pre></div><h3 id=ssh-key-的切換>SSH Key 的切換</h3>
 <p><code>ssh-add</code> 顧名思義也可以用來管理 ssh-agent 現在使用的 ssh-key。</p>
 <p>加入一個 ssh key:</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ ssh-add ~/.ssh/my_rsa
@@ -244,6 +254,8 @@ ssh-add ~/.ssh/my_rsa
 alias gitp<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;source ~/switch_personal.sh&#39;</span>
 alias gitm<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;source ~/switch_main.sh&#39;</span>
 </code></pre></div><p>之後就可以在 terminal 中透過 <code>gitp</code> 或 <code>gitm</code> 一指令切換 ssh key 了。</p>
+<h2 id=85-更新>8/5 更新</h2>
+<p>是的，才寫完這篇沒多久馬上就找到新解法來切換 git 使用的 ssh key，就不用每次開 shell 都要去手動改了（變成 0 指令切換 XD），我也比較喜歡這個新解法，詳細請見<a href=https://dwye.dev/post/git-custom-ssh>客製化 git 使用的 SSH Key</a></p>
 <div class=copyright>
 本文原創部分採用
 <a rel=license href=http://creativecommons.org/licenses/by-nc-nd/4.0/>創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款</a>
@@ -262,8 +274,12 @@ alias gitm<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;sourc
 &nbsp;
 </div>
 <div class=pure-u-10-24>
+<nav class=next>
+<a href=https://dwye.dev/post/git-custom-ssh/>客製化 git 使用的 SSH Key</a>
+</nav>
 </div>
 <div class=pure-u-1-24 style=text-align:right>
+<a href=https://dwye.dev/post/git-custom-ssh/><i class="fa fa-chevron-right"></i></a>
 </div>
 </div>
 <div id=disqus_thread></div>
