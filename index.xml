@@ -1895,7 +1895,7 @@ self&lt;span style="color:#f92672">.&lt;/span>rank &lt;span style="color:#f92672
 我愛你&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>Clean Code 心得</title><link>https://dwye.dev/post/clean-code/</link><pubDate>Tue, 08 Sep 2020 00:41:25 +0800</pubDate><guid>https://dwye.dev/post/clean-code/</guid><description>
 &lt;p>因為公司有這本書的中文版，在各種等待時間，慢慢把這本看完了，同時也一邊寫些自己認為的重點。&lt;/p>
 &lt;p>其實我覺得 Clean Code 適合的閱讀對象，是從來沒有接觸過任何 Coding Style 的人。&lt;/p>
-&lt;p>如果你跟我一樣，有和別人合作過，平常有遵守一些準則（例如 PEP8），或是使用包含 Styling 的 linter (eslint / rubocop &amp;hellip;)，這本書還是能找到能學習的地方，例如命名原則、封裝的部分、模組的拆分、測試撰寫等等，這些開發準則以及自動化的 formatter 沒辦法告訴你的部分。&lt;/p>
+&lt;p>如果你跟我一樣，有和別人合作過，平常有遵守一些準則（例如 PEP8），或是使用包含 Styling 的 linter (pylint / eslint / rubocop &amp;hellip;)，這本書還是能找到能學習的地方，例如命名原則、封裝的部分、模組的拆分、測試撰寫等等，這些開發準則以及自動化的 formatter 沒辦法告訴你的部分。&lt;/p>
 &lt;p>也難怪第一次聽到別人推薦大家看這本書的時候，把它歸類在「選讀」，卻又說裡面的內容&lt;strong>很重要&lt;/strong>。因為很多觀念在現在已經是日常了。&lt;/p>
 &lt;p>比較後面的章節，從系統、平行化開始，討論了一些比較深入的知識，Java code 也開始變難懂了，而持續精鍊、JUnit 等章節，就真的是針對 Java 的實例做說明，而非原則介紹的部分，這些對我來說讀起來就比較吃力一點。而平常會聽到大家討論的，也都是前面章節討論一些基本原則的部分。因此對於時間比較少的人或許可以先點到為止。&lt;/p>
 &lt;p>&lt;del>我看網路上的心得也很少人真的讀完後面 XD&lt;/del>&lt;/p>
@@ -2148,6 +2148,10 @@ output_dir &lt;span style="color:#f92672">=&lt;/span> scratch_dir&lt;span style=
 &lt;li>Magic Number: 出現在 Code 裡面的意義不明的數字（給個名字吧）&lt;/li>
 &lt;li>Configuration 要放在高的抽象層&lt;/li>
 &lt;li>Scope 大，變數名稱拉長&lt;/li>
+&lt;/ul>
+&lt;h2 id="延伸閱讀">延伸閱讀&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/ryanmcdermott/clean-code-javascript">Clean Code JavaScript&lt;/a>，如果是寫 JS 的很推薦閱讀這個 repo&lt;/li>
 &lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>用 zsh + zim + powerlevel10k 讓你的 Terminal 潮又快</title><link>https://dwye.dev/post/zsh-zim-powerlevel10k/</link><pubDate>Mon, 07 Sep 2020 11:41:25 +0800</pubDate><guid>https://dwye.dev/post/zsh-zim-powerlevel10k/</guid><description>
 &lt;p>在開始之前，還是要先知道為什麼需要這些工具，就先上圖吧：&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/YWNPQiG.png" alt="zsh + zim + powerlevel10k demo">&lt;/p>
