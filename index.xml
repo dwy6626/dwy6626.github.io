@@ -809,7 +809,8 @@ task &lt;span style="color:#e6db74">setup&lt;/span>: &lt;span style="color:#f926
 &lt;span style="color:#66d9ef">end&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>這是 &lt;code>db:setup&lt;/code> 這個 rake task 的定義，傳給 task 的是個 hash，一個 key value pair，括號在這裡省略了，&lt;code>setup&lt;/code> 是 &lt;code>task_name&lt;/code>，而後面的 array 則是 &lt;code>dependencies&lt;/code>。&lt;br>
 這段 code 的意思是說，當我執行 &lt;code>db:setup&lt;/code> 時，會需要&lt;strong>先&lt;/strong>跑 dependencies 裡面的 task。&lt;br>
-這裡的「先」指的是和 task 後面接的 block 相比較，會先跑 &lt;code>dependencies&lt;/code> 才跑 block 內的東西。不巧 &lt;code>db:setup&lt;/code> 剛好沒有 block，所以我們修改剛剛的 &lt;code>hello:world&lt;/code> task：&lt;/p>
+這裡的「先」指的是和 task 後面接的 block 相比較，&lt;strong>會先跑 dependencies 才跑 block 內的東西&lt;/strong>。不巧 &lt;code>db:setup&lt;/code> 剛好沒有 block，所以就是把 &lt;code>db:create&lt;/code>、&lt;code>environment&lt;/code>、&lt;code>db:schema:load&lt;/code>、&lt;code>seed&lt;/code> 這幾個 rake 依序執行。&lt;/p>
+&lt;p>我們可以修改剛剛的 &lt;code>hello:world&lt;/code> task 來測試 block 和 dependencies 的順序：&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#75715e"># lib/tasks/hello.rake&lt;/span>
 namespace &lt;span style="color:#e6db74">:hello&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
 desc &lt;span style="color:#e6db74">&amp;#39;print hello world&amp;#39;&lt;/span>
@@ -824,8 +825,9 @@ puts &lt;span style="color:#e6db74">&amp;#39;Hello, man.&amp;#39;&lt;/span>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ bundle exec rake hello:world
 Hello, man.
 Hello, world!
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>既然叫做 dependency，如果被呼叫很多遍，會發生什麼事呢？&lt;/p>
-&lt;p>可以在同個 namespace 內再定義一個 rake 來實驗看看：&lt;/p>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>會發現寫在 dependencies 的 &lt;code>hello:man&lt;/code> 的確會先被執行，接著才執行 block 內的東西。&lt;/p>
+&lt;p>那既然叫做 dependencies，如果被呼叫很多遍，會發生什麼事呢？&lt;br>
+可以在同個 namespace 內再定義一個 rake 來實驗看看：&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#75715e"># lib/tasks/hello.rake&lt;/span>
 namespace &lt;span style="color:#e6db74">:hello&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
 desc &lt;span style="color:#e6db74">&amp;#39;print hello world&amp;#39;&lt;/span>
@@ -839,7 +841,8 @@ task &lt;span style="color:#e6db74">:man&lt;/span> &lt;span style="color:#66d9ef
 puts &lt;span style="color:#e6db74">&amp;#39;Hello, man.&amp;#39;&lt;/span>
 &lt;span style="color:#66d9ef">end&lt;/span>
 &lt;span style="color:#66d9ef">end&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>現在 &lt;code>world&lt;/code> depends on &lt;code>man&lt;/code> 和 &lt;code>earth&lt;/code>，而 &lt;code>earth&lt;/code> 也 depends on &lt;code>man&lt;/code>。根據我們對相依這個詞的了解，&lt;code>hello:man&lt;/code> 應該只會被執行一遍，而事實也是如此：&lt;/p>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>現在 &lt;code>world&lt;/code> depends on &lt;code>man&lt;/code> 和 &lt;code>earth&lt;/code>，而 &lt;code>earth&lt;/code> 也 depends on &lt;code>man&lt;/code>。根據我們對 dependency （相依）這個詞的了解，&lt;code>hello:man&lt;/code> 應該只會被執行一遍。&lt;br>
+而事實正是如此：&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ bundle exec rake hello:world
 Hello, man.
 Hello, Earth~

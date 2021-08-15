@@ -306,7 +306,8 @@ db_namespace <span style=color:#f92672>=</span> namespace <span style=color:#e6d
 <span style=color:#66d9ef>end</span>
 </code></pre></div><p>這是 <code>db:setup</code> 這個 rake task 的定義，傳給 task 的是個 hash，一個 key value pair，括號在這裡省略了，<code>setup</code> 是 <code>task_name</code>，而後面的 array 則是 <code>dependencies</code>。<br>
 這段 code 的意思是說，當我執行 <code>db:setup</code> 時，會需要<strong>先</strong>跑 dependencies 裡面的 task。<br>
-這裡的「先」指的是和 task 後面接的 block 相比較，會先跑 <code>dependencies</code> 才跑 block 內的東西。不巧 <code>db:setup</code> 剛好沒有 block，所以我們修改剛剛的 <code>hello:world</code> task：</p>
+這裡的「先」指的是和 task 後面接的 block 相比較，<strong>會先跑 dependencies 才跑 block 內的東西</strong>。不巧 <code>db:setup</code> 剛好沒有 block，所以就是把 <code>db:create</code>、<code>environment</code>、<code>db:schema:load</code>、<code>seed</code> 這幾個 rake 依序執行。</p>
+<p>我們可以修改剛剛的 <code>hello:world</code> task 來測試 block 和 dependencies 的順序：</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ruby data-lang=ruby><span style=color:#75715e># lib/tasks/hello.rake</span>
 namespace <span style=color:#e6db74>:hello</span> <span style=color:#66d9ef>do</span>
   desc <span style=color:#e6db74>&#39;print hello world&#39;</span>
@@ -322,8 +323,9 @@ namespace <span style=color:#e6db74>:hello</span> <span style=color:#66d9ef>do</
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ bundle exec rake hello:world
 Hello, man.
 Hello, world!
-</code></pre></div><p>既然叫做 dependency，如果被呼叫很多遍，會發生什麼事呢？</p>
-<p>可以在同個 namespace 內再定義一個 rake 來實驗看看：</p>
+</code></pre></div><p>會發現寫在 dependencies 的 <code>hello:man</code> 的確會先被執行，接著才執行 block 內的東西。</p>
+<p>那既然叫做 dependencies，如果被呼叫很多遍，會發生什麼事呢？<br>
+可以在同個 namespace 內再定義一個 rake 來實驗看看：</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ruby data-lang=ruby><span style=color:#75715e># lib/tasks/hello.rake</span>
 namespace <span style=color:#e6db74>:hello</span> <span style=color:#66d9ef>do</span>
   desc <span style=color:#e6db74>&#39;print hello world&#39;</span>
@@ -339,7 +341,8 @@ namespace <span style=color:#e6db74>:hello</span> <span style=color:#66d9ef>do</
     puts <span style=color:#e6db74>&#39;Hello, man.&#39;</span>
   <span style=color:#66d9ef>end</span>
 <span style=color:#66d9ef>end</span>
-</code></pre></div><p>現在 <code>world</code> depends on <code>man</code> 和 <code>earth</code>，而 <code>earth</code> 也 depends on <code>man</code>。根據我們對相依這個詞的了解，<code>hello:man</code> 應該只會被執行一遍，而事實也是如此：</p>
+</code></pre></div><p>現在 <code>world</code> depends on <code>man</code> 和 <code>earth</code>，而 <code>earth</code> 也 depends on <code>man</code>。根據我們對 dependency （相依）這個詞的了解，<code>hello:man</code> 應該只會被執行一遍。<br>
+而事實正是如此：</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ bundle exec rake hello:world
 Hello, man.
 Hello, Earth~
