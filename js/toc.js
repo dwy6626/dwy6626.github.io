@@ -1,14 +1,14 @@
-$(window).resize(rwd)
-$(window).on('load', rwd)
-$(window).on('load', outdent_li)
-$(window).on('load', remove_empty_inner_li)
+window.addEventListener('load', rwd)
+window.addEventListener('resize', rwd)
+window.addEventListener('load', outdent_li)
+window.addEventListener('load', remove_empty_inner_li)
 
 function rwd() {
     determine_toc()
 }
 
 function determine_toc() {
-    if ($(window).width() < 1100) {
+    if (window.innerWidth < 1100) {
         toc_top()
     } else {
         toc_aside()
@@ -17,28 +17,43 @@ function determine_toc() {
 }
 
 function toc_top() {
-    if ($("#toc-top").is(':visible')) return
+    const top = document.querySelector('#toc-top')
+    if (top.style.display !== 'none') return
 
-    $("#toc-top").toggle(true)
-    $("#toc-aside").toggle(false)
+    top.style.display = 'block'
+    document.querySelector('#toc-aside').style.display = 'none'
 }
 
 function toc_aside() {
-    if ($("#toc-aside").is(':visible')) return
+    const aside = document.querySelector('#toc-aside')
+    if (aside.style.display !== 'none') return
 
-    $("#toc-top").toggle(false)
-    $("#toc-aside").toggle(true)
+    aside.style.display = 'block'
+    document.querySelector('#toc-top').style.display = 'none'
 }
 
 function top_aside_height() {
-    $("#toc-aside").height($(window).height() - $("#toc-aside").position().top)
+    const aside = document.querySelector('#toc-aside')
+    aside.style.height = `${window.innerHeight - aside.offsetTop}px`
 }
 
 function outdent_li() {
-    $("#TableOfContents ul li ul li").parent().parent().each(
-        function (_, el) {
-            if ($(el).ignore("ul").blank()) {
-                $(el).find("ul li").unwrap().unwrap()
+    Array.from(document.querySelectorAll("#TableOfContents")).forEach(
+        (toc) => {
+            const firstLi = toc.querySelector("ul > li")
+            const cloneLi = firstLi.cloneNode()
+            while (cloneLi.querySelector('ul')) { cloneLi.removeChild(cloneLi.querySelector('ul')) }
+
+            if (!cloneLi.querySelector('a')) {
+                Array.from(firstLi.querySelectorAll('ul')).forEach(
+                    (innerUl) => {
+                        while (innerUl.firstChild) {
+                            let innerEl = innerUl.firstChild
+                            firstLi.parentNode.insertBefore(innerEl, firstLi);
+                        }
+                    }
+                )
+                firstLi.parentNode.removeChild(firstLi)
             }
         }
     )
@@ -46,30 +61,28 @@ function outdent_li() {
 
 function remove_empty_inner_li() {
     // remove empty inner li
-    $("#TableOfContents ul li ul li").each(
-        function (_, el) {
-            if ($(el).blank()) {
-                $(el).remove()
+    Array.from(document.querySelectorAll("#TableOfContents ul li ul li")).forEach(
+        function (el) {
+            if (isBlank(el)) {
+                removeSelf(el)
             }
         }
     )
     // remove empty inner ul
-    $("#TableOfContents ul li ul").each(
-        function (_, el) {
-            if ($(el).blank()) {
-                $(el).remove()
+    Array.from(document.querySelectorAll("#TableOfContents ul li ul")).forEach(
+        function (el) {
+            if (isBlank(el)) {
+                removeSelf(el)
             }
         }
     )
 }
 
-$.fn.ignore = function (sel) {
-    // https://stackoverflow.com/questions/11347779
-    return this.clone().find(sel || ">*").remove().end()
+function isBlank(el) {
+    const str = el.textContent
+    return str.trim() === ''
 }
 
-$.fn.blank = function () {
-    // https://stackoverflow.com/questions/154059/
-    var str = this.text()
-    return (!str || /^\s*$/.test(str))
+function removeSelf(el) {
+    el.parentNode.removeChild(el)
 }

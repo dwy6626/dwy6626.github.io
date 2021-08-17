@@ -39,6 +39,9 @@ a:focus {
 
 .post-meta {
     font-size: 95%;
+    padding-inline-start: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
 }
 
 h1 {
@@ -78,7 +81,7 @@ div.content li+li a {
     margin-top: .4em;
 }
 
-div.post-meta li {
+.post-meta li {
     display: inline-flex;
     list-style-type: none;
     justify-content: center;
@@ -86,21 +89,21 @@ div.post-meta li {
     border-radius: 10px;
 }
 
-div.post-meta a {
+.post-meta a {
     white-space: nowrap;
     display: inline-block;
     margin-bottom: .5em;
 }
 
-div.post-meta a:hover, a:focus {
+.post-meta a:hover, a:focus {
     text-decoration: none;
 }
 
-div.post-meta a li:hover, a li:focus {
+.post-meta a li:hover, a li:focus {
     background-color: #eee;
 }
 
-div.post-meta span, li {
+.post-meta span, li {
     padding: 0 .2em 0 .3em;
 }
 

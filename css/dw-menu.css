@@ -11,7 +11,6 @@
 #menu {
     margin-left: calc(0px - var(--menu-width)); /* "#menu" width */
     width: var(--menu-width);
-    overflow-y: auto;
     overflow-x: hidden;
 }
 
@@ -22,10 +21,6 @@
 
 #menu .pure-menu {
     font-size: 1.35em;
-}
-
-#menu .pure-menu ul.pure-menu-children {
-    border-top: none;
 }
 
 a.pure-menu-link span {
