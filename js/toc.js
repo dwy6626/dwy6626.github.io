@@ -41,9 +41,8 @@ function outdent_li() {
     Array.from(document.querySelectorAll("#TableOfContents")).forEach(
         (toc) => {
             const firstLi = toc.querySelector("ul > li")
-            const cloneLi = firstLi.cloneNode()
+            const cloneLi = firstLi.cloneNode(true)
             while (cloneLi.querySelector('ul')) { cloneLi.removeChild(cloneLi.querySelector('ul')) }
-
             if (!cloneLi.querySelector('a')) {
                 Array.from(firstLi.querySelectorAll('ul')).forEach(
                     (innerUl) => {
