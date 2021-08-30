@@ -1,0 +1,249 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="
+  
+      一個間接被定義的物理量，這個量可以在物質中轉換，並且會守恆
+    ">
+<meta name=generator content="Hugo 0.86.1">
+<meta property="og:title" content="高中基礎物理補充：費曼對能量的見解">
+<meta name=twitter:title content="高中基礎物理補充：費曼對能量的見解">
+<meta property="og:url" content="https://dwye.dev/post/feynman-and-energy/">
+<meta name=twitter:card content="summary">
+<meta name=twitter:site content="dw's 小站">
+<meta name=twitter:creator content="De-Wei Ye">
+<meta name=twitter:description content="這是基礎物理補充文章的一部分。 偉大的物理學家，也幾乎是近世普物課程之始祖：費曼 (Feynman)，在他的課程中發表了他對能量的看法： 我們發現了一個事實，有一個定律掌控了到目前為止我們所知道的自然現象，而這個定律在我們所知範圍內沒有任何的例外。而且以我們目前所知，它是準確的。這個定律被稱為「能量守恆」。它說明了有一個特定的物理量，我們稱之為「能量」，這個量在自然狀態經歷了各種變化後，並不會改變。也許聽來有些抽象，因為它是一個數學的原理：它說明了有一個量在一些事件發生時不會改變。而且並不是任何具體的">
+<link rel=preconnect href=https://s.ytimg.com>
+<link rel=preconnect href=https://i.imgur.com>
+<title>高中基礎物理補充：費曼對能量的見解 &#183; dw's 小站</title>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.5/pure-min.css media=screen>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.5/grids-responsive-min.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/side-menu.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/blackburn.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/dw-burn.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/dw-menu.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/vars.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/menu-x.css media=screen>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css>
+<link rel=preconnect href=https://fonts.gstatic.com>
+<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel=stylesheet type=text/css>
+<script type=text/javascript async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML"></script>
+<script type=text/x-mathjax-config>
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [['$$','$$']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+    CommonHTML: { linebreaks: { automatic: true } },
+    "HTML-CSS": { linebreaks: { automatic: true } },
+          SVG: { linebreaks: { automatic: true } }    
+  });
+</script>
+<script type=text/x-mathjax-config>
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+<link async rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/vs2015.min.css media=screen>
+<script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js></script>
+<script defer src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/yaml.min.js></script>
+<script defer src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/vbnet.min.js></script>
+<script>hljs.highlightAll()</script>
+<link rel="shortcut icon" href=https://dwye.dev/img/favicon.ico type=image/x-icon>
+<link rel=stylesheet href=https://dwye.dev/css/color.css media=screen>
+<meta name=google-site-verification content="pC2le32KaKDSGh9V637p5YC81zixbAMyKN3nPqkKscE">
+<script data-ad-client=ca-pub-3454014140664886 async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
+</head>
+<body>
+<div id=layout>
+<a href=#menu class=menu-link id=menuLink aria-label="Go to menu of this website">
+<s class=bar></s><s class=bar></s>
+</a>
+<div id=menu>
+<a class="pure-menu-heading brand" href=https://dwye.dev/>De-Wei Ye</a>
+<div class=pure-menu>
+<ul class=pure-menu-list>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/about/><i class="fas fa-user-circle fa-fw"></i><span>關於</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/notes/><i class="fas fa-book fa-fw"></i><span>筆記</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/post/><i class="fas fa-list-ul fa-fw"></i><span>文章列表</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/topics/><i class="fas fa-folder fa-fw"></i><span>主題分類</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/tags/><i class="fas fa-tags fa-fw"></i><span>標籤</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/../en/><i class="fas fa-globe-americas fa-fw"></i><span>English</span></a>
+</li>
+</ul>
+</div>
+<div class="pure-menu social">
+<ul class=pure-menu-list>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://linkedin.com/in/dwy6626 rel="me external noopener" target=_blank><i class="fab fa-linkedin fa-fw"></i><span>LinkedIn</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://github.com/dwy6626 rel="me external noopener" target=_blank><i class="fab fa-github-square fa-fw"></i><span>GitHub</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://leetcode.com/mirror0227 rel="me external noopener" target=_blank><i class="fas fa-laptop-code fa-fw"></i><span>LeetCode</span></a>
+</li>
+</ul>
+</div>
+<div class=copyright-small>
+Built with <a href=https://gohugo.io/ rel="external noopener" target=_blank>Hugo</a>
+</div>
+<div class=copyright-small>
+W/ <a href=https://github.com/dwy6626/dw-favored-blackburn rel="external noopener" target=_blank>DW-Favored-Blackburn</a>
+</div>
+<div class=copyright-small>
+Based on <a href=https://github.com/yoshiharuyamashita/blackburn rel="external noopener" target=_blank>Blackburn</a>
+</div>
+<div class=copyright-small>
+and <a href=https://purecss.io/ rel="external noopener" target=_blank>Pure CSS</a>
+</div>
+<div class=copyright-small>
+Icons <a href=https://fontawesome.com rel="external noopener" target=_blank>Font Awesome</a>
+</div>
+<div class=copyright-small>
+<a href=https://dwye.dev/copyright>
+&copy; 2020. All rights reserved.
+</a>
+</div>
+</div>
+<div id=main>
+<div class=header>
+<h1>
+高中基礎物理補充：費曼對能量的見解
+</h1>
+<h2>
+一個間接被定義的物理量，這個量可以在物質中轉換，並且會守恆
+</h2>
+</div>
+<div class=aside-container>
+<div id=toc-aside style=display:none>
+<link rel=stylesheet href=https://dwye.dev/css/aside-toc.css media=screen>
+<script src=https://dwye.dev/js/toc.js></script>
+<div class=toc>
+<aside>
+<summary>目錄</summary>
+<div class=toc-item>
+<p><a rel=tag href=#>高中基礎物理補充：費曼對能量的見解</a></p>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#參考資料>參考資料</a></li>
+</ul>
+</nav>
+</div>
+</aside>
+</div>
+</div>
+</div>
+<div class=content>
+<ul class=post-meta>
+<li>
+<i class="fa fa-calendar fa-fw"></i>
+<span>
+<time>Mar 24, 2015</time>
+</span>
+</li>
+</ul>
+<ul class=post-meta>
+<a href=https://dwye.dev/topics/%E9%AB%98%E4%B8%AD%E6%95%99%E5%AD%B8>
+<li>
+<i class="fas fa-folder fa-fw"></i>
+<span>高中教學</span>
+</li>
+</a>
+<a href=https://dwye.dev/tags/%E9%AB%98%E4%B8%AD%E7%89%A9%E7%90%86>
+<li>
+<i class="fas fa-tag fa-fw"></i>
+<span>高中物理</span>
+</li>
+</a>
+</ul>
+<div id=toc-top style=display:none>
+<div class=toc>
+<aside>
+<details>
+<summary>目錄</summary>
+<div class=toc-item>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#參考資料>參考資料</a></li>
+</ul>
+</nav>
+</div>
+</details>
+</aside>
+</div>
+</div>
+<p>這是<a href=https://dwye.dev/highschool-physics>基礎物理補充文章</a>的一部分。</p>
+<hr>
+<p>偉大的物理學家，也幾乎是近世普物課程之始祖：費曼 (Feynman)，在他的課程中發表了他對能量的看法：</p>
+<blockquote>
+<p>我們發現了一個事實，有一個定律掌控了到目前為止我們所知道的自然現象，而這個定律在我們所知範圍內沒有任何的例外。而且以我們目前所知，它是準確的。這個定律被稱為「能量守恆」。它說明了有一個特定的物理量，我們稱之為「能量」，這個量在自然狀態經歷了各種變化後，並不會改變。也許聽來有些抽象，因為它是一個數學的原理：它說明了有一個量在一些事件發生時不會改變。而且並不是任何具體的物理過程描述，卻僅是一個奇特的事實：我們可以先對系統計算這些量，而當系統經歷了一些變化之後，如果我們在去計算這些量，會發現這些量加起來並沒有改變。（就好向西洋棋裡面的『象』，它只能斜著走，因此如果它原本在黑色的格字上，不管它中間動了幾步以及如何動，還是會在黑色的格子上，這就是因為這是西洋棋天生的『規則』）</p>
+</blockquote>
+<p>簡單歸納起來，就是</p>
+<p><strong>一個間接被定義的物理量，這個量可以在物質中轉換，並且會守恆。</strong></p>
+<p>以下附上英文原文：</p>
+<blockquote>
+<p>There is a fact, or if you wish, a law, governing all natural phenomena that are known to date. There is no known exception to this law—it is exact so far as we know. The law is called the conservation of energy. It states that there is a certain quantity, which we call energy, that does not change in the manifold changes which nature undergoes. That is a most abstract idea, because it is a mathematical principle; it says that there is a numerical quantity which does not change when something happens. It is not a description of a mechanism, or anything concrete; it is just a strange fact that we can calculate some number and when we finish watching nature go through her tricks and calculate the number again, it is the same. (Something like the bishop on a red square, and after a number of moves—details unknown—it is still on some red square. It is a law of this nature.)</p>
+</blockquote>
+<h2 id=參考資料>參考資料</h2>
+<ul>
+<li><a href=http://www.feynmanlectures.caltech.edu/I_04.html>費曼物理學講義 I-IV 能量守恆（英文）</a></li>
+</ul>
+<div class=copyright>
+本文原創部分採用
+<a rel=license href=http://creativecommons.org/licenses/by-nc-nd/4.0/>創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款</a>
+授權。
+</div>
+<div class="prev-next-post pure-g">
+<div class=pure-u-1-24 style=text-align:left>
+<a href=https://dwye.dev/post/maxwell-eq/><i class="fa fa-chevron-left"></i></a>
+</div>
+<div class=pure-u-10-24>
+<nav class=prev>
+<a href=https://dwye.dev/post/maxwell-eq/>高中基礎物理補充：馬克士威方程式簡介</a>
+</nav>
+</div>
+<div class=pure-u-2-24>
+&nbsp;
+</div>
+<div class=pure-u-10-24>
+<nav class=next>
+<a href=https://dwye.dev/post/20150721-herstory-with-mayday/>五月天 - 女也 個人小心得</a>
+</nav>
+</div>
+<div class=pure-u-1-24 style=text-align:right>
+<a href=https://dwye.dev/post/20150721-herstory-with-mayday/><i class="fa fa-chevron-right"></i></a>
+</div>
+</div>
+<div id=disqus_thread></div>
+<script type=text/javascript>(function(){var a,b;if(window.location.hostname=="localhost")return;a=document.createElement('script'),a.type='text/javascript',a.async=!0,b='dwy6626',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+<a href=http://disqus.com/ class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
+</div>
+</div>
+</div>
+<script src=https://dwye.dev/js/ui.js></script>
+<script src=https://dwye.dev/js/menus.js></script>
+<script>window.location.hostname!="localhost"&&(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-132034008-1','auto'),ga('send','pageview'))</script>
+</body>
+</html>

@@ -2791,14 +2791,15 @@ form.x_sign &lt;span style="color:#f92672">=&lt;/span> 1
 &lt;h2 id="換行">換行&lt;/h2>
 &lt;p>跟 FB 對話框一樣，如果你想要換行，但不想產生新的 Block，&lt;br>
 就按 &lt;code>shift&lt;/code> + &lt;code>enter&lt;/code>，就會在同一個 Block 內換行，可以發現這行和上行距離比較小。&lt;/p>
-&lt;p>而且不用像 Markdown 一樣要加兩個空白在後面。&lt;/p>
+&lt;p>而且不用像原生 Markdown 一樣要硬要加兩個空白在後面（十分違反直覺），很方便。&lt;/p>
 &lt;h2 id="link-a-page-和-mention-a-page-的差別">Link a page 和 mention a page 的差別&lt;/h2>
 &lt;p>Linked page 會被視為 subpage，會出現在 sidebar，所以一個 page 內不能多次重複 link 同一個 page。&lt;/p>
 &lt;p>但是 mention a page 不會將其視為 subpage，所以可以一直提到那個 page。&lt;/p>
 &lt;p>&lt;del>因為很重要所以可以 mention 很多次。&lt;/del>&lt;/p>
 &lt;blockquote class="twitter-tweet">&lt;p lang="en" dir="ltr">A linked page will be shown as a subpage, a mentioned page will not. For this reason, you can &lt;a href="https://twitter.com/Mention?ref_src=twsrc%5Etfw">@mention&lt;/a> the same page multiple times on a single page, but you can only include one linked page. Does that make sense?&lt;/p>&amp;mdash; Notion (@NotionHQ) &lt;a href="https://twitter.com/NotionHQ/status/1103489598758350848?ref_src=twsrc%5Etfw">March 7, 2019&lt;/a>&lt;/blockquote> &lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script>
 &lt;h2 id="全域搜尋">全域搜尋&lt;/h2>
-&lt;p>Quick Find 在頁面右上角，很遠對吧，又不能用 &lt;code>cmd&lt;/code> + &lt;code>f&lt;/code>（會叫出文章內搜尋），沒關係，可以用 &lt;code>cmd&lt;/code> + &lt;code>p&lt;/code> 來快速使用全域搜尋（老實說有點難記 XD）&lt;/p>
+&lt;p>Quick Find 在頁面右上角，很遠對吧，又不能用 &lt;code>cmd&lt;/code> + &lt;code>f&lt;/code>（會叫出文章內搜尋），沒關係，可以用 &lt;code>cmd&lt;/code> + &lt;code>p&lt;/code> 來快速使用全域搜尋（老實說有點難記 XD）&lt;br>
+（因為我的電腦是 mac，在 windows 系統的話，應該是 &lt;code>ctrl&lt;/code> + &lt;code>p&lt;/code>）&lt;/p>
 &lt;h2 id="編輯頁面的熱鍵組合">編輯頁面的熱鍵組合&lt;/h2>
 &lt;p>寫上幾個比較實用的，剩下放在連結裡：&lt;/p>
 &lt;ul>
@@ -2806,8 +2807,9 @@ form.x_sign &lt;span style="color:#f92672">=&lt;/span> 1
 &lt;li>按著 &lt;code>option&lt;/code> 拖拉 Block 可以直接拉出一個新的內容一樣的 Block&lt;/li>
 &lt;li>&lt;code>cmd&lt;/code> + &lt;code>a&lt;/code> 可以全選整個 Block 內容，如果按第二次，會全選整個頁面&lt;/li>
 &lt;li>和其他文字編輯器一樣，可以用 &lt;code>option&lt;/code> 或 &lt;code>cmd&lt;/code> + &lt;code>→&lt;/code> 或 &lt;code>←&lt;/code> 快速移動游標&lt;/li>
-&lt;li>&lt;code>ese&lt;/code> 可以快速選取整個 Block，如果要刪除就在選取 Block 的時候按 &lt;code>del&lt;/code> 或 &lt;code>backspace&lt;/code> 就好了，就不需要用到滑鼠&lt;/li>
-&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>從備忘錄搬移到 Notion</title><link>https://dwye.dev/post/apple-note-to-notion/</link><pubDate>Thu, 30 Jan 2020 17:41:24 +0800</pubDate><guid>https://dwye.dev/post/apple-note-to-notion/</guid><description>
+&lt;li>&lt;code>Esc&lt;/code> 可以快速選取整個 Block，如果要刪除就在選取 Block 的時候按 &lt;code>Del&lt;/code> 或 &lt;code>Backspace&lt;/code> 就好了，就不需要用到滑鼠&lt;/li>
+&lt;/ul>
+&lt;p>（因為我的電腦是 mac，在 windows 系統的話，應該把 &lt;code>cmd&lt;/code> 換成 &lt;code>ctrl&lt;/code> 就可以了）&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>從備忘錄搬移到 Notion</title><link>https://dwye.dev/post/apple-note-to-notion/</link><pubDate>Thu, 30 Jan 2020 17:41:24 +0800</pubDate><guid>https://dwye.dev/post/apple-note-to-notion/</guid><description>
 &lt;h2 id="匯出成-md-檔">匯出成 .md 檔&lt;/h2>
 &lt;p>首先我們需要一個小幫手：&lt;/p>
 &lt;ul>
@@ -3450,7 +3452,39 @@ MV 演出：&lt;a href="https://www.instagram.com/hi_erica_">愛花 -ERICA-&lt;/
 &lt;/code>&lt;/pre>&lt;p>至於正式的改善方案&amp;hellip;還是個 Open issue:&lt;/p>
 &lt;ul>
 &lt;li>&lt;a href="https://github.com/microsoft/vscode/issues/47816">Feature Request: Reload environment variables on new integrated terminal instance&lt;/a>&lt;/li>
-&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>在 Jupyter 使用虛擬 Python 環境</title><link>https://dwye.dev/post/venv-jupyter/</link><pubDate>Mon, 04 Mar 2019 23:41:25 +0800</pubDate><guid>https://dwye.dev/post/venv-jupyter/</guid><description>
+&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>未了</title><link>https://dwye.dev/post/sodagreen-endless/</link><pubDate>Sat, 08 Jun 2019 01:26:27 +0800</pubDate><guid>https://dwye.dev/post/sodagreen-endless/</guid><description>
+&lt;p>或許或多或少，或是不記得主角的名字&lt;br>
+但也許你聽過一個希臘神話&lt;br>
+關於一個罪人被神降下永恆的勞動懲罰&lt;br>
+勞動的內容，是推動巨石上山&lt;br>
+當這個任務完成後，巨石就會滾下山&lt;br>
+於是形成無止盡迴圈&lt;/p>
+&lt;p>如果用一個什麼故事都是有結束的觀點來看&lt;br>
+那麼這樣的懲罰是沒有止盡的痛苦&lt;br>
+沒有結局，不斷重複&lt;br>
+無論怎麼努力，都看不到盡頭&lt;/p>
+&lt;p>這首歌是在描述另外一個觀點&lt;br>
+即使沒有迎來盡頭&lt;br>
+過程的本身也是生命的一部分：&lt;/p>
+&lt;blockquote>
+&lt;p>雖然反覆，卻漸漸懂得：每一步都是自己的；&lt;br>
+不愛永恆，但求現在：真實活著的人生。&lt;/p>
+&lt;/blockquote>
+&lt;p>走出悲傷什麼的，總是會這麼說&lt;br>
+因為想要擺脫現在的困境&lt;br>
+所以焦躁地想要做些什麼&lt;br>
+但實際上不可能物理上地與自己分割&lt;br>
+不管怎麼樣的自己，都是自己的一部分&lt;/p>
+&lt;p>也或許當有什麼走不出的情緒&lt;br>
+其實也不存在走出去的一天&lt;br>
+所以換個角度&lt;br>
+學習與那個自己共存&lt;br>
+學會活用那樣負面的情緒所帶來的力量&lt;br>
+比起拋下或是脫離什麼的&lt;br>
+更是真實活著的人生吧&lt;/p>
+&lt;div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+&lt;iframe src="https://www.youtube.com/embed/xiUc8m5lxcQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video">&lt;/iframe>
+&lt;/div></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>在 Jupyter 使用虛擬 Python 環境</title><link>https://dwye.dev/post/venv-jupyter/</link><pubDate>Mon, 04 Mar 2019 23:41:25 +0800</pubDate><guid>https://dwye.dev/post/venv-jupyter/</guid><description>
 &lt;p>因為交作業要有特定套件，但調參數還是用 Jupyter 方便，所以就研究了下怎麼用特定的 Python 來執行 Jupyter Notebook 或是 JupyterLab。方法有兩種，首先我們先從創建虛擬環境講起：&lt;/p>
 &lt;h2 id="準備">準備&lt;/h2>
 &lt;h3 id="創建虛擬環境">創建虛擬環境&lt;/h3>
@@ -3607,7 +3641,22 @@ export PATH&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db
 &lt;li>中英文語言切換&lt;/li>
 &lt;li>去充實人生這樣才能充實這裡（無誤&lt;/li>
 &lt;li>&amp;hellip;&lt;/li>
-&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>剛結束當兵前最後一場家教</title><link>https://dwye.dev/post/%E5%89%9B%E7%B5%90%E6%9D%9F%E7%95%B6%E5%85%B5%E5%89%8D%E6%9C%80%E5%BE%8C%E4%B8%80%E5%A0%B4%E5%AE%B6%E6%95%99/</link><pubDate>Tue, 27 Sep 2016 00:36:06 +0800</pubDate><guid>https://dwye.dev/post/%E5%89%9B%E7%B5%90%E6%9D%9F%E7%95%B6%E5%85%B5%E5%89%8D%E6%9C%80%E5%BE%8C%E4%B8%80%E5%A0%B4%E5%AE%B6%E6%95%99/</guid><description>
+&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>回到過去殺了希特勒，那世界會變成怎樣？</title><link>https://dwye.dev/post/kill-hitler/</link><pubDate>Tue, 02 Jan 2018 00:48:45 +0800</pubDate><guid>https://dwye.dev/post/kill-hitler/</guid><description>
+&lt;p>寫在最開頭，這只是一篇很歪的廢文。&lt;/p>
+&lt;h3 id="正文">正文&lt;/h3>
+&lt;p>這個命題其實不是沒有人問過，也不是沒有人給過一個像樣的答案。有人說，歷史是會修正自己的，如果今天殺掉一個希特勒，那麼一定會有一個類似的人出來取代他，可能德國的法西斯政黨換了名字，卻還是發生了二戰。&lt;/p>
+&lt;p>所以如果有人跟我說，要是日本沒有引發珍珠港事件，或是希特勒的部隊沒有在史達林格勒被包圍，甚至什麼中華民國打贏了三大會戰之類的，我都覺得只是會有另外的類似事件，讓歷史往原本的方向去進行。推動歷史的永遠不是一個人、也不是一個事件，而是那個人和那件事件後面的潮流，以及全體人類。&lt;/p>
+&lt;p>是的，這個題目就是遊戲『終極動員令：紅色警戒』的劇情：&lt;br>
+愛因斯坦發明了時光機，抱著拯救全體人類的心情，回到1924年的慕尼黑，抹殺了剛出獄的希特勒。從遊戲名字就可以猜想之後發生了什麼事了，冷戰時期最能代表紅色的事物不言而喻。&lt;/p>
+&lt;p>當初第一次學到二戰附近的歷史覺得很有趣，就像玩過信長的人會知道服部半藏跟本多忠勝一樣，我對近現代歷史的基本認知，就是美國總統杜根，帶領歐洲的同盟國夥伴：英、法、德三國打敗沙皇後代洛馬諾夫引發的蘇聯侵略——這是紅色警戒 2 代的劇情XD，我當然知道這場戰爭沒有發生，後來 1990 年柏林圍牆倒塌，1991 年蘇聯解體獨立國協成立，國小老師叫我背過，所以我還知道這些事，但是對於第一二次世界大戰到底是誰打誰我還真的沒什麼頭緒，只知道美國和同盟國是好人，蘇聯是壞人，而創立蘇聯的史達林是壞人中的壞人。&lt;/p>
+&lt;p>所以當我知道其實二戰是我以前認知的同盟國裡面的一國所引起的時候，就覺得充滿衝擊感，就像從小被認為是奢侈品的象徵 iPhone 一樣，原本以為是神到不能再神的劃時代高科技，結果長大之後好不容易有錢換了一隻 iPhone，才發現他連基本的中文輸入法都做不好&amp;hellip;&amp;hellip;離題了。&lt;/p>
+&lt;p>更讓人驚訝的是這段歷史真就像在打遊戲破關一樣，玩家選擇德軍，訓練關卡是把部隊開進奧地利，然後第一關是佔領捷克，第二關北上丹麥，第三關確保挪威補給線，第四關華沙攻略，然後荷蘭比利時盧森堡法國，媽的真的跟打遊戲一樣，你說打就真的打下來，怎麼可能真這麼順利？於是就一路進行到海獅作戰、巴巴羅薩行動，最後一關是在華盛頓丟一顆核彈，然後就接上《高堡奇人》（The Man in the High Castle）的世界觀了（誤）。&lt;/p>
+&lt;p>史實上是當初被我認為的大壞蛋史達林，和新學到的壞蛋希特勒，兩個人互打起來了。這下有趣了，一般來說看故事都是壞人打好人，好人合作變強反擊一波幹掉壞人，結果現實世界居然有這種壞人互打的劇情。結果兩個獨裁政權互咬互傷，鷸蚌相爭英美得利，才接上我們現代所生存的國際世界。&lt;/p>
+&lt;p>而且另外一個史實是，海森堡的團隊沒能夠為德國開發出核彈，反而是被希特勒趕跑的愛因斯坦的團隊先造出來。這件事情成為後來歷史的疑雲之一：海森堡到底是開發不出來？還是就如某些辯護者所說的：他能夠但他蓄意避免了。畢竟如果發狂的希特勒拿到核彈，一定是二話不說先往一個人口多的地方丟下去報復對方——結果反而是終結戰爭的好人方美國做了同樣的事，用核彈把兩個日本大城鎮變成了灰燼。&lt;/p>
+&lt;p>這邊也有一個有趣的事：量子力學的創始者掌控不了相對論，相對論的提出者也無法理解量子力學。哥本哈根詮釋用機率論解釋波函數平方的物理意義，愛因斯坦卻質問：上帝怎麼可能丟骰子？他的後繼者霍金回答了：上帝不止丟骰子，還為了搞混我們兒把它扔到你看不見的地方&amp;hellip;&amp;hellip;又離題了。&lt;/p>
+&lt;p>當然好人壞人這種東西都是大眾去定義的，而這樣的定義也可以因為每個人的認知而不同，如果沒有凡爾賽會議的割地賠款以及不平等要求，我覺得反而比消滅希特勒更能夠阻止二戰發生。但是前面才說過，凡爾賽會議之所以會這樣規劃，也不是當時座位上的幾個人決定的，當時世界的認知就是那樣，打贏了就是有錢有地有資源，打輸了就下去等著被瓜分。就像打贏二戰的美國，丟了兩顆核彈都能說成是阻止更多人員傷亡，好像砸下去時城市裡面無辜的老人小孩都不是人一樣，還能開心地當他的世界警察。&lt;/p>
+&lt;p>紅色警戒告訴我們，即使少了希特勒，史達林還活得好好的，而且被抽去平衡的架空世界，反而更加殘酷。但我覺得，一定會有一個曾經追隨希特勒的人，會取代他的位置，這個人，可能是海德里希，也可能是戈培林或是希姆萊。也許這個新的納粹領袖會是個更聰明的人，少了些領袖魅力，卻多了平穩的思緒，這樣的人反而比一個單純靠勇氣與魄力在打仗的戰爭瘋子還可怕。&lt;/p>
+&lt;p>結論就是，還是趕快去充實自己的人生吧，改變世界太難，改變自己比起來容易太多了，一個粒子的系統可以有可逆性，熱力學卻告訴我們不要跟時間的後盾：熵 (entropy) 去做對抗。&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>剛結束當兵前最後一場家教</title><link>https://dwye.dev/post/%E5%89%9B%E7%B5%90%E6%9D%9F%E7%95%B6%E5%85%B5%E5%89%8D%E6%9C%80%E5%BE%8C%E4%B8%80%E5%A0%B4%E5%AE%B6%E6%95%99/</link><pubDate>Tue, 27 Sep 2016 00:36:06 +0800</pubDate><guid>https://dwye.dev/post/%E5%89%9B%E7%B5%90%E6%9D%9F%E7%95%B6%E5%85%B5%E5%89%8D%E6%9C%80%E5%BE%8C%E4%B8%80%E5%A0%B4%E5%AE%B6%E6%95%99/</guid><description>
 &lt;p>剛結束當兵前最後一場家教，所以想打點心得，不知道以後還有沒有機會做這份行業，總之一切的開始都是緣份。&lt;/p>
 &lt;p>剛上大學總是有很多野心，當時有個願望，就是希望能夠早日經濟獨立，所以第一件事情就是跟家裡要來存摺，自己的錢自己管，然後建立零用錢制，所以有了基本收入。再來就是如何賺錢了。&lt;/p>
 &lt;p>除了因為台大學生很多都是用家教當打工，就我自己而言，其實高中平時成績也不是特別好，教高中物理這種事情原本應該是想都想不到的，除了高三上成績不知道為什麼破格的高，不過到高三下又跌回班上十幾名。後來因為不幸要指考，只好把物理乖乖補起來，才發現其實高中物理對我來說還蠻簡單的，當時有自己準備一份公式筆記，以後搞不好有機會拿來幫別人解決物理問題。&lt;/p>
@@ -4006,8 +4055,199 @@ Bridge不像原曲有壓下去的感覺，反而特別突出&lt;/p>
 聽習慣的人(就我啦)來聽這張反而會一直覺得很怪&lt;br>
 如果說有愛再來聽&amp;hellip;.好像也不會因為我會繼續聽五月天的版本XDDD&lt;br>
 沒辦法誰叫有愛是對五月天有愛而不是對改編版有愛呢哈哈&lt;br>
-不過應該可以把五月天的歌推廣給新的族群吧（不喜歡樂團的XD）&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>公斤、公斤重與牛頓的差別</title><link>https://dwye.dev/post/kg-kgw-n/</link><pubDate>Mon, 17 Nov 2014 00:50:40 +0800</pubDate><guid>https://dwye.dev/post/kg-kgw-n/</guid><description>
-&lt;p>&lt;a href="//www.ptt.cc/bbs/SENIORHIGH/M.1416156646.A.713.html">原文&lt;/a>是我發的，轉來這個 blog 作為紀錄。&lt;/p>
+不過應該可以把五月天的歌推廣給新的族群吧（不喜歡樂團的XD）&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>高中基礎物理補充：費曼對能量的見解</title><link>https://dwye.dev/post/feynman-and-energy/</link><pubDate>Tue, 24 Mar 2015 00:48:45 +0800</pubDate><guid>https://dwye.dev/post/feynman-and-energy/</guid><description>
+&lt;p>這是&lt;a href="https://dwye.dev/highschool-physics">基礎物理補充文章&lt;/a>的一部分。&lt;/p>
+&lt;hr>
+&lt;p>偉大的物理學家，也幾乎是近世普物課程之始祖：費曼 (Feynman)，在他的課程中發表了他對能量的看法：&lt;/p>
+&lt;blockquote>
+&lt;p>我們發現了一個事實，有一個定律掌控了到目前為止我們所知道的自然現象，而這個定律在我們所知範圍內沒有任何的例外。而且以我們目前所知，它是準確的。這個定律被稱為「能量守恆」。它說明了有一個特定的物理量，我們稱之為「能量」，這個量在自然狀態經歷了各種變化後，並不會改變。也許聽來有些抽象，因為它是一個數學的原理：它說明了有一個量在一些事件發生時不會改變。而且並不是任何具體的物理過程描述，卻僅是一個奇特的事實：我們可以先對系統計算這些量，而當系統經歷了一些變化之後，如果我們在去計算這些量，會發現這些量加起來並沒有改變。（就好向西洋棋裡面的『象』，它只能斜著走，因此如果它原本在黑色的格字上，不管它中間動了幾步以及如何動，還是會在黑色的格子上，這就是因為這是西洋棋天生的『規則』）&lt;/p>
+&lt;/blockquote>
+&lt;p>簡單歸納起來，就是&lt;/p>
+&lt;p>&lt;strong>一個間接被定義的物理量，這個量可以在物質中轉換，並且會守恆。&lt;/strong>&lt;/p>
+&lt;p>以下附上英文原文：&lt;/p>
+&lt;blockquote>
+&lt;p>There is a fact, or if you wish, a law, governing all natural phenomena that are known to date. There is no known exception to this law—it is exact so far as we know. The law is called the conservation of energy. It states that there is a certain quantity, which we call energy, that does not change in the manifold changes which nature undergoes. That is a most abstract idea, because it is a mathematical principle; it says that there is a numerical quantity which does not change when something happens. It is not a description of a mechanism, or anything concrete; it is just a strange fact that we can calculate some number and when we finish watching nature go through her tricks and calculate the number again, it is the same. (Something like the bishop on a red square, and after a number of moves—details unknown—it is still on some red square. It is a law of this nature.)&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="參考資料">參考資料&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="http://www.feynmanlectures.caltech.edu/I_04.html">費曼物理學講義 I-IV 能量守恆（英文）&lt;/a>&lt;/li>
+&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>高中基礎物理補充：馬克士威方程式簡介</title><link>https://dwye.dev/post/maxwell-eq/</link><pubDate>Mon, 23 Mar 2015 00:48:45 +0800</pubDate><guid>https://dwye.dev/post/maxwell-eq/</guid><description>
+&lt;p>這是&lt;a href="https://dwye.dev/highschool-physics">基礎物理補充文章&lt;/a>的一部分。&lt;/p>
+&lt;hr>
+&lt;p>法拉第發現了電磁感應的現象之後，相關的應用產品就開始發展，但這時候人們主要還是注重於電磁感應現象的應用，尚未有一套理論基礎被發展出來。&lt;/p>
+&lt;p>馬克士威正巧誕生於法拉第發現電磁感應現象那一年，這似乎註定著他之後在電磁學上的偉大貢獻：&lt;strong>為電與磁的現象建立一套完整的數學理論&lt;/strong>，並且用他的方程式們&lt;strong>預測電磁波的存在&lt;/strong>，以及&lt;strong>計算光速&lt;/strong>。&lt;/p>
+&lt;p>馬克士威方程式一共有四條：&lt;/p>
+&lt;h2 id="高斯定律">高斯定律&lt;/h2>
+&lt;p>從一個地方產生或消失的電場大小，跟那裡的電荷密度有關。&lt;br>
+$$&lt;br>
+\nabla \cdot \mathbf{E} = \frac {\rho} {\varepsilon_0}&lt;br>
+$$&lt;/p>
+&lt;h2 id="高斯磁場定律">高斯磁場定律&lt;/h2>
+&lt;p>從一個地方產生或消失的磁場量是零。（即&lt;strong>磁場是封閉的&lt;/strong>）&lt;br>
+$$&lt;br>
+\nabla \cdot \mathbf{B} = 0&lt;br>
+$$&lt;/p>
+&lt;h2 id="馬克士威-法拉第方程式">馬克士威-法拉第方程式&lt;/h2>
+&lt;p>一個變化的磁場，會產生一個抵抗其變化的電場。&lt;br>
+$$&lt;br>
+\nabla \times \mathbf{E} = -\frac{\partial \mathbf{B}} {\partial t}&lt;br>
+$$&lt;/p>
+&lt;h2 id="馬克士威-安培方程式">馬克士威-安培方程式&lt;/h2>
+&lt;p>一個變化的電場或是一道電流( $J$ 是電流密度)，會產生一個順應其變化的磁場。&lt;br>
+$$&lt;br>
+\nabla \times \mathbf{B} = \mu_0\left(\mathbf{J} + \varepsilon_0 \frac{\partial \mathbf{E}} {\partial t} \right)&lt;br>
+$$&lt;/p>
+&lt;h2 id="小結">小結&lt;/h2>
+&lt;p>其中用到了一些比較進階的微積分符號，這邊就不多作深入說明，只是秀給大家看這些和現代科技息息相關的數學式。因為電磁波是由電場和磁場依據這些方程式互相感應而生成，所以理所當然地馬克士威就計算出了電磁波的速度。&lt;/p>
+&lt;h2 id="參考資料">參考資料&lt;/h2>
+&lt;ul>
+&lt;li>維基百科：&lt;a href="http://en.wikipedia.org/wiki/Maxwell's_equations">馬克士威方程式&lt;/a>與相關頁面&lt;/li>
+&lt;li>伊恩‧史都華 改變世界的17個方程式&lt;/li>
+&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>高中基礎物理：原子內電力與重力的比較</title><link>https://dwye.dev/post/force-in-atom/</link><pubDate>Thu, 12 Feb 2015 00:48:45 +0800</pubDate><guid>https://dwye.dev/post/force-in-atom/</guid><description>
+&lt;p>這是&lt;a href="https://dwye.dev/highschool-physics">基礎物理補充文章&lt;/a>的一部分。&lt;/p>
+&lt;hr>
+&lt;p>為什麼在想像原子模型時，都是說「&lt;strong>電子受到原子核的靜電力吸引&lt;/strong>」而沒有考慮到「&lt;strong>電子和原子核的萬有引力吸引&lt;/strong>」？這邊利用&lt;a href="https://dwye.dev/s/H1Mbwesf4">估算法&lt;/a>稍微估計一下兩個力的大小差別，就會發現原因，以下以氫原子為例：&lt;/p>
+&lt;h2 id="重力">重力&lt;/h2>
+&lt;p>$$&lt;br>
+F_g = \frac{GM_1M_2}{r^2} =&lt;br>
+\frac{(6.67 \times 10^{-11})(9.11 \times 10^{-31})(1.67 \times 10^{-27})}{r^2} \approx&lt;br>
+\frac{10^{-67}}{r^2}&lt;br>
+$$&lt;/p>
+&lt;h2 id="電力">電力&lt;/h2>
+&lt;p>$$&lt;br>
+F_e = \frac{kQ_1Q_2}{r^2} =&lt;br>
+\frac{(9 \times 10^9)(1.6 \times 10^{-19})^2}{r^2}\approx&lt;br>
+\frac{10^{-28}}{r^2}&lt;br>
+$$&lt;/p>
+&lt;h2 id="於是">於是&lt;/h2>
+&lt;p>$$&lt;br>
+\frac{F_g}{F_e} \approx 10^{-39}&lt;br>
+$$&lt;br>
+兩個力完全不在同一個數量級上面。&lt;/p>
+&lt;p>&lt;strong>原子內的電力比重力還要大上超過幾千兆倍，所以重力幾乎都被忽略掉了&lt;/strong>。一般在計算原子內的電子軌域時，主要考慮的還是原子核和電子間的引力，再加上其他電子對電子的引力作修正。&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>高中基礎物理補充：終端速度簡單介紹</title><link>https://dwye.dev/post/terminal-speed/</link><pubDate>Tue, 03 Feb 2015 00:48:45 +0800</pubDate><guid>https://dwye.dev/post/terminal-speed/</guid><description>
+&lt;p>這是&lt;a href="https://dwye.dev/highschool-physics">基礎物理補充文章&lt;/a>的一部分。&lt;/p>
+&lt;hr>
+&lt;h2 id="簡單的阻力公式">簡單的阻力公式&lt;/h2>
+&lt;p>一般在計算自由落體時，我們忽略了空氣阻力，但實際上空氣是有阻力的。在普通物理學裡面我們可以用一個簡單的式子來估計阻力 $f$：&lt;br>
+$$&lt;br>
+f = \frac{1}{2}C\rho Av^2=kv^2&lt;br>
+$$&lt;/p>
+&lt;ul>
+&lt;li>$C$, $k$：常數&lt;/li>
+&lt;li>$\rho$：空氣密度&lt;/li>
+&lt;li>$A$：截面積&lt;/li>
+&lt;li>$v$：速率&lt;/li>
+&lt;/ul>
+&lt;p>因為下降的速率越快，劃破空氣越用力，所以空氣給的阻力就會越大，因此阻力是和下落速度有關的，即為 $f=kv^2$，或在一些學測考題裡面，會用 $f=kv$ 來估計阻力，&lt;/p>
+&lt;p>兩者只是不同的模型而已，並沒有對錯，只有不同情況下，哪個比較準的問題。&lt;/p>
+&lt;h2 id="終端速度的推導">終端速度的推導&lt;/h2>
+&lt;p>也因為阻力和速率有關，下落速率越大，可以從牛頓第二運動定律得出：&lt;br>
+$$&lt;br>
+F_合 = ma = mg - kv^2 \&lt;br>
+a = g - \frac{kv^2}{m}&lt;br>
+$$&lt;br>
+因此&lt;strong>加速度會隨著速率的上升而變小&lt;/strong>，可大略畫出 $v$-$t$ 圖如下（斜率即加速度）：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/fWk3fJ1.png" alt="">&lt;/p>
+&lt;p>當加速度減小到零的時候，速度變成一直線，這時候就稱為「&lt;strong>終端速度&lt;/strong>」，是物體在下落過程中所能達到的&lt;strong>最大速度&lt;/strong>。&lt;/p>
+&lt;p>附帶一提，物體是永遠無法達到終端速度的，只會不斷接近它。終端速度所形成的直線是一條「漸進線」，物體的速度曲線會逐漸靠近它，但永不相交。&lt;/p>
+&lt;h2 id="參考資料">參考資料&lt;/h2>
+&lt;ul>
+&lt;li>Halliday &amp;amp; Resnick, Fundamentals of Physics&lt;/li>
+&lt;li>102學測自然科試題&lt;/li>
+&lt;/ul>
+&lt;h2 id="圖片來源">圖片來源&lt;/h2>
+&lt;ul>
+&lt;li>102學測自然科試題&lt;/li>
+&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>高中基礎物理補充：白話微積分</title><link>https://dwye.dev/post/differentiation-and-integration/</link><pubDate>Wed, 21 Jan 2015 00:48:45 +0800</pubDate><guid>https://dwye.dev/post/differentiation-and-integration/</guid><description>
+&lt;p>這是&lt;a href="https://dwye.dev/highschool-physics">基礎物理補充文章&lt;/a>的一部分。&lt;/p>
+&lt;hr>
+&lt;h2 id="微分">微分&lt;/h2>
+&lt;p>微分，可以求出一個函數的&lt;strong>斜率函數&lt;/strong>，只要把斜率函數內的任何一個x座標帶入，就能得到原本函數在x座標的斜率。&lt;/p>
+&lt;p>以下圖來說，求出一點的斜率似乎沒有很直觀的數學算式，&lt;strong>要有斜率就必須要有一條線，要定出一條線則必須在平面上找到兩個點&lt;/strong>。&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/KxdBYBR.png" alt="differentiation from Salas, Calculous one and several variables 10/e">&lt;/p>
+&lt;p>所以這邊用的方式就是，除了我們要的點之外，先另外取一個點 $x+h$，畫出割線。這時候發揮想像力，把另取的點 $x+h$ 沿著函數，不斷往 $x$ 的位置移動，&lt;strong>越靠近 $x$ 越好&lt;/strong>，但是不能碰到 $x$ ，不然重合成一個點的話就無法決定一條線了。&lt;/p>
+&lt;p>這樣我們就能得到一個很接近切線的割線，同時這個割線的斜率也會很接近函數在該點的斜率。現在以函數 $f(x)=x^2$ 當作例子，用算式求出斜率的過程表示如下：&lt;br>
+$$&lt;br>
+x點的斜率 = \frac{f(x+h)-f(x)}{(x+h)-x} =&lt;br>
+\frac{(x+h)^2 - x^2}{h} =&lt;br>
+\frac{2xh - h^2}{h} = 2x+h&lt;br>
+$$&lt;/p>
+&lt;p>因為我們不斷把兩個點靠近，$h$ 就會縮小到可以忽略的地步，因此上述的答案就變成 $2x$，這正是 $f(x)=x^2$ 的斜率函數，或著用更正式的名字，叫「&lt;strong>導函數&lt;/strong>」。&lt;/p>
+&lt;p>而這個過程，我們會說是「&lt;strong>把 $f(x)$ 對 $x$ 微分」&lt;/strong>。這套工具是牛頓為了解決運動學上的問題所發明的，只要把 $x$-$t$ 圖中的 $x$ 對 $t$ 微分，就可以求出任何時刻&lt;strong>位置對時間的變化，也就是速度&lt;/strong>。&lt;/p>
+&lt;p>牛頓除了這項工具之外，他還有另外一項利器：積分。&lt;/p>
+&lt;h2 id="積分">積分&lt;/h2>
+&lt;p>積分，可以求出一個函數底下和橫軸所夾的&lt;strong>面積&lt;/strong>。&lt;/p>
+&lt;p>這個面積所形成的函數 $F(x)$，就剛好是&lt;strong>微分的反過來操作&lt;/strong>。只要把 $F(x)$ 微分之後，就可以得到原本的函數 $f(x)$。&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/otu3UM2.png" alt="integration from Salas, Calculous one and several variables 10/e">&lt;/p>
+&lt;p>如圖，積分的想法就是把一個不規則的函數切成很多很多小塊的長方形。原本的函數面積很複雜，沒有公式可以算，但切成小塊的長方形之後，我們就可以分別計算長方形的面積公式，加起來，就可以得到整塊函數底下的面積。圖中的長方形面積也許不夠準，但是只要切越多塊，所有長方形的面積就會越接近函數和橫軸所夾的真正面積。&lt;/p>
+&lt;p>通常在計算積分的時候，只要把微分的法則反過來運用就成了。不過也因為沒有較直接的運算方法，所以積分的運算通常比微分複雜，甚至會有無法直接積分的情況發生。&lt;/p>
+&lt;h2 id="其他關於微積分">其他關於微積分：&lt;/h2>
+&lt;p>除了牛頓之外，另一個科學家：&lt;strong>萊布尼茲，也獨立發展出了這套工具&lt;/strong>，他和牛頓常常被視為微積分的發明者。不過這套工具一直受到質疑，因為它的「無限接近」的概念一直沒有數學上嚴謹的定義，這個問題一直到19世紀時才被一些數學家所解決，並成為現在大學生最入門的科目：「微積分Calculous」。（英文Calculous是計算的意思，不過因為教學內容主要還是要提供微積分這套工具，因此中文名稱才稱呼叫微積分。）&lt;/p>
+&lt;h2 id="參考資料">參考資料&lt;/h2>
+&lt;ul>
+&lt;li>伊恩‧史都華 改變世界的17個方程式&lt;/li>
+&lt;li>容志輝老師 101-1微積分甲上 課程筆記&lt;/li>
+&lt;li>Salas, Calculous one and several variables 10/e&lt;/li>
+&lt;/ul>
+&lt;h2 id="圖片來源">圖片來源&lt;/h2>
+&lt;ul>
+&lt;li>Salas, Calculous one and several variables 10/e&lt;/li>
+&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>高中基礎物理補充：基本粒子大觀園</title><link>https://dwye.dev/post/elementary-particles/</link><pubDate>Fri, 12 Dec 2014 00:48:45 +0800</pubDate><guid>https://dwye.dev/post/elementary-particles/</guid><description>
+&lt;p>這是&lt;a href="https://dwye.dev/highschool-physics">基礎物理補充文章&lt;/a>的一部分。&lt;/p>
+&lt;hr>
+&lt;h2 id="基本粒子">基本粒子&lt;/h2>
+&lt;p>基本粒子，是科學家對於物質所認知的最小單位，隨著科學的進展，最小單位不斷的被更新。現今物質的最小單位，最廣為所知的大概就是電子和夸克。不少的基本粒子因為生存週期不長，或和一般人認知的物質概念有所相左，所以比較不被熟悉。&lt;/p>
+&lt;h2 id="費米子">費米子&lt;/h2>
+&lt;p>最為人所知的夸克大概就是「上夸克」（帶電+2/3基本電荷）和「下夸克」（帶電-1/3基本電荷），這兩種夸克三個一組靠強力結合在一起，形成質子（2上1下）和中子（1上2下），這兩個夸克是所謂「第一代」被發現的粒子。後來還有科學家發現其他的夸克，目前已知六種，且它們的共同特性就是：不會單獨存在，夸克通常是成對或是三個一組形成較重的粒子。&lt;/p>
+&lt;p>電子屬於相對於夸克的「輕子」，不參與強交互作用的粒子。電子也屬於「第一代」，同時是最早被認知的基本粒子。&lt;strong>夸克和電子屬於「費米子」，意指自旋量（參見高三化學）是半整數（以電子為例：±1/2）的粒子&lt;/strong>。它們的共同特性就是：遵守&lt;strong>鮑立不相容定則&lt;/strong>，有個簡單的比喻，就是兩個費米子不能放在同一個位置。&lt;/p>
+&lt;h2 id="玻色子">玻色子&lt;/h2>
+&lt;p>除了費米子之外，當然也有&lt;strong>自旋量是整數（包含0）的粒子，這些粒子稱為玻色子&lt;/strong>，它們不遵守鮑立不相容定則，可以放在完全相同的位置而發生「玻色－愛因斯坦凝聚」。目前已知的玻色子分為兩種：「規範玻色子」、「希格斯玻色子」。&lt;/p>
+&lt;p>自然界的交互作用（也就是力，參見基礎物理第四章），必須透過規範玻色子來進行，因此又可以依交互作用將規範波色子繼續分類。和重力作用有關的是「引力子」，但由於重力太弱，導致引力子一直都沒有被發現；和強力有關的是「膠子」，維持原子核和質子、中子的穩定存在；而和電磁力作用有關的，正是我們&lt;strong>常見的電磁波的本尊：「光子」&lt;/strong>。&lt;/p>
+&lt;p>希格斯玻色子，是最近才被實驗上偵測到的基本粒子，詳細性質很多都還是謎團，但科學家預測這個粒子可能是質量的來源。&lt;/p>
+&lt;h2 id="反粒子">反粒子&lt;/h2>
+&lt;p>很多粒子有相對應的反粒子存在，例如：電子有相對應的「正子」存在。但也有反粒子就是其本身的例子，例如：光子。粒子構成物質，反粒子構成反物質。&lt;strong>反物質和物質接觸時，會立刻遵守愛因斯坦的質能轉換公式而化為能量&lt;/strong>。原本宇宙產生時，一般物質和反物質的數量應該要一樣，但可能是因為衰變速率不同，導致最後剩下物質存在我們熟悉的世界，反物質則灰飛煙滅。不過科學家現在已經有技術在實驗室裡面短暫地呼喚出反物質。&lt;/p>
+&lt;h2 id="參考資料">參考資料&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="http://zh.wikipedia.org/wiki/%E5%9F%BA%E6%9C%AC%E7%B2%92%E5%AD%90">維基百科：基本粒子和相關頁面&lt;/a>&lt;/li>
+&lt;li>科技部高瞻自然科學教學資源平台：&lt;a href="http://highscope.ch.ntu.edu.tw/wordpress/?p=19087">基本粒子&lt;/a>、&lt;a href="http://highscope.ch.ntu.edu.tw/wordpress/?p=41214">反粒子&lt;/a>&lt;/li>
+&lt;li>Carter, Classical and Statistical Thermodynamics：費米子、玻色子的統計性質。&lt;/li>
+&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>高中基礎物理補充：寫在三態之外</title><link>https://dwye.dev/post/state-phase-plasma/</link><pubDate>Sun, 07 Dec 2014 00:48:45 +0800</pubDate><guid>https://dwye.dev/post/state-phase-plasma/</guid><description>
+&lt;p>這是&lt;a href="https://dwye.dev/highschool-physics">基礎物理補充文章&lt;/a>的一部分。&lt;/p>
+&lt;hr>
+&lt;p>物質有三態：固態、液態、氣態。乍聽起來就像物質有三寶一樣，但是其實物質並不是只有三寶！&lt;/p>
+&lt;h2 id="狀態state">狀態(State)&lt;/h2>
+&lt;p>「狀態」的意思，是說分子排列的緊密程度。固態，是緊密排列；液態，分子很靠近但可以滑動；氣態，分子之間是自由的，所以才能有不同體積。&lt;/p>
+&lt;p>除了這三種狀態之外，另外還有「&lt;strong>電漿態(plasma)&lt;/strong>」，把氣體繼續加溫，有機會使分子游離，形成電子和離子以及中性分子的混合狀態。現在更有技術可以在不那麼高溫的情況下做出電漿。&lt;/p>
+&lt;p>電漿態物質並不稀有，例如：電漿電視、大氣電離層、一些火焰尖端、太陽之類的恆星。電漿態和一般所知的三態，常被統稱為物質基本四態。&lt;/p>
+&lt;h2 id="相phase">相(Phase)&lt;/h2>
+&lt;p>只要&lt;strong>分子的排列方式不一樣，就算是不同的「相」&lt;/strong>。&lt;/p>
+&lt;p>最簡單的例子，就是&lt;strong>鑽石和石墨&lt;/strong>，雖然都是碳原子組成，但沒有人會認為它們是一樣的東西，不管是顏色、硬度、導電性，甚至是價值，都天差地遠，所以把它們歸為不同的「相」也是合情合理。&lt;/p>
+&lt;p>以水為例，大家所熟悉的固態就是日常生活之間所見的冰，但是其實水的固態不只一種相，目前已經發現水在不同溫壓情況下，會有很多不同的排列方式。詳細可以參考&lt;a href="http://highscope.ch.ntu.edu.tw/wordpress/?p=53503#more-53503">這篇&lt;/a>。&lt;/p>
+&lt;h2 id="參考資料">參考資料&lt;/h2>
+&lt;ul>
+&lt;li>維基百科：&lt;a href="http://zh.wikipedia.org/wiki/%E7%89%A9%E8%B4%A8%E7%8A%B6%E6%80%81">物質狀態&lt;/a>、&lt;a href="http://zh.wikipedia.org/wiki/%E7%AD%89%E7%A6%BB%E5%AD%90%E4%BD%93">電漿&lt;/a>、&lt;a href="http://zh.wikipedia.org/wiki/%E7%9B%B8_(%E7%89%A9%E8%B4%A8)">相&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://highscope.ch.ntu.edu.tw/wordpress/?p=53503#more-53503">科技部高瞻自然科學教學資源平台：水的三相點不只一個&lt;/a>&lt;/li>
+&lt;li>Silbey, Physical Chemistry 4/e&lt;/li>
+&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>高中基礎物理補充：巨觀與微觀</title><link>https://dwye.dev/post/macrocosm-and-microcosm/</link><pubDate>Tue, 02 Dec 2014 00:48:45 +0800</pubDate><guid>https://dwye.dev/post/macrocosm-and-microcosm/</guid><description>
+&lt;p>這是&lt;a href="https://dwye.dev/highschool-physics">基礎物理補充文章&lt;/a>的一部分。&lt;/p>
+&lt;hr>
+&lt;h2 id="巨觀">巨觀&lt;/h2>
+&lt;p>巨觀，簡單說起來，就是我們日常生活所看到的。&lt;/p>
+&lt;p>像是桌子、汽車、電燈……，這些東西你不會看得到他們是由一粒粒分子組成的，它們看起來就是彼此不同的東西，桌子就是桌子，你不會發現桌子跟玻璃在分子排列上面有什麼差別，你最多只會發現桌子跟椅子都是木頭做的。&lt;/p>
+&lt;p>如果我們使用一些光學儀器輔助，讓我們可以看到更小的細菌、木頭上的紋路，&lt;strong>很抱歉，這些都還是巨觀，因為你還是看不到這些東西是由一粒粒分子構成的&lt;/strong>，你也沒辦法看見空氣中有氧分子和氮分子悠閒自在地作飛來飛去。&lt;/p>
+&lt;h2 id="微觀">微觀&lt;/h2>
+&lt;p>微觀，簡單說起來，就是從&lt;strong>原子或分子&lt;/strong>層面看。&lt;/p>
+&lt;p>主要是在十九世紀至今才開始慢慢興盛，因為古典電磁學和其他各種學問的發展，科學家才能想辦法用實驗和計算的方式，慢慢探索我們看不到的世界。微觀下的世界，有時候跟牛頓直接看到的巨觀世界會不太符合，因此才有所謂量子理論的發展。&lt;/p>
+&lt;p>&lt;strong>想像我們拿著刀子切蛋糕，蛋糕似乎可以切多小就切多小，但是總有一天我們會把蛋糕切到只剩一顆粒子，不能再分割。&lt;/strong>&lt;/p>
+&lt;p>量子的概念就是把這種想法推廣。&lt;/p>
+&lt;h2 id="巨觀是微觀的統計結果">巨觀是微觀的統計結果&lt;/h2>
+&lt;p>雖然微觀世界可能和巨觀世界有些差異，例如說，巨觀世界主要使用牛頓力學，但在微觀下必須使用量子力學。但是如果我們&lt;strong>在微觀世界看到的很多事情用統計的方式統合起來，那就會得到巨觀下看到的結果。&lt;/strong>&lt;/p>
+&lt;p>物理學上的例子，就是統計物理可以利用微觀的想法，由下而上（Bottom-Up）建構出和熱力學從巨觀觀察，由上而下（Top-Down）建立的理論有相同的結果。&lt;/p>
+&lt;h2 id="參考資料">參考資料&lt;/h2>
+&lt;ul>
+&lt;li>I. N. Levine, Quantum Chemistry&lt;/li>
+&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>公斤、公斤重與牛頓的差別</title><link>https://dwye.dev/post/kg-kgw-n/</link><pubDate>Mon, 17 Nov 2014 00:50:40 +0800</pubDate><guid>https://dwye.dev/post/kg-kgw-n/</guid><description>
+&lt;p>這是&lt;a href="https://dwye.dev/highschool-physics">基礎物理補充文章&lt;/a>的一部分。&lt;/p>
 &lt;hr>
 &lt;p>很多人都有類似方面的問題，就一次寫清楚&lt;/p>
 &lt;h2 id="日常生活">日常生活&lt;/h2>
@@ -4083,7 +4323,8 @@ $$ F = m \times a $$&lt;br>
 &lt;/ul>
 &lt;hr>
 &lt;p>以上，希望能解決大家的困擾&lt;br>
-有問題歡迎提出&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>在補習班的日子</title><link>https://dwye.dev/post/20140828_164254/</link><pubDate>Thu, 28 Aug 2014 16:42:54 +0800</pubDate><guid>https://dwye.dev/post/20140828_164254/</guid><description>
+有問題歡迎提出&lt;br>
+也歡迎參照 PTT &lt;a href="//www.ptt.cc/bbs/SENIORHIGH/M.1416156646.A.713.html">原文&lt;/a>&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>在補習班的日子</title><link>https://dwye.dev/post/20140828_164254/</link><pubDate>Thu, 28 Aug 2014 16:42:54 +0800</pubDate><guid>https://dwye.dev/post/20140828_164254/</guid><description>
 &lt;p>這是篇公開心得，所以避開了所有人名以及公司名，有必要者用綽號稱之。&lt;/p>
 &lt;h2 id="緣起">緣起&lt;/h2>
 &lt;p>2012年11月，第一次到13樓的辦公室考試，那邊的人說，考卷就在桌上，寫完考卷和資料之後就可以走了，之後靜待通知。&lt;/p>
@@ -4348,7 +4589,12 @@ $$&lt;/p>
 &lt;p>每當大學放榜，總是有許多新鮮人迫不及待想要先看看大學的世界長什麼樣子。就我看來，大學理科最重要的科目，非「微積分」莫屬了。大學普物，以知名課本 Halliday 所著之 Fundamentals of Physics 為例，除了會把高中的基礎幾乎全部講一遍之外，也把數學工具，就是所謂微積分，活用於其中，用同樣的觀念就可以解出更多高中所不能解決的問題。當然也有一些新的領域進來，例如流體、熱學、原子核等等。電磁學更是把不得不提的超知名物理明星馬克士威所整理出的四大方程都介紹一遍，這是沒有微積分基礎的高中生所無法觸及的。在普物之後，以物理系而言，會就各個領域規劃更進階一點的課程，例如「力學」、「電磁學」、「熱物理」、「量子物理」等等，了解物理學各界的發展，讓學生置身歷史之中，了解學問的來龍去脈。當然，若是要濟身於物理界的尖端，我甚至可以說，照著課表修課是絕對不夠的，就算到了研究所，學到了「量子場論」、「進階電磁學」之類的課程，也都是近代早有不少先驅在裡面探索的領域，這時候若是直接訪問教授的研究，甚至進到實驗室進行專題研究，反而比較能接觸到學問的尖端。不過，這必須建立在廣大的先備知識下。物理的領域博大精深，高中物理，恐怕連皮毛都稱不上，因此也不必抱怨高中教太多東西，因為從大學的角度看來，高中，根本沒教什麼東西。&lt;/p>
 &lt;h2 id="還有更多">還有更多&lt;/h2>
 &lt;p>上一篇「&lt;a href="../20120711_061900">最弱科到最強科，我的物理 by YDW&lt;/a>」其實也分享了不少東西，關於讀書的方式，也提及不少，裡頭所寫過的，就避免再寫一次。這篇文章說實在，也沒多給出太多東西，大概就是統整這兩年來的所見所聞吧。見到的學生越多，領悟的也越多。只希望我碰到的人，不一定要喜歡物理，只是不要以物理為苦惱，因為，讓物理變的討人厭的絕對不是物理本身，而是教育制度和考試。也許未來，還會有第三篇或更多篇，但我接下來想做的，是把分雜在各個地方的經驗以及知識，寫成一小篇一小篇的專題，不求很多人看過，但求看過的人皆能有所收穫，如此而已。&lt;/p>
-&lt;p>by YDW 2014.07.25&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>【文章推薦】申請入學：面試與備審</title><link>https://dwye.dev/post/20140725_064404/</link><pubDate>Fri, 25 Jul 2014 06:44:04 +0800</pubDate><guid>https://dwye.dev/post/20140725_064404/</guid><description>
+&lt;p>by YDW 2014.07.25&lt;/p>
+&lt;h3 id="補充">補充&lt;/h3>
+&lt;p>想知道理論化學在幹嘛的，可以參考鄭原忠老師的線上課程（當然，需要有大學普通物理、普通化學與微積分作為基礎）：&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="http://quantum.ch.ntu.edu.tw/online_courses/index.html">鄭原忠 OCW: Quantum Dynamic and Spectroscopy&lt;/a>&lt;/li>
+&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>【文章推薦】申請入學：面試與備審</title><link>https://dwye.dev/post/20140725_064404/</link><pubDate>Fri, 25 Jul 2014 06:44:04 +0800</pubDate><guid>https://dwye.dev/post/20140725_064404/</guid><description>
 &lt;p>一篇台大教授關於面試學生的心得文與建議&lt;/p>
 &lt;p>我想，從教授的角度直接分析&lt;/p>
 &lt;p>應當比補習班旁敲側推來的有用多&lt;/p>
