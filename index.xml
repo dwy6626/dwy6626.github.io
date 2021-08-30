@@ -4289,11 +4289,9 @@ $$ F = m \times a $$&lt;br>
 &lt;li>所以 $ 1\ kgw = 10\ N $&lt;/li>
 &lt;/ul>
 &lt;h3 id="註">註&lt;/h3>
-&lt;blockquote>
 &lt;p>就算不是地表的地方&lt;br>
 公斤重和牛頓的單位轉換，仍必須以地表重力加速度去看&lt;br>
 因為定義是在地表上的重量&lt;/p>
-&lt;/blockquote>
 &lt;h2 id="所以我們必須說">所以我們必須說&lt;/h2>
 &lt;ul>
 &lt;li>「小明的質量是 60 公斤」（在任何地方都成立）&lt;/li>
@@ -4305,21 +4303,15 @@ $$ F = m \times a $$&lt;br>
 &lt;/ul>
 &lt;h3 id="在某個-g--5-ms2-地球表面的一半-的行星">在某個 $g = 5\ m/s^2 $(地球表面的一半) 的行星&lt;/h3>
 &lt;ul>
-&lt;li>$ W = mg = 60 \times 5 = 300 $ ( $ F = ma $ )&lt;/li>
+&lt;li>$ W = mg = 60 \times 5 = 300 $ ( $ F = ma $ )&lt;br>
+「小明在該行星的重量是 300 牛頓」&lt;/li>
+&lt;li>$ 300\ N = 30\ kgw $ (單位轉換)&lt;br>
+「小明在該行星的重量是 30 公斤重」&lt;/li>
 &lt;/ul>
-&lt;blockquote>
-&lt;p>「小明在該行星的重量是 300 牛頓」&lt;/p>
-&lt;/blockquote>
-&lt;ul>
-&lt;li>$ 300\ N = 30\ kgw $ (單位轉換)&lt;/li>
-&lt;/ul>
-&lt;blockquote>
-&lt;p>「小明在該行星的重量是 30 公斤重」&lt;/p>
-&lt;/blockquote>
 &lt;h3 id="或是在太空中沒有重力加速度--g--0--">或是在太空中，沒有重力加速度( $ g = 0 $ )&lt;/h3>
 &lt;ul>
-&lt;li>$ W = mg = 60 \times 0 = 0 $&lt;/li>
-&lt;li>「小明在太空中的重量是 0 」&lt;/li>
+&lt;li>$ W = mg = 60 \times 0 = 0 $&lt;br>
+「小明在太空中的重量是 0 」&lt;/li>
 &lt;/ul>
 &lt;hr>
 &lt;p>以上，希望能解決大家的困擾&lt;br>
