@@ -51,7 +51,8 @@
 &lt;p>&lt;code>git mv&lt;/code> = &lt;code>mv&lt;/code> + &lt;code>git add&lt;/code> 前後兩個檔名&lt;/p>
 &lt;h3 id="不想要檔案變更回到修改前狀態">不想要檔案變更（回到修改前狀態）&lt;/h3>
 &lt;p>用 &lt;code>checkout&lt;/code> 抵銷：&lt;/p>
-&lt;p>&lt;code>git checkout -- &amp;lt;file&amp;gt;&lt;/code>（注意，即便暫存了也會被復原！）&lt;/p>
+&lt;p>&lt;code>git checkout -- &amp;lt;file&amp;gt;&lt;/code>：只復原工作區&lt;br>
+&lt;code>git checkout HEAD -- &amp;lt;file&amp;gt;&lt;/code>：連暫存區也復原&lt;/p>
 &lt;p>同理也可以拿取特定分支檔案&lt;/p>
 &lt;p>&lt;code>git checkout &amp;lt;hash/branch&amp;gt; -- &amp;lt;file&amp;gt;&lt;/code>&lt;/p>
 &lt;p>同理，可以用 &lt;code>git checkout &amp;lt;hash/branch&amp;gt; -f&lt;/code> 硬切分支，會同時取消所有的變更！&lt;/p>
