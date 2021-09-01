@@ -1,4 +1,194 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Thu, 05 Aug 2021 15:33:25 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>客製化 git 使用的 SSH Key</title><link>https://dwye.dev/post/git-custom-ssh/</link><pubDate>Thu, 05 Aug 2021 15:33:25 +0800</pubDate><guid>https://dwye.dev/post/git-custom-ssh/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 01 Sep 2021 13:41:25 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>Git 小技巧</title><link>https://dwye.dev/post/git-tricks/</link><pubDate>Wed, 01 Sep 2021 13:41:25 +0800</pubDate><guid>https://dwye.dev/post/git-tricks/</guid><description>
+&lt;h2 id="前言">前言&lt;/h2>
+&lt;h3 id="原來-git-比想像中的易學難精">原來 Git 比想像中的易學難精&lt;/h3>
+&lt;p>剛開始學 git，我是隨便買了一本薄薄的書，然後跟著裡面的內容照著跑，就把 git 的基礎學起來了，例如說暫存區、分支、commit、tag、push 等等&lt;br>
+曾經我以為這樣就算學會 git 了，我也這樣用 git 用了一兩年，直到有一天在實習的公司被問到說&lt;/p>
+&lt;blockquote>
+&lt;p>你會用 Git？那你會用 rebase 嗎？&lt;/p>
+&lt;/blockquote>
+&lt;p>&amp;hellip;那是什麼？&lt;/p>
+&lt;blockquote>
+&lt;p>不會 rebase 的話就不算會 Git 喔&lt;/p>
+&lt;/blockquote>
+&lt;p>所以趕快去把 rebase 學起來。&lt;br>
+哦哦，rebase 就是把一個分支搬到另一個分支上面，來讓歷史紀錄變得漂亮嘛，讓大家都像是從 develop 長出來的一樣。&lt;/p>
+&lt;p>這下好了，我會 rebase 了，我總算能打遍天下無敵手了吧。&lt;/p>
+&lt;p>後來到第二間公司實習，主管說，自己 commit 很醜沒關係，但你在推出去之前要把自己的 commit 修一下&lt;/p>
+&lt;blockquote>
+&lt;p>要會用 rebase 修剪 commit，不然就不算是會 rebase&lt;/p>
+&lt;/blockquote>
+&lt;p>原來我 rebase 還沒學完嗎？&lt;/p>
+&lt;p>因為第二間公司有圖書館，我就趁沒事的時候在圖書館逛逛有什麼書，就找到了好像近幾年蠻有名的「為你自己學 Git」，寫的淺顯易懂，即便是已經會一些 git 基本操作的人，也能夠學到一些東西，十分推薦給大家看（無業配）。當然還看了不少相關書籍與網路文章，感受到其實 git 有很多很方便的進階用法，也所以才有這篇文章。&lt;/p>
+&lt;h2 id="git-的檔案分區">Git 的檔案分區&lt;/h2>
+&lt;p>雖然會使用指令，但其實一開始我並不了解每個階段的名稱，因此在此附上：&lt;/p>
+&lt;ul>
+&lt;li>工作目錄&lt;/li>
+&lt;li>暫存區 Stage&lt;/li>
+&lt;li>儲存庫 Repository&lt;/li>
+&lt;/ul>
+&lt;p>&lt;code>git add&lt;/code> 從工作目錄把變更加到暫存區&lt;br>
+&lt;code>git commit&lt;/code> 提交，把暫存區的變更加入儲存庫，正式納入版本管理&lt;/p>
+&lt;h2 id="config">Config&lt;/h2>
+&lt;p>常用的兩個 config 檔案：&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>--global&lt;/code>：user 層級的，一般放在 &lt;code>~/.gitconfig&lt;/code>&lt;/li>
+&lt;li>&lt;code>--local&lt;/code>：repo 層級，放在 &lt;code>.git/config&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>local 會優先&lt;/p>
+&lt;p>使用 &lt;code>git config -l&lt;/code> 快速查看設定，也可以搭配 &lt;code>--global&lt;/code> 之類的 flag，只查看某層級的設定&lt;/p>
+&lt;h3 id="預設編輯器">預設編輯器&lt;/h3>
+&lt;p>以 VSCode 為例：&lt;/p>
+&lt;pre>&lt;code>git config --global core.editor &amp;quot;code --wait&amp;quot;
+&lt;/code>&lt;/pre>&lt;p>記得先裝 &lt;a href="https://code.visualstudio.com/docs/editor/command-line">VSCode Command Line Tool&lt;/a>&lt;/p>
+&lt;h3 id="在編輯器修改-config">在編輯器修改 config&lt;/h3>
+&lt;p>&lt;code>git config -e&lt;/code>&lt;/p>
+&lt;p>像我習慣把編輯器設定為 VSCode，就可以直接打開 &lt;code>.git/config&lt;/code>，很方便&lt;/p>
+&lt;h2 id="stage-相關操作">Stage 相關操作&lt;/h2>
+&lt;h3 id="加錯檔案">加錯檔案&lt;/h3>
+&lt;p>如果用 &lt;code>git rm&lt;/code> 也會把檔案砍掉，因為其實 &lt;code>git rm&lt;/code> = &lt;code>rm&lt;/code> + &lt;code>git add&lt;/code>&lt;br>
+改用 &lt;code>git rm --cached&lt;/code> 就可以不砍掉檔案，單純移出暫存區&lt;/p>
+&lt;p>同理&lt;/p>
+&lt;p>&lt;code>git mv&lt;/code> = &lt;code>mv&lt;/code> + &lt;code>git add&lt;/code> 前後兩個檔名&lt;/p>
+&lt;h3 id="不想要檔案變更回到修改前狀態">不想要檔案變更（回到修改前狀態）&lt;/h3>
+&lt;p>用 &lt;code>checkout&lt;/code> 抵銷：&lt;/p>
+&lt;p>&lt;code>git checkout -- &amp;lt;file&amp;gt;&lt;/code>（注意，即便暫存了也會被復原！）&lt;/p>
+&lt;p>同理也可以拿取特定分支檔案&lt;/p>
+&lt;p>&lt;code>git checkout &amp;lt;hash/branch&amp;gt; -- &amp;lt;file&amp;gt;&lt;/code>&lt;/p>
+&lt;p>同理，可以用 &lt;code>git checkout &amp;lt;hash/branch&amp;gt; -f&lt;/code> 硬切分支，會同時取消所有的變更！&lt;/p>
+&lt;h3 id="gitignore-忽略的檔案又想要加入版本控制">&lt;code>.gitignore&lt;/code> 忽略的檔案又想要加入版本控制&lt;/h3>
+&lt;p>兩個方法：&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>在 &lt;code>.gitignore&lt;/code> 內加入例外（反向）：&lt;code>!filename&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>git add -f&lt;/code> 強制加入（我忽略你的忽略，但不推薦）&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>可以用 &lt;code>git clean -fx&lt;/code> 一次清光不該被加入 stage 的檔案&lt;/p>
+&lt;h2 id="commit-相關情境">Commit 相關情境&lt;/h2>
+&lt;h3 id="修改上次-commit">修改上次 commit&lt;/h3>
+&lt;p>&lt;code>git commit --amend&lt;/code> 直接合併到上個 commit&lt;br>
+&lt;code>git commit --amend --author &amp;quot;David Ye &amp;lt;david@dwye.dev&amp;gt;&amp;quot;&lt;/code> 修改 commit 的作者&lt;/p>
+&lt;p>或是直接使用 rebase 來修改也可以，通常用在需要修改比較前面的 commit，或是一次修改大量 commits&lt;/p>
+&lt;h3 id="拆掉-commit">拆掉 commit&lt;/h3>
+&lt;p>&lt;code>git reset HEAD~&lt;/code>&lt;br>
+&lt;code>HEAD&lt;/code> 是目前所在的 commit&lt;br>
+&lt;code>~&lt;/code> 代表往前走一個 commit，因此也可以用多個 &lt;code>~&lt;/code> 拆多個&lt;/p>
+&lt;h2 id="branch-操作">Branch 操作&lt;/h2>
+&lt;h3 id="新增-branch-同時切過去">新增 branch 同時切過去&lt;/h3>
+&lt;p>&lt;code>git checkout -b &amp;lt;new_branch&amp;gt;&lt;/code>，一步完成，就不需要先創建分支才切過去，使用頻率極高&lt;/p>
+&lt;h3 id="branch-名稱修改">branch 名稱修改&lt;/h3>
+&lt;p>切到該分支，然後 &lt;code>git branch -m &amp;lt;new_name&amp;gt;&lt;/code>&lt;/p>
+&lt;h2 id="reset-與-checkout-的差別">Reset 與 Checkout 的差別&lt;/h2>
+&lt;p>&lt;code>checkout&lt;/code> 是移動現在的工作區到哪個 commit&lt;br>
+-&amp;gt; 移動工作區，分支放在地上&lt;br>
+&lt;code>reset&lt;/code> 是設定分支到某個地方，已經 commit 的其實不會動到&lt;br>
+-&amp;gt; 帶著分支移動&lt;/p>
+&lt;p>所以 reset 可以拿來救 rebase！&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">git reset ORIG_HEAD --hard
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>ORIG_HEAD&lt;/code> 就是 rebase 操作前的原先 commit&lt;/p>
+&lt;h3 id="git-reset---hard-到底在幹嘛">&lt;code>git reset --hard&lt;/code> 到底在幹嘛&lt;/h3>
+&lt;p>&lt;code>--hard&lt;/code> 會把 staging 的檔案全部清掉，reset 預設是切到 HEAD，所以分支不動&lt;br>
+於是只有 &lt;code>--hard&lt;/code> 生效&lt;br>
+就像&lt;strong>帶著分支&lt;/strong>原地跳一下，把身上的東西抖掉的感覺 XD&lt;/p>
+&lt;h3 id="reset-可以當作-add-的相反">&lt;code>reset&lt;/code> 可以當作 &lt;code>add&lt;/code> 的相反&lt;/h3>
+&lt;p>&lt;code>git reset -- &amp;lt;file&amp;gt;&lt;/code> 取消 &lt;code>add&lt;/code>，變更會保留在工作區&lt;br>
+&lt;code>git checkout -- &amp;lt;file&amp;gt;&lt;/code> 連變更都移除掉！&lt;/p>
+&lt;h2 id="remote">Remote&lt;/h2>
+&lt;p>&lt;code>git remote&lt;/code> 列出節點（origin）&lt;br>
+&lt;code>git remote --verbose&lt;/code> 列出節點 / 網址 / fetch / push&lt;br>
+&lt;code>git branch --all&lt;/code> 可以看到遠端分支&lt;/p>
+&lt;h3 id="push">Push&lt;/h3>
+&lt;p>&lt;code>git push -u origin master&lt;/code> 設定上游分支！&lt;br>
+&lt;code>git push origin master&lt;/code> 只推送分支，不設定下次也會預設推到這&lt;br>
+&lt;code>git push origin master:another_name&lt;/code> 推到不同名分支&lt;/p>
+&lt;h3 id="刪除遠端分支">刪除遠端分支&lt;/h3>
+&lt;p>其實就是推一個空分支上去&lt;/p>
+&lt;p>&lt;code>git push origin :another_name&lt;/code>&lt;/p>
+&lt;h3 id="pull">Pull&lt;/h3>
+&lt;p>&lt;code>pull&lt;/code> = &lt;code>fetch&lt;/code> + &lt;code>merge&lt;/code>&lt;/p>
+&lt;p>&lt;code>fetch&lt;/code>: 更新 remote 分支到本機&lt;br>
+&lt;code>merge&lt;/code>: 把本機分支和 remote 分支合併！&lt;/p>
+&lt;p>&lt;code>pull --rebase&lt;/code> = &lt;code>fetch&lt;/code> + &lt;code>rebase&lt;/code>&lt;/p>
+&lt;h3 id="當你推分支推不上去">當你推分支推不上去&lt;/h3>
+&lt;p>兩個方法：&lt;/p>
+&lt;ol>
+&lt;li>&lt;code>push -f&lt;/code> 聽我的，強制更新遠端分支！&lt;/li>
+&lt;li>&lt;code>pull --rebase&lt;/code> 跟新自己的分支，然後 &lt;code>push&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;h2 id="rebase">Rebase&lt;/h2>
+&lt;pre>&lt;code>git rebase &amp;lt;hash/branch&amp;gt;
+&lt;/code>&lt;/pre>&lt;p>從 branch/hash &lt;strong>重新開始長出分支&lt;/strong>到現在的 commit&lt;/p>
+&lt;p>操作完畢後，&lt;code>ORIG_HEAD&lt;/code> 會指向操作前的舊的 commit，雖然舊的 commit 會被藏起來，但其實舊的 commit 還是會存在一段時間的，因此可以用 &lt;code>git reset --hard&lt;/code> 返回。&lt;/p>
+&lt;p>（當你害怕的時候，就用 &lt;code>git rebase --abort&lt;/code> 逃跑吧 XD）&lt;/p>
+&lt;h3 id="修改過去-i-的互動式修改">修改過去：&lt;code>-i&lt;/code> 的互動式修改&lt;/h3>
+&lt;pre>&lt;code>git rebase -i &amp;lt;hash/branch&amp;gt;
+&lt;/code>&lt;/pre>&lt;p>開啟互動模式，會顯示出所有 commit，上到下是舊到新&lt;/p>
+&lt;ul>
+&lt;li>pick: 保留&lt;/li>
+&lt;li>reword: 改 message&lt;/li>
+&lt;li>squash: 把分支和&lt;strong>上一個&lt;/strong>壓扁&lt;/li>
+&lt;li>fixup: 和 squash 相同，但 commit message 直接扔掉不保留&lt;/li>
+&lt;li>edit: 停在這，回編輯器，等到 commit 後繼續，用來修改 commit
+&lt;ul>
+&lt;li>所以可以搭配 reset 拆 commit 內容：把檔案扔出暫存區，然後分次 commit&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>也可以換順序&lt;/p>
+&lt;p>也能直接刪掉 commit，但不建議 &lt;strong>（會有更動消失掉）&lt;/strong>&lt;/p>
+&lt;pre>&lt;code>git rebase -i --autosquash &amp;lt;hash/branch&amp;gt;
+&lt;/code>&lt;/pre>&lt;p>會把 commit message 是 &lt;code>squash! &amp;lt;commit&amp;gt;&lt;/code> 和 &lt;code>fixup! &amp;lt;commit&amp;gt;&lt;/code> 的 commit 分別自動標記成 &lt;code>squash&lt;/code> 和 &lt;code>fixup&lt;/code>&lt;/p>
+&lt;p>可以搭配 &lt;code>git commit --fixup&lt;/code> 使用，很方便&lt;/p>
+&lt;h2 id="worktree-一個-repo-多個目錄">worktree: 一個 repo 多個目錄&lt;/h2>
+&lt;p>&lt;code>git worktree add &amp;lt;path&amp;gt; &amp;lt;branch&amp;gt;&lt;/code> 設定分支為某個 path 底下的檔案&lt;/p>
+&lt;p>&lt;code>git worktree list&lt;/code> 列出 worktree&lt;/p>
+&lt;h3 id="刪除-worktree">刪除 worktree&lt;/h3>
+&lt;p>先刪掉該資料夾（上面的 path），然後 &lt;code>git worktree prune&lt;/code>&lt;br>
+可以先 &lt;code>git worktree prune -n&lt;/code> 看看會刪掉 (dry run)&lt;/p>
+&lt;h2 id="submodule">submodule&lt;/h2>
+&lt;p>執行 git clone 時不會自動把 submodule 一起 clone 過來，所以要初始化 submodule 並 clone：&lt;/p>
+&lt;pre>&lt;code>git submodule update --init --recursive
+&lt;/code>&lt;/pre>&lt;p>相關設定會存在 &lt;code>.git/config&lt;/code>&lt;/p>
+&lt;h3 id="刪除-submodule">刪除 submodule&lt;/h3>
+&lt;ol>
+&lt;li>&lt;code>git submodule deinit &amp;lt;path&amp;gt;&lt;/code>&lt;/li>
+&lt;li>&lt;code>git rm &amp;lt;path&amp;gt;&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;h3 id="更換-submodule-的-reference-url">更換 submodule 的 reference url&lt;/h3>
+&lt;p>用指令更改：&lt;/p>
+&lt;pre>&lt;code>git config -f .gitmodules submodule.&amp;lt;name&amp;gt;.url &amp;lt;url&amp;gt;
+&lt;/code>&lt;/pre>&lt;p>或手動更改 &lt;code>.gitmodules&lt;/code>&lt;/p>
+&lt;p>然後 sync：&lt;/p>
+&lt;pre>&lt;code>git submodule sync
+&lt;/code>&lt;/pre>&lt;h2 id="其他技巧">其他技巧&lt;/h2>
+&lt;h3 id="log">Log&lt;/h3>
+&lt;ul>
+&lt;li>&lt;code>git log --oneline&lt;/code> 可以只看一行的 commit message，比起一般的 &lt;code>git log&lt;/code> 我更常用這個&lt;/li>
+&lt;li>&lt;code>git reflog&lt;/code> 或 &lt;code>git log -g&lt;/code> 看 HEAD 移動，就像是你的操作記錄，想要回到某個 commit 卻忘了在哪，可以使用這個方法找到，包含回到 &lt;code>rebase&lt;/code> 之前的某個 commit 也行&lt;/li>
+&lt;/ul>
+&lt;h3 id="tig">Tig&lt;/h3>
+&lt;p>可以使用 &lt;code>tig&lt;/code> 這套工具，提供更簡明的 git 相關顯示以及互動式操作：&lt;br>
+&lt;a href="https://github.com/jonas/tig">https://github.com/jonas/tig&lt;/a>&lt;/p>
+&lt;p>&lt;img src="https://dwye.dev/img/tig.png" alt="tig example">&lt;/p>
+&lt;h2 id="git-學習資源推薦">Git 學習資源推薦&lt;/h2>
+&lt;p>同時也是本篇的參考資料&lt;/p>
+&lt;h3 id="免費電子書">免費電子書&lt;/h3>
+&lt;p>為你自己學 Git：淺顯易懂的教學，大推&lt;br>
+&lt;a href="https://gitbook.tw/">https://gitbook.tw/&lt;/a>&lt;/p>
+&lt;p>Git-Tutorials 基本使用教學：較精簡&lt;br>
+&lt;a href="https://zlargon.gitbooks.io/git-tutorial/content/">https://zlargon.gitbooks.io/git-tutorial/content/&lt;/a>&lt;/p>
+&lt;p>Pro Git：官方，前半有中譯&lt;br>
+&lt;a href="https://git-scm.com/book/zh-tw/v2">https://git-scm.com/book/zh-tw/v2&lt;/a>&lt;/p>
+&lt;h3 id="實體書籍">實體書籍&lt;/h3>
+&lt;p>完整學會 Git, GitHub, Git Server 的 24 堂課，2/e&lt;br>
+&lt;a href="https://www.tenlong.com.tw/products/9789864766932?list_name=srh">https://www.tenlong.com.tw/products/9789864766932?list_name=srh&lt;/a>&lt;/p>
+&lt;h3 id="其他參考資料">其他參考資料&lt;/h3>
+&lt;ul>
+&lt;li>&lt;a href="https://nvie.com/posts/a-successful-git-branching-model/">A successful Git branching model&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://sethrobertson.github.io/GitBestPractices/">Git Best Practices&lt;/a>&lt;/li>
+&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>客製化 git 使用的 SSH Key</title><link>https://dwye.dev/post/git-custom-ssh/</link><pubDate>Thu, 05 Aug 2021 15:33:25 +0800</pubDate><guid>https://dwye.dev/post/git-custom-ssh/</guid><description>
 &lt;p>寫完&lt;a href="https://dwye.dev/post/ssh-switch-key">一個指令切換預設使用的 SSH Key&lt;/a>這篇之後，又思考了一下有沒有其他方式來解決這個同個電腦中使用兩個 github 帳號的問題，畢竟那篇是採用 ssh-agent level 來解決，但其實搞不好也可以直接從 git 的 config 下手，因此這次重新用更多關鍵字去調查解法，發現 git 其實也支援客製化 ssh 指令。&lt;/p>
 &lt;h2 id="解法一環境變數-git_ssh_command">解法一：環境變數 &lt;code>GIT_SSH_COMMAND&lt;/code>&lt;/h2>
 &lt;p>設定這個環境變數即可改變 git 使用的 ssh 指令。&lt;/p>

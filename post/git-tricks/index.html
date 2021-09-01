@@ -1,0 +1,578 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="
+  
+      我的個人常用 Git 指令收藏冊(cheat sheet)
+    ">
+<meta name=generator content="Hugo 0.86.1">
+<meta property="og:title" content="Git 小技巧">
+<meta name=twitter:title content="Git 小技巧">
+<meta property="og:url" content="https://dwye.dev/post/git-tricks/">
+<meta name=twitter:card content="summary">
+<meta name=twitter:site content="dw's 小站">
+<meta name=twitter:creator content="De-Wei Ye">
+<meta name=twitter:description content="前言
+原來 Git 比想像中的易學難精
+剛開始學 git，我是隨便買了一本薄薄的書，然後跟著裡面的內容照著跑，就把 git 的基礎學起來了，例如說暫存區、分支、commit、tag、push 等等
+曾經我以為這樣就算學會 git 了，我也這樣用 git 用了一兩年，直到有一天在實習的公司被問到說
+
+你會用 Git？那你會用 rebase 嗎？
+
+&mldr;那是什麼？">
+<link rel=preconnect href=https://s.ytimg.com>
+<link rel=preconnect href=https://i.imgur.com>
+<title>Git 小技巧 &#183; dw's 小站</title>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.5/pure-min.css media=screen>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.5/grids-responsive-min.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/side-menu.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/blackburn.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/dw-burn.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/dw-menu.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/vars.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/menu-x.css media=screen>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css>
+<link rel=preconnect href=https://fonts.gstatic.com>
+<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel=stylesheet type=text/css>
+<script type=text/javascript async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML"></script>
+<script type=text/x-mathjax-config>
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [['$$','$$']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+    CommonHTML: { linebreaks: { automatic: true } },
+    "HTML-CSS": { linebreaks: { automatic: true } },
+          SVG: { linebreaks: { automatic: true } }    
+  });
+</script>
+<script type=text/x-mathjax-config>
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+<link async rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/vs2015.min.css media=screen>
+<script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js></script>
+<script defer src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/yaml.min.js></script>
+<script defer src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/vbnet.min.js></script>
+<script>hljs.highlightAll()</script>
+<link rel="shortcut icon" href=https://dwye.dev/img/favicon.ico type=image/x-icon>
+<link rel=stylesheet href=https://dwye.dev/css/color.css media=screen>
+<meta name=google-site-verification content="pC2le32KaKDSGh9V637p5YC81zixbAMyKN3nPqkKscE">
+<script data-ad-client=ca-pub-3454014140664886 async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
+</head>
+<body>
+<div id=layout>
+<a href=#menu class=menu-link id=menuLink aria-label="Go to menu of this website">
+<s class=bar></s><s class=bar></s>
+</a>
+<div id=menu>
+<a class="pure-menu-heading brand" href=https://dwye.dev/>De-Wei Ye</a>
+<div class=pure-menu>
+<ul class=pure-menu-list>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/about/><i class="fas fa-user-circle fa-fw"></i><span>關於</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/notes/><i class="fas fa-book fa-fw"></i><span>筆記</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/post/><i class="fas fa-list-ul fa-fw"></i><span>文章列表</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/topics/><i class="fas fa-folder fa-fw"></i><span>主題分類</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/tags/><i class="fas fa-tags fa-fw"></i><span>標籤</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/../en/><i class="fas fa-globe-americas fa-fw"></i><span>English</span></a>
+</li>
+</ul>
+</div>
+<div class="pure-menu social">
+<ul class=pure-menu-list>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://linkedin.com/in/dwy6626 rel="me external noopener" target=_blank><i class="fab fa-linkedin fa-fw"></i><span>LinkedIn</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://github.com/dwy6626 rel="me external noopener" target=_blank><i class="fab fa-github-square fa-fw"></i><span>GitHub</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://leetcode.com/mirror0227 rel="me external noopener" target=_blank><i class="fas fa-laptop-code fa-fw"></i><span>LeetCode</span></a>
+</li>
+</ul>
+</div>
+<div class=copyright-small>
+Built with <a href=https://gohugo.io/ rel="external noopener" target=_blank>Hugo</a>
+</div>
+<div class=copyright-small>
+W/ <a href=https://github.com/dwy6626/dw-favored-blackburn rel="external noopener" target=_blank>DW-Favored-Blackburn</a>
+</div>
+<div class=copyright-small>
+Based on <a href=https://github.com/yoshiharuyamashita/blackburn rel="external noopener" target=_blank>Blackburn</a>
+</div>
+<div class=copyright-small>
+and <a href=https://purecss.io/ rel="external noopener" target=_blank>Pure CSS</a>
+</div>
+<div class=copyright-small>
+Icons <a href=https://fontawesome.com rel="external noopener" target=_blank>Font Awesome</a>
+</div>
+<div class=copyright-small>
+<a href=https://dwye.dev/copyright>
+&copy; 2020. All rights reserved.
+</a>
+</div>
+</div>
+<div id=main>
+<div class=header>
+<h1>
+Git 小技巧
+</h1>
+<h2>
+我的個人常用 Git 指令收藏冊(cheat sheet)
+</h2>
+</div>
+<div class=aside-container>
+<div id=toc-aside style=display:none>
+<link rel=stylesheet href=https://dwye.dev/css/aside-toc.css media=screen>
+<script src=https://dwye.dev/js/toc.js></script>
+<div class=toc>
+<aside>
+<summary>目錄</summary>
+<div class=toc-item>
+<p><a rel=tag href=#>Git 小技巧</a></p>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#前言>前言</a>
+<ul>
+<li><a href=#原來-git-比想像中的易學難精>原來 Git 比想像中的易學難精</a></li>
+</ul>
+</li>
+<li><a href=#git-的檔案分區>Git 的檔案分區</a></li>
+<li><a href=#config>Config</a>
+<ul>
+<li><a href=#預設編輯器>預設編輯器</a></li>
+<li><a href=#在編輯器修改-config>在編輯器修改 config</a></li>
+</ul>
+</li>
+<li><a href=#stage-相關操作>Stage 相關操作</a>
+<ul>
+<li><a href=#加錯檔案>加錯檔案</a></li>
+<li><a href=#不想要檔案變更回到修改前狀態>不想要檔案變更（回到修改前狀態）</a></li>
+<li><a href=#gitignore-忽略的檔案又想要加入版本控制><code>.gitignore</code> 忽略的檔案又想要加入版本控制</a></li>
+</ul>
+</li>
+<li><a href=#commit-相關情境>Commit 相關情境</a>
+<ul>
+<li><a href=#修改上次-commit>修改上次 commit</a></li>
+<li><a href=#拆掉-commit>拆掉 commit</a></li>
+</ul>
+</li>
+<li><a href=#branch-操作>Branch 操作</a>
+<ul>
+<li><a href=#新增-branch-同時切過去>新增 branch 同時切過去</a></li>
+<li><a href=#branch-名稱修改>branch 名稱修改</a></li>
+</ul>
+</li>
+<li><a href=#reset-與-checkout-的差別>Reset 與 Checkout 的差別</a>
+<ul>
+<li><a href=#git-reset---hard-到底在幹嘛><code>git reset --hard</code> 到底在幹嘛</a></li>
+<li><a href=#reset-可以當作-add-的相反><code>reset</code> 可以當作 <code>add</code> 的相反</a></li>
+</ul>
+</li>
+<li><a href=#remote>Remote</a>
+<ul>
+<li><a href=#push>Push</a></li>
+<li><a href=#刪除遠端分支>刪除遠端分支</a></li>
+<li><a href=#pull>Pull</a></li>
+<li><a href=#當你推分支推不上去>當你推分支推不上去</a></li>
+</ul>
+</li>
+<li><a href=#rebase>Rebase</a>
+<ul>
+<li><a href=#修改過去-i-的互動式修改>修改過去：<code>-i</code> 的互動式修改</a></li>
+</ul>
+</li>
+<li><a href=#worktree-一個-repo-多個目錄>worktree: 一個 repo 多個目錄</a>
+<ul>
+<li><a href=#刪除-worktree>刪除 worktree</a></li>
+</ul>
+</li>
+<li><a href=#submodule>submodule</a>
+<ul>
+<li><a href=#刪除-submodule>刪除 submodule</a></li>
+<li><a href=#更換-submodule-的-reference-url>更換 submodule 的 reference url</a></li>
+</ul>
+</li>
+<li><a href=#其他技巧>其他技巧</a>
+<ul>
+<li><a href=#log>Log</a></li>
+<li><a href=#tig>Tig</a></li>
+</ul>
+</li>
+<li><a href=#git-學習資源推薦>Git 學習資源推薦</a>
+<ul>
+<li><a href=#免費電子書>免費電子書</a></li>
+<li><a href=#實體書籍>實體書籍</a></li>
+<li><a href=#其他參考資料>其他參考資料</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</div>
+</div>
+</div>
+<div class=content>
+<ul class=post-meta>
+<li>
+<i class="fa fa-calendar fa-fw"></i>
+<span>
+<time>Sep 01, 2021</time>
+</span>
+</li>
+</ul>
+<ul class=post-meta>
+<a href=https://dwye.dev/topics/%E6%8A%80%E8%A1%93%E8%A8%98%E9%8C%84>
+<li>
+<i class="fas fa-folder fa-fw"></i>
+<span>技術記錄</span>
+</li>
+</a>
+<a href=https://dwye.dev/tags/git>
+<li>
+<i class="fas fa-tag fa-fw"></i>
+<span>git</span>
+</li>
+</a>
+<a href=https://dwye.dev/tags/shell>
+<li>
+<i class="fas fa-tag fa-fw"></i>
+<span>shell</span>
+</li>
+</a>
+</ul>
+<div id=toc-top style=display:none>
+<div class=toc>
+<aside>
+<details>
+<summary>目錄</summary>
+<div class=toc-item>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#前言>前言</a>
+<ul>
+<li><a href=#原來-git-比想像中的易學難精>原來 Git 比想像中的易學難精</a></li>
+</ul>
+</li>
+<li><a href=#git-的檔案分區>Git 的檔案分區</a></li>
+<li><a href=#config>Config</a>
+<ul>
+<li><a href=#預設編輯器>預設編輯器</a></li>
+<li><a href=#在編輯器修改-config>在編輯器修改 config</a></li>
+</ul>
+</li>
+<li><a href=#stage-相關操作>Stage 相關操作</a>
+<ul>
+<li><a href=#加錯檔案>加錯檔案</a></li>
+<li><a href=#不想要檔案變更回到修改前狀態>不想要檔案變更（回到修改前狀態）</a></li>
+<li><a href=#gitignore-忽略的檔案又想要加入版本控制><code>.gitignore</code> 忽略的檔案又想要加入版本控制</a></li>
+</ul>
+</li>
+<li><a href=#commit-相關情境>Commit 相關情境</a>
+<ul>
+<li><a href=#修改上次-commit>修改上次 commit</a></li>
+<li><a href=#拆掉-commit>拆掉 commit</a></li>
+</ul>
+</li>
+<li><a href=#branch-操作>Branch 操作</a>
+<ul>
+<li><a href=#新增-branch-同時切過去>新增 branch 同時切過去</a></li>
+<li><a href=#branch-名稱修改>branch 名稱修改</a></li>
+</ul>
+</li>
+<li><a href=#reset-與-checkout-的差別>Reset 與 Checkout 的差別</a>
+<ul>
+<li><a href=#git-reset---hard-到底在幹嘛><code>git reset --hard</code> 到底在幹嘛</a></li>
+<li><a href=#reset-可以當作-add-的相反><code>reset</code> 可以當作 <code>add</code> 的相反</a></li>
+</ul>
+</li>
+<li><a href=#remote>Remote</a>
+<ul>
+<li><a href=#push>Push</a></li>
+<li><a href=#刪除遠端分支>刪除遠端分支</a></li>
+<li><a href=#pull>Pull</a></li>
+<li><a href=#當你推分支推不上去>當你推分支推不上去</a></li>
+</ul>
+</li>
+<li><a href=#rebase>Rebase</a>
+<ul>
+<li><a href=#修改過去-i-的互動式修改>修改過去：<code>-i</code> 的互動式修改</a></li>
+</ul>
+</li>
+<li><a href=#worktree-一個-repo-多個目錄>worktree: 一個 repo 多個目錄</a>
+<ul>
+<li><a href=#刪除-worktree>刪除 worktree</a></li>
+</ul>
+</li>
+<li><a href=#submodule>submodule</a>
+<ul>
+<li><a href=#刪除-submodule>刪除 submodule</a></li>
+<li><a href=#更換-submodule-的-reference-url>更換 submodule 的 reference url</a></li>
+</ul>
+</li>
+<li><a href=#其他技巧>其他技巧</a>
+<ul>
+<li><a href=#log>Log</a></li>
+<li><a href=#tig>Tig</a></li>
+</ul>
+</li>
+<li><a href=#git-學習資源推薦>Git 學習資源推薦</a>
+<ul>
+<li><a href=#免費電子書>免費電子書</a></li>
+<li><a href=#實體書籍>實體書籍</a></li>
+<li><a href=#其他參考資料>其他參考資料</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</details>
+</aside>
+</div>
+</div>
+<h2 id=前言>前言</h2>
+<h3 id=原來-git-比想像中的易學難精>原來 Git 比想像中的易學難精</h3>
+<p>剛開始學 git，我是隨便買了一本薄薄的書，然後跟著裡面的內容照著跑，就把 git 的基礎學起來了，例如說暫存區、分支、commit、tag、push 等等<br>
+曾經我以為這樣就算學會 git 了，我也這樣用 git 用了一兩年，直到有一天在實習的公司被問到說</p>
+<blockquote>
+<p>你會用 Git？那你會用 rebase 嗎？</p>
+</blockquote>
+<p>&mldr;那是什麼？</p>
+<blockquote>
+<p>不會 rebase 的話就不算會 Git 喔</p>
+</blockquote>
+<p>所以趕快去把 rebase 學起來。<br>
+哦哦，rebase 就是把一個分支搬到另一個分支上面，來讓歷史紀錄變得漂亮嘛，讓大家都像是從 develop 長出來的一樣。</p>
+<p>這下好了，我會 rebase 了，我總算能打遍天下無敵手了吧。</p>
+<p>後來到第二間公司實習，主管說，自己 commit 很醜沒關係，但你在推出去之前要把自己的 commit 修一下</p>
+<blockquote>
+<p>要會用 rebase 修剪 commit，不然就不算是會 rebase</p>
+</blockquote>
+<p>原來我 rebase 還沒學完嗎？</p>
+<p>因為第二間公司有圖書館，我就趁沒事的時候在圖書館逛逛有什麼書，就找到了好像近幾年蠻有名的「為你自己學 Git」，寫的淺顯易懂，即便是已經會一些 git 基本操作的人，也能夠學到一些東西，十分推薦給大家看（無業配）。當然還看了不少相關書籍與網路文章，感受到其實 git 有很多很方便的進階用法，也所以才有這篇文章。</p>
+<h2 id=git-的檔案分區>Git 的檔案分區</h2>
+<p>雖然會使用指令，但其實一開始我並不了解每個階段的名稱，因此在此附上：</p>
+<ul>
+<li>工作目錄</li>
+<li>暫存區 Stage</li>
+<li>儲存庫 Repository</li>
+</ul>
+<p><code>git add</code> 從工作目錄把變更加到暫存區<br>
+<code>git commit</code> 提交，把暫存區的變更加入儲存庫，正式納入版本管理</p>
+<h2 id=config>Config</h2>
+<p>常用的兩個 config 檔案：</p>
+<ul>
+<li><code>--global</code>：user 層級的，一般放在 <code>~/.gitconfig</code></li>
+<li><code>--local</code>：repo 層級，放在 <code>.git/config</code></li>
+</ul>
+<p>local 會優先</p>
+<p>使用 <code>git config -l</code> 快速查看設定，也可以搭配 <code>--global</code> 之類的 flag，只查看某層級的設定</p>
+<h3 id=預設編輯器>預設編輯器</h3>
+<p>以 VSCode 為例：</p>
+<pre><code>git config --global core.editor &quot;code --wait&quot;
+</code></pre><p>記得先裝 <a href=https://code.visualstudio.com/docs/editor/command-line>VSCode Command Line Tool</a></p>
+<h3 id=在編輯器修改-config>在編輯器修改 config</h3>
+<p><code>git config -e</code></p>
+<p>像我習慣把編輯器設定為 VSCode，就可以直接打開 <code>.git/config</code>，很方便</p>
+<h2 id=stage-相關操作>Stage 相關操作</h2>
+<h3 id=加錯檔案>加錯檔案</h3>
+<p>如果用 <code>git rm</code> 也會把檔案砍掉，因為其實 <code>git rm</code> = <code>rm</code> + <code>git add</code><br>
+改用 <code>git rm --cached</code> 就可以不砍掉檔案，單純移出暫存區</p>
+<p>同理</p>
+<p><code>git mv</code> = <code>mv</code> + <code>git add</code> 前後兩個檔名</p>
+<h3 id=不想要檔案變更回到修改前狀態>不想要檔案變更（回到修改前狀態）</h3>
+<p>用 <code>checkout</code> 抵銷：</p>
+<p><code>git checkout -- &lt;file></code>（注意，即便暫存了也會被復原！）</p>
+<p>同理也可以拿取特定分支檔案</p>
+<p><code>git checkout &lt;hash/branch> -- &lt;file></code></p>
+<p>同理，可以用 <code>git checkout &lt;hash/branch> -f</code> 硬切分支，會同時取消所有的變更！</p>
+<h3 id=gitignore-忽略的檔案又想要加入版本控制><code>.gitignore</code> 忽略的檔案又想要加入版本控制</h3>
+<p>兩個方法：</p>
+<ol>
+<li>
+<p>在 <code>.gitignore</code> 內加入例外（反向）：<code>!filename</code></p>
+</li>
+<li>
+<p><code>git add -f</code> 強制加入（我忽略你的忽略，但不推薦）</p>
+</li>
+</ol>
+<p>可以用 <code>git clean -fx</code> 一次清光不該被加入 stage 的檔案</p>
+<h2 id=commit-相關情境>Commit 相關情境</h2>
+<h3 id=修改上次-commit>修改上次 commit</h3>
+<p><code>git commit --amend</code> 直接合併到上個 commit<br>
+<code>git commit --amend --author "David Ye &lt;david@dwye.dev>"</code> 修改 commit 的作者</p>
+<p>或是直接使用 rebase 來修改也可以，通常用在需要修改比較前面的 commit，或是一次修改大量 commits</p>
+<h3 id=拆掉-commit>拆掉 commit</h3>
+<p><code>git reset HEAD~</code><br>
+<code>HEAD</code> 是目前所在的 commit<br>
+<code>~</code> 代表往前走一個 commit，因此也可以用多個 <code>~</code> 拆多個</p>
+<h2 id=branch-操作>Branch 操作</h2>
+<h3 id=新增-branch-同時切過去>新增 branch 同時切過去</h3>
+<p><code>git checkout -b &lt;new_branch></code>，一步完成，就不需要先創建分支才切過去，使用頻率極高</p>
+<h3 id=branch-名稱修改>branch 名稱修改</h3>
+<p>切到該分支，然後 <code>git branch -m &lt;new_name></code></p>
+<h2 id=reset-與-checkout-的差別>Reset 與 Checkout 的差別</h2>
+<p><code>checkout</code> 是移動現在的工作區到哪個 commit<br>
+-> 移動工作區，分支放在地上<br>
+<code>reset</code> 是設定分支到某個地方，已經 commit 的其實不會動到<br>
+-> 帶著分支移動</p>
+<p>所以 reset 可以拿來救 rebase！</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>git reset ORIG_HEAD --hard
+</code></pre></div><p><code>ORIG_HEAD</code> 就是 rebase 操作前的原先 commit</p>
+<h3 id=git-reset---hard-到底在幹嘛><code>git reset --hard</code> 到底在幹嘛</h3>
+<p><code>--hard</code> 會把 staging 的檔案全部清掉，reset 預設是切到 HEAD，所以分支不動<br>
+於是只有 <code>--hard</code> 生效<br>
+就像<strong>帶著分支</strong>原地跳一下，把身上的東西抖掉的感覺 XD</p>
+<h3 id=reset-可以當作-add-的相反><code>reset</code> 可以當作 <code>add</code> 的相反</h3>
+<p><code>git reset -- &lt;file></code> 取消 <code>add</code>，變更會保留在工作區<br>
+<code>git checkout -- &lt;file></code> 連變更都移除掉！</p>
+<h2 id=remote>Remote</h2>
+<p><code>git remote</code> 列出節點（origin）<br>
+<code>git remote --verbose</code> 列出節點 / 網址 / fetch / push<br>
+<code>git branch --all</code> 可以看到遠端分支</p>
+<h3 id=push>Push</h3>
+<p><code>git push -u origin master</code> 設定上游分支！<br>
+<code>git push origin master</code> 只推送分支，不設定下次也會預設推到這<br>
+<code>git push origin master:another_name</code> 推到不同名分支</p>
+<h3 id=刪除遠端分支>刪除遠端分支</h3>
+<p>其實就是推一個空分支上去</p>
+<p><code>git push origin :another_name</code></p>
+<h3 id=pull>Pull</h3>
+<p><code>pull</code> = <code>fetch</code> + <code>merge</code></p>
+<p><code>fetch</code>: 更新 remote 分支到本機<br>
+<code>merge</code>: 把本機分支和 remote 分支合併！</p>
+<p><code>pull --rebase</code> = <code>fetch</code> + <code>rebase</code></p>
+<h3 id=當你推分支推不上去>當你推分支推不上去</h3>
+<p>兩個方法：</p>
+<ol>
+<li><code>push -f</code> 聽我的，強制更新遠端分支！</li>
+<li><code>pull --rebase</code> 跟新自己的分支，然後 <code>push</code></li>
+</ol>
+<h2 id=rebase>Rebase</h2>
+<pre><code>git rebase &lt;hash/branch&gt;
+</code></pre><p>從 branch/hash <strong>重新開始長出分支</strong>到現在的 commit</p>
+<p>操作完畢後，<code>ORIG_HEAD</code> 會指向操作前的舊的 commit，雖然舊的 commit 會被藏起來，但其實舊的 commit 還是會存在一段時間的，因此可以用 <code>git reset --hard</code> 返回。</p>
+<p>（當你害怕的時候，就用 <code>git rebase --abort</code> 逃跑吧 XD）</p>
+<h3 id=修改過去-i-的互動式修改>修改過去：<code>-i</code> 的互動式修改</h3>
+<pre><code>git rebase -i &lt;hash/branch&gt;
+</code></pre><p>開啟互動模式，會顯示出所有 commit，上到下是舊到新</p>
+<ul>
+<li>pick: 保留</li>
+<li>reword: 改 message</li>
+<li>squash: 把分支和<strong>上一個</strong>壓扁</li>
+<li>fixup: 和 squash 相同，但 commit message 直接扔掉不保留</li>
+<li>edit: 停在這，回編輯器，等到 commit 後繼續，用來修改 commit
+<ul>
+<li>所以可以搭配 reset 拆 commit 內容：把檔案扔出暫存區，然後分次 commit</li>
+</ul>
+</li>
+</ul>
+<p>也可以換順序</p>
+<p>也能直接刪掉 commit，但不建議 <strong>（會有更動消失掉）</strong></p>
+<pre><code>git rebase -i --autosquash &lt;hash/branch&gt;
+</code></pre><p>會把 commit message 是 <code>squash! &lt;commit></code> 和 <code>fixup! &lt;commit></code> 的 commit 分別自動標記成 <code>squash</code> 和 <code>fixup</code></p>
+<p>可以搭配 <code>git commit --fixup</code> 使用，很方便</p>
+<h2 id=worktree-一個-repo-多個目錄>worktree: 一個 repo 多個目錄</h2>
+<p><code>git worktree add &lt;path> &lt;branch></code> 設定分支為某個 path 底下的檔案</p>
+<p><code>git worktree list</code> 列出 worktree</p>
+<h3 id=刪除-worktree>刪除 worktree</h3>
+<p>先刪掉該資料夾（上面的 path），然後 <code>git worktree prune</code><br>
+可以先 <code>git worktree prune -n</code> 看看會刪掉 (dry run)</p>
+<h2 id=submodule>submodule</h2>
+<p>執行 git clone 時不會自動把 submodule 一起 clone 過來，所以要初始化 submodule 並 clone：</p>
+<pre><code>git submodule update --init --recursive
+</code></pre><p>相關設定會存在 <code>.git/config</code></p>
+<h3 id=刪除-submodule>刪除 submodule</h3>
+<ol>
+<li><code>git submodule deinit &lt;path></code></li>
+<li><code>git rm &lt;path></code></li>
+</ol>
+<h3 id=更換-submodule-的-reference-url>更換 submodule 的 reference url</h3>
+<p>用指令更改：</p>
+<pre><code>git config -f .gitmodules submodule.&lt;name&gt;.url &lt;url&gt;
+</code></pre><p>或手動更改 <code>.gitmodules</code></p>
+<p>然後 sync：</p>
+<pre><code>git submodule sync
+</code></pre><h2 id=其他技巧>其他技巧</h2>
+<h3 id=log>Log</h3>
+<ul>
+<li><code>git log --oneline</code> 可以只看一行的 commit message，比起一般的 <code>git log</code> 我更常用這個</li>
+<li><code>git reflog</code> 或 <code>git log -g</code> 看 HEAD 移動，就像是你的操作記錄，想要回到某個 commit 卻忘了在哪，可以使用這個方法找到，包含回到 <code>rebase</code> 之前的某個 commit 也行</li>
+</ul>
+<h3 id=tig>Tig</h3>
+<p>可以使用 <code>tig</code> 這套工具，提供更簡明的 git 相關顯示以及互動式操作：<br>
+<a href=https://github.com/jonas/tig>https://github.com/jonas/tig</a></p>
+<p><img src=https://dwye.dev/img/tig.png alt="tig example"></p>
+<h2 id=git-學習資源推薦>Git 學習資源推薦</h2>
+<p>同時也是本篇的參考資料</p>
+<h3 id=免費電子書>免費電子書</h3>
+<p>為你自己學 Git：淺顯易懂的教學，大推<br>
+<a href=https://gitbook.tw/>https://gitbook.tw/</a></p>
+<p>Git-Tutorials 基本使用教學：較精簡<br>
+<a href=https://zlargon.gitbooks.io/git-tutorial/content/>https://zlargon.gitbooks.io/git-tutorial/content/</a></p>
+<p>Pro Git：官方，前半有中譯<br>
+<a href=https://git-scm.com/book/zh-tw/v2>https://git-scm.com/book/zh-tw/v2</a></p>
+<h3 id=實體書籍>實體書籍</h3>
+<p>完整學會 Git, GitHub, Git Server 的 24 堂課，2/e<br>
+<a href="https://www.tenlong.com.tw/products/9789864766932?list_name=srh">https://www.tenlong.com.tw/products/9789864766932?list_name=srh</a></p>
+<h3 id=其他參考資料>其他參考資料</h3>
+<ul>
+<li><a href=https://nvie.com/posts/a-successful-git-branching-model/>A successful Git branching model</a></li>
+<li><a href=https://sethrobertson.github.io/GitBestPractices/>Git Best Practices</a></li>
+</ul>
+<div class=copyright>
+本文原創部分採用
+<a rel=license href=http://creativecommons.org/licenses/by-nc-nd/4.0/>創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款</a>
+授權。
+</div>
+<div class="prev-next-post pure-g">
+<div class=pure-u-1-24 style=text-align:left>
+<a href=https://dwye.dev/post/git-custom-ssh/><i class="fa fa-chevron-left"></i></a>
+</div>
+<div class=pure-u-10-24>
+<nav class=prev>
+<a href=https://dwye.dev/post/git-custom-ssh/>客製化 git 使用的 SSH Key</a>
+</nav>
+</div>
+<div class=pure-u-2-24>
+&nbsp;
+</div>
+<div class=pure-u-10-24>
+</div>
+<div class=pure-u-1-24 style=text-align:right>
+</div>
+</div>
+<div id=disqus_thread></div>
+<script type=text/javascript>(function(){var a,b;if(window.location.hostname=="localhost")return;a=document.createElement('script'),a.type='text/javascript',a.async=!0,b='dwy6626',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+<a href=http://disqus.com/ class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
+</div>
+</div>
+</div>
+<script src=https://dwye.dev/js/ui.js></script>
+<script src=https://dwye.dev/js/menus.js></script>
+<script>window.location.hostname!="localhost"&&(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-132034008-1','auto'),ga('send','pageview'))</script>
+</body>
+</html>
