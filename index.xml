@@ -175,15 +175,15 @@
 &lt;h2 id="git-學習資源推薦">Git 學習資源推薦&lt;/h2>
 &lt;p>同時也是本篇的參考資料&lt;/p>
 &lt;h3 id="免費電子書">免費電子書&lt;/h3>
-&lt;p>為你自己學 Git：淺顯易懂的教學，大推&lt;br>
-&lt;a href="https://gitbook.tw/">https://gitbook.tw/&lt;/a>&lt;/p>
-&lt;p>Git-Tutorials 基本使用教學：較精簡&lt;br>
-&lt;a href="https://zlargon.gitbooks.io/git-tutorial/content/">https://zlargon.gitbooks.io/git-tutorial/content/&lt;/a>&lt;/p>
-&lt;p>Pro Git：官方，前半有中譯&lt;br>
-&lt;a href="https://git-scm.com/book/zh-tw/v2">https://git-scm.com/book/zh-tw/v2&lt;/a>&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://gitbook.tw/">為你自己學 Git&lt;/a>：淺顯易懂的教學，大推&lt;/li>
+&lt;li>&lt;a href="https://zlargon.gitbooks.io/git-tutorial/content/">Git-Tutorials 基本使用教學&lt;/a>：較精簡&lt;/li>
+&lt;li>&lt;a href="https://git-scm.com/book/zh-tw/v2">Pro Git&lt;/a>：官方，前半有中譯&lt;/li>
+&lt;/ul>
 &lt;h3 id="實體書籍">實體書籍&lt;/h3>
-&lt;p>完整學會 Git, GitHub, Git Server 的 24 堂課，2/e&lt;br>
-&lt;a href="https://www.tenlong.com.tw/products/9789864766932?list_name=srh">https://www.tenlong.com.tw/products/9789864766932?list_name=srh&lt;/a>&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://www.tenlong.com.tw/products/9789864766932?list_name=srh">完整學會 Git, GitHub, Git Server 的 24 堂課，2/e&lt;/a>&lt;/li>
+&lt;/ul>
 &lt;h3 id="其他參考資料">其他參考資料&lt;/h3>
 &lt;ul>
 &lt;li>&lt;a href="https://nvie.com/posts/a-successful-git-branching-model/">A successful Git branching model&lt;/a>&lt;/li>
