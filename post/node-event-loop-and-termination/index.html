@@ -1,0 +1,338 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="
+  
+      JavaScript Event Loop in Brief
+    ">
+<meta name=generator content="Hugo 0.86.1">
+<meta property="og:title" content="我的 Node.js Process 怎麼不會結束？">
+<meta name=twitter:title content="我的 Node.js Process 怎麼不會結束？">
+<meta property="og:url" content="https://dwye.dev/post/node-event-loop-and-termination/">
+<meta property="og:image" content="https://dwye.dev/img/eventLoop.jpg">
+<meta name=twitter:image content="https://dwye.dev/img/eventLoop.jpg">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:site content="dw's 小站">
+<meta name=twitter:creator content="De-Wei Ye">
+<meta name=twitter:description content="工作時碰到了某個以 Node.js 撰寫的 scheduled job（排程工作）一直保持在 running 的狀態，永遠不會進到 complete。這時一般首先想到的是，程式可能在某個地方卡住了，進入無窮等待（像是進入無限迴圈一樣）。
+一開始我試著使用懶人 debug 方法：加入幾個 console.log 看看 code 是跑到哪裡停住了。
+結果，到程式碼最後一個 console.log 也有被執行到。
+但程式依然沒有結束。">
+<link rel=preconnect href=https://s.ytimg.com>
+<link rel=preconnect href=https://i.imgur.com>
+<title>我的 Node.js Process 怎麼不會結束？ &#183; dw's 小站</title>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.5/pure-min.css media=screen>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.5/grids-responsive-min.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/side-menu.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/blackburn.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/dw-burn.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/dw-menu.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/vars.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/menu-x.css media=screen>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css>
+<link rel=preconnect href=https://fonts.gstatic.com>
+<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel=stylesheet type=text/css>
+<script type=text/javascript async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML"></script>
+<script type=text/x-mathjax-config>
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [['$$','$$']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+    CommonHTML: { linebreaks: { automatic: true } },
+    "HTML-CSS": { linebreaks: { automatic: true } },
+          SVG: { linebreaks: { automatic: true } }    
+  });
+</script>
+<script type=text/x-mathjax-config>
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+<link async rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/vs2015.min.css media=screen>
+<script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js></script>
+<script defer src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/yaml.min.js></script>
+<script defer src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/vbnet.min.js></script>
+<script>hljs.highlightAll()</script>
+<link rel="shortcut icon" href=https://dwye.dev/img/favicon.ico type=image/x-icon>
+<link rel=stylesheet href=https://dwye.dev/css/color.css media=screen>
+<meta name=google-site-verification content="pC2le32KaKDSGh9V637p5YC81zixbAMyKN3nPqkKscE">
+<script data-ad-client=ca-pub-3454014140664886 async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
+</head>
+<body>
+<div id=layout>
+<a href=#menu class=menu-link id=menuLink aria-label="Go to menu of this website">
+<s class=bar></s><s class=bar></s>
+</a>
+<div id=menu>
+<a class="pure-menu-heading brand" href=https://dwye.dev/>De-Wei Ye</a>
+<div class=pure-menu>
+<ul class=pure-menu-list>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/about/><i class="fas fa-user-circle fa-fw"></i><span>關於</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/notes/><i class="fas fa-book fa-fw"></i><span>筆記</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/post/><i class="fas fa-list-ul fa-fw"></i><span>文章列表</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/topics/><i class="fas fa-folder fa-fw"></i><span>主題分類</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/tags/><i class="fas fa-tags fa-fw"></i><span>標籤</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/../en/><i class="fas fa-globe-americas fa-fw"></i><span>English</span></a>
+</li>
+</ul>
+</div>
+<div class="pure-menu social">
+<ul class=pure-menu-list>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://linkedin.com/in/dwy6626 rel="me external noopener" target=_blank><i class="fab fa-linkedin fa-fw"></i><span>LinkedIn</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://github.com/dwy6626 rel="me external noopener" target=_blank><i class="fab fa-github-square fa-fw"></i><span>GitHub</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://leetcode.com/mirror0227 rel="me external noopener" target=_blank><i class="fas fa-laptop-code fa-fw"></i><span>LeetCode</span></a>
+</li>
+</ul>
+</div>
+<div class=copyright-small>
+Built with <a href=https://gohugo.io/ rel="external noopener" target=_blank>Hugo</a>
+</div>
+<div class=copyright-small>
+W/ <a href=https://github.com/dwy6626/dw-favored-blackburn rel="external noopener" target=_blank>DW-Favored-Blackburn</a>
+</div>
+<div class=copyright-small>
+Based on <a href=https://github.com/yoshiharuyamashita/blackburn rel="external noopener" target=_blank>Blackburn</a>
+</div>
+<div class=copyright-small>
+and <a href=https://purecss.io/ rel="external noopener" target=_blank>Pure CSS</a>
+</div>
+<div class=copyright-small>
+Icons <a href=https://fontawesome.com rel="external noopener" target=_blank>Font Awesome</a>
+</div>
+<div class=copyright-small>
+<a href=https://dwye.dev/copyright>
+&copy; 2020. All rights reserved.
+</a>
+</div>
+</div>
+<div id=main>
+<div class=header>
+<h1>
+我的 Node.js Process 怎麼不會結束？
+</h1>
+<h2>
+JavaScript Event Loop in Brief
+</h2>
+</div>
+<div class=aside-container>
+<div id=toc-aside style=display:none>
+<link rel=stylesheet href=https://dwye.dev/css/aside-toc.css media=screen>
+<script src=https://dwye.dev/js/toc.js></script>
+<div class=toc>
+<aside>
+<summary>目錄</summary>
+<div class=toc-item>
+<p><a rel=tag href=#>我的 Node.js Process 怎麼不會結束？</a></p>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#event-loop>Event Loop</a></li>
+<li><a href=#quick-example>Quick Example</a></li>
+<li><a href=#回到正題我的-nodejs-process-怎麼不會結束>回到正題：我的 Node.js Process 怎麼不會結束？</a>
+<ul>
+<li><a href=#找出兇手>找出兇手</a></li>
+<li><a href=#why-is-node-running>Why Is Node Running</a></li>
+</ul>
+</li>
+<li><a href=#參考資料>參考資料</a>
+<ul>
+<li><a href=#官方關於-event-loop-的說明文件>官方關於 Event Loop 的說明文件</a></li>
+<li><a href=#event-loop-好文>Event Loop 好文</a></li>
+<li><a href=#其他參考資料>其他參考資料</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</div>
+</div>
+</div>
+<div class=content>
+<ul class=post-meta>
+<li>
+<i class="fa fa-calendar fa-fw"></i>
+<span>
+<time>Sep 07, 2021</time>
+</span>
+</li>
+</ul>
+<ul class=post-meta>
+<a href=https://dwye.dev/topics/%E6%8A%80%E8%A1%93%E8%A8%98%E9%8C%84>
+<li>
+<i class="fas fa-folder fa-fw"></i>
+<span>技術記錄</span>
+</li>
+</a>
+<a href=https://dwye.dev/tags/javascript>
+<li>
+<i class="fas fa-tag fa-fw"></i>
+<span>JavaScript</span>
+</li>
+</a>
+<a href=https://dwye.dev/tags/node.js>
+<li>
+<i class="fas fa-tag fa-fw"></i>
+<span>Node.js</span>
+</li>
+</a>
+<a href=https://dwye.dev/tags/asynchrony>
+<li>
+<i class="fas fa-tag fa-fw"></i>
+<span>Asynchrony</span>
+</li>
+</a>
+</ul>
+<div id=toc-top style=display:none>
+<div class=toc>
+<aside>
+<details>
+<summary>目錄</summary>
+<div class=toc-item>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#event-loop>Event Loop</a></li>
+<li><a href=#quick-example>Quick Example</a></li>
+<li><a href=#回到正題我的-nodejs-process-怎麼不會結束>回到正題：我的 Node.js Process 怎麼不會結束？</a>
+<ul>
+<li><a href=#找出兇手>找出兇手</a></li>
+<li><a href=#why-is-node-running>Why Is Node Running</a></li>
+</ul>
+</li>
+<li><a href=#參考資料>參考資料</a>
+<ul>
+<li><a href=#官方關於-event-loop-的說明文件>官方關於 Event Loop 的說明文件</a></li>
+<li><a href=#event-loop-好文>Event Loop 好文</a></li>
+<li><a href=#其他參考資料>其他參考資料</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</details>
+</aside>
+</div>
+</div>
+<p>工作時碰到了某個以 Node.js 撰寫的 scheduled job（排程工作）一直保持在 running 的狀態，永遠不會進到 complete。這時一般首先想到的是，程式可能在某個地方卡住了，進入無窮等待（像是進入無限迴圈一樣）。</p>
+<p>一開始我試著使用懶人 debug 方法：加入幾個 <code>console.log</code> 看看 code 是跑到哪裡停住了。<br>
+結果，到程式碼最後一個 <code>console.log</code> 也有被執行到。<br>
+但程式依然沒有結束。</p>
+<p>如果你是個對 JavaScript 這個語言的運行機制很熟的人，馬上就知道這問題在哪了。</p>
+<p>但因為我在這之前我寫的都是其他語言，JavaScript 頂多看看語法差異就上陣了，也因此忽略了 JavaScript 一個很重要的特性：</p>
+<h2 id=event-loop>Event Loop</h2>
+<p>Event Loop 其實就是 JavaScript 執行 Asynchronous 程式碼片段的方式：</p>
+<p><img src=https://dwye.dev/img/eventLoop.jpg alt="simplified event loop"></p>
+<p>當 Node.js 執行程式時，會把主程式先執行完。這之間碰到 async code 的話，會將 <strong>async code 交給另外的 worker</strong> 處理，並在 queue 註冊 callback，主程式則繼續往下進行。<br>
+之後就會進入 Event Loop 不斷的監聽 callback，若有 worker 完成，則會將 callback 交給主程式執行。</p>
+<p>也因此，Node.js 的 async functions 不會 block 主程式進行，而會丟給背後的 worker 來跑。Worker 和主程式不一樣，<strong>可以是多個 Threads</strong>，可以達到平行化，也因此 Node.js 鼓勵使用 asynchronous 的方式撰寫。</p>
+<p>註：這是我個人簡化後的版本，若有觀念上的錯誤歡迎指正。</p>
+<h2 id=quick-example>Quick Example</h2>
+<p>這算是蠻經典的例子：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#75715e>// index.js
+</span><span style=color:#75715e></span><span style=color:#a6e22e>setTimeout</span>(() =&gt; <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;callback&#39;</span>), <span style=color:#ae81ff>0</span>)
+<span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;end of code&#39;</span>)
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text>❯ node index.js
+end of code
+callback
+</code></pre></div><p>因為 <code>setTimeout</code> 是 async，會註冊 callback，即便等待時間是 0，也會在主程式跑完後才執行。這也是我一開始 debug 的方法沒成功的原因。</p>
+<h2 id=回到正題我的-nodejs-process-怎麼不會結束>回到正題：我的 Node.js Process 怎麼不會結束？</h2>
+<p>就是有 worker 還在工作，導致 <strong>event loop 一直在等 callback 可以被放進 call stack</strong>。</p>
+<h3 id=找出兇手>找出兇手</h3>
+<p>既然知道原因了，下一步就是找出是哪個 async code 沒有結束一直在等待。</p>
+<p>Node.js 有兩個一直沒有被官方列入文件的方法，可以快速查看現在還在 queue 等待的 work 有哪些：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>process</span>.<span style=color:#ae81ff>_</span><span style=color:#a6e22e>getActiveHandles</span>())
+<span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>process</span>.<span style=color:#ae81ff>_</span><span style=color:#a6e22e>getActiveRequests</span>())
+</code></pre></div><p>這兩個底線開頭的方法直到最近還有 <a href=https://github.com/nodejs/node/issues/36036>issue</a> 在討論要不要加入文件，但看起來就是無限延長，畢竟這個方法印出的結果也是蠻冗長的，包含了很多給人類 debug 時不需要的資訊。</p>
+<p>因此我找到了一個 package：</p>
+<h3 id=why-is-node-running>Why Is Node Running</h3>
+<p><a href=https://github.com/mafintosh/why-is-node-running>why-is-node-running</a> 是一個利用 Node.js 實驗中的 <a href=https://nodejs.org/api/async_hooks.html>Async Hooks API</a> 撰寫的 library，可以幫你調查你的 Node.js 程式為什麼不會結束。</p>
+<p>原理是在 <code>require</code> 時，利用 side effects 註冊一些 Async Hooks，這樣當 async code 被執行時，這個 module 就會知道，也可以因此監聽有哪些 Code 沒結束。</p>
+<p>用法也蠻簡單的：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>log</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#39;why-is-node-running&#39;</span>)  <span style=color:#75715e>// 一定要一開始就 require，讓 side effects 優先執行
+</span><span style=color:#75715e></span>
+<span style=color:#a6e22e>setInterval</span>(<span style=color:#66d9ef>function</span> () {}, <span style=color:#ae81ff>1000</span>)
+<span style=color:#a6e22e>log</span>()  <span style=color:#75715e>// 印出目前還沒有結束的 work
+</span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text>❯ node index.js
+There are 1 handle(s) keeping the process running
+
+# Timeout
+/Users/davidye/Projects/node_running/index.js:3 - setInterval(function () {}, 1000)
+</code></pre></div><h2 id=參考資料>參考資料</h2>
+<p>實際上關於 Event Loop 還有很多細節，也有很多已經寫得不錯的文章，列在下方給大家做為參考。</p>
+<h3 id=官方關於-event-loop-的說明文件>官方關於 Event Loop 的說明文件</h3>
+<ul>
+<li><a href=https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/>The Node.js Event Loop, Timers, and process.nextTick() | Node.js</a></li>
+<li><a href=https://nodejs.org/en/docs/guides/dont-block-the-event-loop/>Don&rsquo;t Block the Event Loop (or the Worker Pool)</a></li>
+<li><a href=https://nodejs.dev/learn/the-nodejs-event-loop>The Node.js Event Loop</a></li>
+</ul>
+<h3 id=event-loop-好文>Event Loop 好文</h3>
+<ul>
+<li><a href=https://blog.huli.tw/2019/10/04/javascript-async-sync-and-callback/>JavaScript 中的同步與非同步（上）：先成為 callback 大師吧！</a></li>
+<li><a href=https://notes.andywu.tw/2020/%E5%AE%8C%E6%95%B4%E5%9C%96%E8%A7%A3node-js%E7%9A%84event-loop%E4%BA%8B%E4%BB%B6%E8%BF%B4%E5%9C%88/>完整圖解 Node.js 的 Event Loop (事件迴圈)</a></li>
+<li><a href=https://yu-jack.github.io/2021/03/14/node-event-loop/>Event Loop 運行機制解析 - Node.js 篇</a></li>
+<li><a href=https://www.eebreakdown.com/2016/09/nodejs-eventemitter.html>非同步程式碼之霧：Node.js 的事件迴圈與 EventEmitter</a></li>
+</ul>
+<h3 id=其他參考資料>其他參考資料</h3>
+<ul>
+<li><a href=https://stackoverflow.com/questions/7698834>How does a node.js process know when to stop?</a></li>
+<li><a href=https://stackoverflow.com/questions/17960452>How can I get a list of callbacks in the Node work queue? (or, Why won&rsquo;t Node exit?)</a></li>
+</ul>
+<div class=copyright>
+本文原創部分採用
+<a rel=license href=http://creativecommons.org/licenses/by-nc-nd/4.0/>創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款</a>
+授權。
+</div>
+<div class="prev-next-post pure-g">
+<div class=pure-u-1-24 style=text-align:left>
+<a href=https://dwye.dev/post/git-tricks/><i class="fa fa-chevron-left"></i></a>
+</div>
+<div class=pure-u-10-24>
+<nav class=prev>
+<a href=https://dwye.dev/post/git-tricks/>Git 小技巧</a>
+</nav>
+</div>
+<div class=pure-u-2-24>
+&nbsp;
+</div>
+<div class=pure-u-10-24>
+</div>
+<div class=pure-u-1-24 style=text-align:right>
+</div>
+</div>
+<div id=disqus_thread></div>
+<script type=text/javascript>(function(){var a,b;if(window.location.hostname=="localhost")return;a=document.createElement('script'),a.type='text/javascript',a.async=!0,b='dwy6626',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+<a href=http://disqus.com/ class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
+</div>
+</div>
+</div>
+<script src=https://dwye.dev/js/ui.js></script>
+<script src=https://dwye.dev/js/menus.js></script>
+<script>window.location.hostname!="localhost"&&(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-132034008-1','auto'),ga('send','pageview'))</script>
+</body>
+</html>

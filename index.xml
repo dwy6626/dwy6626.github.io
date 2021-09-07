@@ -1,4 +1,67 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 01 Sep 2021 13:41:25 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>Git 小技巧</title><link>https://dwye.dev/post/git-tricks/</link><pubDate>Wed, 01 Sep 2021 13:41:25 +0800</pubDate><guid>https://dwye.dev/post/git-tricks/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 07 Sep 2021 16:13:25 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>我的 Node.js Process 怎麼不會結束？</title><link>https://dwye.dev/post/node-event-loop-and-termination/</link><pubDate>Tue, 07 Sep 2021 16:13:25 +0800</pubDate><guid>https://dwye.dev/post/node-event-loop-and-termination/</guid><description>
+&lt;p>工作時碰到了某個以 Node.js 撰寫的 scheduled job（排程工作）一直保持在 running 的狀態，永遠不會進到 complete。這時一般首先想到的是，程式可能在某個地方卡住了，進入無窮等待（像是進入無限迴圈一樣）。&lt;/p>
+&lt;p>一開始我試著使用懶人 debug 方法：加入幾個 &lt;code>console.log&lt;/code> 看看 code 是跑到哪裡停住了。&lt;br>
+結果，到程式碼最後一個 &lt;code>console.log&lt;/code> 也有被執行到。&lt;br>
+但程式依然沒有結束。&lt;/p>
+&lt;p>如果你是個對 JavaScript 這個語言的運行機制很熟的人，馬上就知道這問題在哪了。&lt;/p>
+&lt;p>但因為我在這之前我寫的都是其他語言，JavaScript 頂多看看語法差異就上陣了，也因此忽略了 JavaScript 一個很重要的特性：&lt;/p>
+&lt;h2 id="event-loop">Event Loop&lt;/h2>
+&lt;p>Event Loop 其實就是 JavaScript 執行 Asynchronous 程式碼片段的方式：&lt;/p>
+&lt;p>&lt;img src="https://dwye.dev/img/eventLoop.jpg" alt="simplified event loop">&lt;/p>
+&lt;p>當 Node.js 執行程式時，會把主程式先執行完。這之間碰到 async code 的話，會將 &lt;strong>async code 交給另外的 worker&lt;/strong> 處理，並在 queue 註冊 callback，主程式則繼續往下進行。&lt;br>
+之後就會進入 Event Loop 不斷的監聽 callback，若有 worker 完成，則會將 callback 交給主程式執行。&lt;/p>
+&lt;p>也因此，Node.js 的 async functions 不會 block 主程式進行，而會丟給背後的 worker 來跑。Worker 和主程式不一樣，&lt;strong>可以是多個 Threads&lt;/strong>，可以達到平行化，也因此 Node.js 鼓勵使用 asynchronous 的方式撰寫。&lt;/p>
+&lt;p>註：這是我個人簡化後的版本，若有觀念上的錯誤歡迎指正。&lt;/p>
+&lt;h2 id="quick-example">Quick Example&lt;/h2>
+&lt;p>這算是蠻經典的例子：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="color:#75715e">// index.js
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#a6e22e">setTimeout&lt;/span>(() =&amp;gt; &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;callback&amp;#39;&lt;/span>), &lt;span style="color:#ae81ff">0&lt;/span>)
+&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;end of code&amp;#39;&lt;/span>)
+&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">❯ node index.js
+end of code
+callback
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>因為 &lt;code>setTimeout&lt;/code> 是 async，會註冊 callback，即便等待時間是 0，也會在主程式跑完後才執行。這也是我一開始 debug 的方法沒成功的原因。&lt;/p>
+&lt;h2 id="回到正題我的-nodejs-process-怎麼不會結束">回到正題：我的 Node.js Process 怎麼不會結束？&lt;/h2>
+&lt;p>就是有 worker 還在工作，導致 &lt;strong>event loop 一直在等 callback 可以被放進 call stack&lt;/strong>。&lt;/p>
+&lt;h3 id="找出兇手">找出兇手&lt;/h3>
+&lt;p>既然知道原因了，下一步就是找出是哪個 async code 沒有結束一直在等待。&lt;/p>
+&lt;p>Node.js 有兩個一直沒有被官方列入文件的方法，可以快速查看現在還在 queue 等待的 work 有哪些：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">process&lt;/span>.&lt;span style="color:#ae81ff">_&lt;/span>&lt;span style="color:#a6e22e">getActiveHandles&lt;/span>())
+&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">process&lt;/span>.&lt;span style="color:#ae81ff">_&lt;/span>&lt;span style="color:#a6e22e">getActiveRequests&lt;/span>())
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>這兩個底線開頭的方法直到最近還有 &lt;a href="https://github.com/nodejs/node/issues/36036">issue&lt;/a> 在討論要不要加入文件，但看起來就是無限延長，畢竟這個方法印出的結果也是蠻冗長的，包含了很多給人類 debug 時不需要的資訊。&lt;/p>
+&lt;p>因此我找到了一個 package：&lt;/p>
+&lt;h3 id="why-is-node-running">Why Is Node Running&lt;/h3>
+&lt;p>&lt;a href="https://github.com/mafintosh/why-is-node-running">why-is-node-running&lt;/a> 是一個利用 Node.js 實驗中的 &lt;a href="https://nodejs.org/api/async_hooks.html">Async Hooks API&lt;/a> 撰寫的 library，可以幫你調查你的 Node.js 程式為什麼不會結束。&lt;/p>
+&lt;p>原理是在 &lt;code>require&lt;/code> 時，利用 side effects 註冊一些 Async Hooks，這樣當 async code 被執行時，這個 module 就會知道，也可以因此監聽有哪些 Code 沒結束。&lt;/p>
+&lt;p>用法也蠻簡單的：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">log&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">require&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;why-is-node-running&amp;#39;&lt;/span>) &lt;span style="color:#75715e">// 一定要一開始就 require，讓 side effects 優先執行
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>
+&lt;span style="color:#a6e22e">setInterval&lt;/span>(&lt;span style="color:#66d9ef">function&lt;/span> () {}, &lt;span style="color:#ae81ff">1000&lt;/span>)
+&lt;span style="color:#a6e22e">log&lt;/span>() &lt;span style="color:#75715e">// 印出目前還沒有結束的 work
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">❯ node index.js
+There are 1 handle(s) keeping the process running
+# Timeout
+/Users/davidye/Projects/node_running/index.js:3 - setInterval(function () {}, 1000)
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="參考資料">參考資料&lt;/h2>
+&lt;p>實際上關於 Event Loop 還有很多細節，也有很多已經寫得不錯的文章，列在下方給大家做為參考。&lt;/p>
+&lt;h3 id="官方關於-event-loop-的說明文件">官方關於 Event Loop 的說明文件&lt;/h3>
+&lt;ul>
+&lt;li>&lt;a href="https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/">The Node.js Event Loop, Timers, and process.nextTick() | Node.js&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://nodejs.org/en/docs/guides/dont-block-the-event-loop/">Don&amp;rsquo;t Block the Event Loop (or the Worker Pool)&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://nodejs.dev/learn/the-nodejs-event-loop">The Node.js Event Loop&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h3 id="event-loop-好文">Event Loop 好文&lt;/h3>
+&lt;ul>
+&lt;li>&lt;a href="https://blog.huli.tw/2019/10/04/javascript-async-sync-and-callback/">JavaScript 中的同步與非同步（上）：先成為 callback 大師吧！&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://notes.andywu.tw/2020/%E5%AE%8C%E6%95%B4%E5%9C%96%E8%A7%A3node-js%E7%9A%84event-loop%E4%BA%8B%E4%BB%B6%E8%BF%B4%E5%9C%88/">完整圖解 Node.js 的 Event Loop (事件迴圈)&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://yu-jack.github.io/2021/03/14/node-event-loop/">Event Loop 運行機制解析 - Node.js 篇&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.eebreakdown.com/2016/09/nodejs-eventemitter.html">非同步程式碼之霧：Node.js 的事件迴圈與 EventEmitter&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h3 id="其他參考資料">其他參考資料&lt;/h3>
+&lt;ul>
+&lt;li>&lt;a href="https://stackoverflow.com/questions/7698834">How does a node.js process know when to stop?&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://stackoverflow.com/questions/17960452">How can I get a list of callbacks in the Node work queue? (or, Why won&amp;rsquo;t Node exit?)&lt;/a>&lt;/li>
+&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>Git 小技巧</title><link>https://dwye.dev/post/git-tricks/</link><pubDate>Wed, 01 Sep 2021 13:41:25 +0800</pubDate><guid>https://dwye.dev/post/git-tricks/</guid><description>
 &lt;h2 id="前言">前言&lt;/h2>
 &lt;h3 id="原來-git-比想像中的易學難精">原來 Git 比想像中的易學難精&lt;/h3>
 &lt;p>剛開始學 git，我是隨便買了一本薄薄的書，然後跟著裡面的內容照著跑，就把 git 的基礎學起來了，例如說暫存區、分支、commit、tag、push 等等&lt;br>
