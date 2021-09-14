@@ -145,6 +145,58 @@ Icons <a href=https://fontawesome.com rel="external noopener" target=_blank>Font
 <div class=content>
 <article>
 <header>
+<h2><a href=https://dwye.dev/post/python-decimal/>使用 Decimal 提高浮點運算精確度</a></h2>
+<ul class=post-meta>
+<li>
+<i class="fa fa-calendar fa-fw"></i>
+<span>
+<time>May 28, 2021</time>
+</span>
+</li>
+</ul>
+<ul class=post-meta>
+<a href=https://dwye.dev/topics/%E6%8A%80%E8%A1%93%E8%A8%98%E9%8C%84>
+<li>
+<i class="fas fa-folder fa-fw"></i>
+<span>技術記錄</span>
+</li>
+</a>
+<a href=https://dwye.dev/tags/algorithm>
+<li>
+<i class="fas fa-tag fa-fw"></i>
+<span>Algorithm</span>
+</li>
+</a>
+<a href=https://dwye.dev/tags/python>
+<li>
+<i class="fas fa-tag fa-fw"></i>
+<span>Python</span>
+</li>
+</a>
+<a href=https://dwye.dev/tags/%E8%B2%BB%E6%B0%8F%E6%95%B8%E5%88%97>
+<li>
+<i class="fas fa-tag fa-fw"></i>
+<span>費氏數列</span>
+</li>
+</a>
+<a href=https://dwye.dev/tags/%E6%95%B8%E5%80%BC%E8%A8%88%E7%AE%97>
+<li>
+<i class="fas fa-tag fa-fw"></i>
+<span>數值計算</span>
+</li>
+</a>
+</ul>
+</header>
+<p>
+<p>在<a href=https://dwye.dev/post/python-fibonacci-4/>第四篇</a>提到費氏數列的公式解會遇到浮點數問題，只能精準算到 122 位。因為浮點數是利用二進位的小數來做儲存，對於非二進位的數字會有誤差。而且其儲存位數有上限，對於無理數的運算，超過一定的大小就會出現精確度問題。</p>
+<p>所以這篇就要來簡單使用 Python 內建的 Decimal module 來拉高浮點數運算的精確度。</p>
+</p>
+<footer>
+<a href=https://dwye.dev/post/python-decimal/>繼續閱讀<i class="fa fa-angle-double-right fa-fw"></i></a>
+</footer>
+</article>
+<article>
+<header>
 <h2><a href=https://dwye.dev/post/python-fibonacci-4/>Python 費氏數列解法（四）：公式解與推導</a></h2>
 <ul class=post-meta>
 <li>
@@ -336,39 +388,6 @@ Icons <a href=https://fontawesome.com rel="external noopener" target=_blank>Font
 <a href=https://dwye.dev/post/python-fibonacci-2/>繼續閱讀<i class="fa fa-angle-double-right fa-fw"></i></a>
 </footer>
 </article>
-<article>
-<header>
-<h2><a href=https://dwye.dev/post/google-domain-mail/>Google Domain 客製化 Email Address</a></h2>
-<ul class=post-meta>
-<li>
-<i class="fa fa-calendar fa-fw"></i>
-<span>
-<time>Mar 30, 2021</time>
-</span>
-</li>
-</ul>
-<ul class=post-meta>
-<a href=https://dwye.dev/topics/%E6%8A%80%E8%A1%93%E8%A8%98%E9%8C%84>
-<li>
-<i class="fas fa-folder fa-fw"></i>
-<span>技術記錄</span>
-</li>
-</a>
-<a href=https://dwye.dev/tags/%E5%80%8B%E4%BA%BA%E5%8C%96%E7%B6%B2%E5%9F%9F>
-<li>
-<i class="fas fa-tag fa-fw"></i>
-<span>個人化網域</span>
-</li>
-</a>
-</ul>
-</header>
-<p>
-在 Google Domain 買了網域之後，就覺得該多利用一下這個新的個人網域 dwye.dev。 最簡單的事情就是做一個 email address。 原本以為會需要配合 Google Workspace (原本的 G Suite，畢竟在 Google Domain 一直出現他的廣告&mldr;)，後來才發現其實 Google Domain 可以直接免費設置轉信到現有信箱。 還可以 100 筆。 又是 100，跟之前 Blogger 的一個帳號最多 100 個 blog 一樣，100 是什麼 magic number 嗎？ 正文 進入 Google Domain，選擇你的網域 在側邊欄選擇電子郵件 忽略 Google Workspace 的廣告，捲到底下有個「電子郵件轉寄」，直接給他新增一個電子郵件別名 然後&mldr;就沒了ˊˋ 用起來又是
-</p>
-<footer>
-<a href=https://dwye.dev/post/google-domain-mail/>繼續閱讀<i class="fa fa-angle-double-right fa-fw"></i></a>
-</footer>
-</article>
 <div class="pagination mobile">
 <ul class=pagination role=navigation aria-label="Pagination Navigation">
 <a href=https://dwye.dev/topics/%E6%8A%80%E8%A1%93%E8%A8%98%E9%8C%84/page/2/ aria-label="previous page">
@@ -378,7 +397,7 @@ Icons <a href=https://fontawesome.com rel="external noopener" target=_blank>Font
 </a>
 <li>3</li>
 <li>/</li>
-<li>5</li>
+<li>6</li>
 <a href=https://dwye.dev/topics/%E6%8A%80%E8%A1%93%E8%A8%98%E9%8C%84/page/4/ aria-label="next page">
 <li>
 <i class="fa fa-chevron-right"></i>
@@ -416,9 +435,12 @@ Icons <a href=https://fontawesome.com rel="external noopener" target=_blank>Font
 4
 </li>
 </a>
-<a class=page-link href=https://dwye.dev/topics/%E6%8A%80%E8%A1%93%E8%A8%98%E9%8C%84/page/5/>
+<li class="page-item disabled">
+<span aria-hidden=true>&nbsp;&mldr;&nbsp;</span>
+</li>
+<a class=page-link href=https://dwye.dev/topics/%E6%8A%80%E8%A1%93%E8%A8%98%E9%8C%84/page/6/>
 <li class=page-item>
-5
+6
 </li>
 </a>
 <a href=https://dwye.dev/topics/%E6%8A%80%E8%A1%93%E8%A8%98%E9%8C%84/page/4/ class=page-link aria-label=Next>
@@ -426,7 +448,7 @@ Icons <a href=https://fontawesome.com rel="external noopener" target=_blank>Font
 <span aria-hidden=true>&#187;</span>
 </li>
 </a>
-<a href=https://dwye.dev/topics/%E6%8A%80%E8%A1%93%E8%A8%98%E9%8C%84/page/5/ class=page-link aria-label=Last>
+<a href=https://dwye.dev/topics/%E6%8A%80%E8%A1%93%E8%A8%98%E9%8C%84/page/6/ class=page-link aria-label=Last>
 <li class=page-item>
 <span aria-hidden=true>&#187;&#187;</span>
 </li>

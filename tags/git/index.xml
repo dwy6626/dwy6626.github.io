@@ -1,4 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>git on dw's 小站</title><link>https://dwye.dev/tags/git/</link><description>Recent content in git on dw's 小站</description><generator>Hugo -- gohugo.io</generator><copyright>&amp;copy; 2020. All rights reserved.</copyright><lastBuildDate>Wed, 01 Sep 2021 13:41:25 +0800</lastBuildDate><atom:link href="https://dwye.dev/tags/git/index.xml" rel="self" type="application/rss+xml"/><item><title>Git 小技巧</title><link>https://dwye.dev/post/git-tricks/</link><pubDate>Wed, 01 Sep 2021 13:41:25 +0800</pubDate><guid>https://dwye.dev/post/git-tricks/</guid><description>&lt;h2 id="前言">前言&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>git on dw's 小站</title><link>https://dwye.dev/tags/git/</link><description>Recent content in git on dw's 小站</description><generator>Hugo -- gohugo.io</generator><copyright>&amp;copy; 2020. All rights reserved.</copyright><lastBuildDate>Tue, 14 Sep 2021 13:41:25 +0800</lastBuildDate><atom:link href="https://dwye.dev/tags/git/index.xml" rel="self" type="application/rss+xml"/><item><title>Git Checkout / Switch / Restore 比較</title><link>https://dwye.dev/post/git-checkout-switch-restore/</link><pubDate>Tue, 14 Sep 2021 13:41:25 +0800</pubDate><guid>https://dwye.dev/post/git-checkout-switch-restore/</guid><description>&lt;h2 id="前言">前言&lt;/h2>
+&lt;p>git checkout 原本的功能有：&lt;/p>
+&lt;ul>
+&lt;li>切換分支&lt;/li>
+&lt;li>檔案管理&lt;/li>
+&lt;/ul>
+&lt;p>雖然兩者只是一個功能的一體兩面（從特定分支拿取特定檔案），但大多時候我們使用的時候會避免在一個指令進行太多邏輯操作，所以大多都只用到切換分支或是檔案管理其中一個。&lt;br>
+而且說實在，&lt;code>checkout&lt;/code> 一個檔案實在不是一個語意上很直觀的說法。&lt;/p></description></item><item><title>Git 小技巧</title><link>https://dwye.dev/post/git-tricks/</link><pubDate>Wed, 01 Sep 2021 13:41:25 +0800</pubDate><guid>https://dwye.dev/post/git-tricks/</guid><description>&lt;h2 id="前言">前言&lt;/h2>
 &lt;h3 id="原來-git-比想像中的易學難精">原來 Git 比想像中的易學難精&lt;/h3>
 &lt;p>剛開始學 git，我是隨便買了一本薄薄的書，然後跟著裡面的內容照著跑，就把 git 的基礎學起來了，例如說暫存區、分支、commit、tag、push 等等&lt;br>
 曾經我以為這樣就算學會 git 了，我也這樣用 git 用了一兩年，直到有一天在實習的公司被問到說&lt;/p>

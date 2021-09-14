@@ -1,4 +1,70 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 07 Sep 2021 16:13:25 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>我的 Node.js Process 怎麼不會結束？</title><link>https://dwye.dev/post/node-event-loop-and-termination/</link><pubDate>Tue, 07 Sep 2021 16:13:25 +0800</pubDate><guid>https://dwye.dev/post/node-event-loop-and-termination/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 14 Sep 2021 13:41:25 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>Git Checkout / Switch / Restore 比較</title><link>https://dwye.dev/post/git-checkout-switch-restore/</link><pubDate>Tue, 14 Sep 2021 13:41:25 +0800</pubDate><guid>https://dwye.dev/post/git-checkout-switch-restore/</guid><description>
+&lt;h2 id="前言">前言&lt;/h2>
+&lt;p>git checkout 原本的功能有：&lt;/p>
+&lt;ul>
+&lt;li>切換分支&lt;/li>
+&lt;li>檔案管理&lt;/li>
+&lt;/ul>
+&lt;p>雖然兩者只是一個功能的一體兩面（從特定分支拿取特定檔案），但大多時候我們使用的時候會避免在一個指令進行太多邏輯操作，所以大多都只用到切換分支或是檔案管理其中一個。&lt;br>
+而且說實在，&lt;code>checkout&lt;/code> 一個檔案實在不是一個語意上很直觀的說法。&lt;/p>
+&lt;p>因此在 2019 年底的 git 2.23 版本，釋出了兩個新指令：&lt;code>git switch&lt;/code> 和 &lt;code>git restore&lt;/code>，來切分 &lt;code>git checkout&lt;/code> 的龐大工作量。&lt;/p>
+&lt;p>從名稱就可以大略知道：&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>git switch&lt;/code> 是用來切換分支&lt;/li>
+&lt;li>&lt;code>git restore&lt;/code> 是用來管理檔案&lt;/li>
+&lt;/ul>
+&lt;h2 id="新舊指令對照">新舊指令對照&lt;/h2>
+&lt;h3 id="git-switch">Git Switch&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#75715e"># 切換分支&lt;/span>
+git checkout &amp;lt;branch&amp;gt;
+git switch &amp;lt;branch&amp;gt;
+&lt;span style="color:#75715e"># 強制切換分支（=切換 + reset --hard，丟棄所有變更）&lt;/span>
+git checkout -f &amp;lt;branch&amp;gt;
+git switch -f &amp;lt;branch&amp;gt;
+&lt;span style="color:#75715e"># 切換 commit（d: detach，會讓 HEAD 進入到非分支的狀態）&lt;/span>
+git checkout &amp;lt;hash&amp;gt;
+git switch -d &amp;lt;hash&amp;gt;
+&lt;span style="color:#75715e"># 創建分支，並切換過去&lt;/span>
+git checkout -b &amp;lt;new_branch&amp;gt;
+git switch -c &amp;lt;new_branch&amp;gt; &lt;span style="color:#75715e"># c for create&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="git-restore">Git Restore&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#75715e"># 復原工作區的檔案&lt;/span>
+git checkout -- some_file
+git restore some_file
+git restore --worktree some_file &lt;span style="color:#75715e"># (a)&lt;/span>
+&lt;span style="color:#75715e"># 取消 add，從暫存區移出&lt;/span>
+git reset -- some_file
+git restore --staged -- some_file &lt;span style="color:#75715e"># (b)&lt;/span>
+&lt;span style="color:#75715e"># 復原暫存區檔案&lt;/span>
+git checkout HEAD -- some_file
+git restore --staged --worktree main test.txt &lt;span style="color:#75715e"># (a) + (b)，一次走兩步&lt;/span>
+&lt;span style="color:#75715e"># 從別的 commit 拿檔案&lt;/span>
+git checkout &amp;lt;hash/branch&amp;gt; -- some_file
+git restore -s &amp;lt;hash/branch&amp;gt; some_file &lt;span style="color:#75715e"># s for source&lt;/span>
+&lt;span style="color:#75715e"># 互動式復原：-p&lt;/span>
+git checkout -p -- some_file
+git restore -p some_file
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="小結">小結&lt;/h2>
+&lt;p>可以發現新的兩個指令和 &lt;code>checkout&lt;/code> 比較大的差異分別是：&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>git switch&lt;/code> 把對於特定 commit hash 的切換放進了 &lt;code>-d&lt;/code> option 內&lt;/li>
+&lt;li>&lt;code>git restore&lt;/code> 可以直接接受檔案作為 input，不用加上 &lt;code>--&lt;/code>，但代價就是指定分支時需要塞到 &lt;code>-s&lt;/code> 選項內&lt;/li>
+&lt;/ul>
+&lt;p>習慣使用 &lt;code>checkout&lt;/code> 的，可以繼續使用，但我覺得 &lt;code>switch&lt;/code> 和 &lt;code>restore&lt;/code> 蠻推薦給初學者使用的，學習門檻比複雜的 &lt;code>checkout&lt;/code> 本身低很多。&lt;/p>
+&lt;p>（但其實一般初學者可能也只知道 &lt;code>git checkout&lt;/code> 的切換分支功能吧 XD）&lt;/p>
+&lt;h2 id="參考資料">參考資料&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://yanhaijing.com/git/2020/09/17/git-switch-and-restore/">Git 新命令 switch 和 restore&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.banterly.net/2021/07/31/new-in-git-switch-and-restore/">New in Git: switch and restore&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://blog.csdn.net/Sweet_19BaBa/article/details/111950384">一次搞清 git checkout，git restore 和 git reset&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h3 id="官方文件">官方文件&lt;/h3>
+&lt;ul>
+&lt;li>&lt;a href="https://git-scm.com/docs/git-checkout">git checkout&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://git-scm.com/docs/git-switch">git switch&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://git-scm.com/docs/git-restore">git restore&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/git/git/blob/master/Documentation/RelNotes/2.23.0.txt">git v2.23.0 release note&lt;/a>\&lt;/li>
+&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>我的 Node.js Process 怎麼不會結束？</title><link>https://dwye.dev/post/node-event-loop-and-termination/</link><pubDate>Tue, 07 Sep 2021 16:13:25 +0800</pubDate><guid>https://dwye.dev/post/node-event-loop-and-termination/</guid><description>
 &lt;p>工作時碰到了某個以 Node.js 撰寫的 scheduled job（排程工作）一直保持在 running 的狀態，永遠不會進到 complete。這時一般首先想到的是，程式可能在某個地方卡住了，進入無窮等待（像是進入無限迴圈一樣）。&lt;/p>
 &lt;p>一開始我試著使用懶人 debug 方法：加入幾個 &lt;code>console.log&lt;/code> 看看 code 是跑到哪裡停住了。&lt;br>
 結果，到程式碼最後一個 &lt;code>console.log&lt;/code> 也有被執行到。&lt;br>
