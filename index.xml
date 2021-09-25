@@ -54,7 +54,7 @@
 &lt;h2 id="os">OS&lt;/h2>
 &lt;p>作業系統的部分，因為已經不是學生了，沒辦法取得免費的 Windows 10，對於不太熟系電腦也不玩遊戲的家母來說，不需要 Windows 應該也沒關係吧？反正就讓她上網就可以了。&lt;/p>
 &lt;p>所以我就大膽嘗試了 &lt;a href="https://linuxmint.com/">Linux Mint&lt;/a> 作為作業系統，基於 ubuntu 並且有比較接近 Windows 系列的 UI，當然也支援繁體中文。&lt;/p>
-&lt;p>當然，我也做了一些調整，把自動更新關掉，畫面字體條大，還有輸入法切換改成 shift 等等：&lt;/p>
+&lt;p>當然，我也做了一些調整，把自動更新關掉，畫面字體調大，還有輸入法切換改成 shift 等等：&lt;/p>
 &lt;p>&lt;img src="https://dwye.dev/img/deskmini/mint.jpg" alt="Mint">&lt;/p>
 &lt;p>希望這台電腦可以解決一些我生活上的 &lt;a href="https://sre.google/sre-book/eliminating-toil/">Toil&lt;/a>，SRE 精神嘛 XD&lt;br>
 組電腦也是一種用工程解決重複問題，大概吧。&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>Git Checkout / Switch / Restore 比較</title><link>https://dwye.dev/post/git-checkout-switch-restore/</link><pubDate>Tue, 14 Sep 2021 13:41:25 +0800</pubDate><guid>https://dwye.dev/post/git-checkout-switch-restore/</guid><description>
