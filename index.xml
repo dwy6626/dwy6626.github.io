@@ -1,4 +1,63 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 14 Sep 2021 13:41:25 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>Git Checkout / Switch / Restore 比較</title><link>https://dwye.dev/post/git-checkout-switch-restore/</link><pubDate>Tue, 14 Sep 2021 13:41:25 +0800</pubDate><guid>https://dwye.dev/post/git-checkout-switch-restore/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 25 Sep 2021 17:42:23 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>DeskMini X300 組裝紀錄</title><link>https://dwye.dev/post/deskmini-installation/</link><pubDate>Sat, 25 Sep 2021 17:42:23 +0800</pubDate><guid>https://dwye.dev/post/deskmini-installation/</guid><description>
+&lt;h2 id="契機">契機&lt;/h2>
+&lt;p>因為家母還在用我淘汰已久的舊電腦，有各種奇怪的問題，包含卡鍵或是滑鼠失靈、鍵盤連點之類的，對於電腦不太熟悉的家母來說要應付這些問題十分困難，而每次我都要出手去查出是什麼奇怪問題也很麻煩。&lt;/p>
+&lt;p>也正很很久沒有組電腦了，就上參考 PTT 上原價屋抓菜單，後來發現華擎的 DeskMini 這個可以自己選配內部組件的迷你主機，就覺得蠻有趣的，整個配起來價格也可以接受，不會和市面上的迷你電腦差太多（有的文書機真的便宜的很誇張ˊˋ），性能需求也可以自己掌控，就下單買來組了。&lt;/p>
+&lt;p>原本還懶惰想說交給原價屋組就好，只是原價屋那邊說，讓他們組裝的話，因為最近訂單多，要延後兩個禮拜才能出貨（是什麼換購電腦潮嗎，是說這時間點附近好像也是出生潮 XD），所以就選擇自己組裝了。&lt;/p>
+&lt;h2 id="菜單">菜單&lt;/h2>
+&lt;p>姑且列一下選購內容：&lt;/p>
+&lt;ul>
+&lt;li>機殼/主機板/電供等: DeskMini X300&lt;/li>
+&lt;li>CPU: AMD Athlon 3000G&lt;/li>
+&lt;li>RAM: 金士頓 NB 8GB DDR4-3200 (KVR32S22S8/8)&lt;/li>
+&lt;li>SSD: WD 藍標 SN550 500G/M.2 PCIe&lt;/li>
+&lt;li>無線網卡: 華擎 DeskMini WiFi+BT4.2無線模組 (M.2 Key E 2230)&lt;/li>
+&lt;/ul>
+&lt;p>總價 10460 元。&lt;/p>
+&lt;p>除了 CPU 是 AMD 系列初階（但也已經有一定水平），RAM 和 SSD 其實並不是基礎水平。&lt;br>
+記憶體部分，我自己筆電 8G 記憶體也是略嫌不夠，覺得不選到 8G 會太小，而選擇 3200 而不是基本的 2666，則是我覺得價格沒差很多就順便升上去了&amp;hellip;（但這個順便其實意外的很花錢又是另一回事了 XD）。&lt;br>
+開機碟選擇 SSD 應該是現在的基本配備了，支援 M.2 就選 M.2，而 250 GB 和 500 GB 價格又沒差太多，所以就這樣選了，反正只是個 WD 藍標（結果總共好像比「順便」升了不少 XD）。&lt;/p>
+&lt;p>無線網卡的部分是選購的，未雨綢繆，反正也 1000 有找，就直接先買一組，以後如果要接 wifi 或藍芽之類的也方便。&lt;/p>
+&lt;h2 id="組裝">組裝&lt;/h2>
+&lt;h3 id="開箱">開箱&lt;/h3>
+&lt;p>&lt;img src="https://dwye.dev/img/deskmini/before.jpg" alt="before">&lt;/p>
+&lt;p>打開寄來的包裹，能看到的零組件就是這些，其實還蠻簡單的，因為 DeskMini 不需要自己選購電源供應器，也不需要太強大的負荷因此不用額外加裝散熱。&lt;/p>
+&lt;h3 id="cpu">CPU&lt;/h3>
+&lt;p>組裝方式不用太煩惱，DeskMini 有附上蠻清楚的說明書，照著做就行了。因此第一個是裝上 CPU。AMD 的 CPU 我已經裝過好幾顆了（曾經壓壞一顆 CPU 的腳又是另一個故事了 ˊˋ），自然是熟能生巧：&lt;/p>
+&lt;p>&lt;img src="https://dwye.dev/img/deskmini/cpu.jpg" alt="cpu">&lt;/p>
+&lt;p>DeskMini 和 Athlon 都各附了一顆風扇，兩顆看起來基本上一模一樣。因為不是特別在意散熱，我就沒特別研究哪顆比較好，反正就挑一顆裝：&lt;/p>
+&lt;p>&lt;img src="https://dwye.dev/img/deskmini/fan.jpg" alt="fan">&lt;/p>
+&lt;h3 id="ram">RAM&lt;/h3>
+&lt;p>原本以為卡榫打開，壓下去就沒事了，結果發現壓了半天他都沒有卡進去。一度懷疑自己是不是買錯記憶體，但的確是筆電記憶體 SO-DIMM DDR4。直到我查到別篇在巴哈組裝別的電腦的文，也有人說記憶體插不進去，底下就有人說：&lt;/p>
+&lt;blockquote>
+&lt;p>大力出奇蹟&lt;/p>
+&lt;/blockquote>
+&lt;p>嗯，只要確定規格正確，插入方向正確，接下來就是不夠用力的問題了吧。&lt;/p>
+&lt;p>接下來我就使出真的是吃奶的力氣，因為 Deskmini 的主機板的支撐在兩側，下方離底盤有段空隙，這樣壓讓我懷疑主機板會不會被我折斷，但記憶體還是卡在那。後來索性直接拿螺絲起子頂住主機版下方輔助，再次用力推，終於慢慢進去了。真的是大力出奇蹟。&lt;/p>
+&lt;p>沒有插不進去，只是不夠大力。&lt;/p>
+&lt;p>&lt;img src="https://dwye.dev/img/deskmini/memory.jpg" alt="memory">&lt;/p>
+&lt;p>有人說 DeskMini 組裝簡單，但這步驟我還是花了我幾十分鐘嘗試和確認&amp;hellip;真的怕會把主機板或記憶體折斷ˊˋ。&lt;/p>
+&lt;h3 id="無線網路模組">無線網路模組&lt;/h3>
+&lt;p>因為這張網卡要裝在 M.2 SSD 插槽底下，所以勢必要在 SSD 之前先裝上去。&lt;/p>
+&lt;p>有個小訣竅是兩條天線模組可以先接到網卡，再把網卡裝到主機板，會比先裝網卡再接天線模組容易很多，畢竟主機板很卡手，不是很好處理小小的天線模組的接口。&lt;/p>
+&lt;p>&lt;img src="https://dwye.dev/img/deskmini/wifi.jpg" alt="wifi module 1">&lt;/p>
+&lt;p>天線模組的另一頭就是要接上天線本人。DeskMini 主機殼後方有幾個黑色圈圈可以取下，但也不是很容易取下（蠻緊的），我是先用螺絲起子硬戳下去，讓黑色圈圈半脫落，然後再用撬的把剩下的連接處撬開。&lt;/p>
+&lt;p>&lt;img src="https://dwye.dev/img/deskmini/wifi2.jpg" alt="wifi module 2">&lt;/p>
+&lt;h3 id="ssd">SSD&lt;/h3>
+&lt;p>最簡單的一部分，插進去、鎖螺絲，沒了。&lt;/p>
+&lt;p>&lt;img src="https://dwye.dev/img/deskmini/ssd.jpg" alt="ssd">&lt;/p>
+&lt;h2 id="成品">成品&lt;/h2>
+&lt;p>最後把主機板裝回去，天線鎖上，就大功告成了：&lt;/p>
+&lt;p>&lt;img src="https://dwye.dev/img/deskmini/after1.jpg" alt="finish!">&lt;/p>
+&lt;p>真的蠻迷你一台的。&lt;/p>
+&lt;p>下面是完工後服役中的圖：&lt;/p>
+&lt;p>&lt;img src="https://dwye.dev/img/deskmini/after2.jpg" alt="finish!">&lt;/p>
+&lt;h2 id="os">OS&lt;/h2>
+&lt;p>作業系統的部分，因為已經不是學生了，沒辦法取得免費的 Windows 10，對於不太熟系電腦也不玩遊戲的家母來說，不需要 Windows 應該也沒關係吧？反正就讓她上網就可以了。&lt;/p>
+&lt;p>所以我就大膽嘗試了 &lt;a href="https://linuxmint.com/">Linux Mint&lt;/a> 作為作業系統，基於 ubuntu 並且有比較接近 Windows 系列的 UI，當然也支援繁體中文。&lt;/p>
+&lt;p>當然，我也做了一些調整，把自動更新關掉，畫面字體條大，還有輸入法切換改成 shift 等等：&lt;/p>
+&lt;p>&lt;img src="https://dwye.dev/img/deskmini/mint.jpg" alt="Mint">&lt;/p>
+&lt;p>希望這台電腦可以解決一些我生活上的 &lt;a href="https://sre.google/sre-book/eliminating-toil/">Toil&lt;/a>，SRE 精神嘛 XD&lt;br>
+組電腦也是一種用工程解決重複問題，大概吧。&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>Git Checkout / Switch / Restore 比較</title><link>https://dwye.dev/post/git-checkout-switch-restore/</link><pubDate>Tue, 14 Sep 2021 13:41:25 +0800</pubDate><guid>https://dwye.dev/post/git-checkout-switch-restore/</guid><description>
 &lt;h2 id="前言">前言&lt;/h2>
 &lt;p>git checkout 原本的功能有：&lt;/p>
 &lt;ul>

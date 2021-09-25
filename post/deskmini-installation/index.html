@@ -1,0 +1,322 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="
+  
+      用 DeskMini 組一台孝親機
+    ">
+<meta name=generator content="Hugo 0.86.1">
+<meta property="og:title" content="DeskMini X300 組裝紀錄">
+<meta name=twitter:title content="DeskMini X300 組裝紀錄">
+<meta property="og:url" content="https://dwye.dev/post/deskmini-installation/">
+<meta property="og:image" content="https://dwye.dev/img/deskmini/before.jpg">
+<meta name=twitter:image content="https://dwye.dev/img/deskmini/before.jpg">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:site content="dw's 小站">
+<meta name=twitter:creator content="De-Wei Ye">
+<meta name=twitter:description content="契機
+因為家母還在用我淘汰已久的舊電腦，有各種奇怪的問題，包含卡鍵或是滑鼠失靈、鍵盤連點之類的，對於電腦不太熟悉的家母來說要應付這些問題十分困難，而每次我都要出手去查出是什麼奇怪問題也很麻煩。
+也正很很久沒有組電腦了，就上參考 PTT 上原價屋抓菜單，後來發現華擎的 DeskMini 這個可以自己選配內部組件的迷你主機，就覺得蠻有趣的，整個配起來價格也可以接受，不會和市面上的迷你電腦差太多（有的文書機真的便宜的很誇張ˊˋ），性能需求也可以自己掌控，就下單買來組了。">
+<link rel=preconnect href=https://s.ytimg.com>
+<link rel=preconnect href=https://i.imgur.com>
+<title>DeskMini X300 組裝紀錄 &#183; dw's 小站</title>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.5/pure-min.css media=screen>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.5/grids-responsive-min.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/side-menu.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/blackburn.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/dw-burn.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/dw-menu.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/vars.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/menu-x.css media=screen>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css>
+<link rel=preconnect href=https://fonts.gstatic.com>
+<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel=stylesheet type=text/css>
+<script type=text/javascript async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML"></script>
+<script type=text/x-mathjax-config>
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [['$$','$$']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+    CommonHTML: { linebreaks: { automatic: true } },
+    "HTML-CSS": { linebreaks: { automatic: true } },
+          SVG: { linebreaks: { automatic: true } }    
+  });
+</script>
+<script type=text/x-mathjax-config>
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+<link async rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/vs2015.min.css media=screen>
+<script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js></script>
+<script defer src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/yaml.min.js></script>
+<script defer src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/vbnet.min.js></script>
+<script>hljs.highlightAll()</script>
+<link rel="shortcut icon" href=https://dwye.dev/img/favicon.ico type=image/x-icon>
+<link rel=stylesheet href=https://dwye.dev/css/color.css media=screen>
+<meta name=google-site-verification content="pC2le32KaKDSGh9V637p5YC81zixbAMyKN3nPqkKscE">
+<script data-ad-client=ca-pub-3454014140664886 async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
+</head>
+<body>
+<div id=layout>
+<a href=#menu class=menu-link id=menuLink aria-label="Go to menu of this website">
+<s class=bar></s><s class=bar></s>
+</a>
+<div id=menu>
+<a class="pure-menu-heading brand" href=https://dwye.dev/>De-Wei Ye</a>
+<div class=pure-menu>
+<ul class=pure-menu-list>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/about/><i class="fas fa-user-circle fa-fw"></i><span>關於</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/notes/><i class="fas fa-book fa-fw"></i><span>筆記</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/post/><i class="fas fa-list-ul fa-fw"></i><span>文章列表</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/topics/><i class="fas fa-folder fa-fw"></i><span>主題分類</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/tags/><i class="fas fa-tags fa-fw"></i><span>標籤</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/../en/><i class="fas fa-globe-americas fa-fw"></i><span>English</span></a>
+</li>
+</ul>
+</div>
+<div class="pure-menu social">
+<ul class=pure-menu-list>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://linkedin.com/in/dwy6626 rel="me external noopener" target=_blank><i class="fab fa-linkedin fa-fw"></i><span>LinkedIn</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://github.com/dwy6626 rel="me external noopener" target=_blank><i class="fab fa-github-square fa-fw"></i><span>GitHub</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://leetcode.com/mirror0227 rel="me external noopener" target=_blank><i class="fas fa-laptop-code fa-fw"></i><span>LeetCode</span></a>
+</li>
+</ul>
+</div>
+<div class=copyright-small>
+Built with <a href=https://gohugo.io/ rel="external noopener" target=_blank>Hugo</a>
+</div>
+<div class=copyright-small>
+W/ <a href=https://github.com/dwy6626/dw-favored-blackburn rel="external noopener" target=_blank>DW-Favored-Blackburn</a>
+</div>
+<div class=copyright-small>
+Based on <a href=https://github.com/yoshiharuyamashita/blackburn rel="external noopener" target=_blank>Blackburn</a>
+</div>
+<div class=copyright-small>
+and <a href=https://purecss.io/ rel="external noopener" target=_blank>Pure CSS</a>
+</div>
+<div class=copyright-small>
+Icons <a href=https://fontawesome.com rel="external noopener" target=_blank>Font Awesome</a>
+</div>
+<div class=copyright-small>
+<a href=https://dwye.dev/copyright>
+&copy; 2020. All rights reserved.
+</a>
+</div>
+</div>
+<div id=main>
+<div class=header>
+<h1>
+DeskMini X300 組裝紀錄
+</h1>
+<h2>
+用 DeskMini 組一台孝親機
+</h2>
+</div>
+<div class=aside-container>
+<div id=toc-aside style=display:none>
+<link rel=stylesheet href=https://dwye.dev/css/aside-toc.css media=screen>
+<script src=https://dwye.dev/js/toc.js></script>
+<div class=toc>
+<aside>
+<summary>目錄</summary>
+<div class=toc-item>
+<p><a rel=tag href=#>DeskMini X300 組裝紀錄</a></p>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#契機>契機</a></li>
+<li><a href=#菜單>菜單</a></li>
+<li><a href=#組裝>組裝</a>
+<ul>
+<li><a href=#開箱>開箱</a></li>
+<li><a href=#cpu>CPU</a></li>
+<li><a href=#ram>RAM</a></li>
+<li><a href=#無線網路模組>無線網路模組</a></li>
+<li><a href=#ssd>SSD</a></li>
+</ul>
+</li>
+<li><a href=#成品>成品</a></li>
+<li><a href=#os>OS</a></li>
+</ul>
+</nav>
+</div>
+</aside>
+</div>
+</div>
+</div>
+<div class=content>
+<ul class=post-meta>
+<li>
+<i class="fa fa-calendar fa-fw"></i>
+<span>
+<time>Sep 25, 2021</time>
+</span>
+</li>
+</ul>
+<ul class=post-meta>
+<a href=https://dwye.dev/topics/%E7%A7%91%E6%8A%80%E7%94%9F%E6%B4%BB>
+<li>
+<i class="fas fa-folder fa-fw"></i>
+<span>科技生活</span>
+</li>
+</a>
+<a href=https://dwye.dev/tags/%E7%A1%AC%E9%AB%94>
+<li>
+<i class="fas fa-tag fa-fw"></i>
+<span>硬體</span>
+</li>
+</a>
+<a href=https://dwye.dev/tags/%E7%B5%84%E9%9B%BB%E8%85%A6>
+<li>
+<i class="fas fa-tag fa-fw"></i>
+<span>組電腦</span>
+</li>
+</a>
+</ul>
+<div id=toc-top style=display:none>
+<div class=toc>
+<aside>
+<details>
+<summary>目錄</summary>
+<div class=toc-item>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#契機>契機</a></li>
+<li><a href=#菜單>菜單</a></li>
+<li><a href=#組裝>組裝</a>
+<ul>
+<li><a href=#開箱>開箱</a></li>
+<li><a href=#cpu>CPU</a></li>
+<li><a href=#ram>RAM</a></li>
+<li><a href=#無線網路模組>無線網路模組</a></li>
+<li><a href=#ssd>SSD</a></li>
+</ul>
+</li>
+<li><a href=#成品>成品</a></li>
+<li><a href=#os>OS</a></li>
+</ul>
+</nav>
+</div>
+</details>
+</aside>
+</div>
+</div>
+<h2 id=契機>契機</h2>
+<p>因為家母還在用我淘汰已久的舊電腦，有各種奇怪的問題，包含卡鍵或是滑鼠失靈、鍵盤連點之類的，對於電腦不太熟悉的家母來說要應付這些問題十分困難，而每次我都要出手去查出是什麼奇怪問題也很麻煩。</p>
+<p>也正很很久沒有組電腦了，就上參考 PTT 上原價屋抓菜單，後來發現華擎的 DeskMini 這個可以自己選配內部組件的迷你主機，就覺得蠻有趣的，整個配起來價格也可以接受，不會和市面上的迷你電腦差太多（有的文書機真的便宜的很誇張ˊˋ），性能需求也可以自己掌控，就下單買來組了。</p>
+<p>原本還懶惰想說交給原價屋組就好，只是原價屋那邊說，讓他們組裝的話，因為最近訂單多，要延後兩個禮拜才能出貨（是什麼換購電腦潮嗎，是說這時間點附近好像也是出生潮 XD），所以就選擇自己組裝了。</p>
+<h2 id=菜單>菜單</h2>
+<p>姑且列一下選購內容：</p>
+<ul>
+<li>機殼/主機板/電供等: DeskMini X300</li>
+<li>CPU: AMD Athlon 3000G</li>
+<li>RAM: 金士頓 NB 8GB DDR4-3200 (KVR32S22S8/8)</li>
+<li>SSD: WD 藍標 SN550 500G/M.2 PCIe</li>
+<li>無線網卡: 華擎 DeskMini WiFi+BT4.2無線模組 (M.2 Key E 2230)</li>
+</ul>
+<p>總價 10460 元。</p>
+<p>除了 CPU 是 AMD 系列初階（但也已經有一定水平），RAM 和 SSD 其實並不是基礎水平。<br>
+記憶體部分，我自己筆電 8G 記憶體也是略嫌不夠，覺得不選到 8G 會太小，而選擇 3200 而不是基本的 2666，則是我覺得價格沒差很多就順便升上去了&mldr;（但這個順便其實意外的很花錢又是另一回事了 XD）。<br>
+開機碟選擇 SSD 應該是現在的基本配備了，支援 M.2 就選 M.2，而 250 GB 和 500 GB 價格又沒差太多，所以就這樣選了，反正只是個 WD 藍標（結果總共好像比「順便」升了不少 XD）。</p>
+<p>無線網卡的部分是選購的，未雨綢繆，反正也 1000 有找，就直接先買一組，以後如果要接 wifi 或藍芽之類的也方便。</p>
+<h2 id=組裝>組裝</h2>
+<h3 id=開箱>開箱</h3>
+<p><img src=https://dwye.dev/img/deskmini/before.jpg alt=before></p>
+<p>打開寄來的包裹，能看到的零組件就是這些，其實還蠻簡單的，因為 DeskMini 不需要自己選購電源供應器，也不需要太強大的負荷因此不用額外加裝散熱。</p>
+<h3 id=cpu>CPU</h3>
+<p>組裝方式不用太煩惱，DeskMini 有附上蠻清楚的說明書，照著做就行了。因此第一個是裝上 CPU。AMD 的 CPU 我已經裝過好幾顆了（曾經壓壞一顆 CPU 的腳又是另一個故事了 ˊˋ），自然是熟能生巧：</p>
+<p><img src=https://dwye.dev/img/deskmini/cpu.jpg alt=cpu></p>
+<p>DeskMini 和 Athlon 都各附了一顆風扇，兩顆看起來基本上一模一樣。因為不是特別在意散熱，我就沒特別研究哪顆比較好，反正就挑一顆裝：</p>
+<p><img src=https://dwye.dev/img/deskmini/fan.jpg alt=fan></p>
+<h3 id=ram>RAM</h3>
+<p>原本以為卡榫打開，壓下去就沒事了，結果發現壓了半天他都沒有卡進去。一度懷疑自己是不是買錯記憶體，但的確是筆電記憶體 SO-DIMM DDR4。直到我查到別篇在巴哈組裝別的電腦的文，也有人說記憶體插不進去，底下就有人說：</p>
+<blockquote>
+<p>大力出奇蹟</p>
+</blockquote>
+<p>嗯，只要確定規格正確，插入方向正確，接下來就是不夠用力的問題了吧。</p>
+<p>接下來我就使出真的是吃奶的力氣，因為 Deskmini 的主機板的支撐在兩側，下方離底盤有段空隙，這樣壓讓我懷疑主機板會不會被我折斷，但記憶體還是卡在那。後來索性直接拿螺絲起子頂住主機版下方輔助，再次用力推，終於慢慢進去了。真的是大力出奇蹟。</p>
+<p>沒有插不進去，只是不夠大力。</p>
+<p><img src=https://dwye.dev/img/deskmini/memory.jpg alt=memory></p>
+<p>有人說 DeskMini 組裝簡單，但這步驟我還是花了我幾十分鐘嘗試和確認&mldr;真的怕會把主機板或記憶體折斷ˊˋ。</p>
+<h3 id=無線網路模組>無線網路模組</h3>
+<p>因為這張網卡要裝在 M.2 SSD 插槽底下，所以勢必要在 SSD 之前先裝上去。</p>
+<p>有個小訣竅是兩條天線模組可以先接到網卡，再把網卡裝到主機板，會比先裝網卡再接天線模組容易很多，畢竟主機板很卡手，不是很好處理小小的天線模組的接口。</p>
+<p><img src=https://dwye.dev/img/deskmini/wifi.jpg alt="wifi module 1"></p>
+<p>天線模組的另一頭就是要接上天線本人。DeskMini 主機殼後方有幾個黑色圈圈可以取下，但也不是很容易取下（蠻緊的），我是先用螺絲起子硬戳下去，讓黑色圈圈半脫落，然後再用撬的把剩下的連接處撬開。</p>
+<p><img src=https://dwye.dev/img/deskmini/wifi2.jpg alt="wifi module 2"></p>
+<h3 id=ssd>SSD</h3>
+<p>最簡單的一部分，插進去、鎖螺絲，沒了。</p>
+<p><img src=https://dwye.dev/img/deskmini/ssd.jpg alt=ssd></p>
+<h2 id=成品>成品</h2>
+<p>最後把主機板裝回去，天線鎖上，就大功告成了：</p>
+<p><img src=https://dwye.dev/img/deskmini/after1.jpg alt=finish!></p>
+<p>真的蠻迷你一台的。</p>
+<p>下面是完工後服役中的圖：</p>
+<p><img src=https://dwye.dev/img/deskmini/after2.jpg alt=finish!></p>
+<h2 id=os>OS</h2>
+<p>作業系統的部分，因為已經不是學生了，沒辦法取得免費的 Windows 10，對於不太熟系電腦也不玩遊戲的家母來說，不需要 Windows 應該也沒關係吧？反正就讓她上網就可以了。</p>
+<p>所以我就大膽嘗試了 <a href=https://linuxmint.com/>Linux Mint</a> 作為作業系統，基於 ubuntu 並且有比較接近 Windows 系列的 UI，當然也支援繁體中文。</p>
+<p>當然，我也做了一些調整，把自動更新關掉，畫面字體條大，還有輸入法切換改成 shift 等等：</p>
+<p><img src=https://dwye.dev/img/deskmini/mint.jpg alt=Mint></p>
+<p>希望這台電腦可以解決一些我生活上的 <a href=https://sre.google/sre-book/eliminating-toil/>Toil</a>，SRE 精神嘛 XD<br>
+組電腦也是一種用工程解決重複問題，大概吧。</p>
+<div class=copyright>
+本文原創部分採用
+<a rel=license href=http://creativecommons.org/licenses/by-nc-nd/4.0/>創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款</a>
+授權。
+</div>
+<div class="prev-next-post pure-g">
+<div class=pure-u-1-24 style=text-align:left>
+<a href=https://dwye.dev/post/git-checkout-switch-restore/><i class="fa fa-chevron-left"></i></a>
+</div>
+<div class=pure-u-10-24>
+<nav class=prev>
+<a href=https://dwye.dev/post/git-checkout-switch-restore/>Git Checkout / Switch / Restore 比較</a>
+</nav>
+</div>
+<div class=pure-u-2-24>
+&nbsp;
+</div>
+<div class=pure-u-10-24>
+</div>
+<div class=pure-u-1-24 style=text-align:right>
+</div>
+</div>
+<div id=disqus_thread></div>
+<script type=text/javascript>(function(){var a,b;if(window.location.hostname=="localhost")return;a=document.createElement('script'),a.type='text/javascript',a.async=!0,b='dwy6626',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+<a href=http://disqus.com/ class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
+</div>
+</div>
+</div>
+<script src=https://dwye.dev/js/ui.js></script>
+<script src=https://dwye.dev/js/menus.js></script>
+<script>window.location.hostname!="localhost"&&(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-132034008-1','auto'),ga('send','pageview'))</script>
+</body>
+</html>
