@@ -3477,7 +3477,7 @@ console.log('Hello, markdown!')
 &lt;li>加入 backslash 換行機制（原本只能雙空白，很難在文字編輯器上面被注意到）&lt;/li>
 &lt;li>&lt;code>1)&lt;/code>也可以被當作數字列表（原本只能用 &lt;code>1.&lt;/code>）&lt;/li>
 &lt;li>允許非 1 開始的數字列表&lt;/li>
-&lt;li>加入大家很常用的 Fenced code blocks：用 &lt;code>`````&lt;/code> 和 &lt;code>~~~&lt;/code> 開頭&lt;/li>
+&lt;li>加入大家很常用的 Fenced code blocks：用 &lt;code>```&lt;/code> 和 &lt;code>~~~&lt;/code> 開頭&lt;/li>
 &lt;/ul>
 &lt;p>更動：&lt;/p>
 &lt;ul>
