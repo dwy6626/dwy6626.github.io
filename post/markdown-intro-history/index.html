@@ -266,14 +266,12 @@ Markdown 的發展史簡介
 <p>John Grube 以 Perl 寫了第一個 Markdown to html 轉換器，一般被稱為 <code>Markdown.pl</code>，但沒多久就沒有繼續維護了。而且隨著使用的人越來越多，漸漸有定義相關的問題產生出來，於是後來群雄並起，產生了各種分支。</p>
 <p>原始 Markdown 的語法的中文翻譯可以看<a href=https://markdown.tw/>這個網站</a>。或是 <a href=https://www.markdownguide.org/basic-syntax>Markdown Guide 這邊有個英文的對照表</a>。</p>
 <p>值得一提的是，這時候的 Markdown 的 Code Block 並不是大家熟悉的那種 <code>```</code> 開頭並且可以註記語言種類的 fenced code block：</p>
-<pre><code>```javascript
-console.log('Hello, markdown!')
-```
-</code></pre>
-<p>而是利用縮排的 indented code block，並不支援 syntax highlighting（因為不能註記語言種類）。注意前面有四個空格（或是一個 <code>tab</code>）：</p>
-<pre><code>    console.log('Hello, markdown!')
-</code></pre>
-<h2 id=markdown-extra>Markdown Extra</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=color:#e6db74>```javascript
+</span><span style=color:#e6db74></span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;Hello, markdown!&#39;</span>)
+<span style=color:#e6db74>```</span>
+</code></pre></div><p>而是利用縮排的 indented code block，並不支援 syntax highlighting（因為不能註記語言種類）。注意前面有四個空格（或是一個 <code>tab</code>）：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript>    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;Hello, markdown!&#39;</span>)
+</code></pre></div><h2 id=markdown-extra>Markdown Extra</h2>
 <p><a href=http://six.pairlist.net/pipermail/markdown-discuss/2005-July/001379.html>2005 年由 Michel Fprtin 發表</a>，基於原始 Markdown 並修改及新增一些功能，並在當時希望這些能成為未來 Markdown 的標準（下面的 CommonMark 和 GFM 都分別和 Markdown Extra 有一些相同的特色），除了表格之外，其中比較特別的功能是支援腳註（Footnotes）和縮寫。官方編譯是 <a href=https://github.com/michelf/php-markdown>PHP Markdown</a>。</p>
 <p>因為不是這篇的重點，詳細介紹可以到<a href=https://michelf.ca/projects/php-markdown/extra/>他們的網站</a>。</p>
 <h2 id=multimarkdown-mmd>MultiMarkdown (MMD)</h2>
