@@ -150,14 +150,14 @@ Markdown 的發展史簡介
 <ul>
 <li><a href=#the-origin>The Origin</a>
 <ul>
-<li><a href=#提出的理念>提出的理念</a></li>
+<li><a href=#markdown-的理念>Markdown 的理念</a></li>
 </ul>
 </li>
 <li><a href=#markdown-extra>Markdown Extra</a></li>
 <li><a href=#multimarkdown-mmd>MultiMarkdown (MMD)</a></li>
 <li><a href=#commonmark>CommonMark</a>
 <ul>
-<li><a href=#因此和原始的-markdown-有這些差別>因此和原始的 Markdown 有這些差別：</a></li>
+<li><a href=#因此-commonmark-和原始的-markdown-有這些差別>因此 CommonMark 和原始的 Markdown 有這些差別：</a></li>
 </ul>
 </li>
 <li><a href=#github-flavored-markdown-gfm>GitHub Flavored Markdown (GFM)</a>
@@ -220,14 +220,14 @@ Markdown 的發展史簡介
 <ul>
 <li><a href=#the-origin>The Origin</a>
 <ul>
-<li><a href=#提出的理念>提出的理念</a></li>
+<li><a href=#markdown-的理念>Markdown 的理念</a></li>
 </ul>
 </li>
 <li><a href=#markdown-extra>Markdown Extra</a></li>
 <li><a href=#multimarkdown-mmd>MultiMarkdown (MMD)</a></li>
 <li><a href=#commonmark>CommonMark</a>
 <ul>
-<li><a href=#因此和原始的-markdown-有這些差別>因此和原始的 Markdown 有這些差別：</a></li>
+<li><a href=#因此-commonmark-和原始的-markdown-有這些差別>因此 CommonMark 和原始的 Markdown 有這些差別：</a></li>
 </ul>
 </li>
 <li><a href=#github-flavored-markdown-gfm>GitHub Flavored Markdown (GFM)</a>
@@ -253,11 +253,11 @@ Markdown 的發展史簡介
 <p>答案是<strong>沒有</strong>的。</p>
 <p>而且也不會有，因為<strong>大家需要的 Markdown 可能不太一樣</strong>。</p>
 <p>最簡單的例子就是換行，就標準的 Markdown 語法，當你在 <code>.md</code> 檔內換行，並不會真的換行。如果你要做到換行，必須在行尾加入兩個空白，或是手動插入 <code>&lt;br></code>。不過像是台灣知名的線上筆記服務 <a href=https://hackmd.io/>HackMD</a>，就很貼心的配合了台灣人的打字習慣，幫你把每個換行都變成真正的換行。</p>
-<p>不過包含 HackMD 在內，大部分的 Markdown 服務都有切換換行模式的選項，為了滿足每種人。也因此 Markdown 不會有真正統一的標準。</p>
-<p>但是撇除這種選項式的差別之外，目前最知名的應該是 <a href=https://commonmark.org/>CommonMark</a> 了，若要問為什麼叫這個名字？跟一般的 Markdown 有什麼差別？就必須從 Markdown 的歷史說起。</p>
+<p>其實包含 HackMD 在內，大部分的 Markdown 服務都有切換換行模式的選項，為了滿足每種人。也因此 Markdown 不會有真正統一的標準。</p>
+<p>但是撇除這種選項式的差別之外，目前最知名的應該是 <a href=https://commonmark.org/>CommonMark</a> 了，若要問為什麼叫 CommonMark 這個名字？而 CommonMark 跟一般的 Markdown 有什麼差別？就必須從 Markdown 的歷史說起。</p>
 <h2 id=the-origin>The Origin</h2>
 <p>一切的開端，是 2004 時 <a href=https://daringfireball.net/projects/markdown/syntax>John Gruber 提出的 Markdown 標準</a>，也是一般所說的經典的 Markdown，以 BSD 開源。</p>
-<h3 id=提出的理念>提出的理念</h3>
+<h3 id=markdown-的理念>Markdown 的理念</h3>
 <p>John Gruber 的文章寫道：</p>
 <blockquote>
 <p>The overriding design goal for Markdown&rsquo;s formatting syntax is to make it as readable as possible. The idea is that a Markdown-formatted document should be publishable as-is, as plain text, without looking like it&rsquo;s been marked up with tags or formatting instructions.</p>
@@ -274,14 +274,14 @@ console.log('Hello, markdown!')
 <pre><code>    console.log('Hello, markdown!')
 </code></pre>
 <h2 id=markdown-extra>Markdown Extra</h2>
-<p><a href=http://six.pairlist.net/pipermail/markdown-discuss/2005-July/001379.html>2005 年由 Michel Fprtin 發表</a>，基於原始 Markdown 並修改及新增一些功能，並在當時希望這些能成為未來 Markdown 的標準（下面的 CommonMark 和 GFM 都分別和 Markdown Extra 有一些相同的特色），除了表格之外，其中比較特別的功能是支援註解（Footnotes）和縮寫。官方編譯是 <a href=https://github.com/michelf/php-markdown>PHP Markdown</a>。</p>
+<p><a href=http://six.pairlist.net/pipermail/markdown-discuss/2005-July/001379.html>2005 年由 Michel Fprtin 發表</a>，基於原始 Markdown 並修改及新增一些功能，並在當時希望這些能成為未來 Markdown 的標準（下面的 CommonMark 和 GFM 都分別和 Markdown Extra 有一些相同的特色），除了表格之外，其中比較特別的功能是支援腳註（Footnotes）和縮寫。官方編譯是 <a href=https://github.com/michelf/php-markdown>PHP Markdown</a>。</p>
 <p>因為不是這篇的重點，詳細介紹可以到<a href=https://michelf.ca/projects/php-markdown/extra/>他們的網站</a>。</p>
 <h2 id=multimarkdown-mmd>MultiMarkdown (MMD)</h2>
 <p>就在 Markdown Extra 發表的隔天，<a href=http://six.pairlist.net/pipermail/markdown-discuss/2005-July/001389.html>Fletcher T. Penney 發表了 MultiMarkdown</a>，同樣也是基於原始 Markdown，希望能夠變得更接近像是 XHTML 或是 LaTeX 之類的排版語言，可以看<a href=https://fletcherpenney.net/multimarkdown/>作者的介紹</a>：</p>
 <blockquote>
 <p>It adds multiple syntax features (tables, footnotes, and citations, to name a few), in addition to the various output formats listed above (Markdown only creates HTML). Additionally, it builds in “smart” typography for various languages (proper left- and right-sided quotes, for example).</p>
 </blockquote>
-<p>一樣支援表格和註解等功能，但為了進一步進行更複雜的編寫，也支援引用、數學式、圖片說明等等功能。另外也支援更多的輸出格式，例如 PDF 和 OPML（一種開放式文件檔案格式，可以進一步讓 Microsoft Word 使用）。官方編譯器是原始的 <code>Markdown.pl</code> 的延伸，存放在<a href=https://github.com/fletcher/MultiMarkdown>這個 repo</a>。</p>
+<p>一樣支援表格和腳註等功能，但為了進一步進行更複雜的編寫，也支援引用、數學式、圖片說明等等功能。另外也支援更多的輸出格式，例如 PDF 和 OPML（一種開放式文件檔案格式，可以進一步讓 Microsoft Word 使用）。官方編譯器是原始的 <code>Markdown.pl</code> 的延伸，存放在<a href=https://github.com/fletcher/MultiMarkdown>這個 repo</a>。</p>
 <h2 id=commonmark>CommonMark</h2>
 <p>因為原始 Markdown 就這樣缺乏後續的維護，因此就有人提出要接續幫 Markdown 進行語法的標準化以及規範的進一步維護，這就是 <a href=https://commonmark.org/>CommonMark</a> 的開端。從 2012 年開始，包括 Jeff Atwood（<a href=https://stackoverflow.com/>Stack Overflow</a> 的共同創辦者之一） 在內的一群人啟動了所謂的 Markdown 標準化工作（<a href=https://blog.codinghorror.com/the-future-of-markdown/>Standard Markdown</a>，這個專案原本的名字，<a href=https://blog.codinghorror.com/standard-markdown-is-now-common-markdown/>但是在原作者要求之下改名為 CommonMark</a>，還為此叫他們換掉原本的 domain 並且不能直接重新導向到新網站）。</p>
 <p>根據 Jeff Atwood （註：高中力學教的阿特午機的阿特午，英文也是 Atwood）的 <a href=https://blog.codinghorror.com/the-future-of-markdown/>blog 文章</a>，這個計畫有以下的目標：</p>
@@ -297,7 +297,7 @@ console.log('Hello, markdown!')
 <li><a href=https://github.com/commonmark/commonmark-spec>測試集</a>（和 spec 放在同一個 repo）</li>
 <li>整理已知的變體（<del>雖然 CommonMark 本身就是個變體</del>）</li>
 </ul>
-<h3 id=因此和原始的-markdown-有這些差別>因此和原始的 Markdown 有這些差別：</h3>
+<h3 id=因此-commonmark-和原始的-markdown-有這些差別>因此 CommonMark 和原始的 Markdown 有這些差別：</h3>
 <p>新增項目（有許多並非 CommonMark 的創舉，而是很多已經在使用的 Markdown 已經先加入了）：</p>
 <ul>
 <li>所有 symbol 都可以被 backslash-escaped（中文叫跳脫字元，為了防止和保留字元混淆，因此在打某些特定符號的時候，例如<code>\</code>的時候，必須要打成<code>\\</code>。），因為他們發現一般人很難記得哪些字元要 escape XD</li>
@@ -308,11 +308,11 @@ console.log('Hello, markdown!')
 </ul>
 <p>更動：</p>
 <ul>
-<li>切換列表的符號會被判斷成新的 list（例如： <code>-</code>, <code>+</code>, <code>*</code> 以及 <code>1.</code>, <code>1)</code>）</li>
-<li>不會把用空行分開的 <code>></code> 合併成一個 Quote</li>
-<li>Link Syntax 改善：e.g. 單引號也可以被用在 Reference Link 的 Title 裡面（原本只有 Inline Link 可以，令人感到意味不明的區分）</li>
+<li>當使用了不同的 list 的符號，會被判斷成分開的 list（例如： <code>-</code>, <code>+</code>, <code>*</code> 以及 <code>1.</code>, <code>1)</code>）</li>
+<li><code>></code> 用空行分開後，會被判斷成分開的 Quote，而不是合併成一個</li>
+<li>Link Syntax 改善，e.g. 單引號也可以被用在 Reference Link 的 Title 裡面（原本只有 Inline Link 可以）</li>
 </ul>
-<p>因為 CommonMark 旨在<strong>建立一個嚴謹的標準，而不是支援更多的功能</strong>，雖然上面有提到新增的語法，但是那些都是替代性語法，並不是真正的新功能。因此只要是原始 Markdown 沒有的功能， CommonMark 也不會有。</p>
+<p>CommonMark 旨在<strong>建立一個嚴謹的標準，而不是支援更多的功能</strong>，雖然上面有提到新增的語法，但是那些都是替代性語法，並不是真正的新功能。也因此，只要是原始 Markdown 沒有的功能， CommonMark 也不會有。</p>
 <p>官方提供的編譯器有兩個，一個是 <a href=https://github.com/commonmark/cmark>cmark</a>，一個是 <a href=https://github.com/commonmark/commonmark.js>CommonMark.js</a>，從名稱就能看出是基於什麼語言、或是給什麼語言用的了。</p>
 <h2 id=github-flavored-markdown-gfm>GitHub Flavored Markdown (GFM)</h2>
 <p>GFM，中文意思是「GitHub 偏好的 Markdown」，<a href=https://github.blog/2017-03-14-a-formal-spec-for-github-markdown/>2017 年發布</a>，基於 CommonMark，再加上一些 GitHub 上可能會用到的功能，簡單來說，就是 GitHub 現在正在用的 Markdown（但其實在 GFM 之前的 2012 年，GitHub 就有支援 Markdown 了）。</p>
@@ -328,16 +328,17 @@ console.log('Hello, markdown!')
 <h2 id=關於-hackmd>關於 HackMD</h2>
 <p><img src=https://dwye.dev/img/Untitled-46f3245a-2064-4a23-8ffa-225aba38fdd7.png alt=HackMD></p>
 <p>在台灣寫一篇 Markdown 的文章，不能不提一下 <a href=https://hackmd.io/>HackMD</a>。</p>
-<p>HackMD 是基於 Markdown 之上（其實他們並沒有說清楚是基於哪種 Markdown 之上，不過你想的到的功能他們都有，甚至還能插入 YouTube 影片），加上一堆 Fancy 語法的台灣出產的線上筆記服務，只要打開瀏覽器就能使用，而且還能即時預覽！</p>
+<p>HackMD 是基於 Markdown 之上（其實他們並沒有說清楚是基於哪種 Markdown 之上，不過你想的到的功能他們都有，甚至還能插入 YouTube 影片），加上一堆很 fancy 的語法，又是台灣出產的線上筆記服務，只要打開瀏覽器就能使用，而且還能即時預覽！</p>
 <p>有開源版本 <a href=https://demo.codimd.org/>CodiMD</a>，也提供企業版的 SaaS （Software-as-a-Service），還能把版本歷史整合進 GitHub，讓大家愛上 Markdown 的好地方。</p>
 <p>介紹的部分我就不多敘述，隨手 Google 兩篇看起來不錯的介紹：</p>
 <ul>
 <li><a href=https://www.playpcesor.com/2016/10/hackmd-hackpad-markdown.html>HackMD 取代 Hackpad 的中文版 Markdown 共筆平台上手教學</a></li>
 <li><a href=https://medium.com/starrocket/hackmd-product-story-1e332f83d343>為工程師文件而生的協作平台：HackMD 開發故事</a></li>
 </ul>
-<p>個人認為在台灣的 Markdown 推廣，HackMD 一定會扮演一個重要的角色，因為真的太好用了。</p>
+<p>個人認為在台灣的 Markdown 推廣，HackMD 一定會扮演一個重要的角色，因為真的太好用了，而且又免費！根本佛心來著。</p>
 <h2 id=小結>小結</h2>
-<p>Markdown 有各種規範，也有各種選項可以調整，像是<a href=http://dwy6626.github.io>我的網站</a>是基於 Hugo，一個 Go 編寫的靜態網站生成器（SSG），所以採用了同樣是 Go 編寫的 <a href=https://github.com/russross/blackfriday>blackfriday</a> 來編譯。為了能夠方便寫作，我把可調選項（例如換行）調整成和 HackMD 的選項一樣，希望能夠最大化相容，並且最小化需要額外修改的地方。</p>
+<p>Markdown 有各種規範，也有各種選項可以調整，像是<a href=http://dwy6626.github.io>我的網站</a>是基於 Hugo，一個 Go 編寫的靜態網站生成器（SSG），<del>所以採用了同樣是 Go 編寫的 <a href=https://github.com/russross/blackfriday>blackfriday</a> 來編譯</del>（0.60 版之後的 Hugo 已經改為使用 <a href=https://github.com/yuin/goldmark/>Goldmark</a> 作為 Markdown 編譯器了，詳情在這篇文章：<a href=https://gohugo.io/news/0.60.0-relnotes/>Now CommonMark Compliant</a>）。</p>
+<p>為了能夠方便寫作，我在我的網站把可調選項（例如換行）調整成和 HackMD 的選項一樣，希望能夠最大化相容，並且最小化需要額外修改的地方。</p>
 <p>寫了這麼多，希望大家在處理各種 <code>.md</code> 檔的時候，在享受 Markdown 帶來的便利（和潮感）之外，不要跟我一樣四處踩雷 QQ</p>
 <h2 id=參考資料>參考資料</h2>
 <p>我在寫這篇的時候讀的文章，有些連結附在文章裡面了，就不再貼一次：</p>
