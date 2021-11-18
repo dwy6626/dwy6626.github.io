@@ -3438,7 +3438,7 @@ form.x_sign &lt;span style="color:#f92672">=&lt;/span> 1
 &lt;p>簡單來說，就是想要創造一個易讀而且易寫的格式，也因此和 reStructuredText 一同被歸類為輕量級的標記語言（當然不只這兩種，可以參考 &lt;a href="https://github.com/github/markup">GitHub 支援列表&lt;/a>）。比起更早出現的 reStructuredText，Markdown 似乎又更簡單一些，雖然 Markdown 比起 reStructuredText 的功能較少，而且標準化也較晚，但並不影響 Markdown 受歡迎的程度。&lt;/p>
 &lt;p>John Grube 以 Perl 寫了第一個 Markdown to html 轉換器，一般被稱為 &lt;code>Markdown.pl&lt;/code>，但沒多久就沒有繼續維護了。而且隨著使用的人越來越多，漸漸有定義相關的問題產生出來，於是後來群雄並起，產生了各種分支。&lt;/p>
 &lt;p>原始 Markdown 的語法的中文翻譯可以看&lt;a href="https://markdown.tw/">這個網站&lt;/a>。或是 &lt;a href="https://www.markdownguide.org/basic-syntax">Markdown Guide 這邊有個英文的對照表&lt;/a>。&lt;/p>
-&lt;p>值得一提的是，這時候的 Markdown 的 Code Block 並不是大家熟悉的那種 &lt;code>`````&lt;/code> 開頭並且可以註記語言種類的 fenced code block：&lt;/p>
+&lt;p>值得一提的是，這時候的 Markdown 的 Code Block 並不是大家熟悉的那種 &lt;code>```&lt;/code> 開頭並且可以註記語言種類的 fenced code block：&lt;/p>
 &lt;pre>&lt;code>```javascript
 console.log('Hello, markdown!')
 ```
