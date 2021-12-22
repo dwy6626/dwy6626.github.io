@@ -40,8 +40,9 @@
 &lt;span style="color:#f92672">node-version&lt;/span>: &lt;span style="color:#ae81ff">16.13.1&lt;/span>
 &lt;span style="color:#f92672">cache&lt;/span>: &lt;span style="color:#e6db74">&amp;#39;npm&amp;#39;&lt;/span>
 - &lt;span style="color:#f92672">run&lt;/span>: &lt;span style="color:#ae81ff">npm ci&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>其實做到這邊就可以停了，但不禁還是想問，還能再更快嗎？總覺得每次跑 &lt;code>npm ci&lt;/code> 還要重新安裝一遍套件，重新建立 &lt;code>node_modules&lt;/code> 有點花時間。&lt;/p>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>其實做到這邊就可以停了，但不禁還是想問，還能再更快嗎？&lt;/p>
 &lt;p>&lt;img src="https://dwye.dev/img/faster.jpg" alt="還要更快">&lt;/p>
+&lt;p>總覺得每次跑 &lt;code>npm ci&lt;/code> 還要重新安裝一遍套件，重新建立 &lt;code>node_modules&lt;/code> 有點花時間。&lt;/p>
 &lt;h2 id="邪門加速法cache-node_modules">邪門加速法：Cache node_modules&lt;/h2>
 &lt;p>大哉問：為何不直接 Cache node_modules 就好呢？&lt;/p>
 &lt;p>可以參考前人的討論：&lt;/p>
@@ -82,7 +83,7 @@ echo $? &lt;span style="color:#75715e"># 0 代表存在，1 代表不存在&lt;/
 - &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">Install Packages&lt;/span>
 &lt;span style="color:#f92672">run&lt;/span>: &lt;span style="color:#ae81ff">test -d node_modules &amp;amp;&amp;amp; echo &amp;#34;node_modules exists&amp;#34; || npm ci&lt;/span>
 - &lt;span style="color:#f92672">run&lt;/span>: &lt;span style="color:#ae81ff">npm run test&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>透過 cache node_modules 後，建置時間大幅縮短，原本需要跑 3 分鐘才能建置完成的 CI，現在只需要 10 秒就可以跑建置部分了。即便是 cache miss，也能在 45 秒附近完成套件的安裝，可說是十分有效的優化，成就感十足。&lt;/p>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>透過 cache node_modules 後，建置時間大幅縮短，原本需要跑 3 分鐘才能建置完成的 CI，現在只需要 10 秒就可以跑完前置的環境建置部分了。即便是 cache miss，也能在 45 秒附近完成套件的安裝，可說是十分有效的優化，成就感十足。&lt;/p>
 &lt;p>接下來要做的事情就是慢慢補上 unit test 了&amp;hellip;。&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>DeskMini X300 組裝紀錄</title><link>https://dwye.dev/post/deskmini-installation/</link><pubDate>Sat, 25 Sep 2021 17:42:23 +0800</pubDate><guid>https://dwye.dev/post/deskmini-installation/</guid><description>
 &lt;h2 id="契機">契機&lt;/h2>
 &lt;p>因為家母還在用我淘汰已久的舊電腦，有各種奇怪的問題，包含卡鍵或是滑鼠失靈、鍵盤連點之類的，對於電腦不太熟悉的家母來說要應付這些問題十分困難，而每次我都要出手去查出是什麼奇怪問題也很麻煩。&lt;/p>

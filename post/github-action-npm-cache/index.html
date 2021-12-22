@@ -268,8 +268,9 @@ npm ci 與 cache 的應用
         <span style=color:#f92672>node-version</span>: <span style=color:#ae81ff>16.13.1</span>
         <span style=color:#f92672>cache</span>: <span style=color:#e6db74>&#39;npm&#39;</span>
     - <span style=color:#f92672>run</span>: <span style=color:#ae81ff>npm ci</span>
-</code></pre></div><p>其實做到這邊就可以停了，但不禁還是想問，還能再更快嗎？總覺得每次跑 <code>npm ci</code> 還要重新安裝一遍套件，重新建立 <code>node_modules</code> 有點花時間。</p>
+</code></pre></div><p>其實做到這邊就可以停了，但不禁還是想問，還能再更快嗎？</p>
 <p><img src=https://dwye.dev/img/faster.jpg alt=還要更快></p>
+<p>總覺得每次跑 <code>npm ci</code> 還要重新安裝一遍套件，重新建立 <code>node_modules</code> 有點花時間。</p>
 <h2 id=邪門加速法cache-node_modules>邪門加速法：Cache node_modules</h2>
 <p>大哉問：為何不直接 Cache node_modules 就好呢？</p>
 <p>可以參考前人的討論：</p>
@@ -315,7 +316,7 @@ echo $?               <span style=color:#75715e># 0 代表存在，1 代表不�
       <span style=color:#f92672>run</span>: <span style=color:#ae81ff>test -d node_modules &amp;&amp; echo &#34;node_modules exists&#34; || npm ci</span>
 
     - <span style=color:#f92672>run</span>: <span style=color:#ae81ff>npm run test</span>
-</code></pre></div><p>透過 cache node_modules 後，建置時間大幅縮短，原本需要跑 3 分鐘才能建置完成的 CI，現在只需要 10 秒就可以跑建置部分了。即便是 cache miss，也能在 45 秒附近完成套件的安裝，可說是十分有效的優化，成就感十足。</p>
+</code></pre></div><p>透過 cache node_modules 後，建置時間大幅縮短，原本需要跑 3 分鐘才能建置完成的 CI，現在只需要 10 秒就可以跑完前置的環境建置部分了。即便是 cache miss，也能在 45 秒附近完成套件的安裝，可說是十分有效的優化，成就感十足。</p>
 <p>接下來要做的事情就是慢慢補上 unit test 了&mldr;。</p>
 <div class=copyright>
 本文原創部分採用
