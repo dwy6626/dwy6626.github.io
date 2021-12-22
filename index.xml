@@ -1,4 +1,89 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 25 Sep 2021 17:42:23 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>DeskMini X300 組裝紀錄</title><link>https://dwye.dev/post/deskmini-installation/</link><pubDate>Sat, 25 Sep 2021 17:42:23 +0800</pubDate><guid>https://dwye.dev/post/deskmini-installation/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 22 Dec 2021 20:41:23 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>在 GitHub Action 優化 Node.js App 的環境建置</title><link>https://dwye.dev/post/github-action-npm-cache/</link><pubDate>Wed, 22 Dec 2021 20:41:23 +0800</pubDate><guid>https://dwye.dev/post/github-action-npm-cache/</guid><description>
+&lt;p>身為一位維護公司內部建置與發佈工具的工程師，建立方便又有效率的 CI/CD 工具來建置與測試產品，並且為產品的穩定性把關，一直是我們團隊的重要目標。不過我們對待自己的內部工具常常比產品來得隨便&amp;hellip;所以在我和主管聊過之後，決定慢慢幫我們的內部工具也來建立一些自動化的測試以及部署。&lt;/p>
+&lt;p>內部工具說穿了就是個 Node.js 的應用程式。身為 YAML 工程師的我當然是用自己最熟悉的 GitHub Action 來實作。&lt;/p>
+&lt;h2 id="從最簡單的版本開始">從最簡單的版本開始&lt;/h2>
+&lt;p>下面是一個最簡單的 Node.js 專案所使用的單元測試的 GitHub Action 的 YAML 設定：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">Unit test&lt;/span>
+&lt;span style="color:#f92672">on&lt;/span>: &lt;span style="color:#ae81ff">push&lt;/span>
+&lt;span style="color:#f92672">jobs&lt;/span>:
+&lt;span style="color:#f92672">unit-test&lt;/span>:
+&lt;span style="color:#f92672">runs-on&lt;/span>: &lt;span style="color:#ae81ff">ubuntu-latest&lt;/span>
+&lt;span style="color:#f92672">steps&lt;/span>:
+- &lt;span style="color:#f92672">uses&lt;/span>: &lt;span style="color:#ae81ff">actions/checkout@v2&lt;/span>
+- &lt;span style="color:#f92672">uses&lt;/span>: &lt;span style="color:#ae81ff">actions/setup-node@v2&lt;/span>
+&lt;span style="color:#f92672">with&lt;/span>:
+&lt;span style="color:#f92672">node-version&lt;/span>: &lt;span style="color:#ae81ff">16.13.1&lt;/span>
+- &lt;span style="color:#f92672">run&lt;/span>: &lt;span style="color:#ae81ff">npm install&lt;/span>
+- &lt;span style="color:#f92672">run&lt;/span>: &lt;span style="color:#ae81ff">npm run test&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>這份 YAML 簡單又白話。使用 &lt;code>actions/checkout&lt;/code> 拿到最新版的 Code，並使用 &lt;code>actions/setup-node&lt;/code> 設置 Node.js 環境。這兩個都是 GitHub 官方的 actions，簡單方便。然後使用 &lt;code>npm install&lt;/code> 指令安裝套件，接著跑我們自定義的測試腳本 &lt;code>npm run test&lt;/code>（註：記得換成你自己的測試指令）。&lt;/p>
+&lt;p>其實如果不要要求太多，這樣就已經完成了，因此這次的分享就到這裡告一段落。&lt;/p>
+&lt;h2 id="還能做得更好嗎">還能做得更好嗎？&lt;/h2>
+&lt;p>&amp;hellip;才怪，如果只是這樣，才不值得寫一篇文章 XD&lt;/p>
+&lt;p>如果你的套件很多，每次都要跑 &lt;code>npm install&lt;/code> 會變成一個拖累你的 CI 速度的惡夢，測試如果不是簡單又快速，就會降低開發人員對於測試的關注，這絕對不是一件好事。&lt;/p>
+&lt;h2 id="優化環境建置速度">優化環境建置速度&lt;/h2>
+&lt;h3 id="actionssetup-node-的內建優化">Actions/setup-node 的內建優化&lt;/h3>
+&lt;p>其實 &lt;code>actions/setup-node&lt;/code> 的文件就有寫到，他們有內建的 cache （快取）機制，可以透過將 &lt;code>package-lock.json&lt;/code> 或是 &lt;code>yarn.lock&lt;/code> 內的 dependency 做快取：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml"> - &lt;span style="color:#f92672">uses&lt;/span>: &lt;span style="color:#ae81ff">actions/setup-node@v2&lt;/span>
+&lt;span style="color:#f92672">with&lt;/span>:
+&lt;span style="color:#f92672">node-version&lt;/span>: &lt;span style="color:#ae81ff">16.13.1&lt;/span>
+&lt;span style="color:#f92672">cache&lt;/span>: &lt;span style="color:#e6db74">&amp;#39;npm&amp;#39;&lt;/span>
+- &lt;span style="color:#f92672">run&lt;/span>: &lt;span style="color:#ae81ff">npm install&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>就是這麼簡單，更詳細用法可以查看 &lt;code>actions/setup-node&lt;/code> 的文件（https://github.com/actions/setup-node）。&lt;/p>
+&lt;p>值得注意的是，這邊的 cache 對象是 &lt;code>.npm&lt;/code> 的資料夾，而不是 &lt;code>node_modules&lt;/code>，所以即便有 cache 了，在跑 &lt;code>npm install&lt;/code> 時還是有可能會需要下載與安裝一些 package。&lt;/p>
+&lt;h3 id="使用-npm-ci">使用 NPM CI&lt;/h3>
+&lt;p>我也是在這次建置中才注意到這個酷功能的：&lt;br>
+&lt;a href="https://docs.npmjs.com/cli/v8/commands/npm-ci">https://docs.npmjs.com/cli/v8/commands/npm-ci&lt;/a>&lt;/p>
+&lt;p>&lt;code>npm ci&lt;/code> 顧名思義，是給 CI 用的 &lt;code>npm install&lt;/code>，專注於安裝套件的效率，跑起來比 &lt;code>node_modules&lt;/code> 快&lt;strong>非常多&lt;/strong>。加速的方法是透過避免掉一些平常在 &lt;code>npm install&lt;/code> 時會處理的套件相依問題，略過需要傳遞給開發者的訊息。&lt;code>npm ci&lt;/code> 唯一需要做的事，就是根據 &lt;code>package-lock.json&lt;/code> 安裝套件。&lt;/p>
+&lt;p>我自己實測，可以把我們的專案的安裝時間從 3 分又幾秒降低到 45 秒附近，足足提升了 4 倍，真的誇張。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml"> - &lt;span style="color:#f92672">uses&lt;/span>: &lt;span style="color:#ae81ff">actions/setup-node@v2&lt;/span>
+&lt;span style="color:#f92672">with&lt;/span>:
+&lt;span style="color:#f92672">node-version&lt;/span>: &lt;span style="color:#ae81ff">16.13.1&lt;/span>
+&lt;span style="color:#f92672">cache&lt;/span>: &lt;span style="color:#e6db74">&amp;#39;npm&amp;#39;&lt;/span>
+- &lt;span style="color:#f92672">run&lt;/span>: &lt;span style="color:#ae81ff">npm ci&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>其實做到這邊就可以停了，但不禁還是想問，還能再更快嗎？總覺得每次跑 &lt;code>npm ci&lt;/code> 還要重新安裝一遍套件，重新建立 &lt;code>node_modules&lt;/code> 有點花時間。&lt;/p>
+&lt;p>&lt;img src="https://dwye.dev/img/faster.jpg" alt="還要更快">&lt;/p>
+&lt;h2 id="邪門加速法cache-node_modules">邪門加速法：Cache node_modules&lt;/h2>
+&lt;p>大哉問：為何不直接 Cache node_modules 就好呢？&lt;/p>
+&lt;p>可以參考前人的討論：&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>Actions/cache&lt;/code> 的&lt;a href="https://github.com/actions/cache/issues/67">issue #67&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://stackoverflow.com/questions/42521884/">StackOverflow: Should I have Travis cache node_modules or $HOME/.npm&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>我的理解是，當需要使用不同 Node.js / npm / OS 版本時，Cache node_modules 因為包含了一些針對特定環境編譯過的 packages，所以會在環境稍微不同時就造成問題。對 &lt;code>.npm&lt;/code> 做快取並不會讓 CI 速度變慢太多，但卻穩定很多，因此像是 GitHub Action / Travis 或 Azure 會預設對 &lt;code>.npm&lt;/code> 做快取，減少不懂的人遇到問題的機會 XD&lt;/p>
+&lt;p>換個想法，如果我盡量使環境一致，把 Node.js 和 OS 版本都納入 cache key，環境有變動就讓 cache miss，這樣在大部分情況應該就能避免上述的問題，並且更加速 CI 的環境建置。&lt;/p>
+&lt;h3 id="npm-ci-的陷阱">NPM CI 的陷阱&lt;/h3>
+&lt;p>但還有個問題： &lt;code>npm ci&lt;/code> 永遠都會先把 node_modules 刪掉再安裝一遍 packages（我想也是為了避免檢查目前已有的套件的正確性而做的優化）&lt;/p>
+&lt;p>因此 &lt;code>npm ci&lt;/code> 不能和 cache node_modules 一起使用嗎？那就大錯特錯了 XD&lt;br>
+如果我們把 node_modules 快取起來，並且確認 &lt;code>package-lock.json&lt;/code> 和 node version 等因素都沒有改變，那就不必重新跑一遍 &lt;code>npm ci&lt;/code> 了啊，直接跑測試就行了。&lt;br>
+可以利用查看 node_modules 是否存在來判斷 cache hit 或 miss:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">test -d node_modules &lt;span style="color:#75715e"># 查看資料夾是否存在，把結果存入 $?&lt;/span>
+echo $? &lt;span style="color:#75715e"># 0 代表存在，1 代表不存在&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="加入-cache-node_modules-並使用-npm-ci-後">加入 cache node_modules 並使用 npm ci 後：&lt;/h3>
+&lt;p>因為變更有點多，這邊再次附上完整 YAML：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">Unit test&lt;/span>
+&lt;span style="color:#f92672">on&lt;/span>: &lt;span style="color:#ae81ff">push&lt;/span>
+&lt;span style="color:#f92672">jobs&lt;/span>:
+&lt;span style="color:#f92672">unit-test&lt;/span>:
+&lt;span style="color:#f92672">runs-on&lt;/span>: &lt;span style="color:#ae81ff">ubuntu-latest&lt;/span>
+&lt;span style="color:#f92672">strategy&lt;/span>:
+&lt;span style="color:#f92672">matrix&lt;/span>:
+&lt;span style="color:#f92672">node-version&lt;/span>: [&lt;span style="color:#ae81ff">16.13.1&lt;/span>] &lt;span style="color:#75715e"># 把 node.js 版本記錄在這，之後可以重新取出作為 cache key&lt;/span>
+&lt;span style="color:#f92672">steps&lt;/span>:
+- &lt;span style="color:#f92672">uses&lt;/span>: &lt;span style="color:#ae81ff">actions/checkout@v2&lt;/span>
+- &lt;span style="color:#f92672">uses&lt;/span>: &lt;span style="color:#ae81ff">actions/setup-node@v2&lt;/span>
+&lt;span style="color:#f92672">with&lt;/span>:
+&lt;span style="color:#f92672">node-version&lt;/span>: &lt;span style="color:#ae81ff">${{ matrix.node-version }}&lt;/span>
+- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">Cache Node Modules&lt;/span>
+&lt;span style="color:#f92672">uses&lt;/span>: &lt;span style="color:#ae81ff">actions/cache@v2&lt;/span>
+&lt;span style="color:#f92672">with&lt;/span>:
+&lt;span style="color:#f92672">path&lt;/span>: &lt;span style="color:#ae81ff">node_modules&lt;/span>
+&lt;span style="color:#75715e"># cache key 包含了所有我們希望固定的資訊：OS，node 版本，以及 package-lock.json 的檔案內容，使用 hashFiles 將檔案內容轉換成字串&lt;/span>
+&lt;span style="color:#f92672">key&lt;/span>: &lt;span style="color:#ae81ff">node-modules-${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles(&amp;#39;package-lock.json&amp;#39;) }}&lt;/span>
+- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">Install Packages&lt;/span>
+&lt;span style="color:#f92672">run&lt;/span>: &lt;span style="color:#ae81ff">test -d node_modules &amp;amp;&amp;amp; echo &amp;#34;node_modules exists&amp;#34; || npm ci&lt;/span>
+- &lt;span style="color:#f92672">run&lt;/span>: &lt;span style="color:#ae81ff">npm run test&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>透過 cache node_modules 後，建置時間大幅縮短，原本需要跑 3 分鐘才能建置完成的 CI，現在只需要 10 秒就可以跑建置部分了。即便是 cache miss，也能在 45 秒附近完成套件的安裝，可說是十分有效的優化，成就感十足。&lt;/p>
+&lt;p>接下來要做的事情就是慢慢補上 unit test 了&amp;hellip;。&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>DeskMini X300 組裝紀錄</title><link>https://dwye.dev/post/deskmini-installation/</link><pubDate>Sat, 25 Sep 2021 17:42:23 +0800</pubDate><guid>https://dwye.dev/post/deskmini-installation/</guid><description>
 &lt;h2 id="契機">契機&lt;/h2>
 &lt;p>因為家母還在用我淘汰已久的舊電腦，有各種奇怪的問題，包含卡鍵或是滑鼠失靈、鍵盤連點之類的，對於電腦不太熟悉的家母來說要應付這些問題十分困難，而每次我都要出手去查出是什麼奇怪問題也很麻煩。&lt;/p>
 &lt;p>也正很很久沒有組電腦了，就上參考 PTT 上原價屋抓菜單，後來發現華擎的 DeskMini 這個可以自己選配內部組件的迷你主機，就覺得蠻有趣的，整個配起來價格也可以接受，不會和市面上的迷你電腦差太多（有的文書機真的便宜的很誇張ˊˋ），性能需求也可以自己掌控，就下單買來組了。&lt;/p>

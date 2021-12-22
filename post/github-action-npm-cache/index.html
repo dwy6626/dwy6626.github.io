@@ -1,0 +1,353 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="
+  
+      npm ci 與 cache 的應用
+    ">
+<meta name=generator content="Hugo 0.86.1">
+<meta property="og:title" content="在 GitHub Action 優化 Node.js App 的環境建置">
+<meta name=twitter:title content="在 GitHub Action 優化 Node.js App 的環境建置">
+<meta property="og:url" content="https://dwye.dev/post/github-action-npm-cache/">
+<meta property="og:image" content="https://dwye.dev/img/github-action-npm.jpg">
+<meta name=twitter:image content="https://dwye.dev/img/github-action-npm.jpg">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:site content="dw's 小站">
+<meta name=twitter:creator content="De-Wei Ye">
+<meta name=twitter:description content="身為一位維護公司內部建置與發佈工具的工程師，建立方便又有效率的 CI/CD 工具來建置與測試產品，並且為產品的穩定性把關，一直是我們團隊的重要目標。不過我們對待自己的內部工具常常比產品來得隨便&mldr;所以在我和主管聊過之後，決定慢慢幫我們的內部工具也來建立一些自動化的測試以及部署。">
+<link rel=preconnect href=https://s.ytimg.com>
+<link rel=preconnect href=https://i.imgur.com>
+<title>在 GitHub Action 優化 Node.js App 的環境建置 &#183; dw's 小站</title>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.5/pure-min.css media=screen>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.5/grids-responsive-min.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/side-menu.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/blackburn.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/dw-burn.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/dw-menu.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/vars.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/menu-x.css media=screen>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css>
+<link rel=preconnect href=https://fonts.gstatic.com>
+<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel=stylesheet type=text/css>
+<script type=text/javascript async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML"></script>
+<script type=text/x-mathjax-config>
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [['$$','$$']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+    CommonHTML: { linebreaks: { automatic: true } },
+    "HTML-CSS": { linebreaks: { automatic: true } },
+          SVG: { linebreaks: { automatic: true } }    
+  });
+</script>
+<script type=text/x-mathjax-config>
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+<link async rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/vs2015.min.css media=screen>
+<script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js></script>
+<script defer src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/yaml.min.js></script>
+<script defer src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/vbnet.min.js></script>
+<script>hljs.highlightAll()</script>
+<link rel="shortcut icon" href=https://dwye.dev/img/favicon.ico type=image/x-icon>
+<link rel=stylesheet href=https://dwye.dev/css/color.css media=screen>
+<meta name=google-site-verification content="pC2le32KaKDSGh9V637p5YC81zixbAMyKN3nPqkKscE">
+<script data-ad-client=ca-pub-3454014140664886 async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
+</head>
+<body>
+<div id=layout>
+<a href=#menu class=menu-link id=menuLink aria-label="Go to menu of this website">
+<s class=bar></s><s class=bar></s>
+</a>
+<div id=menu>
+<a class="pure-menu-heading brand" href=https://dwye.dev/>De-Wei Ye</a>
+<div class=pure-menu>
+<ul class=pure-menu-list>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/about/><i class="fas fa-user-circle fa-fw"></i><span>關於</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/notes/><i class="fas fa-book fa-fw"></i><span>筆記</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/post/><i class="fas fa-list-ul fa-fw"></i><span>文章列表</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/topics/><i class="fas fa-folder fa-fw"></i><span>主題分類</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/tags/><i class="fas fa-tags fa-fw"></i><span>標籤</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/../en/><i class="fas fa-globe-americas fa-fw"></i><span>English</span></a>
+</li>
+</ul>
+</div>
+<div class="pure-menu social">
+<ul class=pure-menu-list>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://linkedin.com/in/dwy6626 rel="me external noopener" target=_blank><i class="fab fa-linkedin fa-fw"></i><span>LinkedIn</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://github.com/dwy6626 rel="me external noopener" target=_blank><i class="fab fa-github-square fa-fw"></i><span>GitHub</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://leetcode.com/mirror0227 rel="me external noopener" target=_blank><i class="fas fa-laptop-code fa-fw"></i><span>LeetCode</span></a>
+</li>
+</ul>
+</div>
+<div class=copyright-small>
+Built with <a href=https://gohugo.io/ rel="external noopener" target=_blank>Hugo</a>
+</div>
+<div class=copyright-small>
+W/ <a href=https://github.com/dwy6626/dw-favored-blackburn rel="external noopener" target=_blank>DW-Favored-Blackburn</a>
+</div>
+<div class=copyright-small>
+Based on <a href=https://github.com/yoshiharuyamashita/blackburn rel="external noopener" target=_blank>Blackburn</a>
+</div>
+<div class=copyright-small>
+and <a href=https://purecss.io/ rel="external noopener" target=_blank>Pure CSS</a>
+</div>
+<div class=copyright-small>
+Icons <a href=https://fontawesome.com rel="external noopener" target=_blank>Font Awesome</a>
+</div>
+<div class=copyright-small>
+<a href=https://dwye.dev/copyright>
+&copy; 2020. All rights reserved.
+</a>
+</div>
+</div>
+<div id=main>
+<div class=header>
+<h1>
+在 GitHub Action 優化 Node.js App 的環境建置
+</h1>
+<h2>
+npm ci 與 cache 的應用
+</h2>
+</div>
+<div class=aside-container>
+<div id=toc-aside style=display:none>
+<link rel=stylesheet href=https://dwye.dev/css/aside-toc.css media=screen>
+<script src=https://dwye.dev/js/toc.js></script>
+<div class=toc>
+<aside>
+<summary>目錄</summary>
+<div class=toc-item>
+<p><a rel=tag href=#>在 GitHub Action 優化 Node.js App 的環境建置</a></p>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#從最簡單的版本開始>從最簡單的版本開始</a></li>
+<li><a href=#還能做得更好嗎>還能做得更好嗎？</a></li>
+<li><a href=#優化環境建置速度>優化環境建置速度</a>
+<ul>
+<li><a href=#actionssetup-node-的內建優化>Actions/setup-node 的內建優化</a></li>
+<li><a href=#使用-npm-ci>使用 NPM CI</a></li>
+</ul>
+</li>
+<li><a href=#邪門加速法cache-node_modules>邪門加速法：Cache node_modules</a>
+<ul>
+<li><a href=#npm-ci-的陷阱>NPM CI 的陷阱</a></li>
+<li><a href=#加入-cache-node_modules-並使用-npm-ci-後>加入 cache node_modules 並使用 npm ci 後：</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</div>
+</div>
+</div>
+<div class=content>
+<ul class=post-meta>
+<li>
+<i class="fa fa-calendar fa-fw"></i>
+<span>
+<time>Dec 22, 2021</time>
+</span>
+</li>
+</ul>
+<ul class=post-meta>
+<a href=https://dwye.dev/topics/%E6%8A%80%E8%A1%93%E8%A8%98%E9%8C%84>
+<li>
+<i class="fas fa-folder fa-fw"></i>
+<span>技術記錄</span>
+</li>
+</a>
+<a href=https://dwye.dev/tags/github-action>
+<li>
+<i class="fas fa-tag fa-fw"></i>
+<span>GitHub Action</span>
+</li>
+</a>
+<a href=https://dwye.dev/tags/ci/cd>
+<li>
+<i class="fas fa-tag fa-fw"></i>
+<span>CI/CD</span>
+</li>
+</a>
+</ul>
+<div id=toc-top style=display:none>
+<div class=toc>
+<aside>
+<details>
+<summary>目錄</summary>
+<div class=toc-item>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#從最簡單的版本開始>從最簡單的版本開始</a></li>
+<li><a href=#還能做得更好嗎>還能做得更好嗎？</a></li>
+<li><a href=#優化環境建置速度>優化環境建置速度</a>
+<ul>
+<li><a href=#actionssetup-node-的內建優化>Actions/setup-node 的內建優化</a></li>
+<li><a href=#使用-npm-ci>使用 NPM CI</a></li>
+</ul>
+</li>
+<li><a href=#邪門加速法cache-node_modules>邪門加速法：Cache node_modules</a>
+<ul>
+<li><a href=#npm-ci-的陷阱>NPM CI 的陷阱</a></li>
+<li><a href=#加入-cache-node_modules-並使用-npm-ci-後>加入 cache node_modules 並使用 npm ci 後：</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</details>
+</aside>
+</div>
+</div>
+<p>身為一位維護公司內部建置與發佈工具的工程師，建立方便又有效率的 CI/CD 工具來建置與測試產品，並且為產品的穩定性把關，一直是我們團隊的重要目標。不過我們對待自己的內部工具常常比產品來得隨便&mldr;所以在我和主管聊過之後，決定慢慢幫我們的內部工具也來建立一些自動化的測試以及部署。</p>
+<p>內部工具說穿了就是個 Node.js 的應用程式。身為 YAML 工程師的我當然是用自己最熟悉的 GitHub Action 來實作。</p>
+<h2 id=從最簡單的版本開始>從最簡單的版本開始</h2>
+<p>下面是一個最簡單的 Node.js 專案所使用的單元測試的 GitHub Action 的 YAML 設定：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>name</span>: <span style=color:#ae81ff>Unit test</span>
+<span style=color:#f92672>on</span>: <span style=color:#ae81ff>push</span>
+<span style=color:#f92672>jobs</span>:
+  <span style=color:#f92672>unit-test</span>:
+    <span style=color:#f92672>runs-on</span>: <span style=color:#ae81ff>ubuntu-latest</span>
+    <span style=color:#f92672>steps</span>:
+    - <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/checkout@v2</span>
+    - <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/setup-node@v2</span>
+      <span style=color:#f92672>with</span>:
+        <span style=color:#f92672>node-version</span>: <span style=color:#ae81ff>16.13.1</span>
+    - <span style=color:#f92672>run</span>: <span style=color:#ae81ff>npm install</span>
+    - <span style=color:#f92672>run</span>: <span style=color:#ae81ff>npm run test</span>
+</code></pre></div><p>這份 YAML 簡單又白話。使用 <code>actions/checkout</code> 拿到最新版的 Code，並使用 <code>actions/setup-node</code> 設置 Node.js 環境。這兩個都是 GitHub 官方的 actions，簡單方便。然後使用 <code>npm install</code> 指令安裝套件，接著跑我們自定義的測試腳本 <code>npm run test</code>（註：記得換成你自己的測試指令）。</p>
+<p>其實如果不要要求太多，這樣就已經完成了，因此這次的分享就到這裡告一段落。</p>
+<h2 id=還能做得更好嗎>還能做得更好嗎？</h2>
+<p>&mldr;才怪，如果只是這樣，才不值得寫一篇文章 XD</p>
+<p>如果你的套件很多，每次都要跑 <code>npm install</code> 會變成一個拖累你的 CI 速度的惡夢，測試如果不是簡單又快速，就會降低開發人員對於測試的關注，這絕對不是一件好事。</p>
+<h2 id=優化環境建置速度>優化環境建置速度</h2>
+<h3 id=actionssetup-node-的內建優化>Actions/setup-node 的內建優化</h3>
+<p>其實 <code>actions/setup-node</code> 的文件就有寫到，他們有內建的 cache （快取）機制，可以透過將 <code>package-lock.json</code> 或是 <code>yarn.lock</code> 內的 dependency 做快取：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml>    - <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/setup-node@v2</span>
+      <span style=color:#f92672>with</span>:
+        <span style=color:#f92672>node-version</span>: <span style=color:#ae81ff>16.13.1</span>
+        <span style=color:#f92672>cache</span>: <span style=color:#e6db74>&#39;npm&#39;</span>
+    - <span style=color:#f92672>run</span>: <span style=color:#ae81ff>npm install</span>
+</code></pre></div><p>就是這麼簡單，更詳細用法可以查看 <code>actions/setup-node</code> 的文件（https://github.com/actions/setup-node）。</p>
+<p>值得注意的是，這邊的 cache 對象是 <code>.npm</code> 的資料夾，而不是 <code>node_modules</code>，所以即便有 cache 了，在跑 <code>npm install</code> 時還是有可能會需要下載與安裝一些 package。</p>
+<h3 id=使用-npm-ci>使用 NPM CI</h3>
+<p>我也是在這次建置中才注意到這個酷功能的：<br>
+<a href=https://docs.npmjs.com/cli/v8/commands/npm-ci>https://docs.npmjs.com/cli/v8/commands/npm-ci</a></p>
+<p><code>npm ci</code> 顧名思義，是給 CI 用的 <code>npm install</code>，專注於安裝套件的效率，跑起來比 <code>node_modules</code> 快<strong>非常多</strong>。加速的方法是透過避免掉一些平常在 <code>npm install</code> 時會處理的套件相依問題，略過需要傳遞給開發者的訊息。<code>npm ci</code> 唯一需要做的事，就是根據 <code>package-lock.json</code> 安裝套件。</p>
+<p>我自己實測，可以把我們的專案的安裝時間從 3 分又幾秒降低到 45 秒附近，足足提升了 4 倍，真的誇張。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml>    - <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/setup-node@v2</span>
+      <span style=color:#f92672>with</span>:
+        <span style=color:#f92672>node-version</span>: <span style=color:#ae81ff>16.13.1</span>
+        <span style=color:#f92672>cache</span>: <span style=color:#e6db74>&#39;npm&#39;</span>
+    - <span style=color:#f92672>run</span>: <span style=color:#ae81ff>npm ci</span>
+</code></pre></div><p>其實做到這邊就可以停了，但不禁還是想問，還能再更快嗎？總覺得每次跑 <code>npm ci</code> 還要重新安裝一遍套件，重新建立 <code>node_modules</code> 有點花時間。</p>
+<p><img src=https://dwye.dev/img/faster.jpg alt=還要更快></p>
+<h2 id=邪門加速法cache-node_modules>邪門加速法：Cache node_modules</h2>
+<p>大哉問：為何不直接 Cache node_modules 就好呢？</p>
+<p>可以參考前人的討論：</p>
+<ul>
+<li><code>Actions/cache</code> 的<a href=https://github.com/actions/cache/issues/67>issue #67</a></li>
+<li><a href=https://stackoverflow.com/questions/42521884/>StackOverflow: Should I have Travis cache node_modules or $HOME/.npm</a></li>
+</ul>
+<p>我的理解是，當需要使用不同 Node.js / npm / OS 版本時，Cache node_modules 因為包含了一些針對特定環境編譯過的 packages，所以會在環境稍微不同時就造成問題。對 <code>.npm</code> 做快取並不會讓 CI 速度變慢太多，但卻穩定很多，因此像是 GitHub Action / Travis 或 Azure 會預設對 <code>.npm</code> 做快取，減少不懂的人遇到問題的機會 XD</p>
+<p>換個想法，如果我盡量使環境一致，把 Node.js 和 OS 版本都納入 cache key，環境有變動就讓 cache miss，這樣在大部分情況應該就能避免上述的問題，並且更加速 CI 的環境建置。</p>
+<h3 id=npm-ci-的陷阱>NPM CI 的陷阱</h3>
+<p>但還有個問題： <code>npm ci</code> 永遠都會先把 node_modules 刪掉再安裝一遍 packages（我想也是為了避免檢查目前已有的套件的正確性而做的優化）</p>
+<p>因此 <code>npm ci</code> 不能和 cache node_modules 一起使用嗎？那就大錯特錯了 XD<br>
+如果我們把 node_modules 快取起來，並且確認 <code>package-lock.json</code> 和 node version 等因素都沒有改變，那就不必重新跑一遍 <code>npm ci</code> 了啊，直接跑測試就行了。<br>
+可以利用查看 node_modules 是否存在來判斷 cache hit 或 miss:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>test -d node_modules  <span style=color:#75715e># 查看資料夾是否存在，把結果存入 $?</span>
+echo $?               <span style=color:#75715e># 0 代表存在，1 代表不存在</span>
+</code></pre></div><h3 id=加入-cache-node_modules-並使用-npm-ci-後>加入 cache node_modules 並使用 npm ci 後：</h3>
+<p>因為變更有點多，這邊再次附上完整 YAML：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>name</span>: <span style=color:#ae81ff>Unit test</span>
+<span style=color:#f92672>on</span>: <span style=color:#ae81ff>push</span>
+<span style=color:#f92672>jobs</span>:
+  <span style=color:#f92672>unit-test</span>:
+    <span style=color:#f92672>runs-on</span>: <span style=color:#ae81ff>ubuntu-latest</span>
+
+    <span style=color:#f92672>strategy</span>:
+      <span style=color:#f92672>matrix</span>:
+        <span style=color:#f92672>node-version</span>: [<span style=color:#ae81ff>16.13.1</span>]  <span style=color:#75715e># 把 node.js 版本記錄在這，之後可以重新取出作為 cache key</span>
+
+    <span style=color:#f92672>steps</span>:
+    - <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/checkout@v2</span>
+    - <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/setup-node@v2</span>
+      <span style=color:#f92672>with</span>:
+        <span style=color:#f92672>node-version</span>: <span style=color:#ae81ff>${{ matrix.node-version }}</span>
+
+    - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Cache Node Modules</span>
+      <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/cache@v2</span>
+      <span style=color:#f92672>with</span>:
+        <span style=color:#f92672>path</span>: <span style=color:#ae81ff>node_modules</span>
+        <span style=color:#75715e># cache key 包含了所有我們希望固定的資訊：OS，node 版本，以及 package-lock.json 的檔案內容，使用 hashFiles 將檔案內容轉換成字串</span>
+        <span style=color:#f92672>key</span>: <span style=color:#ae81ff>node-modules-${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles(&#39;package-lock.json&#39;) }}</span>
+
+    - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Install Packages</span>
+      <span style=color:#f92672>run</span>: <span style=color:#ae81ff>test -d node_modules &amp;&amp; echo &#34;node_modules exists&#34; || npm ci</span>
+
+    - <span style=color:#f92672>run</span>: <span style=color:#ae81ff>npm run test</span>
+</code></pre></div><p>透過 cache node_modules 後，建置時間大幅縮短，原本需要跑 3 分鐘才能建置完成的 CI，現在只需要 10 秒就可以跑建置部分了。即便是 cache miss，也能在 45 秒附近完成套件的安裝，可說是十分有效的優化，成就感十足。</p>
+<p>接下來要做的事情就是慢慢補上 unit test 了&mldr;。</p>
+<div class=copyright>
+本文原創部分採用
+<a rel=license href=http://creativecommons.org/licenses/by-nc-nd/4.0/>創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款</a>
+授權。
+</div>
+<div class="prev-next-post pure-g">
+<div class=pure-u-1-24 style=text-align:left>
+<a href=https://dwye.dev/post/deskmini-installation/><i class="fa fa-chevron-left"></i></a>
+</div>
+<div class=pure-u-10-24>
+<nav class=prev>
+<a href=https://dwye.dev/post/deskmini-installation/>DeskMini X300 組裝紀錄</a>
+</nav>
+</div>
+<div class=pure-u-2-24>
+&nbsp;
+</div>
+<div class=pure-u-10-24>
+</div>
+<div class=pure-u-1-24 style=text-align:right>
+</div>
+</div>
+<div id=disqus_thread></div>
+<script type=text/javascript>(function(){var a,b;if(window.location.hostname=="localhost")return;a=document.createElement('script'),a.type='text/javascript',a.async=!0,b='dwy6626',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+<a href=http://disqus.com/ class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
+</div>
+</div>
+</div>
+<script src=https://dwye.dev/js/ui.js></script>
+<script src=https://dwye.dev/js/menus.js></script>
+<script>window.location.hostname!="localhost"&&(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-132034008-1','auto'),ga('send','pageview'))</script>
+</body>
+</html>
