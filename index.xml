@@ -1774,6 +1774,9 @@ f1, f2 &lt;span style="color:#f92672">=&lt;/span> f2, f1 &lt;span style="color:#
 &lt;p>：&lt;em>誰會想在凌晨三點部署部落格&lt;/em>&lt;br>
 GitHub Action：&lt;em>歐好棒，三點了&lt;/em>&lt;/p>
 &lt;/blockquote>
+&lt;ul>
+&lt;li>&lt;a href="https://dwye.dev/img/3am.jpg">歐好棒，三點了&lt;/a>&lt;/li>
+&lt;/ul>
 &lt;p>我把兩個條件並列，就會變成 or 關係，任一個條件成立（push on master branch 或是每天的半夜三點），都會 trigger 這個 workflow，有了 CD 是不是很方便呢？&lt;/p>
 &lt;p>一個需要注意的是，如果你設定的 interval 太短，會自動被拉長到每五分鐘執行一次。&lt;/p>
 &lt;h2 id="預覽未來文章">預覽未來文章&lt;/h2>
