@@ -1,4 +1,69 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 22 Dec 2021 20:41:23 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>在 GitHub Action 優化 Node.js App 的環境建置</title><link>https://dwye.dev/post/github-action-npm-cache/</link><pubDate>Wed, 22 Dec 2021 20:41:23 +0800</pubDate><guid>https://dwye.dev/post/github-action-npm-cache/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Fri, 31 Dec 2021 15:01:56 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>聊聊 SQUID Token（魷魚遊戲幣）詐騙事件</title><link>https://dwye.dev/post/squid-token/</link><pubDate>Fri, 31 Dec 2021 15:01:56 +0800</pubDate><guid>https://dwye.dev/post/squid-token/</guid><description>
+&lt;p>&lt;img src="https://dwye.dev/img/SQUID/game2.jpg" alt="SQUID Token Website">&lt;/p>
+&lt;p>這兩年（2020，2021）加密貨幣市值大漲，馬斯克之類的大企業家也開始關注加密貨幣發展。不過也發生了許多相關的詐騙案件，也讓外行人感到害怕，甚至會覺得加密貨幣是危險的，隨時會市值歸零。然而，雖然詐騙盛行，但加密貨幣本身只是一種技術，就像網路詐騙一樣，並不是整個網路都是詐騙，也不是所有加密貨幣都是詐騙。&lt;/p>
+&lt;p>但也有是詐騙的加密貨幣。&lt;br>
+剛好最近和朋友聊到了 SQUID Token（魷魚遊戲幣，或是應該叫魷魚遊戲代幣，下稱 SQUID），這個代幣跟著《魷魚遊戲》一起爆紅，從 2021 年 10 月 20 日開始預售後秒殺，接著價格高速暴漲幾百倍，然後又在 2021 年 11 月 1 日高速歸零。&lt;/p>
+&lt;blockquote class="twitter-tweet">&lt;p lang="en" dir="ltr">Crypto shit coin rug pull &lt;a href="https://twitter.com/hashtag/SquidGameToken?src=hash&amp;amp;ref_src=twsrc%5Etfw">#SquidGameToken&lt;/a> LIVE! &lt;a href="https://twitter.com/hashtag/shib?src=hash&amp;amp;ref_src=twsrc%5Etfw">#shib&lt;/a> is next&lt;a href="https://twitter.com/search?q=%24squid&amp;amp;src=ctag&amp;amp;ref_src=twsrc%5Etfw">$squid&lt;/a> &lt;a href="https://t.co/mdauJNfHvb">pic.twitter.com/mdauJNfHvb&lt;/a>&lt;/p>&amp;mdash; SimonZ (@SimonZawa) &lt;a href="https://twitter.com/SimonZawa/status/1455107386583232513?ref_src=twsrc%5Etfw">November 1, 2021&lt;/a>&lt;/blockquote> &lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script>
+&lt;blockquote>
+&lt;p>Owww! It went to zero! Eeeooowwwwwww!&lt;/p>
+&lt;/blockquote>
+&lt;p>他問我其他加密貨幣會不會也有這種風險，正好我其實對這件事的始末也沒有很了解，就趁機來研究一下這個 2021 下半年最有名的加密貨幣詐騙案。&lt;/p>
+&lt;h2 id="squid-token-是什麼">SQUID Token 是什麼？&lt;/h2>
+&lt;p>魷魚遊戲幣，或著我覺得應該叫「代幣」比較合適，因為他並不是某個區塊鏈的原生貨幣（像是比特幣 / 以太幣 / Solana / BNB 等都是原生貨幣），而只是發行在幣安鏈（BSC）上的一個代幣（Token）。&lt;/p>
+&lt;p>這個代幣的功用，就是作為進入開發商 squidgame.cash 所開發的 Squid Game 的入場門票。就像是去湯姆熊需要換代幣才能玩他們的機台一樣，SQUID 就是作為 Squid Game 遊玩時所需要的代幣：&lt;/p>
+&lt;p>&lt;img src="https://dwye.dev/img/SQUID/game.jpg" alt="SQUID GameFi">&lt;/p>
+&lt;p>不過因為還在草創期，這個代幣並沒有在一些知名的大型交易所發行，而是在所謂的去中心化交易所上架。&lt;/p>
+&lt;h3 id="去中心化交易所dex">去中心化交易所（DEX）&lt;/h3>
+&lt;p>也就是 DeFi 的應用之一，純提供平台，讓用戶們可以自行創造市場，並藉由智能合約進行交易。由大量用戶提供幣（流動性）作為市場（流動性池），平台收取交易手續費，分潤給提供幣的用戶（流動性挖礦）。&lt;/p>
+&lt;p>和中心化交易所相比，去中心化交易所是更自由的世界，上架一個幣並不需要太多的審核，也因此很多剛起步的小幣也都會從這開始。當然，更自由的代價也是更加危險，若買來的幣有問題，交易所不需要也不會負責。&lt;/p>
+&lt;h2 id="squid-token-的特殊設計">SQUID Token 的特殊設計&lt;/h2>
+&lt;h3 id="反傾銷設計">反傾銷設計&lt;/h3>
+&lt;p>一般新聞都會寫，SQUID 的智能合約有著所謂的「反傾銷設計」：也就需要滿足特定條件才能交易賣出。這個條件如下：&lt;/p>
+&lt;ul>
+&lt;li>達到特定的解鎖日&lt;/li>
+&lt;li>持有另一個 Marble Token。賣出越多 SQUID，所需要的 Marble 越多，而且每次賣出都會銷毀 Marble。&lt;/li>
+&lt;/ul>
+&lt;p>也就是對於一般人來說，基本上就是買了就賣不出去了。&lt;br>
+也因為項目方限制了 SQUID 的賣出，就導致沒有賣壓，而買入的人看到價格飛漲，當然是先買再說，怕沒搭到車，買壓遠大於賣壓的情況下，就造成了新聞中說的三天暴漲 700 倍的結果。&lt;/p>
+&lt;h3 id="自我升級機制">自我升級機制&lt;/h3>
+&lt;p>但一般來說，這種代幣的原始碼都是公開的，會在幣安鏈上被記錄。因此若有這種不能賣出的設計，一開始就會被幣安或是初期參與的人發現了。&lt;/p>
+&lt;p>其實原先 SQUID 並沒有此設計，真正寫在 SQUID Token 中的設計，反而是一個看似無害的「自我升級機制」，這個機制讓他們可以偷偷換掉原本智能合約裡面的原始碼，變成別的東西。&lt;/p>
+&lt;p>SQUID 開發者透過將 SQUID 自我升級引入「反傾銷設計」，防止其他人賣出。同時引入白名單，讓開發團隊可以免除於這個限制。他們可以不斷左手換右手，拉高幣價，讓其他人搶著買入。等到買入的單夠多了，開發者再透過短時間賣出等值於 250 萬美金的 SQUID，賺取一筆暴利，同時強大的瞬間賣壓也讓價格直接歸零（實際上是趨近於 0）。&lt;/p>
+&lt;p>SQUID 的開發者掌握了市場，其他人都只是待割的韭菜。&lt;/p>
+&lt;h2 id="本身就是個詐騙">本身就是個詐騙&lt;/h2>
+&lt;p>開發商 squidgame.cash 公布的團隊，看似來自許多知名大公司：&lt;/p>
+&lt;p>&lt;img src="https://dwye.dev/img/SQUID/member.jpg" alt="squidgame.cash member">&lt;/p>
+&lt;p>但後來慢慢有人發現，他們找不到這名單中任何一個人的資料。&lt;/p>
+&lt;p>而他們宣稱的合作對象也一個一個否認他們與這個項目的相關。&lt;/p>
+&lt;p>&lt;img src="https://dwye.dev/img/SQUID/partnership.jpg" alt="squidgame.cash partnership">&lt;/p>
+&lt;p>綜合以上線索，這個 SQUID Token 打從一開始，就是個詐騙。&lt;/p>
+&lt;p>只有一個人能獲勝，就像《魷魚遊戲》本身一樣，而那個人就是背後的開發者。&lt;/p>
+&lt;h2 id="其他的加密貨幣會不會也一夕歸零">其他的加密貨幣會不會也一夕歸零？&lt;/h2>
+&lt;p>既然已經知道 SQUID 本身就是一筆詐騙案了，從合約本身開始就有問題，而會有人上鉤也是因為買的人不知道自己到底買了什麼，也就是所謂的「FOMO 仔」，很怕自己沒跟到這波所以先進去再說，然後就被割韭菜了。&lt;/p>
+&lt;p>實際上大部分的加密貨幣都是算法上證實有效且安全的，如果真的害怕被小幣詐騙，還是盡量從大型中心化交易所買幣（像是幣安 / FTX 之類的），因為中心化交易所上架新幣是需要審核的，能夠通過審核的幣，雖然不一定會漲，但至少不會是詐騙。&lt;/p>
+&lt;p>最大的風險，就是有一天人們不認同某個加密貨幣了，所有人瘋狂拋售該貨幣，導致價格大跌。但即便這天到來了，打倒該貨幣的也是真正的市場機制，是每個人，而不是開發者說歸零他就會歸零的，如果到了貨幣歸零那天你還持有著大量的該貨幣，那可能真的是投資失誤了 XD。就像買股票一樣，花錢買一個幣之前，先花點時間研究總是個好選項。&lt;/p>
+&lt;p>實際上，真正的貨幣也是會有漲跌的，如果政府不當印鈔，或是貨幣失去了依靠的政府，那該貨幣也是會暴跌的，還記得&lt;a href="https://zh.wikipedia.org/wiki/%E8%88%8A%E8%87%BA%E5%B9%A3">舊台幣&lt;/a>嗎？&lt;/p>
+&lt;h2 id="參考資料">參考資料&lt;/h2>
+&lt;p>TechLead（一個國外的工程師 Youtuber）的講解十分詳細，這篇也大量參考他的解說：&lt;/p>
+&lt;div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+&lt;iframe src="https://www.youtube.com/embed/zkBQF9QJLHY" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video">&lt;/iframe>
+&lt;/div>
+&lt;h3 id="幣圈基礎知識">幣圈基礎知識&lt;/h3>
+&lt;ul>
+&lt;li>&lt;a href="https://genesisblockhk.com/zh/whats-a-token/">What&amp;rsquo;s a Token&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h3 id="squid-事件本身相關">SQUID 事件本身相關&lt;/h3>
+&lt;ul>
+&lt;li>&lt;a href="https://www.cryptoratecap.com/crypto-kol/squid-game-token-invest/">魷魚遊戲代幣暴漲 Squid Game Token - CryptoRateCap&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.ptt.cc/bbs/DigiCurrency/M.1635753579.A.B37.html">魷魚幣飆漲3天翻700倍 財長：交易有賺就得課稅 - PTT 討論&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://hypebeast.com/zh/2021/11/squid-game-cryptocurrency-collapses-scammers-make-off-with-two-million-usd-news">「SQUID 魷魚幣」開發商帶走約 $210 萬美金潛逃 - HYPEBEAST&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://news.tvbs.com.tw/world/1624321">魷魚遊戲同名虛擬幣是騙局？暴升再歸零變「水魚遊戲」&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h3 id="於-bsc-的位置">於 BSC 的位置&lt;/h3>
+&lt;ul>
+&lt;li>SQUID: &lt;a href="https://bscscan.com/token/0x87230146E138d3F296a9a77e497A2A83012e9Bc5">https://bscscan.com/token/0x87230146E138d3F296a9a77e497A2A83012e9Bc5&lt;/a>&lt;/li>
+&lt;li>Marble: &lt;a href="https://bscscan.com/token/0x9531c509a24CEEc710529645fc347341FF9F15EA">https://bscscan.com/token/0x9531c509a24CEEc710529645fc347341FF9F15EA&lt;/a>&lt;/li>
+&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>在 GitHub Action 優化 Node.js App 的環境建置</title><link>https://dwye.dev/post/github-action-npm-cache/</link><pubDate>Wed, 22 Dec 2021 20:41:23 +0800</pubDate><guid>https://dwye.dev/post/github-action-npm-cache/</guid><description>
 &lt;p>身為一位維護公司內部建置與發佈工具的工程師，建立方便又有效率的 CI/CD 工具來建置與測試產品，並且為產品的穩定性把關，一直是我們團隊的重要目標。不過我們對待自己的內部工具常常比產品來得隨便&amp;hellip;所以在我和主管聊過之後，決定慢慢幫我們的內部工具也來建立一些自動化的測試以及部署。&lt;/p>
 &lt;p>內部工具說穿了就是個 Node.js 的應用程式。身為 YAML 工程師的我當然是用自己最熟悉的 GitHub Action 來實作。&lt;/p>
 &lt;h2 id="從最簡單的版本開始">從最簡單的版本開始&lt;/h2>
