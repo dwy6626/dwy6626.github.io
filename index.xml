@@ -17,6 +17,8 @@
 &lt;p>但如果要查找某個 key 代表的 Node，單用 Linked List 只能達到 O(n) 的時間複雜度，因為要遍歷 List 去尋找 Node。&lt;/p>
 &lt;h3 id="linked-list-搭配-hash-map">Linked List 搭配 Hash Map&lt;/h3>
 &lt;p>上面提到的兩個資料結構相輔相成。兩個都使用，就能達到 O(1) 存取和 O(1) 維護 priority。&lt;/p>
+&lt;p>可以參考這個示意圖，get 的時候透過 hash map 找到 Node，並把該 Node 搬到 head 來維護 priority:&lt;/p>
+&lt;p>&lt;img src="https://dwye.dev/img/lru_get.jpg" alt="lru get">&lt;/p>
 &lt;h2 id="實作">實作&lt;/h2>
 &lt;p>先來定義 Linked List 裡面放的 Node：&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-Python" data-lang="Python">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Node&lt;/span>:
