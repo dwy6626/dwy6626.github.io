@@ -1,4 +1,199 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Fri, 31 Dec 2021 15:01:56 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>聊聊 SQUID Token（魷魚遊戲幣）詐騙事件</title><link>https://dwye.dev/post/squid-token/</link><pubDate>Fri, 31 Dec 2021 15:01:56 +0800</pubDate><guid>https://dwye.dev/post/squid-token/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 16 Feb 2022 18:41:25 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>Python 實作 LRU Cache (LeetCode 146)</title><link>https://dwye.dev/post/python-lru/</link><pubDate>Wed, 16 Feb 2022 18:41:25 +0800</pubDate><guid>https://dwye.dev/post/python-lru/</guid><description>
+&lt;h2 id="題目">題目&lt;/h2>
+&lt;p>LeetCode 146 的名稱就叫 &lt;a href="https://leetcode.com/problems/lru-cache/">LRU Cache&lt;/a>，算是教科書等級的題目，希望你可以實作一個 cache，在內部的 Cache Key 有著透過 LRU 演算法的淘汰機制（最久沒影使用的 Key 會優先淘汰）。&lt;/p>
+&lt;p>時間複雜度限制 get 和 set 都要 O(1)。&lt;/p>
+&lt;h2 id="思路">思路&lt;/h2>
+&lt;p>首先複習一下 LRU 的 get 和 set 要做的事情。為了實現 LRU，每個 key 必須要跟著一個 priority（優先度）。&lt;/p>
+&lt;ul>
+&lt;li>get 時要把該 key 的 priority 拉到最高，讓這個 key 在刪除時永遠是最後一個被考慮的。&lt;/li>
+&lt;li>put 時，要維護並檢查目前的 capacity（容量），若 capacity 不足，則需要把 priority 最低的 cache 刪除。&lt;/li>
+&lt;/ul>
+&lt;p>這兩件事情都要在 O(1) 內達成。&lt;/p>
+&lt;h3 id="hash-map-dictionary">Hash Map (Dictionary)&lt;/h3>
+&lt;p>Dictionary 是 Python 時做的 Hash map 並且天生防止了 Hash collision，又擁有 Hash Map O(1) 存取的特性，因此很適合拿來做 cache。&lt;/p>
+&lt;p>然而光是用一個 Hash Map 沒辦法 O(1) 找出 priority 最小的 key 並刪除。&lt;/p>
+&lt;h3 id="linked-list">Linked List&lt;/h3>
+&lt;p>Linked List 中的 Doubly Linked List 具有 O(1) insert / delete 的特性，可以透過讓 Node 的位置來表示優先度，每次 get 時，把該 Node 放到「第一個」，而每次 put 時，若 capacity 不足則移除「最後一個」Node 所代表的 Key，達到在 O(1) 時間內維護 priority。&lt;/p>
+&lt;p>但如果要查找某個 key 代表的 Node，單用 Linked List 只能達到 O(n) 的時間複雜度，因為要遍歷 List 去尋找 Node。&lt;/p>
+&lt;h3 id="linked-list-搭配-hash-map">Linked List 搭配 Hash Map&lt;/h3>
+&lt;p>上面提到的兩個資料結構相輔相成。兩個都使用，就能達到 O(1) 存取和 O(1) 維護 priority。&lt;/p>
+&lt;h2 id="實作">實作&lt;/h2>
+&lt;p>先來定義 Linked List 裡面放的 Node：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-Python" data-lang="Python">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Node&lt;/span>:
+&lt;span style="color:#66d9ef">def&lt;/span> __init__(self, key: int&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#66d9ef">None&lt;/span>, val: int&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#66d9ef">None&lt;/span>):
+self&lt;span style="color:#f92672">.&lt;/span>key &lt;span style="color:#f92672">=&lt;/span> key
+self&lt;span style="color:#f92672">.&lt;/span>val &lt;span style="color:#f92672">=&lt;/span> val
+self&lt;span style="color:#f92672">.&lt;/span>next &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">None&lt;/span>
+self&lt;span style="color:#f92672">.&lt;/span>prev &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">None&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>接著是 LRU Cache 的部分。&lt;br>
+在頭尾都使用 dummy node，來減少繁瑣的邊界條件處理，也算是 Linked List 常用的技巧了。&lt;br>
+有了 dummy node，原本我們的「第一個」Node，就是 head 的下一個。而「最後一個」Node，就是 tail 的上一個。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-Python" data-lang="Python">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">LRUCache&lt;/span>:
+&lt;span style="color:#66d9ef">def&lt;/span> __init__(self, capacity: int):
+self&lt;span style="color:#f92672">.&lt;/span>map &lt;span style="color:#f92672">=&lt;/span> {}
+self&lt;span style="color:#f92672">.&lt;/span>head &lt;span style="color:#f92672">=&lt;/span> Node()
+self&lt;span style="color:#f92672">.&lt;/span>tail &lt;span style="color:#f92672">=&lt;/span> Node()
+self&lt;span style="color:#f92672">.&lt;/span>capacity &lt;span style="color:#f92672">=&lt;/span> capacity
+&lt;span style="color:#75715e"># 別忘了把頭尾接起來&lt;/span>
+self&lt;span style="color:#f92672">.&lt;/span>head&lt;span style="color:#f92672">.&lt;/span>append(self&lt;span style="color:#f92672">.&lt;/span>tail)
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>這裡偷偷先使用了 &lt;code>append&lt;/code> 這個方法。他應該要是個可以幫我們把某個 Node 和另一個 Node 連在一起的 method，回到 Node Class 補上：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-Python" data-lang="Python">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Node&lt;/span>:
+&lt;span style="color:#f92672">...&lt;/span>
+&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">append&lt;/span>(self, other: &lt;span style="color:#e6db74">&amp;#39;Node&amp;#39;&lt;/span>) &lt;span style="color:#f92672">-&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">None&lt;/span>:
+self&lt;span style="color:#f92672">.&lt;/span>next &lt;span style="color:#f92672">=&lt;/span> other
+other&lt;span style="color:#f92672">.&lt;/span>prev &lt;span style="color:#f92672">=&lt;/span> self
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>接著來處理 LRU cache 的核心 method。從 get 先開始：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-Python" data-lang="Python">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">LRUCache&lt;/span>:
+&lt;span style="color:#f92672">...&lt;/span>
+&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">get&lt;/span>(self, key: int) &lt;span style="color:#f92672">-&amp;gt;&lt;/span> int:
+&lt;span style="color:#75715e"># cache miss&lt;/span>
+&lt;span style="color:#66d9ef">if&lt;/span> key &lt;span style="color:#f92672">not&lt;/span> &lt;span style="color:#f92672">in&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>map:
+&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>
+&lt;span style="color:#75715e"># cache hit，調整 priority&lt;/span>
+node &lt;span style="color:#f92672">=&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>map[key] &lt;span style="color:#75715e"># Hash map 的 O(1) 查找&lt;/span>
+node&lt;span style="color:#f92672">.&lt;/span>pull() &lt;span style="color:#75715e"># 又是一個新方法，可以想像成把這個 Node 拉出來 &lt;/span>
+node&lt;span style="color:#f92672">.&lt;/span>append(self&lt;span style="color:#f92672">.&lt;/span>head&lt;span style="color:#f92672">.&lt;/span>next) &lt;span style="color:#75715e"># 把這個 Node 拉到「第一個」，也就是把原本的第一個接在後面&lt;/span>
+self&lt;span style="color:#f92672">.&lt;/span>head&lt;span style="color:#f92672">.&lt;/span>append(node) &lt;span style="color:#75715e"># 然後接到 dummy head 後方&lt;/span>
+&lt;span style="color:#75715e"># 回傳&lt;/span>
+&lt;span style="color:#66d9ef">return&lt;/span> node&lt;span style="color:#f92672">.&lt;/span>val
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>這邊又偷偷用了一個新方法：&lt;code>pull&lt;/code>。他應該要是個可以讓我們把這個 Node「取出」原本的位置，把他原先前後的 Node 接起來：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-Python" data-lang="Python">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Node&lt;/span>:
+&lt;span style="color:#f92672">...&lt;/span>
+&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">pull&lt;/span>(self) &lt;span style="color:#f92672">-&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">None&lt;/span>:
+&lt;span style="color:#66d9ef">if&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>next:
+self&lt;span style="color:#f92672">.&lt;/span>next&lt;span style="color:#f92672">.&lt;/span>prev &lt;span style="color:#f92672">=&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>prev
+&lt;span style="color:#66d9ef">if&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>prev:
+self&lt;span style="color:#f92672">.&lt;/span>prev&lt;span style="color:#f92672">.&lt;/span>next &lt;span style="color:#f92672">=&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>next
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>到這邊已經完成一半了。&lt;br>
+接下來是加入 key 和刪除最少使用的 node 的部分：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-Python" data-lang="Python">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">LRUCache&lt;/span>:
+&lt;span style="color:#f92672">...&lt;/span>
+&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">put&lt;/span>(self, key: int, value: int) &lt;span style="color:#f92672">-&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">None&lt;/span>:
+&lt;span style="color:#75715e"># 如果已經有了，就不需要插入新的 Node，只需要更新值就好&lt;/span>
+&lt;span style="color:#66d9ef">if&lt;/span> key &lt;span style="color:#f92672">in&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>map:
+node &lt;span style="color:#f92672">=&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>map[key]
+node&lt;span style="color:#f92672">.&lt;/span>val &lt;span style="color:#f92672">=&lt;/span> value
+node&lt;span style="color:#f92672">.&lt;/span>pull()
+&lt;span style="color:#66d9ef">else&lt;/span>:
+&lt;span style="color:#75715e"># initialize 新的 Node:&lt;/span>
+self&lt;span style="color:#f92672">.&lt;/span>map[key] &lt;span style="color:#f92672">=&lt;/span> Node(key, value)
+&lt;span style="color:#66d9ef">if&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>capacity &lt;span style="color:#f92672">&amp;gt;&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>:
+self&lt;span style="color:#f92672">.&lt;/span>capacity &lt;span style="color:#f92672">-=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
+&lt;span style="color:#66d9ef">else&lt;/span>:
+&lt;span style="color:#75715e"># capacity 不夠，要刪除 LRU&lt;/span>
+discard &lt;span style="color:#f92672">=&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>tail&lt;span style="color:#f92672">.&lt;/span>prev &lt;span style="color:#75715e"># 因為 capacity &amp;gt; 1，一定是非 dummy node&lt;/span>
+discard&lt;span style="color:#f92672">.&lt;/span>pull() &lt;span style="color:#75715e"># 斷開連結！&lt;/span>
+&lt;span style="color:#66d9ef">del&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>map[discard&lt;span style="color:#f92672">.&lt;/span>key] &lt;span style="color:#75715e"># 在 Node Class 定義時記住的 key 派上用場了&lt;/span>
+&lt;span style="color:#66d9ef">del&lt;/span> discard
+&lt;span style="color:#75715e"># 當然，和 get 一樣，剛使用過/加入的 Node 也要放在「第一個」&lt;/span>
+node &lt;span style="color:#f92672">=&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>map[key]
+node&lt;span style="color:#f92672">.&lt;/span>append(self&lt;span style="color:#f92672">.&lt;/span>head&lt;span style="color:#f92672">.&lt;/span>next)
+self&lt;span style="color:#f92672">.&lt;/span>head&lt;span style="color:#f92672">.&lt;/span>append(node)
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="完整-code">完整 Code&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-Python" data-lang="Python">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Node&lt;/span>:
+&lt;span style="color:#66d9ef">def&lt;/span> __init__(self, key: int&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#66d9ef">None&lt;/span>, val: int&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#66d9ef">None&lt;/span>):
+self&lt;span style="color:#f92672">.&lt;/span>key &lt;span style="color:#f92672">=&lt;/span> key
+self&lt;span style="color:#f92672">.&lt;/span>val &lt;span style="color:#f92672">=&lt;/span> val
+self&lt;span style="color:#f92672">.&lt;/span>next &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">None&lt;/span>
+self&lt;span style="color:#f92672">.&lt;/span>prev &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">None&lt;/span>
+&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">append&lt;/span>(self, other: &lt;span style="color:#e6db74">&amp;#39;Node&amp;#39;&lt;/span>) &lt;span style="color:#f92672">-&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">None&lt;/span>:
+self&lt;span style="color:#f92672">.&lt;/span>next &lt;span style="color:#f92672">=&lt;/span> other
+other&lt;span style="color:#f92672">.&lt;/span>prev &lt;span style="color:#f92672">=&lt;/span> self
+&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">pull&lt;/span>(self) &lt;span style="color:#f92672">-&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">None&lt;/span>:
+&lt;span style="color:#66d9ef">if&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>next:
+self&lt;span style="color:#f92672">.&lt;/span>next&lt;span style="color:#f92672">.&lt;/span>prev &lt;span style="color:#f92672">=&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>prev
+&lt;span style="color:#66d9ef">if&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>prev:
+self&lt;span style="color:#f92672">.&lt;/span>prev&lt;span style="color:#f92672">.&lt;/span>next &lt;span style="color:#f92672">=&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>next
+&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">LRUCache&lt;/span>:
+&lt;span style="color:#66d9ef">def&lt;/span> __init__(self, capacity: int):
+self&lt;span style="color:#f92672">.&lt;/span>map &lt;span style="color:#f92672">=&lt;/span> {}
+self&lt;span style="color:#f92672">.&lt;/span>head &lt;span style="color:#f92672">=&lt;/span> Node()
+self&lt;span style="color:#f92672">.&lt;/span>tail &lt;span style="color:#f92672">=&lt;/span> Node()
+self&lt;span style="color:#f92672">.&lt;/span>capacity &lt;span style="color:#f92672">=&lt;/span> capacity
+&lt;span style="color:#75715e"># 別忘了把頭尾接起來&lt;/span>
+self&lt;span style="color:#f92672">.&lt;/span>head&lt;span style="color:#f92672">.&lt;/span>append(self&lt;span style="color:#f92672">.&lt;/span>tail)
+&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">get&lt;/span>(self, key: int) &lt;span style="color:#f92672">-&amp;gt;&lt;/span> int:
+&lt;span style="color:#75715e"># cache miss&lt;/span>
+&lt;span style="color:#66d9ef">if&lt;/span> key &lt;span style="color:#f92672">not&lt;/span> &lt;span style="color:#f92672">in&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>map:
+&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>
+&lt;span style="color:#75715e"># cache hit，調整 priority&lt;/span>
+node &lt;span style="color:#f92672">=&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>map[key] &lt;span style="color:#75715e"># Hash map 的 O(1) 查找&lt;/span>
+node&lt;span style="color:#f92672">.&lt;/span>pull() &lt;span style="color:#75715e"># 又是一個新方法，可以想像成把這個 Node 拉出來 &lt;/span>
+node&lt;span style="color:#f92672">.&lt;/span>append(self&lt;span style="color:#f92672">.&lt;/span>head&lt;span style="color:#f92672">.&lt;/span>next) &lt;span style="color:#75715e"># 把這個 Node 拉到「第一個」，也就是把原本的第一個接在後面&lt;/span>
+self&lt;span style="color:#f92672">.&lt;/span>head&lt;span style="color:#f92672">.&lt;/span>append(node) &lt;span style="color:#75715e"># 然後接到 dummy head 後方&lt;/span>
+&lt;span style="color:#75715e"># 回傳&lt;/span>
+&lt;span style="color:#66d9ef">return&lt;/span> node&lt;span style="color:#f92672">.&lt;/span>val
+&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">put&lt;/span>(self, key: int, value: int) &lt;span style="color:#f92672">-&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">None&lt;/span>:
+&lt;span style="color:#75715e"># 如果已經有了，就不需要插入新的 Node，只需要更新值就好&lt;/span>
+&lt;span style="color:#66d9ef">if&lt;/span> key &lt;span style="color:#f92672">in&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>map:
+node &lt;span style="color:#f92672">=&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>map[key]
+node&lt;span style="color:#f92672">.&lt;/span>val &lt;span style="color:#f92672">=&lt;/span> value
+node&lt;span style="color:#f92672">.&lt;/span>pull()
+&lt;span style="color:#66d9ef">else&lt;/span>:
+&lt;span style="color:#75715e"># initialize 新的 Node:&lt;/span>
+self&lt;span style="color:#f92672">.&lt;/span>map[key] &lt;span style="color:#f92672">=&lt;/span> Node(key, value)
+&lt;span style="color:#66d9ef">if&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>capacity &lt;span style="color:#f92672">&amp;gt;&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>:
+self&lt;span style="color:#f92672">.&lt;/span>capacity &lt;span style="color:#f92672">-=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
+&lt;span style="color:#66d9ef">else&lt;/span>:
+&lt;span style="color:#75715e"># capacity 不夠，要刪除 LRU&lt;/span>
+discard &lt;span style="color:#f92672">=&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>tail&lt;span style="color:#f92672">.&lt;/span>prev &lt;span style="color:#75715e"># 因為 capacity &amp;gt; 1，一定是非 dummy node&lt;/span>
+discard&lt;span style="color:#f92672">.&lt;/span>pull() &lt;span style="color:#75715e"># 斷開連結！&lt;/span>
+&lt;span style="color:#66d9ef">del&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>map[discard&lt;span style="color:#f92672">.&lt;/span>key] &lt;span style="color:#75715e"># 在 Node Class 定義時記住的 key 派上用場了&lt;/span>
+&lt;span style="color:#66d9ef">del&lt;/span> discard
+&lt;span style="color:#75715e"># 當然，和 get 一樣，剛使用過/加入的 Node 也要放在「第一個」&lt;/span>
+node &lt;span style="color:#f92672">=&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>map[key]
+node&lt;span style="color:#f92672">.&lt;/span>append(self&lt;span style="color:#f92672">.&lt;/span>head&lt;span style="color:#f92672">.&lt;/span>next)
+self&lt;span style="color:#f92672">.&lt;/span>head&lt;span style="color:#f92672">.&lt;/span>append(node)
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="其他解法">其他解法&lt;/h2>
+&lt;h3 id="ordereddict">OrderedDict&lt;/h3>
+&lt;p>對 Python 夠熟的人，也許會想到 &lt;code>collections&lt;/code> 中有個 &lt;code>OrderedDict&lt;/code>，key 會按照加入的順序排列，並提供了 &lt;code>move_to_end&lt;/code> 調整 key 順序，和 &lt;code>popitem&lt;/code> 來移除第一個 key。其實就是幫你把上面的方法包裝好了&amp;hellip;可以直接使用，雖然就失去了自己實作 LRU 的意義了（就像你用 Python List 實作 Stack 一樣，快但是沒有練習到）。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-Python" data-lang="Python">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">LRUCache&lt;/span>:
+&lt;span style="color:#66d9ef">def&lt;/span> __init__(self, capacity: int):
+self&lt;span style="color:#f92672">.&lt;/span>capacity &lt;span style="color:#f92672">=&lt;/span> capacity
+self&lt;span style="color:#f92672">.&lt;/span>map &lt;span style="color:#f92672">=&lt;/span> collections&lt;span style="color:#f92672">.&lt;/span>OrderedDict()
+&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">get&lt;/span>(self, key: int) &lt;span style="color:#f92672">-&amp;gt;&lt;/span> int:
+&lt;span style="color:#66d9ef">if&lt;/span> key &lt;span style="color:#f92672">not&lt;/span> &lt;span style="color:#f92672">in&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>map:
+&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>
+value &lt;span style="color:#f92672">=&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>map[key]
+self&lt;span style="color:#f92672">.&lt;/span>map&lt;span style="color:#f92672">.&lt;/span>move_to_end(key)
+&lt;span style="color:#66d9ef">return&lt;/span> value
+&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">put&lt;/span>(self, key: int, value: int) &lt;span style="color:#f92672">-&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">None&lt;/span>:
+&lt;span style="color:#66d9ef">if&lt;/span> key &lt;span style="color:#f92672">in&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>map:
+self&lt;span style="color:#f92672">.&lt;/span>map[key] &lt;span style="color:#f92672">=&lt;/span> value
+self&lt;span style="color:#f92672">.&lt;/span>map&lt;span style="color:#f92672">.&lt;/span>move_to_end(key)
+&lt;span style="color:#66d9ef">else&lt;/span>:
+self&lt;span style="color:#f92672">.&lt;/span>map[key] &lt;span style="color:#f92672">=&lt;/span> value
+&lt;span style="color:#66d9ef">if&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>capacity &lt;span style="color:#f92672">&amp;gt;&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>:
+self&lt;span style="color:#f92672">.&lt;/span>capacity &lt;span style="color:#f92672">-=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
+&lt;span style="color:#66d9ef">else&lt;/span>:
+self&lt;span style="color:#f92672">.&lt;/span>map&lt;span style="color:#f92672">.&lt;/span>popitem(last&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#66d9ef">False&lt;/span>) &lt;span style="color:#75715e"># 移除第一個&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="dictionary">Dictionary&lt;/h3>
+&lt;p>&lt;strong>Python 3.7 之後，Dictionary 保證了 key 會照著插入順序排列&lt;/strong>。可以透過 O(1) 的 delete 和 insert 來重置 key 在 Dictionary 的順序，讓第一項是 priority 最低的項目，並且在 capacity 不足時，刪除第一個就好：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-Python" data-lang="Python">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">LRUCache&lt;/span>:
+&lt;span style="color:#66d9ef">def&lt;/span> __init__(self, capacity: int):
+self&lt;span style="color:#f92672">.&lt;/span>capacity &lt;span style="color:#f92672">=&lt;/span> capacity
+self&lt;span style="color:#f92672">.&lt;/span>map &lt;span style="color:#f92672">=&lt;/span> {}
+&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">get&lt;/span>(self, key: int) &lt;span style="color:#f92672">-&amp;gt;&lt;/span> int:
+&lt;span style="color:#66d9ef">if&lt;/span> key &lt;span style="color:#f92672">not&lt;/span> &lt;span style="color:#f92672">in&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>map:
+&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>
+value &lt;span style="color:#f92672">=&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>map[key]
+&lt;span style="color:#66d9ef">del&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>map[key]
+self&lt;span style="color:#f92672">.&lt;/span>map[key] &lt;span style="color:#f92672">=&lt;/span> value
+&lt;span style="color:#66d9ef">return&lt;/span> value
+&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">put&lt;/span>(self, key: int, value: int) &lt;span style="color:#f92672">-&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">None&lt;/span>:
+&lt;span style="color:#66d9ef">if&lt;/span> key &lt;span style="color:#f92672">in&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>map:
+&lt;span style="color:#66d9ef">del&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>map[key]
+self&lt;span style="color:#f92672">.&lt;/span>map[key] &lt;span style="color:#f92672">=&lt;/span> value
+&lt;span style="color:#66d9ef">else&lt;/span>:
+self&lt;span style="color:#f92672">.&lt;/span>map[key] &lt;span style="color:#f92672">=&lt;/span> value
+&lt;span style="color:#66d9ef">if&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>capacity &lt;span style="color:#f92672">&amp;gt;&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>:
+self&lt;span style="color:#f92672">.&lt;/span>capacity &lt;span style="color:#f92672">-=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
+&lt;span style="color:#66d9ef">else&lt;/span>:
+item_view &lt;span style="color:#f92672">=&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>map&lt;span style="color:#f92672">.&lt;/span>items()
+iterator &lt;span style="color:#f92672">=&lt;/span> iter(item_view)
+key, _ &lt;span style="color:#f92672">=&lt;/span> next(iterator)
+&lt;span style="color:#66d9ef">del&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>map[key]
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>面試這樣寫可以證明你真的很熟 Python，但大概不容易給過吧 XD&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>聊聊 SQUID Token（魷魚遊戲幣）詐騙事件</title><link>https://dwye.dev/post/squid-token/</link><pubDate>Fri, 31 Dec 2021 15:01:56 +0800</pubDate><guid>https://dwye.dev/post/squid-token/</guid><description>
 &lt;p>&lt;img src="https://dwye.dev/img/SQUID/game2.jpg" alt="SQUID Token Website">&lt;/p>
 &lt;p>這兩年（2020，2021）加密貨幣市值大漲，馬斯克之類的大企業家也開始關注加密貨幣發展。不過也發生了許多相關的詐騙案件，也讓外行人感到害怕，甚至會覺得加密貨幣是危險的，隨時會市值歸零。然而，雖然詐騙盛行，但加密貨幣本身只是一種技術，就像網路詐騙一樣，並不是整個網路都是詐騙，也不是所有加密貨幣都是詐騙。&lt;/p>
 &lt;p>但也有是詐騙的加密貨幣。&lt;br>

@@ -145,6 +145,45 @@ Algorithm
 <div class=content>
 <article>
 <header>
+<h2><a href=https://dwye.dev/post/python-lru/>Python 實作 LRU Cache (LeetCode 146)</a></h2>
+<ul class=post-meta>
+<li>
+<i class="fa fa-calendar fa-fw"></i>
+<span>
+<time>Feb 16, 2022</time>
+</span>
+</li>
+</ul>
+<ul class=post-meta>
+<a href=https://dwye.dev/topics/%E6%8A%80%E8%A1%93%E8%A8%98%E9%8C%84>
+<li>
+<i class="fas fa-folder fa-fw"></i>
+<span>技術記錄</span>
+</li>
+</a>
+<a href=https://dwye.dev/tags/algorithm>
+<li>
+<i class="fas fa-tag fa-fw"></i>
+<span>Algorithm</span>
+</li>
+</a>
+<a href=https://dwye.dev/tags/python>
+<li>
+<i class="fas fa-tag fa-fw"></i>
+<span>Python</span>
+</li>
+</a>
+</ul>
+</header>
+<p>
+題目 LeetCode 146 的名稱就叫 LRU Cache，算是教科書等級的題目，希望你可以實作一個 cache，在內部的 Cache Key 有著透過 LRU 演算法的淘汰機制（最久沒影使用的 Key 會優先淘汰）。 時間複雜度限制 get 和 set 都要 O(1)。 思路 首先複習一下 LRU 的 get 和 set 要做的事情。為了實現 LRU，每個 key 必須要跟著一個 priority（優先度）。 get 時要把該 key 的 priority 拉到最高，讓這個 key 在刪除時永遠是最後一個被考慮的。 put 時，要維護並檢查目前的 capacity（容量），若 capacity 不足，則需要把 priority 最低的 cache 刪除。 這兩件事情都要在 O(1) 內達成。 Hash Map (Dictionary) Dictionary 是 Python 時做的 Hash map 並且天生防止
+</p>
+<footer>
+<a href=https://dwye.dev/post/python-lru/>繼續閱讀<i class="fa fa-angle-double-right fa-fw"></i></a>
+</footer>
+</article>
+<article>
+<header>
 <h2><a href=https://dwye.dev/post/python-fibonacci-5/>Python 費氏數列解法（五）：不同解法的執行時間比較</a></h2>
 <ul class=post-meta>
 <li>
@@ -337,56 +376,6 @@ Algorithm
 </p>
 <footer>
 <a href=https://dwye.dev/post/python-fibonacci-3/>繼續閱讀<i class="fa fa-angle-double-right fa-fw"></i></a>
-</footer>
-</article>
-<article>
-<header>
-<h2><a href=https://dwye.dev/post/python-fibonacci-2/>Python 費氏數列解法（二）：矩陣解</a></h2>
-<ul class=post-meta>
-<li>
-<i class="fa fa-calendar fa-fw"></i>
-<span>
-<time>Mar 31, 2021</time>
-</span>
-</li>
-</ul>
-<ul class=post-meta>
-<a href=https://dwye.dev/topics/%E6%8A%80%E8%A1%93%E8%A8%98%E9%8C%84>
-<li>
-<i class="fas fa-folder fa-fw"></i>
-<span>技術記錄</span>
-</li>
-</a>
-<a href=https://dwye.dev/tags/algorithm>
-<li>
-<i class="fas fa-tag fa-fw"></i>
-<span>Algorithm</span>
-</li>
-</a>
-<a href=https://dwye.dev/tags/python>
-<li>
-<i class="fas fa-tag fa-fw"></i>
-<span>Python</span>
-</li>
-</a>
-<a href=https://dwye.dev/tags/%E8%B2%BB%E6%B0%8F%E6%95%B8%E5%88%97>
-<li>
-<i class="fas fa-tag fa-fw"></i>
-<span>費氏數列</span>
-</li>
-</a>
-</ul>
-</header>
-<p>
-<p>在<a href=https://dwye.dev/post/python-fibonacci>上篇</a>我們討論了費氏數列的各種基本解法。</p>
-<p>原本我也以為 O(n) 的迭代解就已經是標準解法了，直到被大神朋友指正：</p>
-<blockquote>
-<p>問費氏數列應該是想聽 $O(\lg n)$ 解法吧？</p>
-</blockquote>
-<p>查了一下還真的有，<a href=https://medium.com/fcamels-notes/%E8%B2%BB%E6%B0%8F%E6%95%B8%E5%88%97-o-logn-%E7%9A%84%E8%A7%A3%E6%B3%95-e36067e57baa>這篇文章</a>寫得蠻完整的，這篇會參考該篇文章來撰寫，但會用我自己的話以及 Python 寫出來。</p>
-</p>
-<footer>
-<a href=https://dwye.dev/post/python-fibonacci-2/>繼續閱讀<i class="fa fa-angle-double-right fa-fw"></i></a>
 </footer>
 </article>
 <div class="pagination mobile">
