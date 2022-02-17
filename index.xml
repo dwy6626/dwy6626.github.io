@@ -10,7 +10,7 @@
 &lt;/ul>
 &lt;p>這兩件事情都要在 O(1) 內達成。&lt;/p>
 &lt;h3 id="hash-map-dictionary">Hash Map (Dictionary)&lt;/h3>
-&lt;p>Dictionary 是 Python 時做的 Hash map 並且天生防止了 Hash collision，又擁有 Hash Map O(1) 存取的特性，因此很適合拿來做 cache。&lt;/p>
+&lt;p>Dictionary 是 Python 實作的 Hash map，並且天生防止了 Hash collision，又擁有 Hash Map O(1) 存取的特性，因此很適合拿來做 cache。&lt;/p>
 &lt;p>然而光是用一個 Hash Map 沒辦法 O(1) 找出 priority 最小的 key 並刪除。&lt;/p>
 &lt;h3 id="linked-list">Linked List&lt;/h3>
 &lt;p>Linked List 中的 Doubly Linked List 具有 O(1) insert / delete 的特性，可以透過讓 Node 的位置來表示優先度，每次 get 時，把該 Node 放到「第一個」，而每次 put 時，若 capacity 不足則移除「最後一個」Node 所代表的 Key，達到在 O(1) 時間內維護 priority。&lt;/p>
