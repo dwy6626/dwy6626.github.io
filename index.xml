@@ -5410,4 +5410,36 @@ $$&lt;/p>
 　　不如問問自己，我想要的是什麼？&lt;br>
 　　台大在綜合評比下一定是最優秀的，不過在個別領域上前幾名的大學卻各有勝負，例如清大理學院、交大資工、陽明生科等等也都是數一數二的，但它們在台大的對手都掛著台大的光環，所以這些科系在台大的分數就隨著潮流一直被衝高。只是我們不能只因為前幾名的順序就評斷哪個好、哪個壞。講句實在話，這些大學、這些科系都算很好了，若不是追求頂尖，又何必斤斤計較？更何況這些不是台大的學校也常培育出不輸台大的學生，說不定你我就會是那個人，那刁鑽於這細細的錄取分數上就顯得更沒有意義了。&lt;br>
 　　套一句陸董說的話，大學不是人生的「終點站」，只是個「中點站」，重要的是我們在社會上的表現，人一生的成敗總是在入棺之後才能評斷的，就像希特勒在發動第二次世界大戰之前，也曾經是當時世界上令人崇拜的領導人，也有像林書豪那樣念了全球頂尖的哈佛大學卻出來打籃球在球壇上嶄露身手的人。擺在我們面前的是許多條路，條條大道都能抵達羅馬，只要我們能清楚地知道方向並抱著決心走下去。&lt;br>
-　　最後再問一次自己，進台大重要嗎？&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item></channel></rss>
+　　最後再問一次自己，進台大重要嗎？&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>VB.NET 之物件陣列</title><link>https://dwye.dev/post/vb-net-object-array/</link><pubDate>Mon, 06 Jun 2011 18:41:25 +0800</pubDate><guid>https://dwye.dev/post/vb-net-object-array/</guid><description>
+&lt;p>如果有人同時用過 VB6 跟 VB2008（或更新版的 VB），必然會發現其中有許多的差別，在此不一一列舉，不過我想當有人要寫一個踩地雷的程式時，沒有了物件陣列或多或少會帶來一些的不方便。因此筆者在研究了一段時間之後，找出了 VB.NET 中物件陣列的使用方法：它必須要直接使用 &lt;code>Dim&lt;/code> 宣告！&lt;/p>
+&lt;p>以下皆以 VB2008 做為示範。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-vb" data-lang="vb">&lt;span style="color:#66d9ef">Dim&lt;/span> btn(9,9) &lt;span style="color:#f92672">As&lt;/span> Button
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>如此的直觀。&lt;/p>
+&lt;p>不過在程式碼中打上了這一句之後，點下開始偵錯，卻會發現什麼都看不到，原因為何？因為現在我們只是把它們「宣告」出來，但我們還要把它們「建立」成一個真正的物件，並且「擺上」表單。&lt;/p>
+&lt;p>選擇能在一打開程式就會發生的 &lt;code>Form1_Load&lt;/code>，利用巢狀迴圈一個一個跑。&lt;/p>
+&lt;p>有人可能會問，為什麼不在一開始宣告物件陣列時就把「&lt;code>New&lt;/code>」加進去呢？因為若如此做，VB2008 便會跑出一條可愛的藍色蚯蚓，告訴你「不可以使用 &lt;code>New&lt;/code> 宣告陣列」。&lt;/p>
+&lt;p>接下來再把按鈕「擺上」表單吧，一樣要擺在巢狀迴圈裡面。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-vb" data-lang="vb">&lt;span style="color:#66d9ef">Me&lt;/span>.Controls.Add(btn(i, j))
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>記得把這行放在「&lt;code>btn(i, j) = New Button&lt;/code>」下面，不然因為程式碼是由上往下跑的，當程式要「擺上」按鈕的時候會發現這個按鈕並沒有被「建立」出來，結果就等於──沒有「擺上」。&lt;/p>
+&lt;p>這時若有人禁不起誘惑點了開始偵錯，便會發現一個殘酷的事實：所有的按鈕都疊在一起，都長的一模一樣，好像只有一個按鈕似的，而且啊，還呈現一種很噁心的長條形狀！聰明如我們，腦中應該立刻浮現一件事：我們要去調整物件屬性，在檢視工具設計那邊找了半天，剛剛宣告的按鈕一個都找不到，要調屬性？別鬧了！既然我們是用程式碼把它們宣告出來的，調整屬性也要從程式碼去調整！不知道諸位是否還記得在 VB 社課中講師一直強調的「&lt;code>物件名稱.物件屬性=屬性值&lt;/code>」？&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-vb" data-lang="vb">btn(i, j).Size &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">New&lt;/span> Size(30, 30)
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>記得要打在「&lt;code>btn(i, j) = New Button&lt;/code>」這行後面，因為我們要先把物件「建立」起來它們才能擁有屬性，其他屬性的調整以此類推&amp;hellip;&amp;hellip;我相信等到大家打完全部的屬性，手都打到斷掉了。有個陳述式叫「&lt;code>With&lt;/code>」，是專門用來調整一大串物件屬性的：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-vb" data-lang="vb">&lt;span style="color:#66d9ef">With&lt;/span> btn(i, j)
+.Left &lt;span style="color:#f92672">=&lt;/span> i &lt;span style="color:#f92672">*&lt;/span> 30 &lt;span style="color:#f92672">+&lt;/span> 20
+.Top &lt;span style="color:#f92672">=&lt;/span> j &lt;span style="color:#f92672">*&lt;/span> 30 &lt;span style="color:#f92672">+&lt;/span> 20
+.Size &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">New&lt;/span> Size(30, 30)
+&lt;span style="color:#66d9ef">End&lt;/span> &lt;span style="color:#66d9ef">With&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>使用方法不言而喻。&lt;/p>
+&lt;p>再來進行偵錯，就會發現你的按鈕一個一個立正站好排在那兒等你了。&lt;/p>
+&lt;p>談完了物件跟屬性，事件呢？我們得幫這些按鈕新增一些事件讓它們有些功用，可是不免又會碰到一些麻煩：如何去新增？上面的類別名稱根本找不到我們剛鋼宣告的「btn」啊！程式碼萬能，沒有程式碼萬萬不能，萬能的程式碼又派上用場了！&lt;/p>
+&lt;p>首先，再宣告一個按鈕：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-vb" data-lang="vb">&lt;span style="color:#66d9ef">WithEvents&lt;/span> btnEvent &lt;span style="color:#f92672">As&lt;/span> Button
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>使用「&lt;code>WithEvents&lt;/code>」宣告，這樣宣告出來的按鈕就會直接被配置有原本按鈕該有的事件，跟「&lt;code>New&lt;/code>」一樣，它是不能拿來宣告陣列的。如此做之後，我們就可以在類別名稱那裡找到「&lt;code>btnEvent&lt;/code>」這個按鈕，也就可以建立一個 &lt;code>btnEvent.MouseClick&lt;/code> 事件了。&lt;/p>
+&lt;p>接下來我們就只差一個工作，這是一個筆者認為非常厲害的步驟，就是把這個沒有事件的按鈕陣列在按下按鈕時「導向」&lt;code>btnEvent.MouseClick&lt;/code> 這個事件&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-vb" data-lang="vb">&lt;span style="color:#66d9ef">AddHandler&lt;/span> btn(i, j).MouseClick, &lt;span style="color:#f92672">AddressOf&lt;/span> btnEvent_MouseClick
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>大致上我們可以將這行解釋為「&lt;code>AddHandler&lt;/code> 被引導之事件, &lt;code>AddressOf&lt;/code> 目的地」。&lt;/p>
+&lt;p>這樣，當我們一按下物件陣列 &lt;code>btn&lt;/code> 中的任一按鈕，就能引發 &lt;code>btnEvent.MouseClick&lt;/code> 這個事件中的程式碼了。&lt;/p>
+&lt;p>剩下就回到大家熟悉的部分了，如何把這東西變成一個踩地雷程式就靠你們自己囉，在此祝大家和 VB.NET 相處愉快吧！&lt;/p>
+&lt;hr>
+&lt;p>（原文刊載於師大附中電算社 32、33 屆社刊）&lt;/p>
+&lt;p>更多：https://github.com/dwy6626/VB-Handouts&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item></channel></rss>

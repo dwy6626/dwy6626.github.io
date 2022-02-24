@@ -4,19 +4,19 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="
   
-      台大，既然能擁有著台灣第一學府的名號，也必定有它的本事。台大有著自由開放的學風、豐富的學習資源、許多厲害的教授、強大的同伴兼競爭對手&mldr;&mldr;.等等。但凡是有正面的誇獎，就會有負面批評：在企業界中最受歡迎的學生是成大畢業的，而不是台大，為什麼呢？有人說，台大學生太過高傲，仗勢著自己的高學歷，就要企業給他們更好的待遇，相較於成大學生而言，成大校友形成了一個堅強的體系，校內教授也積極努力的給學生學習資源，因此成大出來的學生雖然比較被動，卻也比較易於「駕馭」，有著一種願意從基層打
+      如果有人同時用過 VB6 跟 VB2008（或更新版的 VB），必然會發現其中有許多的差別，在此不一一列舉，不過我想當有人要寫一個踩地雷的程式時，沒有了物件陣列或多或少會帶來一些的不方便。因此筆者在研究了一段時間之後，找出了 VB.NET 中物件陣列的使用方法：它必須要直接使用 Dim 宣告！
     ">
 <meta name=generator content="Hugo 0.86.1">
-<meta property="og:title" content="進台大重要嗎">
-<meta name=twitter:title content="進台大重要嗎">
-<meta property="og:url" content="https://dwye.dev/post/20120219-to-ntu/">
+<meta property="og:title" content="VB.NET 之物件陣列">
+<meta name=twitter:title content="VB.NET 之物件陣列">
+<meta property="og:url" content="https://dwye.dev/post/vb-net-object-array/">
 <meta name=twitter:card content="summary">
 <meta name=twitter:site content="dw's 小站">
 <meta name=twitter:creator content="De-Wei Ye">
-<meta name=twitter:description content="台大，既然能擁有著台灣第一學府的名號，也必定有它的本事。台大有著自由開放的學風、豐富的學習資源、許多厲害的教授、強大的同伴兼競爭對手&mldr;&mldr;.等等。但凡是有正面的誇獎，就會有負面批評：在企業界中最受歡迎的學生是成大畢業的，而不是台大，為什麼呢？有人說，台大學生太過高傲，仗勢著自己的高學歷，就要企業給他們更好的待遇，相較於成大學生而言，成大校友形成了一個堅強的體系，校內教授也積極努力的給學生學習資源，因此成大出來的學生雖然比較被動，卻也比較易於「駕馭」，有著一種願意從基層打">
+<meta name=twitter:description content="如果有人同時用過 VB6 跟 VB2008（或更新版的 VB），必然會發現其中有許多的差別，在此不一一列舉，不過我想當有人要寫一個踩地雷的程式時，沒有了物件陣列或多或少會帶來一些的不方便。因此筆者在研究了一段時間之後，找出了 VB.NET 中物件陣列的使用方法：它必須要直接使用 Dim 宣告！">
 <link rel=preconnect href=https://s.ytimg.com>
 <link rel=preconnect href=https://i.imgur.com>
-<title>進台大重要嗎 &#183; dw's 小站</title>
+<title>VB.NET 之物件陣列 &#183; dw's 小站</title>
 <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.5/pure-min.css media=screen>
 <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.5/grids-responsive-min.css media=screen>
 <link rel=stylesheet href=https://dwye.dev/css/side-menu.css media=screen>
@@ -129,7 +129,7 @@ Icons <a href=https://fontawesome.com rel="external noopener" target=_blank>Font
 <div id=main>
 <div class=header>
 <h1>
-進台大重要嗎
+VB.NET 之物件陣列
 </h1>
 <h2>
 </h2>
@@ -142,7 +142,7 @@ Icons <a href=https://fontawesome.com rel="external noopener" target=_blank>Font
 <aside>
 <summary>目錄</summary>
 <div class=toc-item>
-<p><a rel=tag href=#>進台大重要嗎</a></p>
+<p><a rel=tag href=#>VB.NET 之物件陣列</a></p>
 <nav id=TableOfContents></nav>
 </div>
 </aside>
@@ -154,21 +154,21 @@ Icons <a href=https://fontawesome.com rel="external noopener" target=_blank>Font
 <li>
 <i class="fa fa-calendar fa-fw"></i>
 <span>
-<time>Feb 19, 2012</time>
+<time>Jun 06, 2011</time>
 </span>
 </li>
 </ul>
 <ul class=post-meta>
-<a href=https://dwye.dev/topics/%E5%80%8B%E4%BA%BA%E6%97%A5%E8%AA%8C>
+<a href=https://dwye.dev/topics/%E6%8A%80%E8%A1%93%E8%A8%98%E9%8C%84>
 <li>
 <i class="fas fa-folder fa-fw"></i>
-<span>個人日誌</span>
+<span>技術記錄</span>
 </li>
 </a>
-<a href=https://dwye.dev/tags/%E5%AD%B8%E7%BF%92%E5%BF%83%E5%BE%97>
+<a href=https://dwye.dev/tags/visual-basic>
 <li>
 <i class="fas fa-tag fa-fw"></i>
-<span>學習心得</span>
+<span>Visual Basic</span>
 </li>
 </a>
 </ul>
@@ -184,15 +184,38 @@ Icons <a href=https://fontawesome.com rel="external noopener" target=_blank>Font
 </aside>
 </div>
 </div>
-<p>　　台大，既然能擁有著台灣第一學府的名號，也必定有它的本事。台大有著自由開放的學風、豐富的學習資源、許多厲害的教授、強大的同伴兼競爭對手&mldr;&mldr;.等等。但凡是有正面的誇獎，就會有負面批評：在企業界中最受歡迎的學生是成大畢業的，而不是台大，為什麼呢？有人說，台大學生太過高傲，仗勢著自己的高學歷，就要企業給他們更好的待遇，相較於成大學生而言，成大校友形成了一個堅強的體系，校內教授也積極努力的給學生學習資源，因此成大出來的學生雖然比較被動，卻也比較易於「駕馭」，有著一種願意從基層打拼的感覺。也難免成大的學生在企業界占盡優勢。<br>
-　　但其實這只是學校的走向問題：成大很明顯是一所為企業界培育人才的學校，清大交大也有這種走向。然而台大卻是往台灣的學術中心發展，台大培育出的學生不一定是為企業界量身打造的，不過不能否認的是他們在學術領域的表現，尤其是在醫學領域台大明顯是最優秀的。台大擔當著讓台灣減少對國外的依賴，讓台灣在學術領域走出自己的一片天的重要角色。說實在的，台大培養的主要不是企業員工，而是研究人才。<br>
-　　那麼就回到根本的問題，進台大重要嗎？<br>
-　　身為一個北部人，北部的第一志願非台大莫屬，很少人願意到南部念成大，難免是因為已經習慣在北部的生活，要離鄉背井讀書不容易，這現象又以台北最為嚴重。台北，中華民國現在的首都，也是全台灣工商最發達的國際城市，上層階級的有錢人大多聚集在此，也造成了台灣南北發展不均的現象。這些社會中較上層的人多半擁有較好的資源，能給小孩教好的教學，再加上能夠待在上層階級的他們，家族的資質也不會太差，因此就形成了一種「壟斷」的現象：有錢人的孩子較聰明，聰明的他們又能再度成為有錢人。既然台北市聚集了這麼多聰明人，可想而知北部的第一志願台大的分數必然會被衝高。<br>
-　　但如果台大的分數只是「被衝高」的，進台大似乎就不顯的那麼重要了，只要願意離家讀書，在成大、清大、交大四年學成後翻身的可能性也不會遜於台大學生。但現實殘酷地，台大就是擁有著最多的資源，雖然自由開放的學風使台大不會太強迫於學生必須一步步走在教授安排的軌道上，不過相對而言，有心學習且有志向的學生在這所大學就更能取得優勢。<br>
-　　不如問問自己，我想要的是什麼？<br>
-　　台大在綜合評比下一定是最優秀的，不過在個別領域上前幾名的大學卻各有勝負，例如清大理學院、交大資工、陽明生科等等也都是數一數二的，但它們在台大的對手都掛著台大的光環，所以這些科系在台大的分數就隨著潮流一直被衝高。只是我們不能只因為前幾名的順序就評斷哪個好、哪個壞。講句實在話，這些大學、這些科系都算很好了，若不是追求頂尖，又何必斤斤計較？更何況這些不是台大的學校也常培育出不輸台大的學生，說不定你我就會是那個人，那刁鑽於這細細的錄取分數上就顯得更沒有意義了。<br>
-　　套一句陸董說的話，大學不是人生的「終點站」，只是個「中點站」，重要的是我們在社會上的表現，人一生的成敗總是在入棺之後才能評斷的，就像希特勒在發動第二次世界大戰之前，也曾經是當時世界上令人崇拜的領導人，也有像林書豪那樣念了全球頂尖的哈佛大學卻出來打籃球在球壇上嶄露身手的人。擺在我們面前的是許多條路，條條大道都能抵達羅馬，只要我們能清楚地知道方向並抱著決心走下去。<br>
-　　最後再問一次自己，進台大重要嗎？</p>
+<p>如果有人同時用過 VB6 跟 VB2008（或更新版的 VB），必然會發現其中有許多的差別，在此不一一列舉，不過我想當有人要寫一個踩地雷的程式時，沒有了物件陣列或多或少會帶來一些的不方便。因此筆者在研究了一段時間之後，找出了 VB.NET 中物件陣列的使用方法：它必須要直接使用 <code>Dim</code> 宣告！</p>
+<p>以下皆以 VB2008 做為示範。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-vb data-lang=vb><span style=color:#66d9ef>Dim</span> btn(9,9) <span style=color:#f92672>As</span> Button
+</code></pre></div><p>如此的直觀。</p>
+<p>不過在程式碼中打上了這一句之後，點下開始偵錯，卻會發現什麼都看不到，原因為何？因為現在我們只是把它們「宣告」出來，但我們還要把它們「建立」成一個真正的物件，並且「擺上」表單。</p>
+<p>選擇能在一打開程式就會發生的 <code>Form1_Load</code>，利用巢狀迴圈一個一個跑。</p>
+<p>有人可能會問，為什麼不在一開始宣告物件陣列時就把「<code>New</code>」加進去呢？因為若如此做，VB2008 便會跑出一條可愛的藍色蚯蚓，告訴你「不可以使用 <code>New</code> 宣告陣列」。</p>
+<p>接下來再把按鈕「擺上」表單吧，一樣要擺在巢狀迴圈裡面。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-vb data-lang=vb><span style=color:#66d9ef>Me</span>.Controls.Add(btn(i, j))
+</code></pre></div><p>記得把這行放在「<code>btn(i, j) = New Button</code>」下面，不然因為程式碼是由上往下跑的，當程式要「擺上」按鈕的時候會發現這個按鈕並沒有被「建立」出來，結果就等於──沒有「擺上」。</p>
+<p>這時若有人禁不起誘惑點了開始偵錯，便會發現一個殘酷的事實：所有的按鈕都疊在一起，都長的一模一樣，好像只有一個按鈕似的，而且啊，還呈現一種很噁心的長條形狀！聰明如我們，腦中應該立刻浮現一件事：我們要去調整物件屬性，在檢視工具設計那邊找了半天，剛剛宣告的按鈕一個都找不到，要調屬性？別鬧了！既然我們是用程式碼把它們宣告出來的，調整屬性也要從程式碼去調整！不知道諸位是否還記得在 VB 社課中講師一直強調的「<code>物件名稱.物件屬性=屬性值</code>」？</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-vb data-lang=vb>btn(i, j).Size <span style=color:#f92672>=</span> <span style=color:#66d9ef>New</span> Size(30, 30)
+</code></pre></div><p>記得要打在「<code>btn(i, j) = New Button</code>」這行後面，因為我們要先把物件「建立」起來它們才能擁有屬性，其他屬性的調整以此類推&mldr;&mldr;我相信等到大家打完全部的屬性，手都打到斷掉了。有個陳述式叫「<code>With</code>」，是專門用來調整一大串物件屬性的：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-vb data-lang=vb><span style=color:#66d9ef>With</span> btn(i, j)
+    .Left <span style=color:#f92672>=</span> i <span style=color:#f92672>*</span> 30 <span style=color:#f92672>+</span> 20
+    .Top <span style=color:#f92672>=</span> j <span style=color:#f92672>*</span> 30 <span style=color:#f92672>+</span> 20
+    .Size <span style=color:#f92672>=</span> <span style=color:#66d9ef>New</span> Size(30, 30)
+<span style=color:#66d9ef>End</span> <span style=color:#66d9ef>With</span>
+</code></pre></div><p>使用方法不言而喻。</p>
+<p>再來進行偵錯，就會發現你的按鈕一個一個立正站好排在那兒等你了。</p>
+<p>談完了物件跟屬性，事件呢？我們得幫這些按鈕新增一些事件讓它們有些功用，可是不免又會碰到一些麻煩：如何去新增？上面的類別名稱根本找不到我們剛鋼宣告的「btn」啊！程式碼萬能，沒有程式碼萬萬不能，萬能的程式碼又派上用場了！</p>
+<p>首先，再宣告一個按鈕：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-vb data-lang=vb><span style=color:#66d9ef>WithEvents</span> btnEvent <span style=color:#f92672>As</span> Button
+</code></pre></div><p>使用「<code>WithEvents</code>」宣告，這樣宣告出來的按鈕就會直接被配置有原本按鈕該有的事件，跟「<code>New</code>」一樣，它是不能拿來宣告陣列的。如此做之後，我們就可以在類別名稱那裡找到「<code>btnEvent</code>」這個按鈕，也就可以建立一個 <code>btnEvent.MouseClick</code> 事件了。</p>
+<p>接下來我們就只差一個工作，這是一個筆者認為非常厲害的步驟，就是把這個沒有事件的按鈕陣列在按下按鈕時「導向」<code>btnEvent.MouseClick</code> 這個事件</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-vb data-lang=vb><span style=color:#66d9ef>AddHandler</span> btn(i, j).MouseClick, <span style=color:#f92672>AddressOf</span> btnEvent_MouseClick
+</code></pre></div><p>大致上我們可以將這行解釋為「<code>AddHandler</code> 被引導之事件, <code>AddressOf</code> 目的地」。</p>
+<p>這樣，當我們一按下物件陣列 <code>btn</code> 中的任一按鈕，就能引發 <code>btnEvent.MouseClick</code> 這個事件中的程式碼了。</p>
+<p>剩下就回到大家熟悉的部分了，如何把這東西變成一個踩地雷程式就靠你們自己囉，在此祝大家和 VB.NET 相處愉快吧！</p>
+<hr>
+<p>（原文刊載於師大附中電算社 32、33 屆社刊）</p>
+<p>更多：https://github.com/dwy6626/VB-Handouts</p>
 <div class=copyright>
 本文原創部分採用
 <a rel=license href=http://creativecommons.org/licenses/by-nc-nd/4.0/>創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款</a>
@@ -200,23 +223,19 @@ Icons <a href=https://fontawesome.com rel="external noopener" target=_blank>Font
 </div>
 <div class="prev-next-post pure-g">
 <div class=pure-u-1-24 style=text-align:left>
-<a href=https://dwye.dev/post/vb-net-object-array/><i class="fa fa-chevron-left"></i></a>
 </div>
 <div class=pure-u-10-24>
-<nav class=prev>
-<a href=https://dwye.dev/post/vb-net-object-array/>VB.NET 之物件陣列</a>
-</nav>
 </div>
 <div class=pure-u-2-24>
 &nbsp;
 </div>
 <div class=pure-u-10-24>
 <nav class=next>
-<a href=https://dwye.dev/post/20120710_061600/>[高中科目心得] 自修一年生物的小心得</a>
+<a href=https://dwye.dev/post/20120219-to-ntu/>進台大重要嗎</a>
 </nav>
 </div>
 <div class=pure-u-1-24 style=text-align:right>
-<a href=https://dwye.dev/post/20120710_061600/><i class="fa fa-chevron-right"></i></a>
+<a href=https://dwye.dev/post/20120219-to-ntu/><i class="fa fa-chevron-right"></i></a>
 </div>
 </div>
 <div id=disqus_thread></div>

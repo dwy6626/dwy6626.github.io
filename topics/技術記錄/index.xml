@@ -57,4 +57,4 @@
 &lt;p>於是就找到了這個 issue:&lt;/p></description></item><item><title>在 Jupyter 使用虛擬 Python 環境</title><link>https://dwye.dev/post/venv-jupyter/</link><pubDate>Mon, 04 Mar 2019 23:41:25 +0800</pubDate><guid>https://dwye.dev/post/venv-jupyter/</guid><description>&lt;p>因為交作業要有特定套件，但調參數還是用 Jupyter 方便，所以就研究了下怎麼用特定的 Python 來執行 Jupyter Notebook 或是 JupyterLab。方法有兩種，首先我們先從創建虛擬環境講起：&lt;/p>
 &lt;h2 id="準備">準備&lt;/h2>
 &lt;h3 id="創建虛擬環境">創建虛擬環境&lt;/h3>
-&lt;p>這邊以 conda 為例：&lt;/p></description></item></channel></rss>
+&lt;p>這邊以 conda 為例：&lt;/p></description></item><item><title>VB.NET 之物件陣列</title><link>https://dwye.dev/post/vb-net-object-array/</link><pubDate>Mon, 06 Jun 2011 18:41:25 +0800</pubDate><guid>https://dwye.dev/post/vb-net-object-array/</guid><description>&lt;p>如果有人同時用過 VB6 跟 VB2008（或更新版的 VB），必然會發現其中有許多的差別，在此不一一列舉，不過我想當有人要寫一個踩地雷的程式時，沒有了物件陣列或多或少會帶來一些的不方便。因此筆者在研究了一段時間之後，找出了 VB.NET 中物件陣列的使用方法：它必須要直接使用 &lt;code>Dim&lt;/code> 宣告！&lt;/p></description></item></channel></rss>
