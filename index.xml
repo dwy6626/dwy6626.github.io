@@ -2500,7 +2500,7 @@ self&lt;span style="color:#f92672">.&lt;/span>count &lt;span style="color:#f9267
 &lt;p>所以 &lt;code>DisjointSet&lt;/code> 改寫為：&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">DisjointSet&lt;/span>: &lt;span style="color:#75715e"># with rank and path compression&lt;/span>
 &lt;span style="color:#66d9ef">def&lt;/span> __init__(self, elements):
-self&lt;span style="color:#f92672">.&lt;/span>sets &lt;span style="color:#f92672">=&lt;/span> [Node(n) &lt;span style="color:#66d9ef">for&lt;/span> n &lt;span style="color:#f92672">in&lt;/span> elements]
+self&lt;span style="color:#f92672">.&lt;/span>sets &lt;span style="color:#f92672">=&lt;/span> [Node() &lt;span style="color:#66d9ef">for&lt;/span> n &lt;span style="color:#f92672">in&lt;/span> elements]
 self&lt;span style="color:#f92672">.&lt;/span>count &lt;span style="color:#f92672">=&lt;/span> len(self&lt;span style="color:#f92672">.&lt;/span>sets)
 &lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">find&lt;/span>(self, element):
 n &lt;span style="color:#f92672">=&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>sets[element]

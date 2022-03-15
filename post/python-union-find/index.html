@@ -268,7 +268,7 @@ Python 實作 Disjoint Set 與 Union Find
 <p>所以 <code>DisjointSet</code> 改寫為：</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>DisjointSet</span>:  <span style=color:#75715e># with rank and path compression</span>
     <span style=color:#66d9ef>def</span> __init__(self, elements):
-        self<span style=color:#f92672>.</span>sets <span style=color:#f92672>=</span> [Node(n) <span style=color:#66d9ef>for</span> n <span style=color:#f92672>in</span> elements]
+        self<span style=color:#f92672>.</span>sets <span style=color:#f92672>=</span> [Node() <span style=color:#66d9ef>for</span> n <span style=color:#f92672>in</span> elements]
         self<span style=color:#f92672>.</span>count <span style=color:#f92672>=</span> len(self<span style=color:#f92672>.</span>sets)
         
     <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>find</span>(self, element):
