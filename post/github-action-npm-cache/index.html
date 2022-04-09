@@ -318,6 +318,9 @@ echo $?               <span style=color:#75715e># 0 代表存在，1 代表不�
     - <span style=color:#f92672>run</span>: <span style=color:#ae81ff>npm run test</span>
 </code></pre></div><p>透過 cache node_modules 後，建置時間大幅縮短，原本需要跑 3 分鐘才能建置完成的 CI，現在只需要 10 秒就可以跑完前置的環境建置部分了。即便是 cache miss，也能在 45 秒附近完成套件的安裝，可說是十分有效的優化，成就感十足。</p>
 <p>接下來要做的事情就是慢慢補上 unit test 了&mldr;。</p>
+<div class="likecoin-embed likecoin-button" data-liker-id=dwy6626 data-href=https://dwye.dev/post/github-action-npm-cache/>
+</div>
+<script src=https://static.like.co/sdk/v1/button.js></script>
 <div class=copyright>
 本文原創部分採用
 <a rel=license href=http://creativecommons.org/licenses/by-nc-nd/4.0/>創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款</a>
@@ -344,9 +347,6 @@ echo $?               <span style=color:#75715e># 0 代表存在，1 代表不�
 <a href=https://dwye.dev/post/squid-token/><i class="fa fa-chevron-right"></i></a>
 </div>
 </div>
-<div class="likecoin-embed likecoin-button" data-liker-id=dwy6626 data-href=https://dwye.dev/post/github-action-npm-cache/>
-</div>
-<script src=https://static.like.co/sdk/v1/button.js></script>
 <div id=disqus_thread></div>
 <script type=text/javascript>(function(){var a,b;if(window.location.hostname=="localhost")return;a=document.createElement('script'),a.type='text/javascript',a.async=!0,b='dwy6626',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
 <noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
