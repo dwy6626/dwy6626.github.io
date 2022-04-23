@@ -1,4 +1,66 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 09 Apr 2022 02:11:25 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>Crypto.com Visa 卡 Netflix 和 Spotify 台灣設定心得（2022-04）</title><link>https://dwye.dev/post/crypto-com-visa-spotify-netflix/</link><pubDate>Sat, 09 Apr 2022 02:11:25 +0800</pubDate><guid>https://dwye.dev/post/crypto-com-visa-spotify-netflix/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 23 Apr 2022 17:49:26 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>放棄 Disqus 開始使用 utterances 作為 GitHub Page 的留言板</title><link>https://dwye.dev/post/no-disqus-but-utterances/</link><pubDate>Sat, 23 Apr 2022 17:49:26 +0800</pubDate><guid>https://dwye.dev/post/no-disqus-but-utterances/</guid><description>
+&lt;p>最近發現 Disqus 留言系統會擅自投放一堆廣告，上網查了一下，才發現&lt;a href="https://blog.gslin.org/archives/2021/02/11/9960/%E5%8E%9F%E4%BE%86-disqus-%E5%B7%B2%E7%B6%93%E8%A2%AB%E7%B6%B2%E8%B7%AF%E5%BB%A3%E5%91%8A%E5%85%AC%E5%8F%B8%E8%B2%B7%E8%B5%B0%E4%BA%86/">Disqus 早就被網路廣告公司買走了&lt;/a>，不只會追蹤使用者行為，更開始塞一堆醜醜的廣告（最不能接受的點&amp;hellip;我自己都因為美觀不敢亂放廣告了），一氣之下決定換掉他。&lt;/p>
+&lt;p>剛好最近注意&lt;a href="https://blog.huli.tw/">胡立大大的網站&lt;/a>使用的留言系統 utterances 十分美觀，查了一下是利用 GitHub issue 來實作留言系統，直接把 GitHub issue 當作儲存資料的地方，不用自架 server，設置也快速，又是 open source 的，雖然沒有訪客留言功能差強人意，但考量到我最近大部分文章都是資訊圈相關的東西，也為了美觀 XD 就還是採用了。&lt;/p>
+&lt;h2 id="utterances-的設置">utterances 的設置&lt;/h2>
+&lt;p>對於 GitHub Page 的用戶，設置 utterances 相當簡單，只需要做下面幾件事：&lt;br>
+（也可以參考官網：https://utteranc.es/）&lt;/p>
+&lt;ol>
+&lt;li>選擇一個公開的 GitHub Repo 作為 comments 的資料庫（會使用 issue 的功能，不會影響 Code，所以可以選擇和 Host GitHub Page 相同的 Repo）。&lt;/li>
+&lt;li>在那個 Repo 安裝 &lt;a href="https://github.com/apps/utterances">utterances app&lt;/a>，這是一個 GitHub App，上架於 GitHub 官方的 Marketplace，因此是可信任的。&lt;/li>
+&lt;li>在 HTML 中插入 utterances 的 Script。&lt;/li>
+&lt;/ol>
+&lt;h3 id="我的更新方式">我的更新方式&lt;/h3>
+&lt;p>首先安裝在 Github Repo 安裝 utterances app，記得選擇只安裝在目標 Repo。這邊直接使用這個網站背後的 Repo &lt;code>dwy6626/dwy6626.github.io&lt;/code> 作為 issue 存放地：&lt;/p>
+&lt;p>&lt;img src="https://dwye.dev/img/install-utterances.jpg" alt="setup utterance">&lt;/p>
+&lt;p>接著修改我的 Hugo 主題: &lt;a href="https://github.com/dwy6626/dw-favored-blackburn/commit/c611e1175ed631f08bc0df4fcc55047ad2b8c4cd">dw-favored-blackburn&lt;/a> 背後的 HTML Template:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-html" data-lang="html">{{ with .Site.Params.utteranc }}
+&amp;lt;&lt;span style="color:#f92672">script&lt;/span> &lt;span style="color:#a6e22e">src&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;https://utteranc.es/client.js&amp;#34;&lt;/span>
+&lt;span style="color:#a6e22e">repo&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;{{ .repo }}&amp;#34;&lt;/span>
+&lt;span style="color:#a6e22e">issue-term&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;pathname&amp;#34;&lt;/span>
+&lt;span style="color:#a6e22e">theme&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;github-light&amp;#34;&lt;/span>
+&lt;span style="color:#a6e22e">crossorigin&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;anonymous&amp;#34;&lt;/span>
+&lt;span style="color:#a6e22e">async&lt;/span>&amp;gt;
+&amp;lt;/&lt;span style="color:#f92672">script&lt;/span>&amp;gt;
+{{ end }}
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>可以參考這個 &lt;a href="https://github.com/dwy6626/dw-favored-blackburn/commit/c611e1175ed631f08bc0df4fcc55047ad2b8c4cd">commit&lt;/a>&lt;/p>
+&lt;p>之後就可以在 &lt;code>config.toml&lt;/code> 直接設定：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-toml" data-lang="toml">[&lt;span style="color:#a6e22e">params&lt;/span>]
+...
+[&lt;span style="color:#a6e22e">params&lt;/span>.&lt;span style="color:#a6e22e">utteranc&lt;/span>]
+&lt;span style="color:#a6e22e">repo&lt;/span> = &lt;span style="color:#e6db74">&amp;#34;dwy6626/dwy6626.github.io&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>這樣就完成設置了。&lt;/p>
+&lt;p>如果你也是使用我的 Hugo Template，只需要安裝 app 後，在 &lt;code>config.toml&lt;/code> 加入 repo 設定即可～&lt;/p>
+&lt;p>接著就可以跑 &lt;code>hugo serve&lt;/code>，看看有沒有設置成功。如果成功的話，在 localhost 就可以看到：&lt;/p>
+&lt;p>&lt;img src="https://dwye.dev/img/utterances-demo.jpg" alt="utterance demo">&lt;/p>
+&lt;p>（上面是截圖，不要在這邊留言喔 XD）&lt;/p>
+&lt;p>然後就大功告成了～&lt;/p>
+&lt;h2 id="其他可行解法">其他可行解法&lt;/h2>
+&lt;p>因為我的 blog 還有以前家教相關的文章，客群就比較不是面向電資圈的人，其實不支援訪客留言還蠻可惜的，所以我也有參考一下其他的可能方案，主要留言板通常有三種類型：&lt;/p>
+&lt;h3 id="第三方服務">第三方服務&lt;/h3>
+&lt;p>如 Disqus，或是 &lt;a href="https://www.talkyard.io/blog-comments">Talkyard&lt;/a>、&lt;a href="https://commento.io/">commento&lt;/a>&lt;/p>
+&lt;p>優點是方便設置，功能通常較完善，缺點則是免費版通常有所限制，不是要付費，不然就是會被插廣告，就算現在沒有廣告，以後可能也會有（就像 Disqus 一樣）。&lt;/p>
+&lt;p>因為我不想以後再做類似的事情，因此不考慮第三方服務。&lt;/p>
+&lt;h3 id="自架留言板">自架留言板&lt;/h3>
+&lt;p>如 &lt;a href="https://posativ.org/isso/">isso&lt;/a>。&lt;/p>
+&lt;p>優點也是功能完善，而且通常提供簡單的架設方式，只需要有個簡單的機器就能架設留言板後端，缺點也是你要有個簡單的機器。&lt;/p>
+&lt;p>其實現在雲端服務多半有每個月一定的免費額度，流量不大的 blog，可能開一台小機器可以壓在免費額度內。&lt;/p>
+&lt;p>但是維護起來總是麻煩，也怕不小心燒到需要交錢，因此還是沒採用。&lt;/p>
+&lt;h3 id="github-issue">GitHub Issue&lt;/h3>
+&lt;p>這篇介紹的 utterances 其實就是。&lt;/p>
+&lt;p>把資料存在 GitHub Issue 然後用 GitHub API，真的是各種善用 GitHub 功能，我超喜歡的這種概念。&lt;/p>
+&lt;p>對於流量不大的小部落格，應該不用怕達到 API limit 被 GitHub 官方關切。加上本身也沒什麼依賴，開源的情況就算以後套件想偷插廣告，只要鎖住版本不更新就好了。（當然，除非 GitHub 官方自己限制這種用法就是，但小量使用應該不至於被查水表哈哈。）&lt;/p>
+&lt;p>所以最後再三權衡下還是使用這個解方。&lt;/p>
+&lt;h2 id="參考資料">參考資料&lt;/h2>
+&lt;h3 id="docs">Docs&lt;/h3>
+&lt;ul>
+&lt;li>&lt;a href="https://utteranc.es/">utterances 官方頁面&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://gohugo.io/content-management/comments/">Hugo Comments 官方文件&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h3 id="blog-posts">Blog Posts&lt;/h3>
+&lt;ul>
+&lt;li>&lt;a href="https://blog.gslin.org/archives/2021/02/11/9960/%E5%8E%9F%E4%BE%86-disqus-%E5%B7%B2%E7%B6%93%E8%A2%AB%E7%B6%B2%E8%B7%AF%E5%BB%A3%E5%91%8A%E5%85%AC%E5%8F%B8%E8%B2%B7%E8%B5%B0%E4%BA%86/">原來 Disqus 已經被網路廣告公司買走了&amp;hellip;&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.jkg.tw/p3350/">Utterances 免費開源、無廣告、無追蹤的網站留言系統&lt;/a>&lt;/li>
+&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>Crypto.com Visa 卡 Netflix 和 Spotify 台灣設定心得（2022-04）</title><link>https://dwye.dev/post/crypto-com-visa-spotify-netflix/</link><pubDate>Sat, 09 Apr 2022 02:11:25 +0800</pubDate><guid>https://dwye.dev/post/crypto-com-visa-spotify-netflix/</guid><description>
 &lt;p>在幣圈打滾一段時間，終於入手了幣圈最潮的一張卡，Crypto.com Visa 卡：&lt;br>
 &lt;img src="https://dwye.dev/img/crypto/cro_visa.jpg" alt="cro green and anny">&lt;br>
 （卡片與我們家的狗狗）&lt;/p>
