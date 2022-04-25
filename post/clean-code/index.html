@@ -364,17 +364,23 @@ Clean Code 心得
 <h2 id=前言>前言</h2>
 <p>Clean code 是一門學派，不是絕對正確</p>
 <p>減少閱讀程式碼的時間</p>
-<p>程式清楚明白，不要隱藏意圖</p>
+<p>雜亂程式會拖累開發時間</p>
+<p>讓程式清楚明白，不要隱藏意圖，避免 <a href=https://zh.wikipedia.org/wiki/%E5%8F%8D%E9%9D%A2%E6%A8%A1%E5%BC%8F>anti-pattern</a></p>
 <p>童子軍規則：離開營地前，讓營地比使用前更乾淨</p>
 <h2 id=變數命名>變數命名</h2>
 <ul>
+<li>類別：名詞，方法：動詞</li>
 <li>避免無意義的字：the, variable, name</li>
-<li>避免跟形態衝突的字（會誤導），除非他真的是那個形態：list, array</li>
+<li>避免跟形態衝突的字（會誤導），除非他真的是那個形態：list, array
+<ul>
+<li>或是省去：<code>Accounts</code> > <code>AccountList</code></li>
+</ul>
+</li>
 <li>能搜尋</li>
 <li>能唸出來</li>
 <li>意義區別
 <ul>
-<li>e.g. <code>source</code>, <code>destination</code> 取代 <code>a1</code>, `a2</li>
+<li>e.g. <code>source</code>, <code>destination</code> 取代 <code>a1</code>, <code>a2</code></li>
 </ul>
 </li>
 <li>同一概念統一字詞</li>

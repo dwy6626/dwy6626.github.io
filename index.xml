@@ -2782,17 +2782,23 @@ self&lt;span style="color:#f92672">.&lt;/span>rank &lt;span style="color:#f92672
 &lt;h2 id="前言">前言&lt;/h2>
 &lt;p>Clean code 是一門學派，不是絕對正確&lt;/p>
 &lt;p>減少閱讀程式碼的時間&lt;/p>
-&lt;p>程式清楚明白，不要隱藏意圖&lt;/p>
+&lt;p>雜亂程式會拖累開發時間&lt;/p>
+&lt;p>讓程式清楚明白，不要隱藏意圖，避免 &lt;a href="https://zh.wikipedia.org/wiki/%E5%8F%8D%E9%9D%A2%E6%A8%A1%E5%BC%8F">anti-pattern&lt;/a>&lt;/p>
 &lt;p>童子軍規則：離開營地前，讓營地比使用前更乾淨&lt;/p>
 &lt;h2 id="變數命名">變數命名&lt;/h2>
 &lt;ul>
+&lt;li>類別：名詞，方法：動詞&lt;/li>
 &lt;li>避免無意義的字：the, variable, name&lt;/li>
-&lt;li>避免跟形態衝突的字（會誤導），除非他真的是那個形態：list, array&lt;/li>
+&lt;li>避免跟形態衝突的字（會誤導），除非他真的是那個形態：list, array
+&lt;ul>
+&lt;li>或是省去：&lt;code>Accounts&lt;/code> &amp;gt; &lt;code>AccountList&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
 &lt;li>能搜尋&lt;/li>
 &lt;li>能唸出來&lt;/li>
 &lt;li>意義區別
 &lt;ul>
-&lt;li>e.g. &lt;code>source&lt;/code>, &lt;code>destination&lt;/code> 取代 &lt;code>a1&lt;/code>, `a2&lt;/li>
+&lt;li>e.g. &lt;code>source&lt;/code>, &lt;code>destination&lt;/code> 取代 &lt;code>a1&lt;/code>, &lt;code>a2&lt;/code>&lt;/li>
 &lt;/ul>
 &lt;/li>
 &lt;li>同一概念統一字詞&lt;/li>
