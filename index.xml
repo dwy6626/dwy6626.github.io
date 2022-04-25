@@ -2802,7 +2802,7 @@ self&lt;span style="color:#f92672">.&lt;/span>rank &lt;span style="color:#f92672
 &lt;/ul>
 &lt;/li>
 &lt;li>同一概念統一字詞&lt;/li>
-&lt;li>在命名內加入 context，或是用 Class 包起來&lt;/li>
+&lt;li>在命名內加入 context，或是&lt;a href="https://hackmd.io/@dwy6626/clean-code-class-context">用 Class 包起來&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;h3 id="善用詞性">善用詞性&lt;/h3>
 &lt;p>類別：&lt;strong>名詞&lt;/strong>&lt;br>
