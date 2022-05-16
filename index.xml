@@ -2841,18 +2841,20 @@ self&lt;span style="color:#f92672">.&lt;/span>rank &lt;span style="color:#f92672
 &lt;/ul>
 &lt;h3 id="open-closed-principle-ocp-開放閉合原則">Open Closed Principle, OCP 開放閉合原則&lt;/h3>
 &lt;p>要設計得易於延展（例如：繼承），不用因新型態、新需求加入而改變原本的部分&lt;/p>
+&lt;blockquote>
+&lt;p>對擴展開放，對修改封閉&lt;/p>
+&lt;/blockquote>
 &lt;h2 id="註解">註解&lt;/h2>
 &lt;p>彌補程式碼&lt;strong>表達意圖的失敗&lt;/strong>&lt;br>
-常常會沒有跟著程式碼一起改到（&lt;strong>只有程式碼是真的&lt;/strong>）&lt;/p>
-&lt;p>透過修改程式碼來移除註解&lt;/p>
-&lt;p>版本日誌 / 程式碼修改 / 作者等資訊，在 VCS 的努力下不需要被留在註解了&lt;br>
-（git: am I a joke to you?）&lt;/p>
+註解容易隨著時間失真，常常會沒有跟著程式碼一起改到（&lt;strong>只有程式碼是真的&lt;/strong>）&lt;/p>
+&lt;p>-&amp;gt; 透過修改程式碼來移除註解&lt;/p>
+&lt;p>使用 git 等版本控制系統後，就不需要的註解：版本日誌 / 程式碼修改 / 作者等資訊&lt;/p>
 &lt;h3 id="註解應該最少只留必要的註解">註解應該最少，只留必要的註解&lt;/h3>
 &lt;ul>
 &lt;li>法律型註解&lt;/li>
 &lt;li>資訊型註解
 &lt;ul>
-&lt;li>function doc&lt;/li>
+&lt;li>function doc（產生文件的註解）&lt;/li>
 &lt;li>formatter 會挑出的格式&lt;/li>
 &lt;/ul>
 &lt;/li>
@@ -2868,7 +2870,7 @@ self&lt;span style="color:#f92672">.&lt;/span>rank &lt;span style="color:#f92672
 &lt;/ul>
 &lt;/li>
 &lt;li>TODO&lt;/li>
-&lt;li>&lt;strong>下面這行很重要，因為&amp;hellip;&lt;/strong>&lt;/li>
+&lt;li>放大重要性：&amp;quot;&lt;strong>下面這行很重要，因為&amp;hellip;&lt;/strong>&amp;quot;&lt;/li>
 &lt;/ul>
 &lt;h2 id="編排">編排&lt;/h2>
 &lt;p>寫 code，像編排一頁報紙&lt;/p>
@@ -3032,6 +3034,7 @@ output_dir &lt;span style="color:#f92672">=&lt;/span> scratch_dir&lt;span style=
 &lt;h2 id="延伸閱讀">延伸閱讀&lt;/h2>
 &lt;ul>
 &lt;li>&lt;a href="https://github.com/ryanmcdermott/clean-code-javascript">Clean Code JavaScript&lt;/a>，如果是寫 JS 的很推薦閱讀這個 repo&lt;/li>
+&lt;li>&lt;a href="https://github.com/zedr/clean-code-python">Clean Code Python&lt;/a>，Python 版本的 repo，受到上面那個 repo 啟發的&lt;/li>
 &lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>用 zsh + zim + powerlevel10k 讓你的 Terminal 潮又快</title><link>https://dwye.dev/post/zsh-zim-powerlevel10k/</link><pubDate>Mon, 07 Sep 2020 11:41:25 +0800</pubDate><guid>https://dwye.dev/post/zsh-zim-powerlevel10k/</guid><description>
 &lt;p>在開始之前，還是要先知道為什麼需要這些工具，就先上圖吧：&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/YWNPQiG.png" alt="zsh + zim + powerlevel10k demo">&lt;/p>
