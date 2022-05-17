@@ -1,4 +1,39 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 23 Apr 2022 17:49:26 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>放棄 Disqus 開始使用 utterances 作為 GitHub Page 的留言板</title><link>https://dwye.dev/post/no-disqus-but-utterances/</link><pubDate>Sat, 23 Apr 2022 17:49:26 +0800</pubDate><guid>https://dwye.dev/post/no-disqus-but-utterances/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 17 May 2022 02:11:25 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>Crypto.com Visa 卡 ATM 提款與匯率實測</title><link>https://dwye.dev/post/crypto-com-atm-withdraw/</link><pubDate>Tue, 17 May 2022 02:11:25 +0800</pubDate><guid>https://dwye.dev/post/crypto-com-atm-withdraw/</guid><description>
+&lt;p>在前一篇&lt;a href="https://dwye.dev/post/crypto-com-visa-spotify-netflix">辦卡與申請回饋的心得文&lt;/a>中，有提到我的這張 Crypto.com Visa 卡支援一定額度內的免手續費 ATM 提款。這篇就來分享我的實測提款結果。&lt;br>
+&lt;img src="https://dwye.dev/img/crypto-withdraw/cro_visa.jpg" alt="cro green">&lt;/p>
+&lt;p>我的卡等是 Jade Green，所以每個月有 800 SGD 額度的免手續費 ATM 提款，以現在的匯率 21.38 塊來計算，可以領 17104 元台幣。當然，為了避免時間造成的匯率差異，所以還是以 17000 來記會比較好。&lt;/p>
+&lt;h2 id="atm-選擇">ATM 選擇&lt;/h2>
+&lt;p>需要找支援 Visa 提款的 ATM，同時不同家銀行也可能再額外收手續費，因此需要注意。下面整理了熱心網友們實測不需要手續費的 ATM：&lt;/p>
+&lt;h3 id="免手續費-atm">免手續費 ATM&lt;/h3>
+&lt;p>根據&lt;a href="http://jacobmei.blogspot.com/2021/11/cryptocom-visa-card.html">這篇：新手筆記：Crypto.com Visa Card 註冊與申請使用的心得整理&lt;/a>，有提供一個 ATM 對於整理：（偷偷說其實 google 後發現都是同一份名單在流傳 XD，只有少許更新）&lt;/p>
+&lt;p>需要費用 ($100/筆)：中信、台新、永豐。&lt;/p>
+&lt;p>不須費用：臺銀、合庫、土銀、第一、華南、彰銀、上海、富邦、國泰、高雄、兆豐、花旗、渣打、台中、匯豐、中小企銀、新光、板信、聯邦、遠東、元大、玉山、日盛、安泰。&lt;/p>
+&lt;p>無法使用：農業金庫、京城、瑞興、華泰、陽信、三信、凱基、台北五信、士林區農會、郵局。&lt;/p>
+&lt;p>簡單來說，只需要避開需要費用的幾家，就可以了。&lt;/p>
+&lt;h2 id="atm-操作實測">ATM 操作實測&lt;/h2>
+&lt;p>不巧的是剛好我常用的就是三家會收手續費的：中信（薪轉戶）、台新（Richart）和永豐（大戶）&amp;hellip;。&lt;/p>
+&lt;p>最後我選擇則用臺灣銀行做實測。&lt;/p>
+&lt;p>總之把卡插進去，選擇信用卡的部分：&lt;br>
+&lt;img src="https://dwye.dev/img/crypto-withdraw/atm1.jpg" alt="atm operation 1">&lt;/p>
+&lt;p>提款！（&lt;del>平常都當韭菜被大戶提款，終於換我來提款了&lt;/del>）&lt;br>
+&lt;img src="https://dwye.dev/img/crypto-withdraw/atm2.jpg" alt="atm operation 2">&lt;/p>
+&lt;p>一樣選信用卡帳戶：&lt;br>
+&lt;img src="https://dwye.dev/img/crypto-withdraw/atm3.jpg" alt="atm operation 3">&lt;/p>
+&lt;p>中間可能會要你輸入密碼，就是 Crypto.com App 的提領密碼。&lt;/p>
+&lt;p>這次測試我提領了 3000 塊，可以看到收據，ATM 的確是沒有額外收手續費的：&lt;br>
+&lt;img src="https://dwye.dev/img/crypto-withdraw/receipt.jpg" alt="atm operation receipt">&lt;/p>
+&lt;p>App 內可以看到提款記錄：&lt;br>
+&lt;img src="https://dwye.dev/img/crypto-withdraw/record.jpg" alt="atm operation record in app">&lt;/p>
+&lt;h2 id="匯率與匯差計算">匯率與匯差計算&lt;/h2>
+&lt;p>這次提款的時候，當下的告示買入即期匯率是 21.29，提款後帳戶內減少了 141.7 SGD，所以實際上的匯率是 3000 / 141.7 = 21.17，和當下的匯率相當接近了，可以說匯率是很划算的。&lt;/p>
+&lt;p>可以使用兩個匯率計算匯差： (21.29 - 21.17) / 21.29 = 0.56 %&lt;/p>
+&lt;p>還是有約 0.5 % 的匯差，所以並不是完全無痛提款的喔！但比起很多出金方式相比，這張卡已經提供相當優惠的小額出金方式了，而且和匯率浮動相比，也不是會讓人特別在意的數字就是。&lt;/p>
+&lt;h2 id="參考資料">參考資料&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="http://jacobmei.blogspot.com/2021/11/cryptocom-visa-card.html">新手筆記：Crypto.com Visa Card 註冊與申請使用的心得整理&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://medium.com/@oofoofoof/mco-visa-card-%E4%BB%8B%E7%B4%B9%E5%8F%8A%E5%AF%A6%E6%B8%AC-e790d3d72dd8">Crypto.com Visa Card 深度分析實測及避險&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://matters.news/@erica072/272066">加密貨幣簽帳卡〔Crypto.com &amp;amp; Wirex〕使用心得更新版！！！&lt;/a>&lt;/li>
+&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>放棄 Disqus 開始使用 utterances 作為 GitHub Page 的留言板</title><link>https://dwye.dev/post/no-disqus-but-utterances/</link><pubDate>Sat, 23 Apr 2022 17:49:26 +0800</pubDate><guid>https://dwye.dev/post/no-disqus-but-utterances/</guid><description>
 &lt;p>最近發現 Disqus 留言系統會擅自投放一堆廣告，上網查了一下，才發現&lt;a href="https://blog.gslin.org/archives/2021/02/11/9960/%E5%8E%9F%E4%BE%86-disqus-%E5%B7%B2%E7%B6%93%E8%A2%AB%E7%B6%B2%E8%B7%AF%E5%BB%A3%E5%91%8A%E5%85%AC%E5%8F%B8%E8%B2%B7%E8%B5%B0%E4%BA%86/">Disqus 早就被網路廣告公司買走了&lt;/a>，不只會追蹤使用者行為，更開始塞一堆醜醜的廣告（最不能接受的點&amp;hellip;我自己都因為美觀不敢亂放廣告了），一氣之下決定換掉他。&lt;/p>
 &lt;p>剛好最近注意&lt;a href="https://blog.huli.tw/">胡立大大的網站&lt;/a>使用的留言系統 utterances 十分美觀，查了一下是利用 GitHub issue 來實作留言系統，直接把 GitHub issue 當作儲存資料的地方，不用自架 server，設置也快速，又是 open source 的，雖然沒有訪客留言功能差強人意，但考量到我最近大部分文章都是資訊圈相關的東西，也為了美觀 XD 就還是採用了。&lt;/p>
 &lt;h2 id="utterances-的設置">utterances 的設置&lt;/h2>
@@ -76,7 +111,7 @@
 &lt;h2 id="辦卡理由">辦卡理由&lt;/h2>
 &lt;ol>
 &lt;li>潮。&lt;/li>
-&lt;li>資產分配：滿手現金，趁不是牛市時慢慢加碼幣圈，順便拿張卡可以緊急時提款（800 SGD/月的免手續費提款，之後 2%）。&lt;/li>
+&lt;li>資產分配：滿手現金，趁不是牛市時慢慢加碼幣圈，順便拿張卡可以緊急時提款（800 SGD/月的免手續費 ATM 提款，之後 2%）。可以參考我的&lt;a href="https://dwye.dev/post/crypto-com-atm-withdraw">這篇實測&lt;/a>。&lt;/li>
 &lt;li>3% 無上限 CRO 回饋（而且沒有海外消費手續費，等同海外 4.5 % 優惠）&lt;em>-&amp;gt; 將修正成 2 % 以及 50 USD 回饋上限，可以刷 2500 USD 約 74000 台幣&lt;/em>。&lt;/li>
 &lt;li>日常消費 = 變相出金。&lt;/li>
 &lt;li>讓女友聽歌不用聽廣告（我是 Apple Music 用戶了）。&lt;/li>
