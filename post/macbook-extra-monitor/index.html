@@ -1,0 +1,316 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="
+  
+      M1 和 M2 都可以適用
+    ">
+<meta name=generator content="Hugo 0.86.1">
+<meta property="og:title" content="M1 MacBook DisplayLink 多螢幕心得">
+<meta name=twitter:title content="M1 MacBook DisplayLink 多螢幕心得">
+<meta property="og:url" content="https://dwye.dev/post/macbook-extra-monitor/">
+<meta name=twitter:card content="summary">
+<meta name=twitter:site content="dw's 小站">
+<meta name=twitter:creator content="De-Wei Ye">
+<meta name=twitter:description content="契機
+因為工作的關係拿到了一台 M1 MacBook，然而換成 M1 MacBook 之後就沒辦法直接使用 HDMI 接兩個外接螢幕了，這是 M1 晶片天生硬體的限制（M2 也是）。
+我原本習慣使用三螢幕工作，MacBook 自己的小螢幕加上兩個外接螢幕。試著用單一外接螢幕工作了一陣子，果然還是不習慣，所以就著手調查如何讓 M1 / M2 MacBook 也能外接兩個以上的螢幕。">
+<link rel=preconnect href=https://s.ytimg.com>
+<link rel=preconnect href=https://i.imgur.com>
+<title>M1 MacBook DisplayLink 多螢幕心得 &#183; dw's 小站</title>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.5/pure-min.css media=screen>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.5/grids-responsive-min.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/side-menu.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/blackburn.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/dw-burn.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/dw-menu.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/vars.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/menu-x.css media=screen>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css>
+<link rel=preconnect href=https://fonts.gstatic.com>
+<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel=stylesheet type=text/css>
+<script type=text/javascript async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML"></script>
+<script type=text/x-mathjax-config>
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [['$$','$$']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+    CommonHTML: { linebreaks: { automatic: true } },
+    "HTML-CSS": { linebreaks: { automatic: true } },
+          SVG: { linebreaks: { automatic: true } }    
+  });
+</script>
+<script type=text/x-mathjax-config>
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+<link async rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/vs2015.min.css media=screen>
+<script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js></script>
+<script defer src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/yaml.min.js></script>
+<script defer src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/vbnet.min.js></script>
+<script>hljs.highlightAll()</script>
+<link rel="shortcut icon" href=https://dwye.dev/img/favicon.ico type=image/x-icon>
+<link rel=stylesheet href=https://dwye.dev/css/color.css media=screen>
+<meta name=google-site-verification content="pC2le32KaKDSGh9V637p5YC81zixbAMyKN3nPqkKscE">
+<script data-ad-client=ca-pub-3454014140664886 async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
+</head>
+<body>
+<div id=layout>
+<a href=#menu class=menu-link id=menuLink aria-label="Go to menu of this website">
+<s class=bar></s><s class=bar></s>
+</a>
+<div id=menu>
+<a class="pure-menu-heading brand" href=https://dwye.dev/>De-Wei Ye</a>
+<div class=pure-menu>
+<ul class=pure-menu-list>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/about/><i class="fas fa-user-circle fa-fw"></i><span>關於</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/notes/><i class="fas fa-book fa-fw"></i><span>筆記</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/post/><i class="fas fa-list-ul fa-fw"></i><span>文章列表</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/topics/><i class="fas fa-folder fa-fw"></i><span>主題分類</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/tags/><i class="fas fa-tags fa-fw"></i><span>標籤</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/../en/><i class="fas fa-globe-americas fa-fw"></i><span>English</span></a>
+</li>
+</ul>
+</div>
+<div class="pure-menu social">
+<ul class=pure-menu-list>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://linkedin.com/in/dwy6626 rel="me external noopener" target=_blank><i class="fab fa-linkedin fa-fw"></i><span>LinkedIn</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://github.com/dwy6626 rel="me external noopener" target=_blank><i class="fab fa-github-square fa-fw"></i><span>GitHub</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://leetcode.com/mirror0227 rel="me external noopener" target=_blank><i class="fas fa-laptop-code fa-fw"></i><span>LeetCode</span></a>
+</li>
+</ul>
+</div>
+<div class=copyright-small>
+Built with <a href=https://gohugo.io/ rel="external noopener" target=_blank>Hugo</a>
+</div>
+<div class=copyright-small>
+W/ <a href=https://github.com/dwy6626/dw-favored-blackburn rel="external noopener" target=_blank>DW-Favored-Blackburn</a>
+</div>
+<div class=copyright-small>
+Based on <a href=https://github.com/yoshiharuyamashita/blackburn rel="external noopener" target=_blank>Blackburn</a>
+</div>
+<div class=copyright-small>
+and <a href=https://purecss.io/ rel="external noopener" target=_blank>Pure CSS</a>
+</div>
+<div class=copyright-small>
+Icons <a href=https://fontawesome.com rel="external noopener" target=_blank>Font Awesome</a>
+</div>
+<div class=copyright-small>
+<a href=https://dwye.dev/copyright>
+&copy; 2020. All rights reserved.
+</a>
+</div>
+</div>
+<div id=main>
+<div class=header>
+<h1>
+M1 MacBook DisplayLink 多螢幕心得
+</h1>
+<h2>
+M1 和 M2 都可以適用
+</h2>
+</div>
+<div class=aside-container>
+<div id=toc-aside style=display:none>
+<link rel=stylesheet href=https://dwye.dev/css/aside-toc.css media=screen>
+<script src=https://dwye.dev/js/toc.js></script>
+<div class=toc>
+<aside>
+<summary>目錄</summary>
+<div class=toc-item>
+<p><a rel=tag href=#>M1 MacBook DisplayLink 多螢幕心得</a></p>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#契機>契機</a></li>
+<li><a href=#displaylink>DisplayLink</a>
+<ul>
+<li><a href=#軟體-displaylink-manager>軟體 DisplayLink Manager</a></li>
+<li><a href=#硬體支援-displaylink-的-usb-轉接器>硬體：支援 DisplayLink 的 USB 轉接器</a></li>
+</ul>
+</li>
+<li><a href=#最終方案-wavlink-usb-30-to-hdmi-adapter>最終方案: WAVLINK USB 3.0 to HDMI Adapter</a></li>
+<li><a href=#使用-displaylink-的一些缺點>使用 DisplayLink 的一些缺點</a>
+<ul>
+<li><a href=#netflix-黑屏--黑畫面>Netflix 黑屏 / 黑畫面</a></li>
+<li><a href=#更新率>更新率</a></li>
+<li><a href=#延遲>延遲</a></li>
+</ul>
+</li>
+<li><a href=#其他解決方案>其他解決方案</a></li>
+</ul>
+</nav>
+</div>
+</aside>
+</div>
+</div>
+</div>
+<div class=content>
+<ul class=post-meta>
+<li>
+<i class="fa fa-calendar fa-fw"></i>
+<span>
+<time>Aug 01, 2022</time>
+</span>
+</li>
+</ul>
+<ul class=post-meta>
+<a href=https://dwye.dev/topics/%E7%A7%91%E6%8A%80%E7%94%9F%E6%B4%BB>
+<li>
+<i class="fas fa-folder fa-fw"></i>
+<span>科技生活</span>
+</li>
+</a>
+<a href=https://dwye.dev/tags/%E7%A1%AC%E9%AB%94>
+<li>
+<i class="fas fa-tag fa-fw"></i>
+<span>硬體</span>
+</li>
+</a>
+<a href=https://dwye.dev/tags/%E5%B7%A5%E4%BD%9C%E5%8D%80>
+<li>
+<i class="fas fa-tag fa-fw"></i>
+<span>工作區</span>
+</li>
+</a>
+</ul>
+<div id=toc-top style=display:none>
+<div class=toc>
+<aside>
+<details>
+<summary>目錄</summary>
+<div class=toc-item>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#契機>契機</a></li>
+<li><a href=#displaylink>DisplayLink</a>
+<ul>
+<li><a href=#軟體-displaylink-manager>軟體 DisplayLink Manager</a></li>
+<li><a href=#硬體支援-displaylink-的-usb-轉接器>硬體：支援 DisplayLink 的 USB 轉接器</a></li>
+</ul>
+</li>
+<li><a href=#最終方案-wavlink-usb-30-to-hdmi-adapter>最終方案: WAVLINK USB 3.0 to HDMI Adapter</a></li>
+<li><a href=#使用-displaylink-的一些缺點>使用 DisplayLink 的一些缺點</a>
+<ul>
+<li><a href=#netflix-黑屏--黑畫面>Netflix 黑屏 / 黑畫面</a></li>
+<li><a href=#更新率>更新率</a></li>
+<li><a href=#延遲>延遲</a></li>
+</ul>
+</li>
+<li><a href=#其他解決方案>其他解決方案</a></li>
+</ul>
+</nav>
+</div>
+</details>
+</aside>
+</div>
+</div>
+<h2 id=契機>契機</h2>
+<p>因為工作的關係拿到了一台 M1 MacBook，然而換成 M1 MacBook 之後就沒辦法直接使用 HDMI 接兩個外接螢幕了，這是 M1 晶片天生硬體的限制（M2 也是）。</p>
+<p>我原本習慣使用三螢幕工作，MacBook 自己的小螢幕加上兩個外接螢幕。試著用單一外接螢幕工作了一陣子，果然還是不習慣，所以就著手調查如何讓 M1 / M2 MacBook 也能外接兩個以上的螢幕。</p>
+<p>最後靠著 Amazon 海外網購的力量，找到了價格約 1500 台幣的解決方案：</p>
+<h2 id=displaylink>DisplayLink</h2>
+<p>根據 <a href=https://en.wikipedia.org/wiki/DisplayLink>wiki</a>，DisplayLink 目前是新思科技（Synaptics）底下的一個技術，可以用 USB、Wifi 等方式來連接顯示器，實現一台電腦多螢幕的功能。要使用 DisplayLink，必須要有相對應的軟體以及硬體：</p>
+<h3 id=軟體-displaylink-manager>軟體 DisplayLink Manager</h3>
+<p>這個好解決，直接在官網下載安裝即可：<br>
+<a href=https://www.synaptics.com/products/displaylink-graphics/downloads>https://www.synaptics.com/products/displaylink-graphics/downloads</a></p>
+<p><img src=https://dwye.dev/img/displaylink/displaylink%20manager.jpeg alt="DisplayLink Manager"></p>
+<h3 id=硬體支援-displaylink-的-usb-轉接器>硬體：支援 DisplayLink 的 USB 轉接器</h3>
+<p>如果直接搜尋在台灣有賣的 DisplayLink Hub，選項很少而且很貴，例如：<br>
+<img src=https://dwye.dev/img/displaylink/owc.jpeg alt="expensive DisplayLink Hub on PCHome"></p>
+<p>當然也可以上蝦皮或淘寶找&mldr;但我就是不放心。</p>
+<p>所以就逛了下 DisplayLink 官網，發現官網有列出支援的設備還蠻多的：<br>
+<a href=https://www.synaptics.com/products/displaylink-graphics/displaylink-products>https://www.synaptics.com/products/displaylink-graphics/displaylink-products</a></p>
+<h2 id=最終方案-wavlink-usb-30-to-hdmi-adapter>最終方案: WAVLINK USB 3.0 to HDMI Adapter</h2>
+<p>我從上面的連結中找<a href="https://www.synaptics.com/products/displaylink-graphics/displaylink-products-list?field_displaylink_category_value=usb_adapters">支援 DisplayLink 的 USB 連接器</a>（因為我的 Hub 有多的 USB 孔可以使用，而 USB type-c 連接器的通常比較貴）</p>
+<p>最後我挑選了這隻 WAVLINK USB 3.0 to HDMI Adapter:</p>
+<p><img src=https://dwye.dev/img/displaylink/amazon.jpeg alt="WAVLINK on Amazon"></p>
+<p>然後直接上 Amazon 買，從海外運進來，這樣含運費共 53 USD，大概 1500 台幣，還算可以接受的價格（實際上就是自己買水貨的概念）。<br>
+當然，這邊是刷我的 <a href=https://dwye.dev/post/crypto-com-visa-spotify-netflix>Crypto.com 卡</a>，省去海外刷卡手續費，還能賺 3 % CRO 回饋：<br>
+<img src=https://dwye.dev/img/displaylink/cro%20rebate.jpeg alt="CRO Amazon Rebate"></p>
+<p>收到實品：<br>
+<img src=https://dwye.dev/img/displaylink/wavlink.jpeg alt="WavLink Hub with Box"></p>
+<p>拆封：<br>
+<img src=https://dwye.dev/img/displaylink/wavlink%202.jpeg alt="WavLink Hub"></p>
+<p>最後就可以插上 Hub 使用了～（後面那個 Hub 左邊就是這個新買的 WAVLINK adaptor，右邊則是直接用 HDMI 接我的主螢幕）<br>
+<img src=https://dwye.dev/img/displaylink/hubs.jpeg alt=Hub></p>
+<h2 id=使用-displaylink-的一些缺點>使用 DisplayLink 的一些缺點</h2>
+<p>當然，使用 USB 來當作顯示器入口還是有缺點的，因為多經過了一層軟體，而不是原生支援，目前查到和遇到的缺點：</p>
+<h3 id=netflix-黑屏--黑畫面>Netflix 黑屏 / 黑畫面</h3>
+<p>因為 DRM 和 DisplayLink 的技術衝突，沒辦法在開著 DisplayLink 的情況下觀看 Netflix（沒有實測，不過其他有做 DRM 保護的線上串流影音應該也一樣，例如 Display+, KKTV&mldr;）。如果要看 Netflix 勢必就要只使用單一外接螢幕。</p>
+<p>我自己的實測，不需要把 DisplayLink Manager 軟體關掉，只需要把 DisplayLink Manager 裡面顯示器名稱旁的開關關掉就好，這時候第二個外接螢幕就會斷掉連接。</p>
+<p><img src=https://dwye.dev/img/displaylink/off.jpeg alt="Turn Off DisplayLink"><br>
+這時候就可以正常觀看 Netflix 了。</p>
+<p>看完 Netflix 想要用多個螢幕時，只要把 DisplayLink Manager 顯示器名稱旁的開關重新打開，第二個外接螢幕就會重新連上線。</p>
+<p>雖然不方便，但還是可以忍受，畢竟不會在看 Netflix 的時候多螢幕工作嘛（大家應該都是吧 XD）。</p>
+<h3 id=更新率>更新率</h3>
+<p>就我所知，DisplayLink 所支援的最大更新率是 60 Hz。還好我的副螢幕最大更新率也是 60 Hz，因此躲開了這個缺點。</p>
+<h3 id=延遲>延遲</h3>
+<p>畢竟 DisplayLink 多了一層軟體轉換，並非原生外接，因此勢必會有稍微的延遲。不過因為我沒有用 DisplayLink 打遊戲的需求，日常使用上的延遲是無感的。（相較起來，MacBook 中文輸入的延遲都有感的多&mldr;.）</p>
+<h2 id=其他解決方案>其他解決方案</h2>
+<p>當然，採取 DisplayLink 方案之前，我也有調查其他可能花更多錢或更省錢的方案，包含：</p>
+<ul>
+<li>直接買一個超大曲面螢幕（20:9 或 32:9）取代兩個外接螢幕，這樣就只有單一外接螢幕了，然後讓兩個舊螢幕退休（超貴）。</li>
+<li><a href=https://www.ptt.cc/bbs/MAC/M.1654962256.A.7F1.html>這篇</a> PTT 文章提到的 Lemorele 的連接器，說實在感覺只是另一種和 DisplayLink 打對台的技術。</li>
+</ul>
+<div class="likecoin-embed likecoin-button" data-liker-id=dwy6626 data-href=https://dwye.dev/post/macbook-extra-monitor/>
+</div>
+<script src=https://static.like.co/sdk/v1/button.js></script>
+<div class=copyright>
+本文原創部分採用
+<a rel=license href=http://creativecommons.org/licenses/by-nc-nd/4.0/>創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款</a>
+授權。
+</div>
+<div class="prev-next-post pure-g">
+<div class=pure-u-1-24 style=text-align:left>
+<a href=https://dwye.dev/post/crypto-com-atm-withdraw/><i class="fa fa-chevron-left"></i></a>
+</div>
+<div class=pure-u-10-24>
+<nav class=prev>
+<a href=https://dwye.dev/post/crypto-com-atm-withdraw/>Crypto.com Visa 卡 ATM 提款與匯率實測</a>
+</nav>
+</div>
+<div class=pure-u-2-24>
+&nbsp;
+</div>
+<div class=pure-u-10-24>
+</div>
+<div class=pure-u-1-24 style=text-align:right>
+</div>
+</div>
+<script src=https://utteranc.es/client.js repo=dwy6626/dwy6626.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script>
+</div>
+</div>
+</div>
+<script src=https://dwye.dev/js/ui.js></script>
+<script src=https://dwye.dev/js/menus.js></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T3EV639W1W"></script>
+<script>if(window.location.hostname!="localhost"){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-T3EV639W1W')}</script>
+</body>
+</html>

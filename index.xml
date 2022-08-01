@@ -1,4 +1,52 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 17 May 2022 02:11:25 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>Crypto.com Visa 卡 ATM 提款與匯率實測</title><link>https://dwye.dev/post/crypto-com-atm-withdraw/</link><pubDate>Tue, 17 May 2022 02:11:25 +0800</pubDate><guid>https://dwye.dev/post/crypto-com-atm-withdraw/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Mon, 01 Aug 2022 17:42:23 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>M1 MacBook DisplayLink 多螢幕心得</title><link>https://dwye.dev/post/macbook-extra-monitor/</link><pubDate>Mon, 01 Aug 2022 17:42:23 +0800</pubDate><guid>https://dwye.dev/post/macbook-extra-monitor/</guid><description>
+&lt;h2 id="契機">契機&lt;/h2>
+&lt;p>因為工作的關係拿到了一台 M1 MacBook，然而換成 M1 MacBook 之後就沒辦法直接使用 HDMI 接兩個外接螢幕了，這是 M1 晶片天生硬體的限制（M2 也是）。&lt;/p>
+&lt;p>我原本習慣使用三螢幕工作，MacBook 自己的小螢幕加上兩個外接螢幕。試著用單一外接螢幕工作了一陣子，果然還是不習慣，所以就著手調查如何讓 M1 / M2 MacBook 也能外接兩個以上的螢幕。&lt;/p>
+&lt;p>最後靠著 Amazon 海外網購的力量，找到了價格約 1500 台幣的解決方案：&lt;/p>
+&lt;h2 id="displaylink">DisplayLink&lt;/h2>
+&lt;p>根據 &lt;a href="https://en.wikipedia.org/wiki/DisplayLink">wiki&lt;/a>，DisplayLink 目前是新思科技（Synaptics）底下的一個技術，可以用 USB、Wifi 等方式來連接顯示器，實現一台電腦多螢幕的功能。要使用 DisplayLink，必須要有相對應的軟體以及硬體：&lt;/p>
+&lt;h3 id="軟體-displaylink-manager">軟體 DisplayLink Manager&lt;/h3>
+&lt;p>這個好解決，直接在官網下載安裝即可：&lt;br>
+&lt;a href="https://www.synaptics.com/products/displaylink-graphics/downloads">https://www.synaptics.com/products/displaylink-graphics/downloads&lt;/a>&lt;/p>
+&lt;p>&lt;img src="https://dwye.dev/img/displaylink/displaylink%20manager.jpeg" alt="DisplayLink Manager">&lt;/p>
+&lt;h3 id="硬體支援-displaylink-的-usb-轉接器">硬體：支援 DisplayLink 的 USB 轉接器&lt;/h3>
+&lt;p>如果直接搜尋在台灣有賣的 DisplayLink Hub，選項很少而且很貴，例如：&lt;br>
+&lt;img src="https://dwye.dev/img/displaylink/owc.jpeg" alt="expensive DisplayLink Hub on PCHome">&lt;/p>
+&lt;p>當然也可以上蝦皮或淘寶找&amp;hellip;但我就是不放心。&lt;/p>
+&lt;p>所以就逛了下 DisplayLink 官網，發現官網有列出支援的設備還蠻多的：&lt;br>
+&lt;a href="https://www.synaptics.com/products/displaylink-graphics/displaylink-products">https://www.synaptics.com/products/displaylink-graphics/displaylink-products&lt;/a>&lt;/p>
+&lt;h2 id="最終方案-wavlink-usb-30-to-hdmi-adapter">最終方案: WAVLINK USB 3.0 to HDMI Adapter&lt;/h2>
+&lt;p>我從上面的連結中找&lt;a href="https://www.synaptics.com/products/displaylink-graphics/displaylink-products-list?field_displaylink_category_value=usb_adapters">支援 DisplayLink 的 USB 連接器&lt;/a>（因為我的 Hub 有多的 USB 孔可以使用，而 USB type-c 連接器的通常比較貴）&lt;/p>
+&lt;p>最後我挑選了這隻 WAVLINK USB 3.0 to HDMI Adapter:&lt;/p>
+&lt;p>&lt;img src="https://dwye.dev/img/displaylink/amazon.jpeg" alt="WAVLINK on Amazon">&lt;/p>
+&lt;p>然後直接上 Amazon 買，從海外運進來，這樣含運費共 53 USD，大概 1500 台幣，還算可以接受的價格（實際上就是自己買水貨的概念）。&lt;br>
+當然，這邊是刷我的 &lt;a href="https://dwye.dev/post/crypto-com-visa-spotify-netflix">Crypto.com 卡&lt;/a>，省去海外刷卡手續費，還能賺 3 % CRO 回饋：&lt;br>
+&lt;img src="https://dwye.dev/img/displaylink/cro%20rebate.jpeg" alt="CRO Amazon Rebate">&lt;/p>
+&lt;p>收到實品：&lt;br>
+&lt;img src="https://dwye.dev/img/displaylink/wavlink.jpeg" alt="WavLink Hub with Box">&lt;/p>
+&lt;p>拆封：&lt;br>
+&lt;img src="https://dwye.dev/img/displaylink/wavlink%202.jpeg" alt="WavLink Hub">&lt;/p>
+&lt;p>最後就可以插上 Hub 使用了～（後面那個 Hub 左邊就是這個新買的 WAVLINK adaptor，右邊則是直接用 HDMI 接我的主螢幕）&lt;br>
+&lt;img src="https://dwye.dev/img/displaylink/hubs.jpeg" alt="Hub">&lt;/p>
+&lt;h2 id="使用-displaylink-的一些缺點">使用 DisplayLink 的一些缺點&lt;/h2>
+&lt;p>當然，使用 USB 來當作顯示器入口還是有缺點的，因為多經過了一層軟體，而不是原生支援，目前查到和遇到的缺點：&lt;/p>
+&lt;h3 id="netflix-黑屏--黑畫面">Netflix 黑屏 / 黑畫面&lt;/h3>
+&lt;p>因為 DRM 和 DisplayLink 的技術衝突，沒辦法在開著 DisplayLink 的情況下觀看 Netflix（沒有實測，不過其他有做 DRM 保護的線上串流影音應該也一樣，例如 Display+, KKTV&amp;hellip;）。如果要看 Netflix 勢必就要只使用單一外接螢幕。&lt;/p>
+&lt;p>我自己的實測，不需要把 DisplayLink Manager 軟體關掉，只需要把 DisplayLink Manager 裡面顯示器名稱旁的開關關掉就好，這時候第二個外接螢幕就會斷掉連接。&lt;/p>
+&lt;p>&lt;img src="https://dwye.dev/img/displaylink/off.jpeg" alt="Turn Off DisplayLink">&lt;br>
+這時候就可以正常觀看 Netflix 了。&lt;/p>
+&lt;p>看完 Netflix 想要用多個螢幕時，只要把 DisplayLink Manager 顯示器名稱旁的開關重新打開，第二個外接螢幕就會重新連上線。&lt;/p>
+&lt;p>雖然不方便，但還是可以忍受，畢竟不會在看 Netflix 的時候多螢幕工作嘛（大家應該都是吧 XD）。&lt;/p>
+&lt;h3 id="更新率">更新率&lt;/h3>
+&lt;p>就我所知，DisplayLink 所支援的最大更新率是 60 Hz。還好我的副螢幕最大更新率也是 60 Hz，因此躲開了這個缺點。&lt;/p>
+&lt;h3 id="延遲">延遲&lt;/h3>
+&lt;p>畢竟 DisplayLink 多了一層軟體轉換，並非原生外接，因此勢必會有稍微的延遲。不過因為我沒有用 DisplayLink 打遊戲的需求，日常使用上的延遲是無感的。（相較起來，MacBook 中文輸入的延遲都有感的多&amp;hellip;.）&lt;/p>
+&lt;h2 id="其他解決方案">其他解決方案&lt;/h2>
+&lt;p>當然，採取 DisplayLink 方案之前，我也有調查其他可能花更多錢或更省錢的方案，包含：&lt;/p>
+&lt;ul>
+&lt;li>直接買一個超大曲面螢幕（20:9 或 32:9）取代兩個外接螢幕，這樣就只有單一外接螢幕了，然後讓兩個舊螢幕退休（超貴）。&lt;/li>
+&lt;li>&lt;a href="https://www.ptt.cc/bbs/MAC/M.1654962256.A.7F1.html">這篇&lt;/a> PTT 文章提到的 Lemorele 的連接器，說實在感覺只是另一種和 DisplayLink 打對台的技術。&lt;/li>
+&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>Crypto.com Visa 卡 ATM 提款與匯率實測</title><link>https://dwye.dev/post/crypto-com-atm-withdraw/</link><pubDate>Tue, 17 May 2022 02:11:25 +0800</pubDate><guid>https://dwye.dev/post/crypto-com-atm-withdraw/</guid><description>
 &lt;p>在前一篇&lt;a href="https://dwye.dev/post/crypto-com-visa-spotify-netflix">辦卡與申請回饋的心得文&lt;/a>中，有提到我的這張 Crypto.com Visa 卡支援一定額度內的免手續費 ATM 提款。這篇就來分享我的實測提款結果。&lt;br>
 &lt;img src="https://dwye.dev/img/crypto-withdraw/cro_visa.jpg" alt="cro green">&lt;/p>
 &lt;p>我的卡等是 Jade Green，所以每個月有 800 SGD 額度的免手續費 ATM 提款，以現在的匯率 21.38 塊來計算，可以領 17104 元台幣。當然，為了避免時間造成的匯率差異，所以還是以 17000 來記會比較好。&lt;/p>
