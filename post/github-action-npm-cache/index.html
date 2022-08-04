@@ -256,7 +256,7 @@ npm ci 與 cache 的應用
         <span style=color:#f92672>node-version</span>: <span style=color:#ae81ff>16.13.1</span>
         <span style=color:#f92672>cache</span>: <span style=color:#e6db74>&#39;npm&#39;</span>
     - <span style=color:#f92672>run</span>: <span style=color:#ae81ff>npm install</span>
-</code></pre></div><p>就是這麼簡單，更詳細用法可以查看 <code>actions/setup-node</code> 的文件（https://github.com/actions/setup-node）。</p>
+</code></pre></div><p>就是這麼簡單，更詳細用法可以查看 <code>actions/setup-node</code> 的文件（<a href=https://github.com/actions/setup-node>https://github.com/actions/setup-node</a>）。</p>
 <p>值得注意的是，這邊的 cache 對象是 <code>.npm</code> 的資料夾，而不是 <code>node_modules</code>，所以即便有 cache 了，在跑 <code>npm install</code> 時還是有可能會需要下載與安裝一些 package。</p>
 <h3 id=使用-npm-ci>使用 NPM CI</h3>
 <p>我也是在這次建置中才注意到這個酷功能的：<br>

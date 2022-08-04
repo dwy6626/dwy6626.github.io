@@ -516,7 +516,7 @@ key, _ &lt;span style="color:#f92672">=&lt;/span> next(iterator)
 &lt;span style="color:#f92672">node-version&lt;/span>: &lt;span style="color:#ae81ff">16.13.1&lt;/span>
 &lt;span style="color:#f92672">cache&lt;/span>: &lt;span style="color:#e6db74">&amp;#39;npm&amp;#39;&lt;/span>
 - &lt;span style="color:#f92672">run&lt;/span>: &lt;span style="color:#ae81ff">npm install&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>就是這麼簡單，更詳細用法可以查看 &lt;code>actions/setup-node&lt;/code> 的文件（https://github.com/actions/setup-node）。&lt;/p>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>就是這麼簡單，更詳細用法可以查看 &lt;code>actions/setup-node&lt;/code> 的文件（&lt;a href="https://github.com/actions/setup-node">https://github.com/actions/setup-node&lt;/a>）。&lt;/p>
 &lt;p>值得注意的是，這邊的 cache 對象是 &lt;code>.npm&lt;/code> 的資料夾，而不是 &lt;code>node_modules&lt;/code>，所以即便有 cache 了，在跑 &lt;code>npm install&lt;/code> 時還是有可能會需要下載與安裝一些 package。&lt;/p>
 &lt;h3 id="使用-npm-ci">使用 NPM CI&lt;/h3>
 &lt;p>我也是在這次建置中才注意到這個酷功能的：&lt;br>
@@ -3955,7 +3955,7 @@ form.x_sign &lt;span style="color:#f92672">=&lt;/span> 1
 &lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>Wercker 自動化部署 Hugo 網站</title><link>https://dwye.dev/post/hugo-wercker/</link><pubDate>Tue, 03 Sep 2019 00:01:56 +0800</pubDate><guid>https://dwye.dev/post/hugo-wercker/</guid><description>
 &lt;p>&lt;a href="https://dwye.dev/post/first-post">架好這個網站後的第一篇文章&lt;/a>提到，我是用 Wercker 做自動化部署。&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/CdBoQ3C.png" alt="wercker">&lt;/p>
-&lt;p>其實相關的說明很多，&lt;a href="https://gohugo.io/hosting-and-deployment/deployment-with-wercker/">Hugo 官方說明&lt;/a>也很詳細，看得懂英文的可以參考，看不懂的看&lt;a href="http://handsomezhu.me/2017/10/hugo-blog-setup-tutorial/">這篇簡中的&lt;/a>也行~~，都看不懂&amp;hellip;Google 翻譯是你的好朋友~~。&lt;/p>
+&lt;p>其實相關的說明很多，&lt;a href="https://gohugo.io/hosting-and-deployment/deployment-with-wercker/">Hugo 官方說明&lt;/a>也很詳細，看得懂英文的可以參考，看不懂的看&lt;a href="http://handsomezhu.me/2017/10/hugo-blog-setup-tutorial/">這篇簡中的&lt;/a>也行。&lt;/p>
 &lt;p>不過這篇特別談的是 &lt;code>wercker.yaml&lt;/code> 到底要寫什麼？&lt;/p>
 &lt;p>上面的官方說明附上了這個 script:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#f92672">box&lt;/span>: &lt;span style="color:#ae81ff">debian&lt;/span>
