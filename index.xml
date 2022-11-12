@@ -1,4 +1,69 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Mon, 01 Aug 2022 17:42:23 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>M1 MacBook DisplayLink 多螢幕心得</title><link>https://dwye.dev/post/macbook-extra-monitor/</link><pubDate>Mon, 01 Aug 2022 17:42:23 +0800</pubDate><guid>https://dwye.dev/post/macbook-extra-monitor/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dw's 小站</title><link>https://dwye.dev/</link><description>Recent content on dw's 小站</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 12 Nov 2022 20:01:56 +0800</lastBuildDate><atom:link href="https://dwye.dev/" rel="self" type="application/rss+xml"/><item><title>FTX 交易所倒閉的自我檢討與對策</title><link>https://dwye.dev/post/ftx/</link><pubDate>Sat, 12 Nov 2022 20:01:56 +0800</pubDate><guid>https://dwye.dev/post/ftx/</guid><description>
+&lt;p>&lt;img src="https://dwye.dev/img/crypto/ftx.png" alt="FTX Logo">&lt;/p>
+&lt;p>熊市來臨。我平常以 FTX 作為主要交易所，以及賺取利息，信仰著 SBF 能帶我們飛，沒想到 SBF 卻是帶我們下地獄。這次倒閉事件我損失了幾乎所有我的加密貨幣，超過 1/3 的總資產，只因為慢了一步逃跑，可以說是 FTX 受災大戶了，我的朋友內還沒有人跟我丟掉一樣多錢的。&lt;/p>
+&lt;p>也因此，我決定利用這個假日，遠離一切負面消息，給自己一個時間好好整理來龍去脈，評估損失，以及將來的對策。&lt;/p>
+&lt;p>這篇文章不再另外介紹事件的前因後果，如果有興趣，可以查看一些相關報導，例如：&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://www.blocktempo.com/ftx-liquidity-crisis-and-binance-acquisition-timeline-arrangement/">BlockTempo - FTX暴雷懶人包》時間軸整理：CZ要砸光FTT 、3天抽光60億鎂，到幣安收購…&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.cw.com.tw/article/5123529">天下雜誌 - FTX瀕臨破產、創辦人身價億萬變1美元　「幣圈巴菲特」SBF怎麼走到這一步？&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="postmortem">Postmortem&lt;/h2>
+&lt;p>軟體業中，若是有事故發生，我們一般會寫個**驗屍報告（Postmortem）**來分析事故，紀錄來龍去脈，以及讓相關人員和公司其他員工能夠從錯誤中學習。&lt;/p>
+&lt;p>這次，我把這套方法套用在賠了大量資產後自我檢討。&lt;/p>
+&lt;p>這邊格式參考了 &lt;a href="https://www.atlassian.com/incident-management/postmortem/templates">Atlassian 的模板&lt;/a>。&lt;/p>
+&lt;h1 id="postmortem-ftx-倒閉事件">[Postmortem] FTX 倒閉事件&lt;/h1>
+&lt;p>(部分個人資產數字已挖空)&lt;/p>
+&lt;h3 id="summary">Summary&lt;/h3>
+&lt;p>FTX 交易所和關聯機構 Alameda 被爆料資不抵債，幣安執行長 CZ 發文說要拋售 FTT，造成用戶恐慌擠兌，SBF 掩蓋真相，最終 FTX 倒閉&lt;/p>
+&lt;h3 id="timeline-utc8-2022">Timeline (UTC+8, 2022)&lt;/h3>
+&lt;ul>
+&lt;li>&lt;code>11/2 (Wed) 23:44&lt;/code> CoinDesk 發表 Alameda 資不抵債醜聞&lt;/li>
+&lt;li>&lt;code>11/6 (Sun) 22:32&lt;/code> Alameda CEO Caroline 反駁醜聞，說那只是一部分&lt;/li>
+&lt;li>&lt;code>11/6 (Sun) 23:47&lt;/code> &lt;strong>CZ 發推表示基於風險考量，決定出清 FTT，FTT 開始小跌，FTX 開始有提款潮&lt;/strong>&lt;/li>
+&lt;li>&lt;code>11/7 (Mon) 00:03&lt;/code> Caroline 說願意和 CZ 以 22 塊收購全部 FTT，給予市場信心&lt;/li>
+&lt;li>&lt;code>11/7 (Mon) 01:38&lt;/code> SBF 表示 FTX 能夠負擔客戶資產&lt;/li>
+&lt;li>&lt;code>11/8 (Tue) 10:4X&lt;/code> FTT 跌破 22 防線至 15 附近&lt;/li>
+&lt;li>&lt;code>11/8 (Tue) 14:20&lt;/code> PTT sbob 回文表示快逃，我看到文章後選擇反向做多 FTT 並觀望，這時已傳出提幣減慢 &lt;strong>（最後逃跑點）&lt;/strong>&lt;/li>
+&lt;li>&lt;code>11/8 (Tue) 17:XX&lt;/code> FTX 開始傳出停止提幣&lt;/li>
+&lt;li>&lt;code>11/8 (Tue) 23:36&lt;/code> &lt;strong>嘗試提幣&lt;/strong>&lt;/li>
+&lt;li>&lt;code>11/9 (Wed) 00:03&lt;/code> SBF 和 CZ 公告 Binance 收購 FTX 計畫，承認流動性問題，此後已無法提幣。&lt;/li>
+&lt;/ul>
+&lt;h3 id="impact">Impact&lt;/h3>
+&lt;p>損失 FTX 上資產：________ USD，共約 _____ 萬台幣&lt;/p>
+&lt;ul>
+&lt;li>________ (Blockfolio)&lt;/li>
+&lt;li>________ (FTX Pro)&lt;/li>
+&lt;/ul>
+&lt;p>以雷曼事件為類比，好的情況可以拿回三成約 _____ 萬台幣&lt;br>
+最壞情況為 _____ 萬台幣歸零&lt;/p>
+&lt;h3 id="backlog-check">Backlog Check&lt;/h3>
+&lt;p>事後觀察：&lt;/p>
+&lt;ul>
+&lt;li>所有爆料都是真的&lt;/li>
+&lt;li>SBF 和 Caroline 在說謊拖延時間&lt;/li>
+&lt;/ul>
+&lt;p>認知偏誤：&lt;/p>
+&lt;ul>
+&lt;li>相信 FTX 和 Luna 不一樣&lt;/li>
+&lt;li>相信 SBF &amp;gt; CZ，假設 SBF 沒有說謊，因此沒有察覺到風險&lt;/li>
+&lt;/ul>
+&lt;p>風險管理：&lt;/p>
+&lt;ul>
+&lt;li>有接受到消息，卻沒有正確作為：做多 FTT 賺了小段，卻丟了本金，來不及趕上最後逃跑點&lt;/li>
+&lt;li>「先跑再說」很明顯是個低成本降低大量風險的行為，但卻主觀認為 FTX 不會倒，所以沒有採取行動&lt;/li>
+&lt;li>我的認知是幣圈僅佔資產的 1/3，但實際上是 _____ / _____ ~ 41%，比想像中更痛&lt;/li>
+&lt;/ul>
+&lt;h3 id="lessons-learned">Lessons Learned&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>沒有大到不能倒這件事&lt;/strong>&lt;/li>
+&lt;li>幣圈一天，人間十年，需要快速評估消息背後風險，不能下班再說&lt;/li>
+&lt;/ul>
+&lt;h3 id="corrective-actions">Corrective Actions&lt;/h3>
+&lt;ul>
+&lt;li>因為資產大量損失，需要重新制定存錢與買房計畫，重新估計年限。若有必要，考慮提高收入、搬家、甚至出國存錢。&lt;/li>
+&lt;li>降低預期報酬，避免採取太激進的策略來增加資產。&lt;/li>
+&lt;li>除了「開源」之外，加入「節流」，避免賺來的錢不斷流失。&lt;/li>
+&lt;/ul></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>M1 MacBook DisplayLink 多螢幕心得</title><link>https://dwye.dev/post/macbook-extra-monitor/</link><pubDate>Mon, 01 Aug 2022 17:42:23 +0800</pubDate><guid>https://dwye.dev/post/macbook-extra-monitor/</guid><description>
 &lt;h2 id="契機">契機&lt;/h2>
 &lt;p>因為工作的關係拿到了一台 M1 MacBook，然而換成 M1 MacBook 之後就沒辦法直接使用 HDMI 接兩個外接螢幕了，這是 M1 晶片天生硬體的限制（M2 也是）。&lt;/p>
 &lt;p>我原本習慣使用三螢幕工作，MacBook 自己的小螢幕加上兩個外接螢幕。試著用單一外接螢幕工作了一陣子，果然還是不習慣，所以就著手調查如何讓 M1 / M2 MacBook 也能外接兩個以上的螢幕。&lt;/p>
