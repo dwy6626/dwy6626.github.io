@@ -200,10 +200,6 @@
 &lt;p>以方便性論，推薦。&lt;br>
 以價格論，不推薦。&lt;/p>
 &lt;p>他的運作模式可以想像成 &lt;a href="https://www.blocktempo.com/taiwan-quantitative-trading-use-dark-pool-to-fulfill-0-trading-fee/">Robinhood 的暗池模式&lt;/a>，並不是掛單，而是交易所會賺取買賣的報價差異。&lt;/p>
-&lt;p>如果交易金額大，建議丟去 &lt;strong>FTX Pro 交易所&lt;/strong>，因為他們大部分的提幣（除了 ERC-20 和小額 BTC 外）都&lt;a href="https://help.ftx.com/hc/zh-cn/articles/360034881271-%E5%85%85%E5%B8%81%E5%8F%8A%E6%8F%90%E5%B8%81">不需要手續費&lt;/a>，交易完再丟回 Crypto.com 可能還比較便宜。&lt;/p>
-&lt;p>&lt;img src="https://dwye.dev/img/crypto/ftx.png" alt="ftx">&lt;/p>
-&lt;p>可以透過我的邀請連結申辦 FTX Pro，&lt;strong>獲得 5 % 的交易手續費返還&lt;/strong>：&lt;a href="https://ftx.com/profile#a=17486766">https://ftx.com/profile#a=17486766&lt;/a>。或是使用邀請碼: &lt;strong>17486766&lt;/strong>。&lt;/p>
-&lt;p>FTX 是有幣圈奇人 &lt;a href="https://www.bnext.com.tw/article/66342/ftx-sbf">SBF&lt;/a> 撐腰的交易所，世界前五大交易所，十分可靠的，而且對於槓桿交易十分友善，可以使用官方代幣 FTT 作為保證金，大量降低爆倉風險，避免「玩幣歸趙」。&lt;/p>
 &lt;h3 id="cryptocom-有網頁版嗎">Crypto.com 有網頁版嗎？&lt;/h3>
 &lt;p>有 &lt;a href="https://crypto.com/exchange">Crypto.com Exchange&lt;/a>，但和 app 是分開的帳密，分開的資產管理。&lt;br>
 只有 app 可以申請和管理付款卡。&lt;/p>
@@ -463,7 +459,7 @@ key, _ &lt;span style="color:#f92672">=&lt;/span> next(iterator)
 &lt;p>只有一個人能獲勝，就像《魷魚遊戲》本身一樣，而那個人就是背後的開發者。&lt;/p>
 &lt;h2 id="其他的加密貨幣會不會也一夕歸零">其他的加密貨幣會不會也一夕歸零？&lt;/h2>
 &lt;p>既然已經知道 SQUID 本身就是一筆詐騙案了，從合約本身開始就有問題，而會有人上鉤也是因為買的人不知道自己到底買了什麼，也就是所謂的「FOMO 仔」，很怕自己沒跟到這波所以先進去再說，然後就被割韭菜了。&lt;/p>
-&lt;p>實際上大部分的加密貨幣都是算法上證實有效且安全的，如果真的害怕被小幣詐騙，還是盡量從大型中心化交易所買幣（像是幣安 / FTX 之類的），因為中心化交易所上架新幣是需要審核的，能夠通過審核的幣，雖然不一定會漲，但至少不會是詐騙。&lt;/p>
+&lt;p>實際上大部分的加密貨幣都是算法上證實有效且安全的，如果真的害怕被小幣詐騙，還是盡量從大型中心化交易所買幣（像幣安），因為中心化交易所上架新幣是需要審核的，能夠通過審核的幣，雖然不一定會漲，但至少不會是詐騙。&lt;/p>
 &lt;p>最大的風險，就是有一天人們不認同某個加密貨幣了，所有人瘋狂拋售該貨幣，導致價格大跌。但即便這天到來了，打倒該貨幣的也是真正的市場機制，是每個人，而不是開發者說歸零他就會歸零的，如果到了貨幣歸零那天你還持有著大量的該貨幣，那可能真的是投資失誤了 XD。就像買股票一樣，花錢買一個幣之前，先花點時間研究總是個好選項。&lt;/p>
 &lt;p>實際上，真正的貨幣也是會有漲跌的，如果政府不當印鈔，或是貨幣失去了依靠的政府，那該貨幣也是會暴跌的，還記得&lt;a href="https://zh.wikipedia.org/wiki/%E8%88%8A%E8%87%BA%E5%B9%A3">舊台幣&lt;/a>嗎？&lt;/p>
 &lt;h2 id="參考資料">參考資料&lt;/h2>
