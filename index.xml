@@ -2747,7 +2747,7 @@ dwye.dev. 3599 IN A 185.199.110.153
 ds &lt;span style="color:#f92672">=&lt;/span> DisjointSet(range(n))
 &lt;span style="color:#66d9ef">for&lt;/span> u, v &lt;span style="color:#f92672">in&lt;/span> connections:
 ds&lt;span style="color:#f92672">.&lt;/span>union(u, v)
-&lt;span style="color:#66d9ef">return&lt;/span> ds&lt;span style="color:#f92672">.&lt;/span>count_sets() &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
+&lt;span style="color:#66d9ef">return&lt;/span> len(ds) &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="實作-disjoint-set">實作 Disjoint Set&lt;/h2>
 &lt;p>Disjoint set 的特性，是將一個大集合裡面分為 n 個子集合，這些子集合本身是 disjoint，無交集的。並提供兩個方法：&lt;/p>
 &lt;ul>
@@ -2776,7 +2776,7 @@ v &lt;span style="color:#f92672">=&lt;/span> self&lt;span style="color:#f92672">
 &lt;span style="color:#66d9ef">if&lt;/span> u &lt;span style="color:#f92672">!=&lt;/span> v:
 self&lt;span style="color:#f92672">.&lt;/span>parents[u] &lt;span style="color:#f92672">=&lt;/span> v
 self&lt;span style="color:#f92672">.&lt;/span>count &lt;span style="color:#f92672">-=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
-&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">count_sets&lt;/span>(self):
+&lt;span style="color:#66d9ef">def&lt;/span> __len__(self):
 &lt;span style="color:#66d9ef">return&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>count
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="進一步優化">進一步優化&lt;/h2>
 &lt;p>但其實這個物件還有可以優化的地方：&lt;code>find&lt;/code> 會重複執行，如果 tree 很深，&lt;code>find&lt;/code> 的時間就會越來越長。由於 node 在 tree 內部的位置並不是重點，我們希望能夠讓向上查找家長這件事變快，也就是保持 tree 越淺越好。為此可以做兩件事：&lt;/p>
@@ -2790,15 +2790,12 @@ self&lt;span style="color:#f92672">.&lt;/span>count &lt;span style="color:#f9267
 self&lt;span style="color:#f92672">.&lt;/span>sets &lt;span style="color:#f92672">=&lt;/span> [Node() &lt;span style="color:#66d9ef">for&lt;/span> n &lt;span style="color:#f92672">in&lt;/span> elements]
 self&lt;span style="color:#f92672">.&lt;/span>count &lt;span style="color:#f92672">=&lt;/span> len(self&lt;span style="color:#f92672">.&lt;/span>sets)
 &lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">find&lt;/span>(self, element):
-n &lt;span style="color:#f92672">=&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>sets[element]
-path_node &lt;span style="color:#f92672">=&lt;/span> []
-&lt;span style="color:#66d9ef">while&lt;/span> n&lt;span style="color:#f92672">.&lt;/span>parent &lt;span style="color:#f92672">!=&lt;/span> n:
-n &lt;span style="color:#f92672">=&lt;/span> n&lt;span style="color:#f92672">.&lt;/span>parent
-path_node&lt;span style="color:#f92672">.&lt;/span>append(n) &lt;span style="color:#75715e"># 記錄路上的 nodes&lt;/span>
+&lt;span style="color:#66d9ef">return&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>_find(self&lt;span style="color:#f92672">.&lt;/span>sets[element])
+&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">_find&lt;/span>(self, n):
+&lt;span style="color:#66d9ef">if&lt;/span> n&lt;span style="color:#f92672">.&lt;/span>parent &lt;span style="color:#f92672">!=&lt;/span> n:
 &lt;span style="color:#75715e"># path compression&lt;/span>
-&lt;span style="color:#66d9ef">for&lt;/span> v &lt;span style="color:#f92672">in&lt;/span> path_node:
-v&lt;span style="color:#f92672">.&lt;/span>parent &lt;span style="color:#f92672">=&lt;/span> n
-&lt;span style="color:#66d9ef">return&lt;/span> n
+n&lt;span style="color:#f92672">.&lt;/span>parent &lt;span style="color:#f92672">=&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>_find(n&lt;span style="color:#f92672">.&lt;/span>parent)
+&lt;span style="color:#66d9ef">return&lt;/span> n&lt;span style="color:#f92672">.&lt;/span>parent
 &lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">union&lt;/span>(self, u, v):
 u &lt;span style="color:#f92672">=&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>find(u)
 v &lt;span style="color:#f92672">=&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>find(v)
@@ -2811,7 +2808,7 @@ v&lt;span style="color:#f92672">.&lt;/span>parent &lt;span style="color:#f92672"
 &lt;span style="color:#66d9ef">if&lt;/span> v&lt;span style="color:#f92672">.&lt;/span>rank &lt;span style="color:#f92672">==&lt;/span> u&lt;span style="color:#f92672">.&lt;/span>rank:
 u&lt;span style="color:#f92672">.&lt;/span>rank &lt;span style="color:#f92672">+=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
 self&lt;span style="color:#f92672">.&lt;/span>count &lt;span style="color:#f92672">-=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
-&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">count_sets&lt;/span>(self):
+&lt;span style="color:#66d9ef">def&lt;/span> __len__(self):
 &lt;span style="color:#66d9ef">return&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>count
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>這邊用到了 Node 物件，其實就是 C 的 struct 的概念。其實也可以只使用 tuple，但我選擇寫成物件比較清楚：&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Node&lt;/span>:

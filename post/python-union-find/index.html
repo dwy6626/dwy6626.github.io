@@ -225,7 +225,7 @@ Python 實作 Disjoint Set 與 Union Find
     <span style=color:#66d9ef>for</span> u, v <span style=color:#f92672>in</span> connections:
         ds<span style=color:#f92672>.</span>union(u, v)
     
-    <span style=color:#66d9ef>return</span> ds<span style=color:#f92672>.</span>count_sets() <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>
+    <span style=color:#66d9ef>return</span> len(ds) <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>
 </code></pre></div><h2 id=實作-disjoint-set>實作 Disjoint Set</h2>
 <p>Disjoint set 的特性，是將一個大集合裡面分為 n 個子集合，這些子集合本身是 disjoint，無交集的。並提供兩個方法：</p>
 <ul>
@@ -257,7 +257,7 @@ Python 實作 Disjoint Set 與 Union Find
             self<span style=color:#f92672>.</span>parents[u] <span style=color:#f92672>=</span> v
             self<span style=color:#f92672>.</span>count <span style=color:#f92672>-=</span> <span style=color:#ae81ff>1</span>
 
-    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>count_sets</span>(self):
+    <span style=color:#66d9ef>def</span> __len__(self):
         <span style=color:#66d9ef>return</span> self<span style=color:#f92672>.</span>count
 </code></pre></div><h2 id=進一步優化>進一步優化</h2>
 <p>但其實這個物件還有可以優化的地方：<code>find</code> 會重複執行，如果 tree 很深，<code>find</code> 的時間就會越來越長。由於 node 在 tree 內部的位置並不是重點，我們希望能夠讓向上查找家長這件事變快，也就是保持 tree 越淺越好。為此可以做兩件事：</p>
@@ -272,16 +272,13 @@ Python 實作 Disjoint Set 與 Union Find
         self<span style=color:#f92672>.</span>count <span style=color:#f92672>=</span> len(self<span style=color:#f92672>.</span>sets)
         
     <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>find</span>(self, element):
-        n <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>sets[element]
-        path_node <span style=color:#f92672>=</span> []
-        <span style=color:#66d9ef>while</span> n<span style=color:#f92672>.</span>parent <span style=color:#f92672>!=</span> n:
-            n <span style=color:#f92672>=</span> n<span style=color:#f92672>.</span>parent
-            path_node<span style=color:#f92672>.</span>append(n) <span style=color:#75715e># 記錄路上的 nodes</span>
-
-        <span style=color:#75715e># path compression</span>
-        <span style=color:#66d9ef>for</span> v <span style=color:#f92672>in</span> path_node:
-            v<span style=color:#f92672>.</span>parent <span style=color:#f92672>=</span> n
-        <span style=color:#66d9ef>return</span> n
+        <span style=color:#66d9ef>return</span> self<span style=color:#f92672>.</span>_find(self<span style=color:#f92672>.</span>sets[element])
+        
+    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>_find</span>(self, n):
+        <span style=color:#66d9ef>if</span> n<span style=color:#f92672>.</span>parent <span style=color:#f92672>!=</span> n:
+            <span style=color:#75715e># path compression</span>
+            n<span style=color:#f92672>.</span>parent <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>_find(n<span style=color:#f92672>.</span>parent)
+        <span style=color:#66d9ef>return</span> n<span style=color:#f92672>.</span>parent
         
     <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>union</span>(self, u, v):
         u <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>find(u)
@@ -296,7 +293,7 @@ Python 實作 Disjoint Set 與 Union Find
                     u<span style=color:#f92672>.</span>rank <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
             self<span style=color:#f92672>.</span>count <span style=color:#f92672>-=</span> <span style=color:#ae81ff>1</span>
 
-    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>count_sets</span>(self):
+    <span style=color:#66d9ef>def</span> __len__(self):
         <span style=color:#66d9ef>return</span> self<span style=color:#f92672>.</span>count
 </code></pre></div><p>這邊用到了 Node 物件，其實就是 C 的 struct 的概念。其實也可以只使用 tuple，但我選擇寫成物件比較清楚：</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Node</span>:
