@@ -1,0 +1,444 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="
+  
+      A Game Changer in MacOS Productivity Apps
+    ">
+<meta name=generator content="Hugo 0.86.1">
+<meta property="og:title" content="Raycast - 集大成的 Mac 生產力工具">
+<meta name=twitter:title content="Raycast - 集大成的 Mac 生產力工具">
+<meta property="og:url" content="https://dwye.dev/post/raycast-mac-productivity/">
+<meta name=twitter:card content="summary">
+<meta name=twitter:site content="dw's 小站">
+<meta name=twitter:creator content="De-Wei Ye">
+<meta name=twitter:description content="Raycast 是一款 macOS 上的生產力工具，乍看似乎是像 Alfred 那樣取代 Spotlight，作為各種應用程式的啟動入口。但實際上 Raycast 的野心更勝於此。在實際體驗後，Raycast 讓我刪除了不少其他生產力工具，因為 Raycast 已經涵蓋了他們的功能，甚至更好用。">
+<link rel=preconnect href=https://s.ytimg.com>
+<link rel=preconnect href=https://i.imgur.com>
+<title>Raycast - 集大成的 Mac 生產力工具 &#183; dw's 小站</title>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.5/pure-min.css media=screen>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.5/grids-responsive-min.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/side-menu.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/blackburn.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/dw-burn.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/dw-menu.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/vars.css media=screen>
+<link rel=stylesheet href=https://dwye.dev/css/menu-x.css media=screen>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css>
+<link rel=preconnect href=https://fonts.gstatic.com>
+<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel=stylesheet type=text/css>
+<script type=text/javascript async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML"></script>
+<script type=text/x-mathjax-config>
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [['$$','$$']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+    CommonHTML: { linebreaks: { automatic: true } },
+    "HTML-CSS": { linebreaks: { automatic: true } },
+          SVG: { linebreaks: { automatic: true } }    
+  });
+</script>
+<script type=text/x-mathjax-config>
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+<link async rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/vs2015.min.css media=screen>
+<script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js></script>
+<script defer src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/yaml.min.js></script>
+<script defer src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/vbnet.min.js></script>
+<script>hljs.highlightAll()</script>
+<link rel="shortcut icon" href=https://dwye.dev/img/favicon.ico type=image/x-icon>
+<link rel=stylesheet href=https://dwye.dev/css/color.css media=screen>
+<meta name=google-site-verification content="pC2le32KaKDSGh9V637p5YC81zixbAMyKN3nPqkKscE">
+<script data-ad-client=ca-pub-3454014140664886 async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
+</head>
+<body>
+<div id=layout>
+<a href=#menu class=menu-link id=menuLink aria-label="Go to menu of this website">
+<s class=bar></s><s class=bar></s>
+</a>
+<div id=menu>
+<a class="pure-menu-heading brand" href=https://dwye.dev/>De-Wei Ye</a>
+<div class=pure-menu>
+<ul class=pure-menu-list>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/about/><i class="fas fa-user-circle fa-fw"></i><span>關於</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/notes/><i class="fas fa-book fa-fw"></i><span>筆記</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/post/><i class="fas fa-list-ul fa-fw"></i><span>文章列表</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/topics/><i class="fas fa-folder fa-fw"></i><span>主題分類</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/tags/><i class="fas fa-tags fa-fw"></i><span>標籤</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://dwye.dev/../en/><i class="fas fa-globe-americas fa-fw"></i><span>English</span></a>
+</li>
+</ul>
+</div>
+<div class="pure-menu social">
+<ul class=pure-menu-list>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://linkedin.com/in/dwy6626 rel="me external noopener" target=_blank><i class="fab fa-linkedin fa-fw"></i><span>LinkedIn</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://github.com/dwy6626 rel="me external noopener" target=_blank><i class="fab fa-github-square fa-fw"></i><span>GitHub</span></a>
+</li>
+<li class=pure-menu-item>
+<a class=pure-menu-link href=https://leetcode.com/mirror0227 rel="me external noopener" target=_blank><i class="fas fa-laptop-code fa-fw"></i><span>LeetCode</span></a>
+</li>
+</ul>
+</div>
+<div class=copyright-small>
+Built with <a href=https://gohugo.io/ rel="external noopener" target=_blank>Hugo</a>
+</div>
+<div class=copyright-small>
+W/ <a href=https://github.com/dwy6626/dw-favored-blackburn rel="external noopener" target=_blank>DW-Favored-Blackburn</a>
+</div>
+<div class=copyright-small>
+Based on <a href=https://github.com/yoshiharuyamashita/blackburn rel="external noopener" target=_blank>Blackburn</a>
+</div>
+<div class=copyright-small>
+and <a href=https://purecss.io/ rel="external noopener" target=_blank>Pure CSS</a>
+</div>
+<div class=copyright-small>
+Icons <a href=https://fontawesome.com rel="external noopener" target=_blank>Font Awesome</a>
+</div>
+<div class=copyright-small>
+<a href=https://dwye.dev/copyright>
+&copy; 2020. All rights reserved.
+</a>
+</div>
+</div>
+<div id=main>
+<div class=header>
+<h1>
+Raycast - 集大成的 Mac 生產力工具
+</h1>
+<h2>
+A Game Changer in MacOS Productivity Apps
+</h2>
+</div>
+<div class=aside-container>
+<div id=toc-aside style=display:none>
+<link rel=stylesheet href=https://dwye.dev/css/aside-toc.css media=screen>
+<script src=https://dwye.dev/js/toc.js></script>
+<div class=toc>
+<aside>
+<summary>目錄</summary>
+<div class=toc-item>
+<p><a rel=tag href=#>Raycast - 集大成的 Mac 生產力工具</a></p>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#tldr>TL;DR</a>
+<ul>
+<li><a href=#raycast-讓人愛不釋手的理由>Raycast 讓人愛不釋手的理由</a></li>
+</ul>
+</li>
+<li><a href=#為什麼說-raycast-是生產力工具的-game-changer-呢>為什麼說 Raycast 是生產力工具的 Game Changer 呢？</a>
+<ul>
+<li><a href=#是誰創造了-raycast>是誰創造了 Raycast</a></li>
+</ul>
+</li>
+<li><a href=#取代-spotlight-的快速啟動器>取代 Spotlight 的快速啟動器</a>
+<ul>
+<li><a href=#存取系統設定>存取系統設定</a></li>
+<li><a href=#系統指令>系統指令</a></li>
+</ul>
+</li>
+<li><a href=#使用熱鍵>使用熱鍵</a>
+<ul>
+<li><a href=#幫指令取-alias>幫指令取 Alias</a></li>
+</ul>
+</li>
+<li><a href=#快速進入視訊會議>快速進入視訊會議</a></li>
+<li><a href=#萬用計算機>萬用計算機</a></li>
+<li><a href=#menu-bar-小工具>Menu Bar 小工具</a></li>
+<li><a href=#snippets>Snippets</a></li>
+<li><a href=#剪貼簿歷史-clipboard-history>剪貼簿歷史 Clipboard History</a></li>
+<li><a href=#刪除不需要的-app>刪除不需要的 App</a></li>
+<li><a href=#豐富的擴充功能>豐富的擴充功能</a></li>
+<li><a href=#這是免費能用的嗎>這是免費能用的嗎？</a></li>
+</ul>
+</nav>
+</div>
+</aside>
+</div>
+</div>
+</div>
+<div class=content>
+<ul class=post-meta>
+<li>
+<i class="fa fa-calendar fa-fw"></i>
+<span>
+<time>Sep 18, 2023</time>
+</span>
+</li>
+</ul>
+<ul class=post-meta>
+<a href=https://dwye.dev/topics/%E7%A7%91%E6%8A%80%E7%94%9F%E6%B4%BB>
+<li>
+<i class="fas fa-folder fa-fw"></i>
+<span>科技生活</span>
+</li>
+</a>
+<a href=https://dwye.dev/tags/%E7%94%9F%E7%94%A2%E5%8A%9B%E5%B7%A5%E5%85%B7>
+<li>
+<i class="fas fa-tag fa-fw"></i>
+<span>生產力工具</span>
+</li>
+</a>
+<a href=https://dwye.dev/tags/raycast>
+<li>
+<i class="fas fa-tag fa-fw"></i>
+<span>Raycast</span>
+</li>
+</a>
+</ul>
+<div id=toc-top style=display:none>
+<div class=toc>
+<aside>
+<details>
+<summary>目錄</summary>
+<div class=toc-item>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#tldr>TL;DR</a>
+<ul>
+<li><a href=#raycast-讓人愛不釋手的理由>Raycast 讓人愛不釋手的理由</a></li>
+</ul>
+</li>
+<li><a href=#為什麼說-raycast-是生產力工具的-game-changer-呢>為什麼說 Raycast 是生產力工具的 Game Changer 呢？</a>
+<ul>
+<li><a href=#是誰創造了-raycast>是誰創造了 Raycast</a></li>
+</ul>
+</li>
+<li><a href=#取代-spotlight-的快速啟動器>取代 Spotlight 的快速啟動器</a>
+<ul>
+<li><a href=#存取系統設定>存取系統設定</a></li>
+<li><a href=#系統指令>系統指令</a></li>
+</ul>
+</li>
+<li><a href=#使用熱鍵>使用熱鍵</a>
+<ul>
+<li><a href=#幫指令取-alias>幫指令取 Alias</a></li>
+</ul>
+</li>
+<li><a href=#快速進入視訊會議>快速進入視訊會議</a></li>
+<li><a href=#萬用計算機>萬用計算機</a></li>
+<li><a href=#menu-bar-小工具>Menu Bar 小工具</a></li>
+<li><a href=#snippets>Snippets</a></li>
+<li><a href=#剪貼簿歷史-clipboard-history>剪貼簿歷史 Clipboard History</a></li>
+<li><a href=#刪除不需要的-app>刪除不需要的 App</a></li>
+<li><a href=#豐富的擴充功能>豐富的擴充功能</a></li>
+<li><a href=#這是免費能用的嗎>這是免費能用的嗎？</a></li>
+</ul>
+</nav>
+</div>
+</details>
+</aside>
+</div>
+</div>
+<p><a href=https://www.raycast.com/>Raycast</a> 是一款 macOS 上的生產力工具，乍看似乎是像 Alfred 那樣取代 Spotlight，作為各種應用程式的啟動入口。但實際上 Raycast 的野心更勝於此。在實際體驗後，Raycast 讓我刪除了不少其他生產力工具，因為 Raycast 已經涵蓋了他們的功能，甚至更好用。</p>
+<h2 id=tldr>TL;DR</h2>
+<p>先下載來試試吧，你唯一後悔的會是沒有早點開始使用 Raycast：</p>
+<ul>
+<li><a href=https://www.raycast.com/>https://www.raycast.com/</a></li>
+</ul>
+<h3 id=raycast-讓人愛不釋手的理由>Raycast 讓人愛不釋手的理由</h3>
+<ul>
+<li>更快速的 Spotlight</li>
+<li>大量方便的內建指令</li>
+<li>大量的 Extensions</li>
+<li>支援各種自定義熱鍵以及 Alias</li>
+<li>方便的 Menu Bar 檢視功能</li>
+<li>Snippets 幫你記住常用的字詞片段（像是地址，Email 發票載具等）</li>
+<li>剪貼簿歷史（Clipboard History），可以搜尋過去複製過的東西</li>
+</ul>
+<p>上面這些都是免費版就能做到的功能！而升級 Pro 版本可以快速存取 AI，透過各式 AI 指令讓 Raycast 變得更強大。</p>
+<h2 id=為什麼說-raycast-是生產力工具的-game-changer-呢>為什麼說 Raycast 是生產力工具的 Game Changer 呢？</h2>
+<p>以前總是會有很多 Youtube Video 介紹各種 Mac 上的生產力工具，包含視窗管理、App 管理、剪貼簿管理、快速計算機等等各種小工具，也有像 Alfred 那樣取代 Spotlight 的啟動器。雖然乍看 Raycast 好像又是另一個 Alfred 替代品，但其實 Raycast 更有野心： Raycast 的目標就是要做到 All in one，讓我們只需要 Raycast 單一一個工具，讓 Raycast 成為真正的快速啟動器，啟動各種你我生活及工作中會使用到的 Workflows。即便 Raycast 還很年輕（2020 Public Beta），就已經有如此多功能，甚至還在進化當中，常常我打開 Raycast，就會看到提示說又多了哪些新功能。官方也有 Slack 社群讓使用者提供 Feedback。</p>
+<h3 id=是誰創造了-raycast>是誰創造了 Raycast</h3>
+<p>Raycast 的背後是一家同名公司，CEO 是 Thomas Paul Mann，CTO 是 Petr Nikolaev，根據經歷都是英國 Facebook / Meta 出來的工程師，可以透過 Google 搜尋找到他們的 LinkedIn 頁面，而他們的 Career 頁面也有完整的員工名單，目前已經擴展至 21 名員工，而且也有在招募中，是全遠端工作的公司，不過需要以歐洲時區為主，可以前往他們的 Career 頁面了解相關資訊：</p>
+<ul>
+<li><a href=https://www.raycast.com/careers>https://www.raycast.com/careers</a></li>
+</ul>
+<p>好了，前言已經夠長，話不多說，讓我們從最基本功能的開始說起。</p>
+<h2 id=取代-spotlight-的快速啟動器>取代 Spotlight 的快速啟動器</h2>
+<p>Spotlight 就是平常我們按 Cmd + Space 叫出的那個：<br>
+<img src=https://dwye.dev/img/raycast/spotlight.jpeg alt="Spotlight Example"></p>
+<p>在使用 Raycast 之前，我使用 Spotlight 的情境，基本上就是兩種：</p>
+<ul>
+<li>搜尋檔案</li>
+<li>打開特定 App</li>
+</ul>
+<p>不過 Spotlight 在這部分有明顯的延遲感，輸入之後必須要等待 0.X 秒才會顯示出結果，相較之下，Raycast 就可以幾乎即時的顯示出搜尋結果。還能夠設定喜愛項目，直接快速存取：</p>
+<p><img src=https://dwye.dev/img/raycast/favorite.jpeg alt="Raycast Favorite"></p>
+<p>這時候輸入 Cmd + 數字，就能直接選擇對應的指令，十分方便。</p>
+<h3 id=存取系統設定>存取系統設定</h3>
+<p>有時候想更改系統設定，卻總是要找半天？ Raycast 可以直接搜尋相關的系統設定項目，就能點開對應的設定，例如我想設置顯示相關的東西，就搜尋 &ldquo;Display&rdquo;：</p>
+<p><img src=https://dwye.dev/img/raycast/display.jpeg alt="Raycast System Settings: Display"></p>
+<h3 id=系統指令>系統指令</h3>
+<ul>
+<li>如果我有外接硬碟，可以透過 <code>Eject All Disks</code> 把他們全部退出。</li>
+<li>可以透過 <code>Empty Trash</code> 清理垃圾桶。</li>
+<li>可以用 <code>Lock Screen</code> 快速鎖住電腦。</li>
+</ul>
+<p>之類的方便的系統指令還有很多！</p>
+<h2 id=使用熱鍵>使用熱鍵</h2>
+<p>Raycast 的所有指令都支援熱鍵設置，像我自己把 Opt + Space 設置成搜尋 App 的選單，讓我快速存取一些沒有熱鍵的常用功能，像是複製現在的 Tab：</p>
+<p><img src=https://dwye.dev/img/raycast/hotkey.jpeg alt="Raycast Hotkey"></p>
+<p>而最近的 Raycast CEO 訪談中，也示範了使用熱鍵開啟特定的 App：例如用 Opt + N 打開 Opt + A 打開 Arc 瀏覽器等等。詳細可以看這部影片：</p>
+<ul>
+<li><a href="https://youtu.be/xRnMXJcH9Pg?si=3Ru-eJURenxLjyey&t=108">https://youtu.be/xRnMXJcH9Pg?si=3Ru-eJURenxLjyey&t=108</a> （影片 108 秒處）</li>
+</ul>
+<p>（不過我自己是覺得叫出 Raycast 搜尋 App 就足夠快速了）</p>
+<h3 id=幫指令取-alias>幫指令取 Alias</h3>
+<p>這個我就很常用了。第一個使用情境是為 App 取他的縮寫名稱，例如：</p>
+<ul>
+<li><code>tg</code> for Telegram</li>
+<li><code>dc</code> for Discord</li>
+<li><code>no</code> for Notion</li>
+<li><code>nt</code> for Note (Apple Note)</li>
+<li><code>java</code> for IntelliJ（抱歉我永遠記不得這個名字）</li>
+</ul>
+<p>當然，不只是開啟 App，其他指令以及擴充都能取 Alias，例如：</p>
+<ul>
+<li><code>spp</code> Toggle Play Spotify，特別是當目前剛暫停別的東西（例如 Youtube 影片）而想要播放 Spotify 時，我只需要叫出 Raycast 輸入 <code>spp</code> 就能播放 / 暫停 Spotify 了，而不用像原生的播放鍵，會播放你上一個播放的東西（也就是 Youtube 影片）</li>
+<li>同理 <code>svv</code>，<code>svd</code> 可以單獨調整 Spotify App 的音量</li>
+<li><code>j</code> + query 搜尋 Jira Tickets</li>
+<li><code>g</code> + query 可以使用 Google 搜尋</li>
+</ul>
+<p><img src=https://dwye.dev/img/raycast/query.jpeg alt="Raycast Google Search with Query"></p>
+<ul>
+<li><code>ud</code> 可以搜尋 Urban Dictionary，一個很有趣很道地的字典，常常會有一些梗在裡面</li>
+<li><code>code</code> 使用 VSCode 搜尋專案，是我工作中最常使用的指令之一</li>
+</ul>
+<h2 id=快速進入視訊會議>快速進入視訊會議</h2>
+<p>除了原本 Spotlight 的功能外，Raycast 更提供了大量的指令與好用的功能。</p>
+<p>例如同步行事曆後，如果你接下來有 Meeting，就會顯示在 Raycast 視窗下方，如果有設定視訊會議連結，就可以按下 Enter / Return 一鍵加入！我幾乎每場公司的會議都是用這個功能加入的。（缺點就是因為太方便了，我常常成為最早加入的那個人 XD）</p>
+<p><img src=https://dwye.dev/img/raycast/meeting.jpeg alt="Enter Meeting in Raycast"></p>
+<h2 id=萬用計算機>萬用計算機</h2>
+<p>匯率，時區，或是簡單的數值計算，直接打到 Raycast 就會有結果了。</p>
+<p>例如我常常和美西時區的同事合作，需要知道他們的時間是幾點，就可以用這個功能：<br>
+<img src=https://dwye.dev/img/raycast/pdt.jpeg alt="Timezone Convert Raycast"></p>
+<p>或是上京東看了個喜歡的產品，想知道台幣多少錢：<br>
+<img src=https://dwye.dev/img/raycast/rmb.jpeg alt="RMB TWD Convert Raycast"></p>
+<p>算完的結果還能透過 Enter 直接貼上到目前的應用程式。</p>
+<h2 id=menu-bar-小工具>Menu Bar 小工具</h2>
+<p>Raycast 提供了方便的 API 可以讓他的擴充套件有 Menu Bar 顯示功能，這也是 Raycast 我最愛的功能之一。這裡展示了我的 Raycast 相關的 Menu Bar 設置：<br>
+<img src=https://dwye.dev/img/raycast/menubar.jpg alt="Raycast Menubar"></p>
+<p>例如，我同步了行事曆，他就可以隨時顯示我的下一個行程在什麼時候。</p>
+<p>我也設置了 Github Notification 和 Pull Request 的顯示。以 Github Notification 為例，當有人開 PR 讓我 Review 或是有人 Review 我的 PR 時，我就能看到有通知，而我通常會把事情做一個段落才會一次性的看現在有哪些 GitHub 通知，就不會隨時被擾人的通知打擾。另一個是我的 Pull Request 數量，我可以隨時觀看我還有哪些 Work in Progress 的 Pull Request，讓我了解到自己還有哪些 Code 可能還沒合進主要分支。</p>
+<p>此外，我自己是 Spotify 重度使用者，電腦幾乎隨時都播著音樂，有時候如果播放 Spotify 推薦的歌單，這個 Menu Bar 顯示可以讓我隨時知道現在播的是什麼歌。</p>
+<p>這邊分享一個小祕技，可以用 Cmd + 滑鼠拖移 Menu Bar 裡面的 Item，把他們放到喜歡的位置。這樣就不用怕 Menu Bar 太多東西了，可以把不喜歡的東西往左邊丟，或是也能用 <a href=https://github.com/dwarvesf/hidden>Hidden Bar</a> 這個 Menu Bar 管理工具來隱藏不需要的 Items。</p>
+<h2 id=snippets>Snippets</h2>
+<p>Snippets 的中文是小片段的意思，而在 Raycast 中，Snippets 功能讓我們可以快速的產生一些常用的文字片段，像是一些永遠記不住 Commands：</p>
+<p><img src=https://dwye.dev/img/raycast/snippets.jpeg alt="Raycast Snippets Git Submodules"></p>
+<p>我常用的 Snippets 還有中英文地址，Email 和發票載具等常用的字串，並且可以透過設置 Keyword，當你打出特定的 Keyword 時，Raycast 就會自動幫你取代成 Snippets 的內容，像是我把 <code>;;env</code> 設置成電子發票載具，就不用每次都手動輸入。</p>
+<p>更詳細的用法可以看介紹：</p>
+<ul>
+<li><a href=https://www.raycast.com/extensions/snippets>https://www.raycast.com/extensions/snippets</a></li>
+</ul>
+<p>以及官方 Demo：</p>
+<div style=position:relative;padding-bottom:56.25%;height:0;overflow:hidden>
+<iframe src=https://www.youtube.com/embed/gSbZjxgl1Qc style=position:absolute;top:0;left:0;width:100%;height:100%;border:0 allowfullscreen title="YouTube Video"></iframe>
+</div>
+<p>附帶一提，這個 Quick Tip 系列都蠻值得一看的，我有追蹤 Raycast 的 YouTube，他們每部影片我都能從中得到一些有用的 Raycast 小知識。</p>
+<h2 id=剪貼簿歷史-clipboard-history>剪貼簿歷史 Clipboard History</h2>
+<p>Clipboard History 也是常常被生產力工具所強調的功能之一，Raycast 當然也具備了這個功能，可以讓我們搜尋過去的複製紀錄，並且按 Enter 直接貼上，或 Cmd + Enter 複製他，連圖片或檔案都會在歷史中，真的十分方便！</p>
+<p>這個也有官方介紹，歷史是以加密的方式存在本地的，並且會忽略從密碼管理器中複製的項目：</p>
+<ul>
+<li><a href=https://www.raycast.com/extensions/clipboard-history>https://www.raycast.com/extensions/clipboard-history</a></li>
+</ul>
+<h2 id=刪除不需要的-app>刪除不需要的 App</h2>
+<p>以前我都是用 AppCleaner 來反安裝一些沒有自帶反安裝功能的 App，現在 Raycast 也實現了這個功能。只要在 App 按下 Cmd + k 會顯示很多不同的 Action，裡面其中一個就是 Uninstall Application，而且別擔心他不會一點下去就刪除，會先讓你預覽要刪除的檔案有哪些，可以全程透過鍵盤操作，和 AppCleaner 比起來方便許多：</p>
+<p><img src=https://dwye.dev/img/raycast/uninstall.jpeg alt="Raycast Uninstall Demo"></p>
+<h2 id=豐富的擴充功能>豐富的擴充功能</h2>
+<p>其實在上面已經多少有提到，Raycast 支援各種擴充功能，可以直接在 Raycast 內透過 <code>Store</code> 搜尋，或是直接上網找：</p>
+<ul>
+<li><a href=https://www.raycast.com/store>https://www.raycast.com/store</a></li>
+</ul>
+<p>一些我很常用的 Extensions 如下（有些是官方，有些是第三方）：</p>
+<ul>
+<li>Spotify</li>
+<li>Jira</li>
+<li>GitHib</li>
+<li>VSCode</li>
+<li>Define 查字典</li>
+<li>Reminder</li>
+<li>Jira</li>
+<li>Audio Device 切換聲音輸出</li>
+</ul>
+<p>還有兩個常用的生產力功能 Extension，不過我還是習慣目前的工具，就沒有用 Raycast 取代他們：</p>
+<ul>
+<li>Navigation（我使用 <a href=https://github.com/lwouis/alt-tab-macos>AltTab</a>，可以覆蓋原本的 Cmd + Tab 熱鍵，這個 Raycast 目前還做不到）</li>
+<li>Windows Management（我使用 <a href=https://apps.apple.com/tw/app/magnet/id441258766>Magnet</a>，比 Raycast 多支援了滑鼠拖拉）</li>
+</ul>
+<p>當然還有更多 Extensions，我也還在持續探索中，就等著你們挖掘並和我分享吧。</p>
+<h2 id=這是免費能用的嗎>這是免費能用的嗎？</h2>
+<p>是的，即便有了這麼多厲害的功能，Raycast 對於個人使用是免費的。而根據<a href=https://www.raycast.com/faq>官方的 FAQ</a>，他們也希望維持個人使用是免費的。當然他們也有提供付費選項，目前 Pro 是以月費 10 USD / 年繳每月 8 USD 的價格，開放使用 AI 相關功能，雖然 AI 其實就是串接 OpenAI 的 API，當然也可以直接上 OpenAI 網站免費使用，不過 Raycast AI 可以客製化指令，並透過 Raycast 快速存取，比起打開網頁輸入落落長的問題實在是方便多了，如果要談論如何好好善用 Raycast 的 AI 功能可以再寫一篇文章，這方面先就交由官方影片來解釋吧：</p>
+<div style=position:relative;padding-bottom:56.25%;height:0;overflow:hidden>
+<iframe src=https://www.youtube.com/embed/46As11PMJCU style=position:absolute;top:0;left:0;width:100%;height:100%;border:0 allowfullscreen title="YouTube Video"></iframe>
+</div>
+<p>基於對 Raycast 的支持，我有付費使用，也是因為我真的蠻喜歡這個工具，同時我也是重度使用者，所以我才寫了這篇文章推廣。希望以後 Raycast 也能像 Notion 那樣推出推薦制度，讓我加減賺一點回報哈哈哈。</p>
+<p>最後再來一點延伸閱讀。</p>
+<p>我十分推薦官方的 Quick Tip 系列，可以了解如何更好的運用 Raycast：</p>
+<ul>
+<li><a href="https://www.youtube.com/playlist?list=PLNzQX4H1-dVTHCLKFjekFwswKDpcEN2rI">https://www.youtube.com/playlist?list=PLNzQX4H1-dVTHCLKFjekFwswKDpcEN2rI</a></li>
+</ul>
+<p>更多詳細的功能介紹可以參考官方的手冊：</p>
+<ul>
+<li><a href=https://manual.raycast.com/>https://manual.raycast.com/</a></li>
+</ul>
+<div class="likecoin-embed likecoin-button" data-liker-id=dwy6626 data-href=https://dwye.dev/post/raycast-mac-productivity/>
+</div>
+<script src=https://static.like.co/sdk/v1/button.js></script>
+<div class=copyright>
+本文原創部分採用
+<a rel=license href=http://creativecommons.org/licenses/by-nc-nd/4.0/>創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款</a>
+授權。
+</div>
+<div class="prev-next-post pure-g">
+<div class=pure-u-1-24 style=text-align:left>
+<a href=https://dwye.dev/post/ftx/><i class="fa fa-chevron-left"></i></a>
+</div>
+<div class=pure-u-10-24>
+<nav class=prev>
+<a href=https://dwye.dev/post/ftx/>FTX 交易所倒閉的自我檢討與對策</a>
+</nav>
+</div>
+<div class=pure-u-2-24>
+&nbsp;
+</div>
+<div class=pure-u-10-24>
+</div>
+<div class=pure-u-1-24 style=text-align:right>
+</div>
+</div>
+<script src=https://utteranc.es/client.js repo=dwy6626/dwy6626.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script>
+</div>
+</div>
+</div>
+<script src=https://dwye.dev/js/ui.js></script>
+<script src=https://dwye.dev/js/menus.js></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T3EV639W1W"></script>
+<script>if(window.location.hostname!="localhost"){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-T3EV639W1W')}</script>
+</body>
+</html>
