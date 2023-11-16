@@ -1441,7 +1441,7 @@ I’m a mess, I’m a mess&lt;br>
 面帶悲傷的人們各自離去&lt;/p>
 &lt;p>簡単に作られた意図的なマニュアルに　全て奪われてる&lt;br>
 那些簡單製成卻別有目的的操作手冊 把我的一切都奪走了&lt;br>
-（譯註：生活中的一切都被別人設計並掌握著，活得像行屍走肉般）&lt;/p>
+&lt;em>（譯註：生活中的一切都被別人設計並掌握著，活得像行屍走肉般）&lt;/em>&lt;/p>
 &lt;p>&lt;br>
 今の世界は先が見えずに&lt;br>
 在這世界裡看不清未來&lt;/p>
@@ -1508,7 +1508,7 @@ I’m a mess, I’m a mess&lt;br>
 &lt;p>I’m a mess, I’m a mess&lt;/p>
 &lt;p>そんな世界を　君と歩いて行けるのなら&lt;br>
 在那樣的世界裡，如果能與你一起走過就好了呢&lt;br>
-（譯註：那樣的世界是說用了整首歌描述著的令我受苦的世界）&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>Ruby Object Model</title><link>https://dwye.dev/post/ruby-object-model/</link><pubDate>Sat, 17 Jul 2021 23:41:25 +0800</pubDate><guid>https://dwye.dev/post/ruby-object-model/</guid><description>
+&lt;em>（譯註：那樣的世界是說用了整首歌描述著的令我受苦的世界）&lt;/em>&lt;/p></description><copyright>本文原創部分採用 創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款 授權。</copyright></item><item><title>Ruby Object Model</title><link>https://dwye.dev/post/ruby-object-model/</link><pubDate>Sat, 17 Jul 2021 23:41:25 +0800</pubDate><guid>https://dwye.dev/post/ruby-object-model/</guid><description>
 &lt;h2 id="前言ruby-中的物件導向">前言：Ruby 中的物件導向&lt;/h2>
 &lt;p>Ruby Object Model 是我覺得 Ruby 算是十分特別也是十分重要的概念。&lt;/p>
 &lt;p>在一般的物件導向程式語言中，物件是類別的實體，而資料型態是資料型態。一個變數可以儲存一個資料型態，一個變數也可以指向一個物件，但資料型態和物件是兩回事。&lt;/p>
