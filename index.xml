@@ -4922,11 +4922,11 @@ export PATH&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db
 &lt;p>第一次有個人頁面，是在小學時候的 MSN 社群，當時為了發布 LF2 （小朋友齊打交二）的改檔而申請的，但是後來 MSN 關了之後就沒有然後了，改檔備份也消失。&lt;/p>
 &lt;h3 id="無名小站">無名小站&lt;/h3>
 &lt;p>國三因為看大家寫無名小站很好玩（剛好那時候蔚為風潮），所以就跟著創了，但這時候就是屁孩文為主。用現代人的觀點來看，無名小站就是當時學生的 FB。&lt;/p>
-&lt;h3 id="痞客邦-pixnethttpra21844pixnetnetblog">&lt;a href="http://ra21844.pixnet.net/blog">痞客邦 PIXNET&lt;/a>&lt;/h3>
+&lt;h3 id="痞客邦-pixnet">痞客邦 PIXNET&lt;/h3>
 &lt;p>第一個比較正式的 blog，大學時候創的，主要是放跟家教有關的東西，每次丟家教的履歷的時候都會附上網址，目前感覺效果是不錯。那時候接家教接的很有心得，目前搬過來的文章的主要來源也都是那裡。&lt;/p>
 &lt;p>不過大四忙起來之後就比較少經營。&lt;/p>
 &lt;h3 id="blogger">Blogger&lt;/h3>
-&lt;p>上面的無名小站倒掉之後，個人 blog 就投靠了 &lt;del>Google&lt;/del> Blogger，畢竟現在是 Google 旗下產品之一，感覺比較不會倒。不過因為充滿了中學時期的黑歷史，目前關起來了。&lt;/p>
+&lt;p>上面的無名小站倒掉之後，個人 blog 就投靠了 Blogger，畢竟現在是 Google 旗下產品之一，感覺比較不會倒。不過因為充滿了中學時期的黑歷史，目前關起來了。&lt;/p>
 &lt;p>另外我也有匿名經營一個歌詞翻譯 blog，但是也很久沒更新了XD。&lt;/p>
 &lt;h2 id="所以關於本站">所以關於本站&lt;/h2>
 &lt;p>因為&lt;del>誤入&lt;/del>理論化學組，這幾年把 coding 能力撿回來之外還提升了不少（離 pro 還很遠就是）。此外，在當研究助理的時期也幫實驗室維護網站（雖然更新頻率不太高），我們實驗室的網站是用 WordPress 架在機房裡面的，當時就有種「想要以後也自己來架個站」的想法。&lt;/p>
@@ -4934,7 +4934,7 @@ export PATH&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db
 &lt;p>於是決定把大四之後就斷掉的 blog 生涯延續下去並擴展，人要有 &lt;a href="http://www.oneokrock.com/jp/music/1703">Ambitions&lt;/a>！！&lt;/p>
 &lt;h3 id="架在哪">架在哪&lt;/h3>
 &lt;p>網站雖然是放在雲端，但是跟天空中的雲不一樣，還是要有個本體的。如果是公家單位或是公司有個不斷電的機器，那就直接放在那裡就好了，但是一般人很難啊，不管是硬體電費網路費啥的都是一筆支出，所以現在有不少的免費和付費平台給大家架站。雖然很想列個 list，不過感覺列出來就會有「其實還有XXXX喔？」「XXXX其實不是」之類的發言（因為我沒有一個一個試過所以，怕.jpg），加上其實是很好 Google 的資訊&amp;hellip;。&lt;/p>
-&lt;p>剛好有 &lt;del>Microsoft&lt;/del> GitHub，也有認識的人架在 GitHub 上，就直接選定了 GitHub Page。&lt;/p>
+&lt;p>剛好有 GitHub，也有認識的人架在 GitHub 上，就直接選定了 GitHub Page。&lt;/p>
 &lt;h3 id="框架">框架&lt;/h3>
 &lt;p>其實這年頭架站也沒那麼困難的，有很多 framework 可以幫你省下很多事，也有直接 deploy 就有後台 UI 可以登入管理的。&lt;br>
 我看到的 blog 框架有：&lt;/p>
@@ -4952,7 +4952,7 @@ export PATH&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db
 &lt;h3 id="自動化發布">自動化發布&lt;/h3>
 &lt;p>GitHub 支援 jekyll 直接在一個專案庫部署，不過因為我是用 hugo，你把 data clone 上去，就還是原始碼。這時，常見的招式是開兩個 git 專案，然後只 clone 產生的 html 們。不過這樣蠻累的，如果原始碼也用 git 管理，那每次更變你都要 git commit 兩次，很麻煩，而且還有可能會有不同步的問題，如果你沒管理好的話。&lt;/p>
 &lt;p>這個時候就是 Google 大神派上用場的時候啦。&lt;/p>
-&lt;p>&lt;del>Oracle&lt;/del> Wercker 是一個荷蘭出產的自動化測試與部署專案的工具，以我這種背景的人是第一次聽到，但看完大概的介紹後，感覺這東西就是：很酷，很屌，很方便，所以就用了。&lt;/p>
+&lt;p>Wercker 是一個荷蘭出產的自動化測試與部署專案的工具，以我這種背景的人是第一次聽到，但看完大概的介紹後，感覺這東西就是：很酷，很屌，很方便，所以就用了。&lt;/p>
 &lt;p>自從用了 Wercker 之後，&lt;del>考試都考一百分&lt;/del>，我只要把原始碼推上 GitHub，Wercker 就會發現你的 code 更新了，自動幫你 build 和 push 到放 html 們的專案庫，這樣我就只需要管理一個專案庫就好，另外一個就自動化處理了。&lt;/p>
 &lt;h3 id="小結">小結&lt;/h3>
 &lt;p>從 Hugo 裝完，到我寫了這篇文章，其實也才第三天，所以，架站真的沒那麼難（只是會偶爾鬼打牆）。&lt;/p>
