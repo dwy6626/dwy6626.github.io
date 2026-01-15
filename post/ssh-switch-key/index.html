@@ -1,39 +1,11 @@
-<!doctype html><html lang=en>
-<head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="
   
       因應公司和個人有分開的 github 帳號，為了能在同一台電腦同使用者內工作，已經幾次重複解決這個問題，故寫篇文章記錄之。
 檢視現在使用的 SSH Key
 我們可以使用 ssh-add 這個工具來檢視目前使用 ssh 指令連線時，會使用的 ssh key：
-    ">
-<meta name=generator content="Hugo 0.86.1">
-<meta property="og:title" content="一個指令切換預設使用的 SSH Key">
-<meta name=twitter:title content="一個指令切換預設使用的 SSH Key">
-<meta property="og:url" content="https://dwye.dev/post/ssh-switch-key/">
-<meta name=twitter:card content="summary">
-<meta name=twitter:site content="dw's 小站">
-<meta name=twitter:creator content="De-Wei Ye">
-<meta name=twitter:description content="因應公司和個人有分開的 github 帳號，為了能在同一台電腦同使用者內工作，已經幾次重複解決這個問題，故寫篇文章記錄之。
+    "><meta name=generator content="Hugo 0.154.5"><meta property="og:title" content="一個指令切換預設使用的 SSH Key"><meta name=twitter:title content="一個指令切換預設使用的 SSH Key"><meta property="og:url" content="https://dwye.dev/post/ssh-switch-key/"><meta name=twitter:card content="summary"><meta name=twitter:site content="dw's 小站"><meta name=twitter:creator content="De-Wei Ye"><meta name=twitter:description content="因應公司和個人有分開的 github 帳號，為了能在同一台電腦同使用者內工作，已經幾次重複解決這個問題，故寫篇文章記錄之。
 檢視現在使用的 SSH Key
-我們可以使用 ssh-add 這個工具來檢視目前使用 ssh 指令連線時，會使用的 ssh key：">
-<link rel=preconnect href=https://s.ytimg.com>
-<link rel=preconnect href=https://i.imgur.com>
-<title>一個指令切換預設使用的 SSH Key &#183; dw's 小站</title>
-<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.5/pure-min.css media=screen>
-<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.5/grids-responsive-min.css media=screen>
-<link rel=stylesheet href=https://dwye.dev/css/side-menu.css media=screen>
-<link rel=stylesheet href=https://dwye.dev/css/blackburn.css media=screen>
-<link rel=stylesheet href=https://dwye.dev/css/dw-burn.css media=screen>
-<link rel=stylesheet href=https://dwye.dev/css/dw-menu.css media=screen>
-<link rel=stylesheet href=https://dwye.dev/css/vars.css media=screen>
-<link rel=stylesheet href=https://dwye.dev/css/menu-x.css media=screen>
-<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css>
-<link rel=preconnect href=https://fonts.gstatic.com>
-<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel=stylesheet type=text/css>
-<script type=text/javascript async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML"></script>
-<script type=text/x-mathjax-config>
+我們可以使用 ssh-add 這個工具來檢視目前使用 ssh 指令連線時，會使用的 ssh key："><link rel=preconnect href=https://s.ytimg.com><link rel=preconnect href=https://i.imgur.com><title>一個指令切換預設使用的 SSH Key &#183; dw's 小站</title><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.5/pure-min.css media=screen><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.5/grids-responsive-min.css media=screen><link rel=stylesheet href=https://dwye.dev/css/side-menu.css media=screen><link rel=stylesheet href=https://dwye.dev/css/blackburn.css media=screen><link rel=stylesheet href=https://dwye.dev/css/dw-burn.css media=screen><link rel=stylesheet href=https://dwye.dev/css/dw-menu.css media=screen><link rel=stylesheet href=https://dwye.dev/css/vars.css media=screen><link rel=stylesheet href=https://dwye.dev/css/menu-x.css media=screen><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css><link rel=preconnect href=https://fonts.gstatic.com><link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel=stylesheet type=text/css><script type=text/javascript async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML"></script><script type=text/x-mathjax-config>
   MathJax.Hub.Config({
     tex2jax: {
       inlineMath: [['$','$']],
@@ -48,245 +20,35 @@
     "HTML-CSS": { linebreaks: { automatic: true } },
           SVG: { linebreaks: { automatic: true } }    
   });
-</script>
-<script type=text/x-mathjax-config>
+</script><script type=text/x-mathjax-config>
   // Fix <code> tags after MathJax finishes running. This is a
   // hack to overcome a shortcoming of Markdown. Discussion at
   // https://github.com/mojombo/jekyll/issues/199
   MathJax.Hub.Queue(() => {
     MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
   });
-</script>
-<link async rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/vs2015.min.css media=screen>
-<script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js></script>
-<script defer src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/yaml.min.js></script>
-<script defer src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/vbnet.min.js></script>
-<script>hljs.highlightAll()</script>
-<link rel="shortcut icon" href=https://dwye.dev/img/favicon.ico type=image/x-icon>
-<link rel=stylesheet href=https://dwye.dev/css/color.css media=screen>
-<meta name=google-site-verification content="pC2le32KaKDSGh9V637p5YC81zixbAMyKN3nPqkKscE">
-<script data-ad-client=ca-pub-3454014140664886 async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
-</head>
-<body>
-<div id=layout>
-<a href=#menu class=menu-link id=menuLink aria-label="Go to menu of this website">
-<s class=bar></s><s class=bar></s>
-</a>
-<div id=menu>
-<a class="pure-menu-heading brand" href=https://dwye.dev/>De-Wei Ye</a>
-<div class=pure-menu>
-<ul class=pure-menu-list>
-<li class=pure-menu-item>
-<a class=pure-menu-link href=https://dwye.dev/about/><i class="fas fa-user-circle fa-fw"></i><span>關於</span></a>
-</li>
-<li class=pure-menu-item>
-<a class=pure-menu-link href=https://dwye.dev/notes/><i class="fas fa-book fa-fw"></i><span>筆記</span></a>
-</li>
-<li class=pure-menu-item>
-<a class=pure-menu-link href=https://dwye.dev/post/><i class="fas fa-list-ul fa-fw"></i><span>文章列表</span></a>
-</li>
-<li class=pure-menu-item>
-<a class=pure-menu-link href=https://dwye.dev/topics/><i class="fas fa-folder fa-fw"></i><span>主題分類</span></a>
-</li>
-<li class=pure-menu-item>
-<a class=pure-menu-link href=https://dwye.dev/tags/><i class="fas fa-tags fa-fw"></i><span>標籤</span></a>
-</li>
-<li class=pure-menu-item>
-<a class=pure-menu-link href=https://dwye.dev/../en/><i class="fas fa-globe-americas fa-fw"></i><span>English</span></a>
-</li>
-</ul>
-</div>
-<div class="pure-menu social">
-<ul class=pure-menu-list>
-<li class=pure-menu-item>
-<a class=pure-menu-link href=https://linkedin.com/in/dwy6626 rel="me external noopener" target=_blank><i class="fab fa-linkedin fa-fw"></i><span>LinkedIn</span></a>
-</li>
-<li class=pure-menu-item>
-<a class=pure-menu-link href=https://github.com/dwy6626 rel="me external noopener" target=_blank><i class="fab fa-github-square fa-fw"></i><span>GitHub</span></a>
-</li>
-<li class=pure-menu-item>
-<a class=pure-menu-link href=https://leetcode.com/mirror0227 rel="me external noopener" target=_blank><i class="fas fa-laptop-code fa-fw"></i><span>LeetCode</span></a>
-</li>
-</ul>
-</div>
-<div class=copyright-small>
-Built with <a href=https://gohugo.io/ rel="external noopener" target=_blank>Hugo</a>
-</div>
-<div class=copyright-small>
-W/ <a href=https://github.com/dwy6626/dw-favored-blackburn rel="external noopener" target=_blank>DW-Favored-Blackburn</a>
-</div>
-<div class=copyright-small>
-Based on <a href=https://github.com/yoshiharuyamashita/blackburn rel="external noopener" target=_blank>Blackburn</a>
-</div>
-<div class=copyright-small>
-and <a href=https://purecss.io/ rel="external noopener" target=_blank>Pure CSS</a>
-</div>
-<div class=copyright-small>
-Icons <a href=https://fontawesome.com rel="external noopener" target=_blank>Font Awesome</a>
-</div>
-<div class=copyright-small>
-<a href=https://dwye.dev/copyright>
-&copy; 2023. All rights reserved.
-</a>
-</div>
-</div>
-<div id=main>
-<div class=header>
-<h1>
-一個指令切換預設使用的 SSH Key
-</h1>
-<h2>
-</h2>
-</div>
-<div class=aside-container>
-<div id=toc-aside style=display:none>
-<link rel=stylesheet href=https://dwye.dev/css/aside-toc.css media=screen>
-<script src=https://dwye.dev/js/toc.js></script>
-<div class=toc>
-<aside>
-<summary>目錄</summary>
-<div class=toc-item>
-<p><a rel=tag href=#>一個指令切換預設使用的 SSH Key</a></p>
-<nav id=TableOfContents>
-<ul>
-<li>
-<ul>
-<li><a href=#檢視現在使用的-ssh-key>檢視現在使用的 SSH Key</a></li>
-<li><a href=#ssh-key-的切換>SSH Key 的切換</a></li>
-</ul>
-</li>
-<li><a href=#85-更新>8/5 更新</a></li>
-</ul>
-</nav>
-</div>
-</aside>
-</div>
-</div>
-</div>
-<div class=content>
-<ul class=post-meta>
-<li>
-<i class="fa fa-calendar fa-fw"></i>
-<span>
-<time>Aug 03, 2021</time>
-</span>
-</li>
-</ul>
-<ul class=post-meta>
-<a href=https://dwye.dev/topics/%E6%8A%80%E8%A1%93%E8%A8%98%E9%8C%84>
-<li>
-<i class="fas fa-folder fa-fw"></i>
-<span>技術記錄</span>
-</li>
-</a>
-<a href=https://dwye.dev/tags/git>
-<li>
-<i class="fas fa-tag fa-fw"></i>
-<span>git</span>
-</li>
-</a>
-<a href=https://dwye.dev/tags/ssh>
-<li>
-<i class="fas fa-tag fa-fw"></i>
-<span>ssh</span>
-</li>
-</a>
-<a href=https://dwye.dev/tags/shell>
-<li>
-<i class="fas fa-tag fa-fw"></i>
-<span>shell</span>
-</li>
-</a>
-</ul>
-<div id=toc-top style=display:none>
-<div class=toc>
-<aside>
-<details>
-<summary>目錄</summary>
-<div class=toc-item>
-<nav id=TableOfContents>
-<ul>
-<li>
-<ul>
-<li><a href=#檢視現在使用的-ssh-key>檢視現在使用的 SSH Key</a></li>
-<li><a href=#ssh-key-的切換>SSH Key 的切換</a></li>
-</ul>
-</li>
-<li><a href=#85-更新>8/5 更新</a></li>
-</ul>
-</nav>
-</div>
-</details>
-</aside>
-</div>
-</div>
-<p>因應公司和個人有分開的 github 帳號，為了能在同一台電腦同使用者內工作，已經幾次重複解決這個問題，故寫篇文章記錄之。</p>
-<h3 id=檢視現在使用的-ssh-key>檢視現在使用的 SSH Key</h3>
-<p>我們可以使用 <code>ssh-add</code> 這個工具來檢視目前使用 <code>ssh</code> 指令連線時，會使用的 ssh key：</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ ssh-add -l
-<span style=color:#ae81ff>3072</span> SHA256:******************/****************** my-default-email@dwye.dev <span style=color:#f92672>(</span>RSA<span style=color:#f92672>)</span>
-</code></pre></div><p>也可以直接用 <code>ssh -T</code>，使用 ssh 連線但不要使用虛擬終端（pty）<br>
-這也衍生了 github 使用 <code>git</code> 這個 user，作為設置 ssh key 時常見的確認手段：</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ ssh -T git@github.com
-Hi your-account! You<span style=color:#960050;background-color:#1e0010>&#39;</span>ve successfully authenticated, but GitHub does not provide shell access.
-</code></pre></div><h3 id=ssh-key-的切換>SSH Key 的切換</h3>
-<p><code>ssh-add</code> 顧名思義也可以用來管理 ssh-agent 現在使用的 ssh-key。</p>
-<p>加入一個 ssh key:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ ssh-add ~/.ssh/my_rsa
-Identity added: /Users/myaccount/.ssh/my_rsa <span style=color:#f92672>(</span>my-default-email@dwye.dev<span style=color:#f92672>)</span>
-</code></pre></div><p>清空 ssh key:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ ssh-add -D
-All identities removed.
-</code></pre></div><p>因此我們就可以做如此操作達到切換 ssh key 的效果：</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># ~/switch_main.sh</span>
-ssh-add -D
-ssh-add ~/.ssh/id_rsa
-</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># ~/switch_personal.sh</span>
-ssh-add -D
-ssh-add ~/.ssh/my_rsa
-</code></pre></div><p>然後在啟動 shell 時加入 alias 即可</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># ~/.bashrc 或是 ~/.zshrc</span>
-alias gitp<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;source ~/switch_personal.sh&#39;</span>
-alias gitm<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;source ~/switch_main.sh&#39;</span>
-</code></pre></div><p>之後就可以在 terminal 中透過 <code>gitp</code> 或 <code>gitm</code> 一指令切換 ssh key 了。</p>
-<h2 id=85-更新>8/5 更新</h2>
-<p>是的，才寫完這篇沒多久馬上就找到新解法來切換 git 使用的 ssh key，就不用每次開 shell 都要去手動改了（變成 0 指令切換 XD），我也比較喜歡這個新解法，詳細請見<a href=https://dwye.dev/post/git-custom-ssh>客製化 git 使用的 SSH Key</a></p>
-<div class="likecoin-embed likecoin-button" data-liker-id=dwy6626 data-href=https://dwye.dev/post/ssh-switch-key/>
-</div>
-<script src=https://static.like.co/sdk/v1/button.js></script>
-<div class=copyright>
-本文原創部分採用
+</script><link async rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/vs2015.min.css media=screen><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js></script><script defer src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/yaml.min.js></script><script defer src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/vbnet.min.js></script><script>hljs.highlightAll()</script><link rel="shortcut icon" href=https://dwye.dev/img/favicon.ico type=image/x-icon><link rel=stylesheet href=https://dwye.dev/css/color.css media=screen><meta name=google-site-verification content="pC2le32KaKDSGh9V637p5YC81zixbAMyKN3nPqkKscE"><script data-ad-client=ca-pub-3454014140664886 async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script></head><body><div id=layout><a href=#menu class=menu-link id=menuLink aria-label="Go to menu of this website"><s class=bar></s><s class=bar></s></a><div id=menu><a class="pure-menu-heading brand" href=https://dwye.dev/>De-Wei Ye</a><div class=pure-menu><ul class=pure-menu-list><li class=pure-menu-item><a class=pure-menu-link href=https://dwye.dev/about/><i class='fas fa-user-circle fa-fw'></i><span>關於</span></a></li><li class=pure-menu-item><a class=pure-menu-link href=https://dwye.dev/notes/><i class="fas fa-book fa-fw"></i><span>筆記</span></a></li><li class=pure-menu-item><a class=pure-menu-link href=https://dwye.dev/post/><i class='fas fa-list-ul fa-fw'></i><span>文章列表</span></a></li><li class=pure-menu-item><a class=pure-menu-link href=https://dwye.dev/topics/><i class="fas fa-folder fa-fw"></i><span>主題分類</span></a></li><li class=pure-menu-item><a class=pure-menu-link href=https://dwye.dev/tags/><i class='fas fa-tags fa-fw'></i><span>標籤</span></a></li><li class=pure-menu-item><a class=pure-menu-link href=https://dwye.dev/../en/><i class="fas fa-globe-americas fa-fw"></i><span>English</span></a></li></ul></div><div class="pure-menu social"><ul class=pure-menu-list><li class=pure-menu-item><a class=pure-menu-link href=https://linkedin.com/in/dwy6626 rel="me external noopener" target=_blank><i class="fab fa-linkedin fa-fw"></i><span>LinkedIn</span></a></li><li class=pure-menu-item><a class=pure-menu-link href=https://github.com/dwy6626 rel="me external noopener" target=_blank><i class="fab fa-github-square fa-fw"></i><span>GitHub</span></a></li><li class=pure-menu-item><a class=pure-menu-link href=https://leetcode.com/mirror0227 rel="me external noopener" target=_blank><i class="fas fa-laptop-code fa-fw"></i><span>LeetCode</span></a></li></ul></div><div class=copyright-small>Built with <a href=https://gohugo.io/ rel="external noopener" target=_blank>Hugo</a></div><div class=copyright-small>W/ <a href=https://github.com/dwy6626/dw-favored-blackburn rel="external noopener" target=_blank>DW-Favored-Blackburn</a></div><div class=copyright-small>Based on <a href=https://github.com/yoshiharuyamashita/blackburn rel="external noopener" target=_blank>Blackburn</a></div><div class=copyright-small>and <a href=https://purecss.io/ rel="external noopener" target=_blank>Pure CSS</a></div><div class=copyright-small>Icons <a href=https://fontawesome.com rel="external noopener" target=_blank>Font Awesome</a></div><div class=copyright-small><a href=https://dwye.dev/copyright>&copy; 2025. All rights reserved.</a></div></div><div id=main><div class=header><h1>一個指令切換預設使用的 SSH Key</h1><h2></h2></div><div class=aside-container><div id=toc-aside style=display:none><link rel=stylesheet href=https://dwye.dev/css/aside-toc.css media=screen><script src=https://dwye.dev/js/toc.js></script><div class=toc><aside><summary>目錄</summary><div class=toc-item><p><a rel=tag href=#>一個指令切換預設使用的 SSH Key</a></p><nav id=TableOfContents><ul><li><ul><li><a href=#檢視現在使用的-ssh-key>檢視現在使用的 SSH Key</a></li><li><a href=#ssh-key-的切換>SSH Key 的切換</a></li></ul></li><li><a href=#85-更新>8/5 更新</a></li></ul></nav></div></aside></div></div></div><div class=content><ul class=post-meta><li><i class="fa fa-calendar fa-fw"></i>
+<span><time>Aug 03, 2021</time></span></li></ul><ul class=post-meta><a href=https://dwye.dev/topics/%E6%8A%80%E8%A1%93%E8%A8%98%E9%8C%84><li><i class="fas fa-folder fa-fw"></i>
+<span>技術記錄</span></li></a><a href=https://dwye.dev/tags/git><li><i class="fas fa-tag fa-fw"></i>
+<span>git</span></li></a><a href=https://dwye.dev/tags/ssh><li><i class="fas fa-tag fa-fw"></i>
+<span>ssh</span></li></a><a href=https://dwye.dev/tags/shell><li><i class="fas fa-tag fa-fw"></i>
+<span>shell</span></li></a></ul><div id=toc-top style=display:none><div class=toc><aside><details><summary>目錄</summary><div class=toc-item><nav id=TableOfContents><ul><li><ul><li><a href=#檢視現在使用的-ssh-key>檢視現在使用的 SSH Key</a></li><li><a href=#ssh-key-的切換>SSH Key 的切換</a></li></ul></li><li><a href=#85-更新>8/5 更新</a></li></ul></nav></div></details></aside></div></div><p>因應公司和個人有分開的 github 帳號，為了能在同一台電腦同使用者內工作，已經幾次重複解決這個問題，故寫篇文章記錄之。</p><h3 id=檢視現在使用的-ssh-key>檢視現在使用的 SSH Key</h3><p>我們可以使用 <code>ssh-add</code> 這個工具來檢視目前使用 <code>ssh</code> 指令連線時，會使用的 ssh key：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ ssh-add -l
+</span></span><span style=display:flex><span><span style=color:#ae81ff>3072</span> SHA256:******************/****************** my-default-email@dwye.dev <span style=color:#f92672>(</span>RSA<span style=color:#f92672>)</span>
+</span></span></code></pre></div><p>也可以直接用 <code>ssh -T</code>，使用 ssh 連線但不要使用虛擬終端（pty）<br>這也衍生了 github 使用 <code>git</code> 這個 user，作為設置 ssh key 時常見的確認手段：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ ssh -T git@github.com
+</span></span><span style=display:flex><span>Hi your-account! You<span style=color:#960050;background-color:#1e0010>&#39;</span>ve successfully authenticated, but GitHub does not provide shell access.
+</span></span></code></pre></div><h3 id=ssh-key-的切換>SSH Key 的切換</h3><p><code>ssh-add</code> 顧名思義也可以用來管理 ssh-agent 現在使用的 ssh-key。</p><p>加入一個 ssh key:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ ssh-add ~/.ssh/my_rsa
+</span></span><span style=display:flex><span>Identity added: /Users/myaccount/.ssh/my_rsa <span style=color:#f92672>(</span>my-default-email@dwye.dev<span style=color:#f92672>)</span>
+</span></span></code></pre></div><p>清空 ssh key:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ ssh-add -D
+</span></span><span style=display:flex><span>All identities removed.
+</span></span></code></pre></div><p>因此我們就可以做如此操作達到切換 ssh key 的效果：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># ~/switch_main.sh</span>
+</span></span><span style=display:flex><span>ssh-add -D
+</span></span><span style=display:flex><span>ssh-add ~/.ssh/id_rsa
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># ~/switch_personal.sh</span>
+</span></span><span style=display:flex><span>ssh-add -D
+</span></span><span style=display:flex><span>ssh-add ~/.ssh/my_rsa
+</span></span></code></pre></div><p>然後在啟動 shell 時加入 alias 即可</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># ~/.bashrc 或是 ~/.zshrc</span>
+</span></span><span style=display:flex><span>alias gitp<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;source ~/switch_personal.sh&#39;</span>
+</span></span><span style=display:flex><span>alias gitm<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;source ~/switch_main.sh&#39;</span>
+</span></span></code></pre></div><p>之後就可以在 terminal 中透過 <code>gitp</code> 或 <code>gitm</code> 一指令切換 ssh key 了。</p><h2 id=85-更新>8/5 更新</h2><p>是的，才寫完這篇沒多久馬上就找到新解法來切換 git 使用的 ssh key，就不用每次開 shell 都要去手動改了（變成 0 指令切換 XD），我也比較喜歡這個新解法，詳細請見<a href=https://dwye.dev/post/git-custom-ssh/>客製化 git 使用的 SSH Key</a></p><div class="likecoin-embed likecoin-button" data-liker-id=dwy6626 data-href=https://dwye.dev/post/ssh-switch-key/></div><script src=https://static.like.co/sdk/v1/button.js></script><div class=copyright>本文原創部分採用
 <a rel=license href=http://creativecommons.org/licenses/by-nc-nd/4.0/>創用 CC 姓名標示-非商業性-禁止改作 4.0 國際授權條款</a>
-授權。
-</div>
-<div class="prev-next-post pure-g">
-<div class=pure-u-1-24 style=text-align:left>
-<a href=https://dwye.dev/post/i-am-a-mess/><i class="fa fa-chevron-left"></i></a>
-</div>
-<div class=pure-u-10-24>
-<nav class=prev>
-<a href=https://dwye.dev/post/i-am-a-mess/>MY FIRST STORY / 優里 《I'm a mess》 中文歌詞翻譯</a>
-</nav>
-</div>
-<div class=pure-u-2-24>
-&nbsp;
-</div>
-<div class=pure-u-10-24>
-<nav class=next>
-<a href=https://dwye.dev/post/git-custom-ssh/>客製化 git 使用的 SSH Key</a>
-</nav>
-</div>
-<div class=pure-u-1-24 style=text-align:right>
-<a href=https://dwye.dev/post/git-custom-ssh/><i class="fa fa-chevron-right"></i></a>
-</div>
-</div>
-<script src=https://utteranc.es/client.js repo=dwy6626/dwy6626.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script>
-</div>
-</div>
-</div>
-<script src=https://dwye.dev/js/ui.js></script>
-<script src=https://dwye.dev/js/menus.js></script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-T3EV639W1W"></script>
-<script>if(window.location.hostname!="localhost"){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-T3EV639W1W')}</script>
-</body>
-</html>
+授權。</div><div class="prev-next-post pure-g"><div class=pure-u-1-24 style=text-align:left><a href=https://dwye.dev/post/i-am-a-mess/><i class="fa fa-chevron-left"></i></a></div><div class=pure-u-10-24><nav class=prev><a href=https://dwye.dev/post/i-am-a-mess/>MY FIRST STORY / 優里 《I'm a mess》 中文歌詞翻譯</a></nav></div><div class=pure-u-2-24>&nbsp;</div><div class=pure-u-10-24><nav class=next><a href=https://dwye.dev/post/git-custom-ssh/>客製化 git 使用的 SSH Key</a></nav></div><div class=pure-u-1-24 style=text-align:right><a href=https://dwye.dev/post/git-custom-ssh/><i class="fa fa-chevron-right"></i></a></div></div><script src=https://utteranc.es/client.js repo=dwy6626/dwy6626.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script></div></div></div><script src=https://dwye.dev/js/ui.js></script><script src=https://dwye.dev/js/menus.js></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-T3EV639W1W"></script><script>if(window.location.hostname!="localhost"){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-T3EV639W1W")}</script></body></html>
